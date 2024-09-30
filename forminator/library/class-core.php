@@ -286,6 +286,7 @@ class Forminator_Core {
 		include_once forminator_plugin_dir() . 'library/model/class-form-entry-model.php';
 
 		// Helpers.
+		include_once forminator_plugin_dir() . 'library/helpers/encryption.php';
 		/* @noinspection PhpIncludeInspection */
 		include_once forminator_plugin_dir() . 'library/helpers/helper-core.php';
 		/* @noinspection PhpIncludeInspection */

@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Forminator package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Forminator 1.35.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/build\n"
-"POT-Creation-Date: 2024-08-27 10:11:56+00:00\n"
+"Project-Id-Version: Forminator 1.35.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/forminator\n"
+"POT-Creation-Date: 2024-09-25 11:27:51+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1119,7 +1119,7 @@ msgstr ""
 
 #: addons/pro/googlesheet/class-forminator-addon-googlesheet.php:555
 #: addons/pro/trello/class-forminator-addon-trello.php:525
-#: admin/classes/class-admin.php:183
+#: admin/classes/class-admin.php:184
 #: admin/views/dashboard/widgets/widget-upgrade.php:15
 #: library/helpers/helper-core.php:682
 msgid "Forminator Pro"
@@ -1878,8 +1878,8 @@ msgstr ""
 #: addons/pro/mailchimp/class-forminator-addon-mailchimp.php:451
 #: addons/pro/mailerlite/class-forminator-addon-mailerlite.php:266
 #: addons/pro/mailjet/class-forminator-addon-mailjet.php:378
-#: admin/classes/class-admin-ajax.php:2110
-#: admin/classes/class-admin-ajax.php:2238
+#: admin/classes/class-admin-ajax.php:2226
+#: admin/classes/class-admin-ajax.php:2354
 msgid "Connect"
 msgstr ""
 
@@ -2914,7 +2914,7 @@ msgstr ""
 
 #: admin/abstracts/class-admin-module-edit-page.php:439
 #: admin/abstracts/class-admin-module-edit-page.php:455
-#: admin/classes/class-admin-l10n.php:196 admin/classes/class-admin.php:282
+#: admin/classes/class-admin-l10n.php:196 admin/classes/class-admin.php:283
 #: admin/locale.php:271 admin/pages/reports-page.php:221
 #: admin/views/common/entries/content-none.php:8
 #: admin/views/common/entries/header.php:11
@@ -3005,17 +3005,17 @@ msgid "Plugins"
 msgstr ""
 
 #: admin/abstracts/class-admin-page.php:250
-#: admin/abstracts/class-admin-page.php:264 admin/classes/class-admin.php:935
+#: admin/abstracts/class-admin-page.php:264 admin/classes/class-admin.php:1042
 msgid "Roadmap"
 msgstr ""
 
 #: admin/abstracts/class-admin-page.php:251
-#: admin/abstracts/class-admin-page.php:265 admin/classes/class-admin.php:923
+#: admin/abstracts/class-admin-page.php:265 admin/classes/class-admin.php:1030
 msgid "Support"
 msgstr ""
 
 #: admin/abstracts/class-admin-page.php:252
-#: admin/abstracts/class-admin-page.php:266 admin/classes/class-admin.php:852
+#: admin/abstracts/class-admin-page.php:266 admin/classes/class-admin.php:959
 msgid "Docs"
 msgstr ""
 
@@ -3244,12 +3244,12 @@ msgstr ""
 msgid "See your users' geolocation on Google Maps."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:173
-#: admin/classes/class-admin-ajax.php:231
-#: admin/classes/class-admin-ajax.php:273
-#: admin/classes/class-admin-ajax.php:366
-#: admin/classes/class-admin-ajax.php:399
-#: admin/classes/class-admin-ajax.php:428 library/addon/admin/class-ajax.php:97
+#: admin/classes/class-admin-ajax.php:174
+#: admin/classes/class-admin-ajax.php:232
+#: admin/classes/class-admin-ajax.php:274
+#: admin/classes/class-admin-ajax.php:367
+#: admin/classes/class-admin-ajax.php:400
+#: admin/classes/class-admin-ajax.php:429 library/addon/admin/class-ajax.php:97
 #: library/addon/admin/class-integration-admin-ajax.php:97
 #: library/class-export.php:192 library/helpers/helper-core.php:129
 #: library/helpers/helper-core.php:143
@@ -3257,8 +3257,8 @@ msgstr ""
 msgid "Invalid request, you are not allowed to do that action."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:306
-#: admin/classes/class-admin-ajax.php:477 library/class-api.php:297
+#: admin/classes/class-admin-ajax.php:307
+#: admin/classes/class-admin-ajax.php:478 library/class-api.php:297
 #: library/class-api.php:336 library/class-api.php:456
 #: library/class-api.php:498 library/class-api.php:533
 #: library/class-api.php:573 library/class-api.php:617
@@ -3268,234 +3268,258 @@ msgstr ""
 msgid "Form model doesn't exist"
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:375
+#: admin/classes/class-admin-ajax.php:376
 msgid "PDF add-on is not installed."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:381
+#: admin/classes/class-admin-ajax.php:382
 msgid "Failed to create PDF. Please try again."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:408
+#: admin/classes/class-admin-ajax.php:409
 msgid "PDF not found."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:438
+#: admin/classes/class-admin-ajax.php:439
 msgid "Forminator encountered an error while fetching the PDF files."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:562
-#: admin/classes/class-admin-ajax.php:2628
-#: admin/classes/class-admin-ajax.php:2659
-#: admin/classes/class-admin-ajax.php:2706 admin/locale.php:1464
+#: admin/classes/class-admin-ajax.php:563
+#: admin/classes/class-admin-ajax.php:2712
+#: admin/classes/class-admin-ajax.php:2743
+#: admin/classes/class-admin-ajax.php:2790 admin/locale.php:1464
 #: library/abstracts/abstract-class-front-action.php:1047
 #: library/modules/custom-forms/admin/admin-loader.php:798
 msgid "Something went wrong."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:565
+#: admin/classes/class-admin-ajax.php:566
 #. translators: %s: Form count
 msgid "Preset successfully applied to %d form(s)."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:602
+#: admin/classes/class-admin-ajax.php:603
 msgid "Preset Name is empty."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:627
+#: admin/classes/class-admin-ajax.php:628
 msgid "Preset ID is empty."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:630
+#: admin/classes/class-admin-ajax.php:631
 msgid "Preset ID is incorrect."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:653
+#: admin/classes/class-admin-ajax.php:654
 msgid "Appearance preset id doesn't exist"
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:665
+#: admin/classes/class-admin-ajax.php:666
 msgid "The preset has been successfully updated."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:842
+#: admin/classes/class-admin-ajax.php:734
+msgid "You do not have permission to write to the wp-config.php file."
+msgstr ""
+
+#: admin/classes/class-admin-ajax.php:744
+msgid "Unable to initialize WP_Filesystem."
+msgstr ""
+
+#: admin/classes/class-admin-ajax.php:752
+msgid "wp-config.php file not found."
+msgstr ""
+
+#: admin/classes/class-admin-ajax.php:759
+msgid "Unable to read wp-config.php file content."
+msgstr ""
+
+#: admin/classes/class-admin-ajax.php:764
+msgid "FORMINATOR_ENCRYPTION_KEY constant already exists."
+msgstr ""
+
+#: admin/classes/class-admin-ajax.php:783
+msgid "WP config file does not have the expected content."
+msgstr ""
+
+#: admin/classes/class-admin-ajax.php:958
 msgid "You have to first save your credentials to load the reCAPTCHA . "
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:874
+#: admin/classes/class-admin-ajax.php:990
 msgid "Save your API keys to load the hCAPTCHA preview."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:912
-#: admin/classes/class-admin-ajax.php:1765
-#: admin/classes/class-admin-ajax.php:1847
+#: admin/classes/class-admin-ajax.php:1028
+#: admin/classes/class-admin-ajax.php:1881
+#: admin/classes/class-admin-ajax.php:1963
 msgid "Limit per page can not be less than one."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:1031
+#: admin/classes/class-admin-ajax.php:1147
 msgid "Not valid module ID provided."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:1047
+#: admin/classes/class-admin-ajax.php:1163
 msgid "No ID was provided."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:1053
+#: admin/classes/class-admin-ajax.php:1169
 msgid "Exports cleared."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:1055
+#: admin/classes/class-admin-ajax.php:1171
 msgid "Exports couldn't be cleared."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:1364
+#: admin/classes/class-admin-ajax.php:1480
 msgid "Required id parameter is not set."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:1369
+#: admin/classes/class-admin-ajax.php:1485
 msgid "Tracking Data has been reset successfully."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:1379
-#: admin/classes/class-admin-ajax.php:1531
-#: admin/classes/class-admin-ajax.php:1596
-#: admin/classes/class-admin-ajax.php:1663
+#: admin/classes/class-admin-ajax.php:1495
+#: admin/classes/class-admin-ajax.php:1647
+#: admin/classes/class-admin-ajax.php:1712
+#: admin/classes/class-admin-ajax.php:1779
 msgid "Import Export Feature disabled."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:1382
+#: admin/classes/class-admin-ajax.php:1498
 msgid "Import text can not be empty."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:1428
+#: admin/classes/class-admin-ajax.php:1544
 msgid "Template ID is missing."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:1563
+#: admin/classes/class-admin-ajax.php:1679
 msgid "Can't find form to import"
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:1567
-#: admin/classes/class-admin-ajax.php:1635
+#: admin/classes/class-admin-ajax.php:1683
+#: admin/classes/class-admin-ajax.php:1751
 msgid "Could not import the forms. Check if the selected form plugin is active"
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:1886
+#: admin/classes/class-admin-ajax.php:2002
 msgid "Stripe account disconnected successfully."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:1913
+#: admin/classes/class-admin-ajax.php:2029
 msgid "PayPal account disconnected successfully."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:2056
+#: admin/classes/class-admin-ajax.php:2172
 msgid ""
 "Stripe account connected successfully. You can now add the Stripe field to "
 "your forms and start collecting payments."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:2066
+#: admin/classes/class-admin-ajax.php:2182
 msgid "Please input test publishable key"
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:2069
+#: admin/classes/class-admin-ajax.php:2185
 msgid "Please input test secret key"
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:2072
+#: admin/classes/class-admin-ajax.php:2188
 msgid "Please input live publishable key"
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:2075
-#: admin/classes/class-admin-ajax.php:2211
+#: admin/classes/class-admin-ajax.php:2191
+#: admin/classes/class-admin-ajax.php:2327
 msgid "Please input live secret key"
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:2079
+#: admin/classes/class-admin-ajax.php:2195
 msgid "You've entered an invalid test secret key"
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:2081
+#: admin/classes/class-admin-ajax.php:2197
 msgid "You've entered an invalid test restricted key"
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:2086
-#: admin/classes/class-admin-ajax.php:2217
+#: admin/classes/class-admin-ajax.php:2202
+#: admin/classes/class-admin-ajax.php:2333
 msgid "You've entered an invalid live secret key"
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:2088
+#: admin/classes/class-admin-ajax.php:2204
 msgid "You've entered an invalid live restricted key"
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:2092
+#: admin/classes/class-admin-ajax.php:2208
 msgid "You've entered an invalid test publishable key"
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:2095
+#: admin/classes/class-admin-ajax.php:2211
 msgid "You've entered an invalid live publishable key"
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:2192
+#: admin/classes/class-admin-ajax.php:2308
 msgid ""
 "PayPal account connected successfully. You can now add the PayPal field to "
 "your forms and start collecting payments."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:2202
+#: admin/classes/class-admin-ajax.php:2318
 msgid "Please input sandbox client id"
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:2205
+#: admin/classes/class-admin-ajax.php:2321
 msgid "Please input sandbox secret key"
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:2208
+#: admin/classes/class-admin-ajax.php:2324
 msgid "Please input live client id"
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:2214
+#: admin/classes/class-admin-ajax.php:2330
 msgid "You've entered an invalid sandbox secret key"
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:2220
+#: admin/classes/class-admin-ajax.php:2336
 msgid "You've entered an invalid sandbox client id"
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:2223
+#: admin/classes/class-admin-ajax.php:2339
 msgid "You've entered an invalid live client id"
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:2277
+#: admin/classes/class-admin-ajax.php:2393
 msgid "Invalid option name"
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:2349
+#: admin/classes/class-admin-ajax.php:2465
 msgid "Invalid notification name"
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:2457
+#: admin/classes/class-admin-ajax.php:2541
 msgid "All the submissions deleted successfully."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:2464
+#: admin/classes/class-admin-ajax.php:2548
 msgid "Submission delete failed."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:2512
-#: admin/classes/class-admin-ajax.php:2563
+#: admin/classes/class-admin-ajax.php:2596
+#: admin/classes/class-admin-ajax.php:2647
 msgid "Required field missing"
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:2522
+#: admin/classes/class-admin-ajax.php:2606
 msgid "Unexpected action, we could not handle it."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:2596
+#: admin/classes/class-admin-ajax.php:2680
 msgid "Current user cannot add recipient."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:2606 library/class-export.php:230
+#: admin/classes/class-admin-ajax.php:2690 library/class-export.php:230
 msgid "Invalid email."
 msgstr ""
 
@@ -3879,7 +3903,7 @@ msgid ""
 "etc.) on your quiz."
 msgstr ""
 
-#: admin/classes/class-admin-l10n.php:147 admin/classes/class-admin.php:634
+#: admin/classes/class-admin-l10n.php:147 admin/classes/class-admin.php:636
 #: admin/views/dashboard/footer-free.php:72
 msgid "Learn more"
 msgstr ""
@@ -3954,7 +3978,7 @@ msgstr ""
 msgid "Deactivate Anyway"
 msgstr ""
 
-#: admin/classes/class-admin-l10n.php:171 admin/classes/class-admin.php:242
+#: admin/classes/class-admin-l10n.php:171 admin/classes/class-admin.php:243
 #: admin/locale.php:213 admin/views/settings/header.php:10
 #: library/modules/quizzes/admin/admin-loader.php:567
 msgid "Settings"
@@ -5008,7 +5032,7 @@ msgstr ""
 msgid "LOG IN TO WPMU DEV"
 msgstr ""
 
-#: admin/classes/class-admin-l10n.php:471 admin/classes/class-admin.php:867
+#: admin/classes/class-admin-l10n.php:471 admin/classes/class-admin.php:974
 #: admin/views/templates/banner/wpmudev-expired.php:31
 #: admin/views/templates/cloud/wpmudev-renew.php:28
 #: admin/views/templates/preset/listing.php:74
@@ -5147,8 +5171,8 @@ msgstr ""
 msgid "Loading categories..."
 msgstr ""
 
-#: admin/classes/class-admin-l10n.php:511 admin/classes/class-admin.php:392
-#: admin/classes/class-admin.php:862
+#: admin/classes/class-admin-l10n.php:511 admin/classes/class-admin.php:393
+#: admin/classes/class-admin.php:969
 #: admin/views/templates/preset/listing.php:50
 msgid "Upgrade"
 msgstr ""
@@ -5293,11 +5317,11 @@ msgstr ""
 msgid "Forminator"
 msgstr ""
 
-#: admin/classes/class-admin.php:187
+#: admin/classes/class-admin.php:188
 msgid "Forminator Dashboard"
 msgstr ""
 
-#: admin/classes/class-admin.php:187 admin/classes/class-admin.php:848
+#: admin/classes/class-admin.php:188 admin/classes/class-admin.php:955
 #: admin/views/common/reports/content.php:14
 #: admin/views/common/reports/content.php:26
 #: admin/views/dashboard/header.php:10
@@ -5305,44 +5329,44 @@ msgstr ""
 msgid "Dashboard"
 msgstr ""
 
-#: admin/classes/class-admin.php:208 admin/classes/class-admin.php:209
+#: admin/classes/class-admin.php:209 admin/classes/class-admin.php:210
 #: admin/locale.php:894 admin/views/integrations/header.php:10
 msgid "Integrations"
 msgstr ""
 
-#: admin/classes/class-admin.php:242
+#: admin/classes/class-admin.php:243
 msgid "Global Settings"
 msgstr ""
 
-#: admin/classes/class-admin.php:281
+#: admin/classes/class-admin.php:282
 msgid "Forminator Submissions"
 msgstr ""
 
-#: admin/classes/class-admin.php:304 admin/classes/class-admin.php:305
+#: admin/classes/class-admin.php:305 admin/classes/class-admin.php:306
 msgid "Upgrade for 80% Off!"
 msgstr ""
 
-#: admin/classes/class-admin.php:329
+#: admin/classes/class-admin.php:330
 msgid "Forminator Add-ons"
 msgstr ""
 
-#: admin/classes/class-admin.php:330 admin/locale.php:1836
+#: admin/classes/class-admin.php:331 admin/locale.php:1836
 #: admin/views/custom-form/popup/import-cf7.php:184
 msgid "Add-ons"
 msgstr ""
 
-#: admin/classes/class-admin.php:350 admin/locale.php:1839
+#: admin/classes/class-admin.php:351 admin/locale.php:1839
 #: admin/views/common/reports/header.php:10
 msgid "Reports"
 msgstr ""
 
-#: admin/classes/class-admin.php:395
+#: admin/classes/class-admin.php:396
 #: library/modules/quizzes/admin/admin-loader.php:801
 #: library/modules/quizzes/admin/admin-loader.php:809
 msgid "Hey"
 msgstr ""
 
-#: admin/classes/class-admin.php:399
+#: admin/classes/class-admin.php:400
 #. translators: user's name
 msgid ""
 "%s, it appears you have an active WPMU DEV membership but haven't upgraded "
@@ -5350,45 +5374,46 @@ msgid ""
 "for it!"
 msgstr ""
 
-#: admin/classes/class-admin.php:435
+#: admin/classes/class-admin.php:436
 msgid "Claim your free gift"
 msgstr ""
 
-#: admin/classes/class-admin.php:437
+#: admin/classes/class-admin.php:438
 msgid "Find out more"
 msgstr ""
 
-#: admin/classes/class-admin.php:438 admin/classes/class-admin.php:990
+#: admin/classes/class-admin.php:439 admin/classes/class-admin.php:1097
 msgid "Remind me later"
 msgstr ""
 
-#: admin/classes/class-admin.php:441
+#: admin/classes/class-admin.php:442
 msgid "Managing multiple WP sites for clients? Here’s a free gift to make it easier"
 msgstr ""
 
-#: admin/classes/class-admin.php:444
+#: admin/classes/class-admin.php:445
 msgid ""
 "In addition to Forminator, WPMU DEV has everything you need for fast and "
 "convenient site management."
 msgstr ""
 
-#: admin/classes/class-admin.php:447
+#: admin/classes/class-admin.php:448
 msgid "Trusted by over 50K web developers. Completely free to try."
 msgstr ""
 
-#: admin/classes/class-admin.php:482
-#. translators: %s: Forminator vesrion
+#: admin/classes/class-admin.php:484
+#. translators: 1. Forminator version. 2. Min Stripe addon version.
 msgid ""
-"We've noticed you have updated to Forminator Pro version %s. Please ensure "
-"you also update your Forminator Stripe Subscriptions Add-on to version "
-"1.0.4 or higher to ensure compatibility with the new submissions processes."
-msgstr ""
-
-#: admin/classes/class-admin.php:547
-msgid "Forminator - Import your Contact Form 7 forms automatically"
+"We've noticed you have updated to Forminator Pro version %1$s. Please "
+"ensure you also update your Forminator Stripe Subscriptions Add-on to "
+"version %2$s or higher to ensure compatibility with the new submissions "
+"processes."
 msgstr ""
 
 #: admin/classes/class-admin.php:549
+msgid "Forminator - Import your Contact Form 7 forms automatically"
+msgstr ""
+
+#: admin/classes/class-admin.php:551
 msgid ""
 "We noticed that Contact Form 7 is active on your website. You can use our "
 "built-in Contact Form 7 importer to import your existing forms and the "
@@ -5396,11 +5421,11 @@ msgid ""
 "supports the most widely used add-ons as well."
 msgstr ""
 
-#: admin/classes/class-admin.php:553
+#: admin/classes/class-admin.php:555
 msgid "Import Contact Form 7 Forms"
 msgstr ""
 
-#: admin/classes/class-admin.php:555 admin/classes/class-admin.php:636
+#: admin/classes/class-admin.php:557 admin/classes/class-admin.php:638
 #: admin/locale.php:991
 #: library/lib/dash-notice/wpmudev-dash-notification.php:268
 #: library/lib/dash-notice/wpmudev-dash-notification.php:309
@@ -5409,7 +5434,7 @@ msgstr ""
 msgid "Dismiss"
 msgstr ""
 
-#: admin/classes/class-admin.php:625
+#: admin/classes/class-admin.php:627
 #. Translators: 1. Opening <a> tag with link to stripe SCA Compliant, 2.
 #. closing <a> tag.
 msgid ""
@@ -5420,7 +5445,7 @@ msgid ""
 "checking them to ensure everything works fine."
 msgstr ""
 
-#: admin/classes/class-admin.php:694
+#: admin/classes/class-admin.php:696
 #. Translators: 1. Opening <b> tag, 2. closing <b> tag, 3. Opening <a> tag with
 #. link to payments settings section, 4. closing <a> tag, 5. Opening <a> tag
 #. with link Stripe API key, 6. closing <a> tag.
@@ -5430,7 +5455,45 @@ msgid ""
 "switching to the Restricted API key (RAK) instead. %5$sLearn More%6$s."
 msgstr ""
 
-#: admin/classes/class-admin.php:761
+#: admin/classes/class-admin.php:745
+msgid ""
+"Forminator now encrypts and securely stores your Stripe and PayPal secret "
+"keys."
+msgstr ""
+
+#: admin/classes/class-admin.php:748
+#. Translators: 1. Opening <a> tag with link to documentation, 2. Closing <a>
+#. tag.
+msgid "For more information, %1$ssee our documentation%2$s."
+msgstr ""
+
+#: admin/classes/class-admin.php:757
+msgid "Secure Your Payment Keys"
+msgstr ""
+
+#: admin/classes/class-admin.php:768
+#. Translators: 1. Opening <b> tag. 2. Closing <b< tag. 3. Constant name. 4.
+#. File name.
+msgid ""
+"Click %1$sAdd Key%2$s to add the required %3$s to your %4$s for enhanced "
+"security."
+msgstr ""
+
+#: admin/classes/class-admin.php:783
+msgid "ADD KEY"
+msgstr ""
+
+#: admin/classes/class-admin.php:816
+#. Translators: 1. Constant name. 2. File name.
+msgid "To ensure enhanced security, please add the %1$s constant to your %2$s file."
+msgstr ""
+
+#: admin/classes/class-admin.php:827
+#. Translators: Code example.
+msgid "Example: %s"
+msgstr ""
+
+#: admin/classes/class-admin.php:868
 #. translators: %d: Module count.
 msgid ""
 "Awesome! You've published more than %d modules with Forminator. Hope you "
@@ -5439,21 +5502,21 @@ msgid ""
 "rating on wp.org to help us spread the word and boost our motivation."
 msgstr ""
 
-#: admin/classes/class-admin.php:765 admin/classes/class-admin.php:794
-#: admin/classes/class-admin.php:922 admin/views/common/entries/prompt.php:48
+#: admin/classes/class-admin.php:872 admin/classes/class-admin.php:901
+#: admin/classes/class-admin.php:1029 admin/views/common/entries/prompt.php:48
 msgid "Rate Forminator"
 msgstr ""
 
-#: admin/classes/class-admin.php:768 admin/classes/class-admin.php:798
+#: admin/classes/class-admin.php:875 admin/classes/class-admin.php:905
 #: admin/views/common/entries/prompt.php:52
 msgid "Maybe later"
 msgstr ""
 
-#: admin/classes/class-admin.php:772 admin/views/common/entries/prompt.php:55
+#: admin/classes/class-admin.php:879 admin/views/common/entries/prompt.php:55
 msgid "No Thanks"
 msgstr ""
 
-#: admin/classes/class-admin.php:790
+#: admin/classes/class-admin.php:897
 msgid ""
 "Excellent! You've been using Forminator for a while now. Hope you are "
 "enjoying it so far. We have spent countless hours developing this free "
@@ -5461,15 +5524,15 @@ msgid ""
 "rating on wp.org to help us spread the word and boost our motivation."
 msgstr ""
 
-#: admin/classes/class-admin.php:848
+#: admin/classes/class-admin.php:955
 msgid "Go to Forminator Dashboard"
 msgstr ""
 
-#: admin/classes/class-admin.php:862
+#: admin/classes/class-admin.php:969
 msgid "Upgrade to Forminator Pro"
 msgstr ""
 
-#: admin/classes/class-admin.php:864
+#: admin/classes/class-admin.php:971
 msgid "Upgrade For 80% Off!"
 msgstr ""
 
@@ -5477,35 +5540,35 @@ msgstr ""
 msgid "WPMU DEV"
 msgstr ""
 
-#: admin/classes/class-admin.php:898
+#: admin/classes/class-admin.php:1005
 #. translators: %s: Authorise url.
 msgid "By %s"
 msgstr ""
 
-#: admin/classes/class-admin.php:914
+#: admin/classes/class-admin.php:1021
 #. translators: %s: Plugin name.
 msgid "More information about %s"
 msgstr ""
 
-#: admin/classes/class-admin.php:916 admin/classes/class-admin.php:930
+#: admin/classes/class-admin.php:1023 admin/classes/class-admin.php:1037
 msgid "View details"
 msgstr ""
 
-#: admin/classes/class-admin.php:933
+#: admin/classes/class-admin.php:1040
 msgid "Premium Support"
 msgstr ""
 
-#: admin/classes/class-admin.php:976
+#: admin/classes/class-admin.php:1083
 msgid "New update available for one or more Add-ons."
 msgstr ""
 
-#: admin/classes/class-admin.php:980
+#: admin/classes/class-admin.php:1087
 msgid ""
 "A new update is available for one or more of your Forminator Add-ons. Click "
 "on the button below to check and update the required Add-on."
 msgstr ""
 
-#: admin/classes/class-admin.php:985
+#: admin/classes/class-admin.php:1092
 msgid "View and Update"
 msgstr ""
 
@@ -17140,7 +17203,7 @@ msgstr ""
 msgid "Failed to save new entry meta."
 msgstr ""
 
-#: library/class-core.php:386
+#: library/class-core.php:387
 msgid "Post Custom Data"
 msgstr ""
 
@@ -18005,23 +18068,23 @@ msgstr ""
 msgid "This field is required. Please input a valid URL."
 msgstr ""
 
-#: library/gateways/class-paypal-express.php:289
+#: library/gateways/class-paypal-express.php:372
 msgid "Failed to configure PayPal payment"
 msgstr ""
 
-#: library/gateways/class-paypal-express.php:294
+#: library/gateways/class-paypal-express.php:377
 msgid ""
 "Some error has occurred while connecting to your PayPal account. Please "
 "resolve the following errors and try to connect again."
 msgstr ""
 
-#: library/gateways/class-stripe.php:81
+#: library/gateways/class-stripe.php:95
 msgid ""
 "Stripe not available, please check your WordPress installation for PHP "
 "Version and plugin conflicts."
 msgstr ""
 
-#: library/gateways/class-stripe.php:158
+#: library/gateways/class-stripe.php:188
 msgid ""
 "Some error has occurred while connecting to your Stripe account. Please "
 "resolve the following errors and try to connect again."

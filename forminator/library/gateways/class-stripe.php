@@ -31,6 +31,13 @@ class Forminator_Gateway_Stripe {
 	protected $test_secret = '';
 
 	/**
+	 * Stripe Test Secret key encrypted
+	 *
+	 * @var string
+	 */
+	protected $test_secret_encrypted = '';
+
+	/**
 	 * Stripe Live Pub key
 	 *
 	 * @var string
@@ -43,6 +50,13 @@ class Forminator_Gateway_Stripe {
 	 * @var string
 	 */
 	protected $live_secret = '';
+
+	/**
+	 * Stripe Live Secret key encrypted
+	 *
+	 * @var string
+	 */
+	protected $live_secret_encrypted = '';
 
 	/**
 	 * Live Mode flag
@@ -80,7 +94,19 @@ class Forminator_Gateway_Stripe {
 		if ( ! self::is_available() ) {
 			throw new Forminator_Gateway_Exception( esc_html__( 'Stripe not available, please check your WordPress installation for PHP Version and plugin conflicts.', 'forminator' ) );
 		}
-		$config = get_option( 'forminator_stripe_configuration', array() );
+
+		$config_key = 'forminator_stripe_configuration';
+		$config     = get_option( $config_key, array() );
+		if ( ! empty( $config['is_salty'] ) && defined( 'FORMINATOR_ENCRYPTION_KEY' ) ) {
+			// Re-encrypt settings after setting FORMINATOR_ENCRYPTION_KEY constant.
+			self::reencrypt_settings( $config );
+			$config = get_option( $config_key, array() );
+		} elseif ( ( ! empty( $config['test_secret'] ) && empty( $config['test_secret_encrypted'] ) )
+				|| ( ! empty( $config['live_secret'] ) && empty( $config['live_secret_encrypted'] ) ) ) {
+			// Encrypt secret keys.
+			self::store_settings( $config );
+			$config = get_option( $config_key, array() );
+		}
 
 		$this->test_key         = isset( $config['test_key'] ) ? $config['test_key'] : '';
 		$this->test_secret      = isset( $config['test_secret'] ) ? $config['test_secret'] : '';
@@ -92,10 +118,14 @@ class Forminator_Gateway_Stripe {
 
 		if ( empty( $this->test_secret ) && defined( 'FORMINATOR_STRIPE_TEST_SECRET' ) ) {
 			$this->test_secret = FORMINATOR_STRIPE_TEST_SECRET;
+		} else {
+			$this->test_secret_encrypted = isset( $config['test_secret_encrypted'] ) ? $config['test_secret_encrypted'] : '';
 		}
 
 		$this->live_key    = isset( $config['live_key'] ) ? $config['live_key'] : '';
 		$this->live_secret = isset( $config['live_secret'] ) ? $config['live_secret'] : '';
+
+		$this->live_secret_encrypted = isset( $config['live_secret_encrypted'] ) ? $config['live_secret_encrypted'] : '';
 
 		/**
 		 * Filter CA bundle path to be used on Stripe HTTP Request
@@ -190,9 +220,13 @@ class Forminator_Gateway_Stripe {
 	/**
 	 * Get test secret
 	 *
+	 * @param bool $decrypted Get decrypted key.
 	 * @return string
 	 */
-	public function get_test_secret() {
+	public function get_test_secret( bool $decrypted = false ) {
+		if ( $decrypted && ! empty( $this->test_secret_encrypted ) ) {
+			return Forminator_Encryption::decrypt( $this->test_secret_encrypted );
+		}
 		return $this->test_secret;
 	}
 
@@ -208,9 +242,13 @@ class Forminator_Gateway_Stripe {
 	/**
 	 * Get live secret
 	 *
+	 * @param bool $decrypted Get decrypted key.
 	 * @return string
 	 */
-	public function get_live_secret() {
+	public function get_live_secret( bool $decrypted = false ) {
+		if ( $decrypted && ! empty( $this->live_secret_encrypted ) ) {
+			return Forminator_Encryption::decrypt( $this->live_secret_encrypted );
+		}
 		return $this->live_secret;
 	}
 
@@ -237,8 +275,54 @@ class Forminator_Gateway_Stripe {
 	 *
 	 * @param array $settings Settings.
 	 */
-	public static function store_settings( $settings ) {
-		update_option( 'forminator_stripe_configuration', $settings );
+	public static function store_settings( array $settings ) {
+		$option_name = 'forminator_stripe_configuration';
+		$settings    = self::prepare_settings( $settings );
+		update_option( $option_name, $settings );
+	}
+
+	/**
+	 * Store default currency
+	 *
+	 * @param string $currency Currency.
+	 */
+	public static function store_default_currency( string $currency ) {
+		$option_name                  = 'forminator_stripe_configuration';
+		$settings                     = get_option( $option_name, array() );
+		$settings['default_currency'] = $currency;
+		update_option( $option_name, $settings );
+	}
+
+	/**
+	 * Encrypt secret keys
+	 *
+	 * @param array $settings Settings.
+	 * @return array
+	 */
+	public static function prepare_settings( array $settings ): array {
+		$symbols_to_save = array( 8, 4 );
+
+		return Forminator_Encryption::encrypt_secret_keys(
+			array( 'test_secret', 'live_secret' ),
+			$settings,
+			$symbols_to_save
+		);
+	}
+
+	/**
+	 * Re-encrypt settings
+	 *
+	 * @param array $settings Settings.
+	 */
+	public static function reencrypt_settings( array $settings ) {
+		foreach ( $settings as $key => $val ) {
+			if ( in_array( $key, array( 'test_secret_encrypted', 'live_secret_encrypted' ), true ) ) {
+				$k              = str_replace( '_encrypted', '', $key );
+				$settings[ $k ] = Forminator_Encryption::decrypt( $val, true );
+			}
+		}
+
+		self::store_settings( $settings );
 	}
 
 	/**

@@ -52,6 +52,7 @@ class Forminator_Admin {
 			add_action( 'admin_notices', array( $this, 'check_stripe_addon_version' ) );
 			add_action( 'admin_notices', array( $this, 'show_cf7_importer_notice' ) );
 			add_action( 'admin_notices', array( $this, 'show_addons_update_notice' ) );
+			add_action( 'admin_notices', array( $this, 'set_encryption_key_notice' ) );
 		}
 
 		// Add plugin action links.
@@ -466,9 +467,10 @@ class Forminator_Admin {
 	 * Shown in forminator pages. Per user notification.
 	 */
 	public function check_stripe_addon_version() {
+		$min_stripe_addon_version = '1.2';
 		// Show the notice only if Stripe Addon is active and its version is less than 1.0.4.
 		if ( ! defined( 'FORMINATOR_STRIPE_ADDON' ) || ! class_exists( 'Forminator_Stripe_Addon' )
-			|| version_compare( FORMINATOR_STRIPE_ADDON, '1.0.4', '>=' ) ) {
+			|| version_compare( FORMINATOR_STRIPE_ADDON, $min_stripe_addon_version, '>=' ) ) {
 			return;
 		}
 
@@ -478,8 +480,8 @@ class Forminator_Admin {
 		}
 
 		$message = '<p>';
-		/* translators: %s: Forminator vesrion */
-		$message .= sprintf( esc_html__( 'We\'ve noticed you have updated to Forminator Pro version %s. Please ensure you also update your Forminator Stripe Subscriptions Add-on to version 1.0.4 or higher to ensure compatibility with the new submissions processes.', 'forminator' ), FORMINATOR_VERSION );
+		/* translators: 1. Forminator version. 2. Min Stripe addon version. */
+		$message .= sprintf( esc_html__( 'We\'ve noticed you have updated to Forminator Pro version %1$s. Please ensure you also update your Forminator Stripe Subscriptions Add-on to version %2$s or higher to ensure compatibility with the new submissions processes.', 'forminator' ), FORMINATOR_VERSION, $min_stripe_addon_version );
 		$message .= '</p>';
 
 		echo '<div class="forminator-grouped-notice notice notice-error"'
@@ -725,6 +727,111 @@ class Forminator_Admin {
 				});
 			});
 		</script>
+		<?php
+	}
+
+	/**
+	 * Show admin notice for setting forminator encryption key
+	 *
+	 * @since 1.35.1
+	 */
+	public function set_encryption_key_notice() {
+		// show only for WP admins.
+		if ( ! current_user_can( 'manage_options' )
+				|| ! Forminator_Encryption::use_wp_salt()
+				|| ( ! get_option( 'forminator_stripe_configuration' ) && ! get_option( 'forminator_paypal_configuration' ) ) ) {
+			return;
+		}
+		$news    = __( 'Forminator now encrypts and securely stores your Stripe and PayPal secret keys.', 'forminator' );
+		$see_doc = sprintf(
+			/* Translators: 1. Opening <a> tag with link to documentation, 2. Closing <a> tag. */
+			esc_html__( 'For more information, %1$ssee our documentation%2$s.', 'forminator' ),
+			'<a href="https://wpmudev.com/docs/wpmu-dev-plugins/forminator/#add-forminator-encryption-key-config" target="_blank">',
+			'</a>'
+		);
+		?>
+
+		<div class="forminator-notice notice notice-info fui-wordpress-notice" >
+			<p>
+				<strong>
+					<?php echo esc_html__( 'Secure Your Payment Keys', 'forminator' ); ?>
+				</strong>
+			</p>
+
+			<?php if ( Forminator_Admin_AJAX::can_write_to_wp_config() ) { ?>
+
+			<p>
+				<?php echo esc_html( $news ); ?>
+				<?php
+				printf(
+				/* Translators: 1. Opening <b> tag. 2. Closing <b< tag. 3. Constant name. 4. File name. */
+					esc_html__( 'Click %1$sAdd Key%2$s to add the required %3$s to your %4$s for enhanced security.', 'forminator' ),
+					'<strong>',
+					'</strong>',
+					'<code>FORMINATOR_ENCRYPTION_KEY</code>',
+					'<code>wp-config.php</code>'
+				);
+				?>
+				<?php echo wp_kses_post( $see_doc ); ?>
+			</p>
+
+			<p><a type="button"
+					href="#"
+					id="forminator-set-encryption-key"
+					data-nonce="<?php echo esc_attr( wp_create_nonce( 'forminator_set_encryption_key' ) ); ?>"
+					class="button button-primary button-large"
+				><?php esc_html_e( 'ADD KEY', 'forminator' ); ?></a>
+			</p>
+			<script type="text/javascript">
+				jQuery('#forminator-set-encryption-key').on('click', function (e) {
+					e.preventDefault();
+
+					var nonce = jQuery(e.currentTarget).data('nonce');
+					var $notice = jQuery(e.currentTarget).closest('.forminator-notice');
+					var ajaxUrl = '<?php echo esc_url( forminator_ajax_url() ); ?>';
+
+					jQuery.post(
+						ajaxUrl,
+						{
+							action: 'forminator_set_encryption_key',
+							_ajax_nonce: nonce
+						}
+					).done(function (response) {
+						if ( ! response.success ) {
+							console.log(response);
+						}
+					}).always(function () {
+						$notice.hide();
+					});
+				});
+			</script>
+
+			<?php } else { ?>
+
+			<p>
+				<?php echo esc_html( $news ); ?>
+				<?php
+				printf(
+				/* Translators: 1. Constant name. 2. File name. */
+					esc_html__( 'To ensure enhanced security, please add the %1$s constant to your %2$s file.', 'forminator' ),
+					'<code>FORMINATOR_ENCRYPTION_KEY</code>',
+					'<code>wp-config.php</code>'
+				);
+				?>
+				<?php echo wp_kses_post( $see_doc ); ?>
+			</p>
+			<p>
+				<?php
+				printf(
+				/* Translators: Code example. */
+					esc_html__( 'Example: %s', 'forminator' ),
+					'<code>define( \'FORMINATOR_ENCRYPTION_KEY\', \''
+					. esc_html( Forminator_Encryption::generate_encryption_key() ) . '\' );</code>'
+				);
+				?>
+			</p>
+			<?php } ?>
+		</div>
 		<?php
 	}
 

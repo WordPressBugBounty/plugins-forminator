@@ -117,6 +117,7 @@ class Forminator_Admin_AJAX {
 		add_action( 'wp_ajax_forminator_stripe_settings_modal', array( $this, 'stripe_settings_modal' ) );
 		add_action( 'wp_ajax_forminator_stripe_update_page', array( $this, 'stripe_update_page' ) );
 		add_action( 'wp_ajax_forminator_disconnect_stripe', array( $this, 'stripe_disconnect' ) );
+		add_action( 'wp_ajax_forminator_set_encryption_key', array( $this, 'set_encryption_key' ) );
 
 		add_action( 'wp_ajax_forminator_paypal_settings_modal', array( $this, 'paypal_settings_modal' ) );
 		add_action( 'wp_ajax_forminator_paypal_update_page', array( $this, 'paypal_update_page' ) );
@@ -685,6 +686,121 @@ class Forminator_Admin_AJAX {
 		update_option( 'forminator_welcome_dismissed', true );
 		wp_send_json_success();
 	}
+
+	/**
+	 * Set encryption key
+	 */
+	public function set_encryption_key() {
+		forminator_validate_ajax( 'forminator_set_encryption_key' );
+
+		try {
+			$config_content = self::prepare_new_wp_config();
+			$config_file    = self::get_wp_config_file_path();
+
+			global $wp_filesystem;
+			// Write the modified content back to wp-config.php.
+			return $wp_filesystem->put_contents( $config_file, $config_content, FS_CHMOD_FILE );
+		} catch ( Exception $e ) {
+			wp_send_json_error( $e->getMessage() );
+		}
+		wp_send_json_success();
+	}
+
+	/**
+	 * Get full path to wp-config.php file.
+	 *
+	 * @return string
+	 */
+	public static function get_wp_config_file_path(): string {
+		$path = ABSPATH . 'wp-config.php';
+		if ( ! file_exists( ABSPATH . 'wp-config.php' )
+				&& file_exists( dirname( ABSPATH ) . '/wp-config.php' )
+				&& ! file_exists( dirname( ABSPATH ) . '/wp-settings.php' ) ) {
+			$path = dirname( ABSPATH ) . '/wp-config.php';
+		}
+
+		return apply_filters( 'forminator_wp_config_file_path', $path );
+	}
+
+	/**
+	 * Prepare new wp-config.php content
+	 *
+	 * @return string
+	 * @throws Exception Throws exception if failed to prepare new wp-config.php content.
+	 */
+	public static function prepare_new_wp_config() {
+		// Check if current user can write to files.
+		if ( ! current_user_can( 'manage_options' ) ) {
+			throw new Exception( esc_html__( 'You do not have permission to write to the wp-config.php file.', 'forminator' ) );
+		}
+
+		global $wp_filesystem;
+		// Ensure we have the WP_Filesystem initialized.
+		if ( is_null( $wp_filesystem ) && ! function_exists( 'WP_Filesystem' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/file.php';
+		}
+		WP_Filesystem();
+		if ( ! $wp_filesystem instanceof WP_Filesystem_Base ) {
+			throw new Exception( esc_html__( 'Unable to initialize WP_Filesystem.', 'forminator' ) );
+		}
+
+		// Get the path to wp-config.php.
+		$config_file = self::get_wp_config_file_path();
+
+		// Check if the file exists.
+		if ( ! $wp_filesystem->exists( $config_file ) ) {
+			throw new Exception( esc_html__( 'wp-config.php file not found.', 'forminator' ) );
+		}
+
+		// Read the wp-config.php content.
+		$config_content = $wp_filesystem->get_contents( $config_file );
+
+		if ( ! $config_content ) {
+			throw new Exception( esc_html__( 'Unable to read wp-config.php file content.', 'forminator' ) );
+		}
+
+		// Check if the constant already exists.
+		if ( strpos( $config_content, 'FORMINATOR_ENCRYPTION_KEY' ) !== false ) {
+			throw new Exception( esc_html__( 'FORMINATOR_ENCRYPTION_KEY constant already exists.', 'forminator' ) );
+		}
+
+		$secret       = Forminator_Encryption::generate_encryption_key();
+		$new_constant = sprintf(
+			"define( 'FORMINATOR_ENCRYPTION_KEY', '%s' );%s",
+			$secret,
+			PHP_EOL
+		);
+
+		// Append the new constant before the line that says "That's all, stop editing!".
+		$wp_comment  = "/* That's all, stop editing! Happy blogging. */";
+		$new_content = str_replace( $wp_comment, $new_constant . "\n\n$wp_comment", $config_content );
+
+		if ( $new_content === $config_content ) {
+			$wp_comment  = "/* That's all, stop editing! Happy publishing. */";
+			$new_content = str_replace( $wp_comment, $new_constant . "\n\n$wp_comment", $config_content );
+
+			if ( $new_content === $config_content ) {
+				throw new Exception( esc_html__( 'WP config file does not have the expected content.', 'forminator' ) );
+			}
+		}
+		return $new_content;
+	}
+
+	/**
+	 * Check if we can write to wp-config.php file
+	 *
+	 * @return bool
+	 */
+	public static function can_write_to_wp_config(): bool {
+		try {
+			self::prepare_new_wp_config();
+		} catch ( Exception $e ) {
+			return false;
+		}
+
+		return true;
+	}
+
 
 	/**
 	 * Load google fonts
@@ -2378,23 +2494,7 @@ class Forminator_Admin_AJAX {
 		if ( $default_currency ) {
 
 			try {
-				$stripe = new Forminator_Gateway_Stripe();
-
-				$test_key    = $stripe->get_test_key();
-				$test_secret = $stripe->get_test_secret();
-				$live_key    = $stripe->get_live_key();
-				$live_secret = $stripe->get_live_secret();
-
-				Forminator_Gateway_Stripe::store_settings(
-					array(
-						'test_key'         => $test_key,
-						'test_secret'      => $test_secret,
-						'live_key'         => $live_key,
-						'live_secret'      => $live_secret,
-						'default_currency' => $default_currency,
-					)
-				);
-
+				Forminator_Gateway_Stripe::store_default_currency( $default_currency );
 			} catch ( Forminator_Gateway_Exception $e ) {
 				wp_send_json_error( $e->getMessage() );
 			}
@@ -2406,23 +2506,7 @@ class Forminator_Admin_AJAX {
 			$default_currency = $pp_default_currency;
 
 			try {
-				$paypal = new Forminator_PayPal_Express();
-
-				$sandbox_id     = $paypal->get_sandbox_id();
-				$sandbox_secret = $paypal->get_sandbox_secret();
-				$live_id        = $paypal->get_live_id();
-				$live_secret    = $paypal->get_live_secret();
-
-				Forminator_PayPal_Express::store_settings(
-					array(
-						'sandbox_id'     => $sandbox_id,
-						'sandbox_secret' => $sandbox_secret,
-						'live_id'        => $live_id,
-						'live_secret'    => $live_secret,
-						'currency'       => $default_currency,
-					)
-				);
-
+				Forminator_PayPal_Express::store_default_currency( $default_currency );
 			} catch ( Forminator_Gateway_Exception $e ) {
 				wp_send_json_error( $e->getMessage() );
 			}

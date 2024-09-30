@@ -706,10 +706,10 @@ class Forminator_Stripe extends Forminator_Field {
 			$stripe = new Forminator_Gateway_Stripe();
 
 			if ( $live ) {
-				return $stripe->get_live_secret();
+				return $stripe->get_live_secret( true );
 			}
 
-			return $stripe->get_test_secret();
+			return $stripe->get_test_secret( true );
 		} catch ( Forminator_Gateway_Exception $e ) {
 			return false;
 		}
