@@ -49,12 +49,11 @@ class Forminator_Quiz_Front_Action extends Forminator_Front_Action {
 	 * @param bool $is_preview Is preview.
 	 */
 	public function submit_quizzes( $is_preview = false ) {
-		$this->init_properties(
-			array(
-				'forminator_submit_form',
-				'forminator_nonce',
-			)
-		);
+		$this->init_properties();
+
+		if ( ! $this->validate_ajax( 'forminator_submit_form' . self::$module_id, 'POST', 'forminator_nonce' ) ) {
+			wp_send_json_error( esc_html__( 'Invalid nonce. Please refresh your browser.', 'forminator' ) );
+		}
 
 		self::can_submit();
 
