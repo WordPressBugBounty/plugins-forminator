@@ -75,6 +75,28 @@ class Forminator_Quiz_Front_Action extends Forminator_Front_Action {
 			);
 		}
 
+		if ( ! empty( self::$prepared_data['entry_id'] ) ) {
+			$invalid_request = false;
+			if ( empty( $this->model->settings['hasLeads'] ) ) {
+				// Do not allow if the quiz has no leads and the request contains an entry ID.
+				$invalid_request = true;
+			} else {
+				$old_entry = new Forminator_Form_Entry_Model( intval( self::$prepared_data['entry_id'] ) );
+				// Do not allow if the entry does not match the current quiz ID.
+				// Do not allow if the quiz has leads and has already been submitted.
+				if ( intval( $this->model->id ) !== intval( $old_entry->form_id ) || false !== $old_entry->get_meta( 'entry' ) ) {
+					$invalid_request = true;
+				}
+			}
+			if ( $invalid_request ) {
+				wp_send_json_error(
+					array(
+						'error' => apply_filters( 'forminator_submit_quiz_invalid_request', esc_html__( 'Invalid request', 'forminator' ) ),
+					)
+				);
+			}
+		}
+
 		/**
 		 * Action called before submit quizzes
 		 *
