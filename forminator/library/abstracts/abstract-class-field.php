@@ -431,7 +431,7 @@ abstract class Forminator_Field {
 		}
 
 		if ( isset( $wrapper_input[2] ) && ! empty( $wrapper_input[2] ) ) {
-			$html .= sprintf( '<label for="%s"><span class="forminator-icon-%s" aria-hidden="true"></span></label>', $get_id, $wrapper_input[2] );
+			$html .= sprintf( '<span class="forminator-icon-%s" aria-hidden="true"></span>', $wrapper_input[2] );
 		}
 
 		if ( isset( $wrapper_input[3] ) && ! empty( $wrapper_input[3] ) ) {

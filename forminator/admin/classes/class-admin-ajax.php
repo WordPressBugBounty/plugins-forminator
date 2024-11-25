@@ -495,6 +495,10 @@ class Forminator_Admin_AJAX {
 		// Save data.
 		$id = $form_model->save();
 
+		if ( is_wp_error( $id ) ) {
+			wp_send_json_error( $id->get_error_message() );
+		}
+
 		// add privacy settings to global option.
 		$override_privacy = false;
 		if ( isset( $settings['enable-submissions-retention'] ) ) {
@@ -550,12 +554,13 @@ class Forminator_Admin_AJAX {
 				}
 
 				// Save data.
-				$form_model->save();
+				$result = $form_model->save();
+				if ( ! is_wp_error( $result ) ) {
+					// Regenerare module css file.
+					Forminator_Render_Form::regenerate_css_file( $form_id );
 
-				// Regenerare module css file.
-				Forminator_Render_Form::regenerate_css_file( $form_id );
-
-				++$count;
+					++$count;
+				}
 			}
 		}
 

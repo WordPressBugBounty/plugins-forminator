@@ -35,7 +35,7 @@
 	</div>
 
 	<?php
-	$notice_dismissed = get_option( 'forminator_dismiss_feature_1320', false );
+	$notice_dismissed = get_option( 'forminator_dismiss_feature_1370', false );
 	$version_upgraded = get_option( 'forminator_version_upgraded', false );
 
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended

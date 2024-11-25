@@ -419,6 +419,10 @@ class Forminator_API {
 
 		$form_id = $form_model->save();
 
+		if ( is_wp_error( $form_id ) ) {
+			return $form_id;
+		}
+
 		if ( false === $form_id ) {
 			return new WP_Error( 'form_save_error', esc_html__( 'There was a problem moving form wrapper', 'forminator' ) );
 		}
@@ -654,7 +658,11 @@ class Forminator_API {
 		// Update field.
 		$field->import( $data );
 
-		$model->save();
+		$result = $model->save();
+
+		if ( is_wp_error( $result ) ) {
+			return $result;
+		}
 
 		return $id;
 	}
@@ -747,7 +755,11 @@ class Forminator_API {
 		$model->update_fields_by_wrapper( $wrapper );
 
 		// Save the form.
-		$model->save();
+		$result = $model->save();
+
+		if ( is_wp_error( $result ) ) {
+			return $result;
+		}
 
 		return $field_id;
 	}
@@ -982,6 +994,10 @@ class Forminator_API {
 		// Save the form.
 		$id = $model->save();
 
+		if ( is_wp_error( $id ) ) {
+			return $id;
+		}
+
 		if ( false === $id ) {
 			return new WP_Error( 'form_save_error', esc_html__( 'There was a problem saving the form', 'forminator' ) );
 		}
@@ -1026,6 +1042,10 @@ class Forminator_API {
 		// Save data.
 		$id = $model->save();
 
+		if ( is_wp_error( $id ) ) {
+			return $id;
+		}
+
 		return $id;
 	}
 
@@ -1069,6 +1089,10 @@ class Forminator_API {
 
 		// Save data.
 		$id = $model->save();
+
+		if ( is_wp_error( $id ) ) {
+			return $id;
+		}
 
 		return $id;
 	}

@@ -94,7 +94,7 @@ class Forminator_Upload extends Forminator_Field {
 			'all-interactive',
 		);
 
-		$mimes     = forminator_allowed_mime_types();
+		$mimes     = forminator_allowed_mime_types( array(), false );
 		$file_type = array_merge( $default_all, array_keys( $mimes ) );
 
 		return array(
@@ -992,6 +992,9 @@ class Forminator_Upload extends Forminator_Field {
 				$mime_types[ $filetype ] = $filetype;
 			}
 		}
+
+		// Backward compatibility: allow only the allowed file types.
+		$mime_types = forminator_allowed_mime_types( $mime_types, false );
 
 		return $mime_types;
 	}

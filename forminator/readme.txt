@@ -2,8 +2,8 @@
 Contributors: WPMUDEV
 Tags: contact form, custom form, forms, payment form, WordPress form plugin
 Requires at least: 6.4
-Tested up to: 6.6
-Stable tag: 1.36.3
+Tested up to: 6.7
+Stable tag: 1.37.1
 Requires PHP: 7.4
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -225,6 +225,33 @@ We take plugin security incredibly seriously; if you have a bug or vulnerability
 9. Allow simple drag and drop multi-file uploads for users.
 
 == Changelog ==
+
+= 1.37.1 ( 2024-11-25 ) =
+
+- Fix: Conflict with Divi child themes
+- Fix: Calculation field does not work due to Number Formatting
+- Fix: Notice for _load_textdomain_just_in_time called incorrectly since WordPress v6.7
+
+
+= 1.37.0 ( 2024-11-19 ) =
+
+- Enhancement: New Basic Style mode for Forms
+- Enhancement: Add Use Theme Colors option
+- Fix: Low-level roles can create a Registration form
+- Fix: Security improvements
+- Fix: Incorrect access to Preset and Cloud templates for users on the Free plan
+- Fix: Low-level roles can Approve or Delete Users when manual approval is set for the registration form
+- Fix: PayPal payment cancellation fully prevents form submission with no option to re-try payment until the form is reloaded
+- Fix: Calculation error in the donation template when the "other" donation option is selected
+- Fix: Add missed settings for Appearance Presets
+- Fix: Syntax error in CSS file causing issues with Litespeed Cache plugin UCSS
+- Fix: Issue with creating the registration form
+- Fix: No calendar background when the Colibri WP theme is active
+- Fix: Upload file inline validation does not work for some file types
+- Fix: Signature UI is broken on the Submission page in some cases
+- Fix: All polls become inactive when there is more than 1 poll on a page and one of them is submitted
+- Fix: Add security notice for Registration Forms for administrator roles
+- Fix: Adding odd technical text on PDF files
 
 
 = 1.36.3 ( 2024-10-25 ) =

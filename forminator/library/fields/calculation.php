@@ -176,6 +176,7 @@ class Forminator_Calculation extends Forminator_Field {
 		}
 
 		$number_attr = array(
+			'type'               => 'text',
 			'name'               => $name,
 			'value'              => $value,
 			'id'                 => $id,

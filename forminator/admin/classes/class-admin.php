@@ -972,7 +972,7 @@ class Forminator_Admin {
 			} else {
 				$action_links['renew'] = '<a href="' . forminator_get_link( 'plugin', 'forminator_pluginlist_renew' ) . '" aria-label="' . esc_attr__( 'Upgrade For 80% Off!', 'forminator' ) . '" style="color: #8D00B1;" target="_blank">' . esc_html__( 'Upgrade For 80% Off!', 'forminator' ) . '</a>';
 			}
-		} elseif ( in_array( $membership_type, array( 'expired', 'free', 'paused', '' ), true ) ) {
+		} elseif ( in_array( $membership_type, array( 'expired', 'free', 'paused', '' ), true ) && ! $can_install_pro ) {
 			$action_links['renew'] = '<a href="' . forminator_get_link( 'plugin', 'forminator_pluginlist_renew' ) . '" aria-label="' . esc_attr__( 'Renew Membership', 'forminator' ) . '" style="color: #8D00B1;" target="_blank">' . esc_html__( 'Renew Membership', 'forminator' ) . '</a>';
 		}
 

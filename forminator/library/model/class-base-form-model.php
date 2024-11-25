@@ -131,6 +131,10 @@ abstract class Forminator_Base_Form_Model {
 				}
 			}
 		}
+		$validate = forminator_validate_registration_form_settings( $meta_data['settings'] );
+		if ( is_wp_error( $validate ) ) {
+			return $validate;
+		}
 
 		$post_data['post_type'] = $this->post_type;
 

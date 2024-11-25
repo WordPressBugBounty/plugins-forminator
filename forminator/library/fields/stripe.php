@@ -201,6 +201,7 @@ class Forminator_Stripe extends Forminator_Field {
 		$desc             = self::get_property( 'product_description', $field, '' );
 		$company          = self::get_property( 'company_name', $field, '' );
 		$uniqid           = Forminator_CForm_Front::$uid;
+		$prefix           = 'basic' === $settings['form-style'] ? 'basic-' : '';
 
 		if ( mb_strlen( $company ) > 22 ) {
 			$company = mb_substr( $company, 0, 19 ) . '...';
@@ -217,23 +218,48 @@ class Forminator_Stripe extends Forminator_Field {
 		// Generate payment intent object.
 		$this->mode = $mode;
 
-		if ( isset( $settings['form-font-family'] ) && 'custom' === $settings['form-font-family'] ) {
+		if ( isset( $settings[ $prefix . 'form-font-family' ] ) && 'custom' === $settings[ $prefix . 'form-font-family' ] ) {
 			$custom_fonts = true;
 		}
 
-		if ( ! isset( $settings['form-style'] ) ) {
-			$settings['form-style'] = 'default';
+		if ( ! isset( $settings['form-substyle'] ) ) {
+			$settings['form-substyle'] = 'default';
 		}
 
-		if( ! empty( $settings['form-font-family'] ) ) {
-			$field_font_family = $this->get_form_setting( 'cform-input-font-family', $settings, 'inherit' );
-			if( $field_font_family == 'custom' ) {
-				$data_font_family = $this->get_form_setting( 'cform-input-custom-family', $settings, 'inherit' );
+		$data_font_family = 'inherit';
+		$data_font_size   = '16px';
+		$data_font_weight = '400';
+
+		if ( ! empty( $settings[ $prefix . 'form-font-family' ] ) ) {
+			$field_font_family = $this->get_form_setting( $prefix . 'cform-input-font-family', $settings, $data_font_family );
+			$data_font_size    = $this->get_form_setting( $prefix . 'cform-input-font-size', $settings, '16' ) . 'px';
+			$data_font_weight  = $this->get_form_setting( $prefix . 'cform-input-font-weight', $settings, $data_font_weight );
+
+			if ( 'custom' === $field_font_family ) {
+				$data_font_family = $this->get_form_setting( $prefix . 'cform-input-custom-family', $settings, $data_font_family );
 			} else {
 				$data_font_family = $field_font_family;
 			}
-		} else {
-			$data_font_family = 'inherit';
+		}
+
+		$data_placeholder      = '#888888';
+		$data_font_color       = '#000000';
+		$data_font_color_focus = '#000000';
+		$data_font_color_error = '#000000';
+		$data_icon_color       = '#777771';
+		$data_icon_color_hover = '#17A8E3';
+		$data_icon_color_focus = '#17A8E3';
+		$data_icon_color_error = '#E04562';
+
+		if ( ! empty( $settings[ $prefix . 'cform-color-settings' ] ) ) {
+			$data_placeholder      = $this->get_form_setting( $prefix . 'input-placeholder', $settings, $data_placeholder );
+			$data_font_color       = $this->get_form_setting( $prefix . 'input-color', $settings, $data_font_color );
+			$data_font_color_focus = $this->get_form_setting( $prefix . 'input-color', $settings, $data_font_color_focus );
+			$data_font_color_error = $this->get_form_setting( $prefix . 'input-color', $settings, $data_font_color_error );
+			$data_icon_color       = $this->get_form_setting( $prefix . 'input-icon', $settings, $data_icon_color );
+			$data_icon_color_hover = $this->get_form_setting( $prefix . 'input-icon-hover', $settings, $data_icon_color_hover );
+			$data_icon_color_focus = $this->get_form_setting( $prefix . 'input-icon-focus', $settings, $data_icon_color_focus );
+			$data_icon_color_error = $this->get_form_setting( $prefix . 'label-validation-color', $settings, $data_icon_color_error );
 		}
 
 		$attr = array(
@@ -260,18 +286,17 @@ class Forminator_Stripe extends Forminator_Field {
 			'data-receipt'          => filter_var( $receipt, FILTER_VALIDATE_BOOLEAN ),
 			'data-receipt-email'    => esc_html( $customer_email ),
 			'data-custom-fonts'     => $custom_fonts,
-			'data-placeholder'      => $this->get_form_setting( 'input-placeholder', $settings, '#888888' ),
-			'data-font-color'       => $this->get_form_setting( 'input-color', $settings, '#000000' ),
-			'data-font-color-focus' => $this->get_form_setting( 'input-color', $settings, '#000000' ),
-			'data-font-color-error' => $this->get_form_setting( 'input-color', $settings, '#000000' ),
-			'data-font-size'        => $this->get_form_setting( 'cform-input-font-size', $settings, '16' ) . 'px',
-			// 'data-line-height'      => '1.3em',
+			'data-placeholder'      => $data_placeholder,
+			'data-font-color'       => $data_font_color,
+			'data-font-color-focus' => $data_font_color_focus,
+			'data-font-color-error' => $data_font_color_error,
+			'data-font-size'        => $data_font_size,
 			'data-font-family'      => $data_font_family,
-			'data-font-weight'      => $this->get_form_setting( 'cform-input-font-weight', $settings, '400' ),
-			'data-icon-color'       => $this->get_form_setting( 'input-icon', $settings, '#777771' ),
-			'data-icon-color-hover' => $this->get_form_setting( 'input-icon-hover', $settings, '#17A8E3' ),
-			'data-icon-color-focus' => $this->get_form_setting( 'input-icon-focus', $settings, '#17A8E3' ),
-			'data-icon-color-error' => $this->get_form_setting( 'label-validation-color', $settings, '#E04562' ),
+			'data-font-weight'      => $data_font_weight,
+			'data-icon-color'       => $data_icon_color,
+			'data-icon-color-hover' => $data_icon_color_hover,
+			'data-icon-color-focus' => $data_icon_color_focus,
+			'data-icon-color-error' => $data_icon_color_error,
 		);
 
 		if ( ! empty( $description ) ) {
@@ -284,7 +309,7 @@ class Forminator_Stripe extends Forminator_Field {
 
 		$html .= self::get_field_label( $label, $id . '-field', true );
 
-		if ( 'material' === $settings['form-style'] ) {
+		if ( 'material' === $settings['form-substyle'] ) {
 			$classes = 'forminator-input--wrap forminator-input--stripe';
 
 			if ( empty( $label ) ) {
@@ -300,7 +325,7 @@ class Forminator_Stripe extends Forminator_Field {
 		$html .= sprintf( '<input type="hidden" name="paymentmethod" value="%s" id="forminator-stripe-paymentmethod"/>', '' );
 		$html .= sprintf( '<input type="hidden" name="subscriptionid" value="%s" id="forminator-stripe-subscriptionid"/>', '' );
 
-		if ( 'material' === $settings['form-style'] ) {
+		if ( 'material' === $settings['form-substyle'] ) {
 			$html .= '</div>';
 		}
 

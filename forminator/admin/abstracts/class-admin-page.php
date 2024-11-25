@@ -160,6 +160,7 @@ abstract class Forminator_Admin_Page {
 	public function remove_notice_params( $vars ) {
 		$vars[] = 'forminator_notice';
 		$vars[] = 'forminator_text_notice';
+		$vars[] = 'forminator_error_notice';
 
 		return $vars;
 	}
@@ -443,7 +444,7 @@ abstract class Forminator_Admin_Page {
 	protected function maybe_redirect_to_referer( $fallback_redirect = '', $to_referer = true ) {
 		$referer = wp_get_referer();
 		$referer = ! empty( $referer ) ? $referer : wp_get_raw_referer();
-		$referer = remove_query_arg( array( 'export', 'delete', 'forminator_notice', 'forminator_text_notice' ), $referer );
+		$referer = remove_query_arg( array( 'export', 'delete', 'forminator_notice', 'forminator_text_notice', 'forminator_error_notice' ), $referer );
 
 		if ( $referer && $to_referer ) {
 			wp_safe_redirect( $referer );

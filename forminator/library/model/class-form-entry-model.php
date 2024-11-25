@@ -1216,7 +1216,6 @@ class Forminator_Form_Entry_Model {
 		}
 	}
 
-
 	/**
 	 * Delete by entry
 	 *
