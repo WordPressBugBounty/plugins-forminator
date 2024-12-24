@@ -1436,16 +1436,32 @@ class Forminator_API {
 	 * @since 1.2
 	 *
 	 * @param int $form_id Form ID.
+	 * @param int $per_page Limit per page.
+	 * @param int $current_page Current page.
+	 *
+	 * @since 1.38 Added optional param per_page.
+	 * @since 1.38 Added optional param current_page.
 	 *
 	 * @return Forminator_Form_Entry_Model[]|WP_Error
 	 */
-	public static function get_entries( $form_id ) {
+	public static function get_entries( $form_id, $per_page = 0, $current_page = 1 ) {
 		// Initialize API.
 		self::initialize();
 
 		// Check if Form ID is set.
 		if ( empty( $form_id ) ) {
 			return new WP_Error( 'missing_form_id', esc_html__( 'Form ID is required!', 'forminator' ) );
+		}
+		if ( $per_page ) {
+			$offset = $current_page > 0 ? --$current_page : 0;
+			$args   = array(
+				'form_id'  => $form_id,
+				'is_spam'  => 0,
+				'per_page' => $per_page,
+				'offset'   => $offset,
+			);
+			$count  = 0;
+			return Forminator_Form_Entry_Model::query_entries( $args, $count );
 		}
 
 		return Forminator_Form_Entry_Model::get_entries( $form_id );

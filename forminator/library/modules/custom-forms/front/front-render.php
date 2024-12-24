@@ -465,7 +465,7 @@ class Forminator_CForm_Front extends Forminator_Render_Form {
 
 		// Load Paypal scripts.
 		if ( $this->has_paypal() ) {
-			$paypal_src = $this->paypal_script_argument( 'https://www.paypal.com/sdk/js' );
+			$paypal_src = $this->paypal_script_argument( 'https://www.paypal.com/sdk/js?enable-funding=venmo' );
 
 			// If there is more than 1 paypal field in a page, even if it's ajax loaded, enqueue script as usual to prevent paypal button errors.
 			if ( ! $is_ajax_load || forminator_count_field_type_in_page( 'paypal' ) > 1 ) {
@@ -714,7 +714,7 @@ class Forminator_CForm_Front extends Forminator_Render_Form {
 	public function get_wrappers() {
 		if ( is_object( $this->model ) ) {
 			$wrappers          = $this->model->get_fields_grouped();
-			$restricted_fields = array( 'page-break', 'paypal', 'stripe', 'signature', 'captcha', 'postdata', 'group' );
+			$restricted_fields = array( 'page-break', 'paypal', 'stripe', 'stripe-ocs', 'signature', 'captcha', 'postdata', 'group' );
 			foreach ( $wrappers as $key => $wrapper ) {
 				if ( empty( $wrapper['parent_group'] ) ) {
 					continue;
@@ -2813,6 +2813,7 @@ class Forminator_CForm_Front extends Forminator_Render_Form {
 		if ( empty( $form_properties ) ) {
 			return array();
 		}
+		$has_stripe = $this->has_stripe();
 
 		$options = array(
 			'form_type'           => $this->get_form_type(),
@@ -2843,7 +2844,7 @@ class Forminator_CForm_Front extends Forminator_Render_Form {
 			'loader_label'        => $this->get_loader_label( $form_properties ),
 			'calcs_memoize_time'  => $this->get_memoize_time(),
 			'is_reset_enabled'    => $this->is_reset_enabled(),
-			'has_stripe'          => $this->has_stripe(),
+			'has_stripe'          => $has_stripe,
 			'has_paypal'          => $this->has_paypal(),
 			'submit_button_class' => esc_attr( $form_properties['submit_button_class'] ),
 		);
@@ -2853,6 +2854,16 @@ class Forminator_CForm_Front extends Forminator_Render_Form {
 			$options['form_placement'] = $this->get_form_placement( $this->lead_model->settings );
 			$options['leads_id']       = $this->get_leads_id( $this->lead_model->settings );
 			$options['quiz_id']        = $this->lead_model->id;
+		}
+
+		if ( $has_stripe ) {
+			$stripe_settings = $this->get_stripe_settings();
+			if ( ! empty( $stripe_settings['automatic_payment_methods'] ) && 'false' !== $stripe_settings['automatic_payment_methods'] ) {
+				$stripe_field              = Forminator_Core::get_field_object( 'stripe' );
+				$options['stripe_depends'] = $stripe_field->get_amount_dependent_fields_all( $stripe_settings );
+			} else {
+				$options['stripe_depends'] = array();
+			}
 		}
 
 		return $options;
@@ -3091,11 +3102,48 @@ class Forminator_CForm_Front extends Forminator_Render_Form {
 
 		if ( ! empty( $fields ) ) {
 			foreach ( $fields as $field ) {
-				if ( 'stripe' === $field['type'] ) {
+				if ( 'stripe' === $field['type'] || 'stripe-ocs' === $field['type'] ) {
 					$stripe = new Forminator_Gateway_Stripe();
 					return $stripe->is_ready();
 				}
 			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Get stripe settings
+	 *
+	 * @return array|bool
+	 */
+	public function get_stripe_settings() {
+		$fields = $this->get_fields();
+		$stripe = new Forminator_Gateway_Stripe();
+
+		if ( empty( $fields ) || ! $stripe->is_ready() ) {
+			return false;
+		}
+		// Filter elements where type is 'stripe-ocs'.
+		$stripe_fields = array_filter(
+			$fields,
+			function ( $item ) {
+				return 'stripe-ocs' === $item['type'];
+			}
+		);
+
+		if ( empty( $stripe_fields ) ) {
+			// filter elements where type is 'stripe'.
+			$stripe_fields = array_filter(
+				$fields,
+				function ( $item ) {
+					return 'stripe' === $item['type'];
+				}
+			);
+		}
+
+		if ( ! empty( $stripe_fields ) ) {
+			return array_shift( $stripe_fields );
 		}
 
 		return false;

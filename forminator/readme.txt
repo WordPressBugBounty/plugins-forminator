@@ -226,6 +226,33 @@ We take plugin security incredibly seriously; if you have a bug or vulnerability
 
 == Changelog ==
 
+= 1.38.1 ( 2024-12-24 ) =
+
+- Fix: Resolved an issue with the Forminator Elementor widget disappearing
+- Fix: Resolved a bug affecting country selection in the phone field on mobile devices
+
+
+= 1.38.0 ( 2024-12-18 ) =
+
+ - Enhancement: Add support for Stripe Dynamic Payment Methods
+ - Enhancement: Pass subscription ID in webhooks
+ - Enhancement: Improve Paypal Venmo integration
+ - Enhancement: Support for Stripe Subscriptions individual field tags
+ - Enhancement: Update get_entries() API method
+ - Fix: "Ready to go!" popup modal disappears after publishing the form
+ - Fix: Compatibility with Extra theme
+ - Fix: Wrong country flag on phone field
+ - Fix: Forms do not accept some file types even if they are allowed
+ - Fix: Deprecated notice when you connect Google Sheets
+ - Fix: The payment Receipt option does not work with subscriptions
+ - Fix: Empty screen appears when entering the name for Google sheet integration and then clicking on the "Enter" buttons
+ - Fix: Form Lifespan -> Expiry Date option does not work
+ - Fix: No warning message shows on imported form with subscription plan when stripe addon is disabled
+ - Fix: PHP error when a different WordPress language is selected
+ - Fix: Moving to the appearance tab in Poll throws console warnings
+ - Fix: PHP warning when submitting the registration form
+
+
 = 1.37.1 ( 2024-11-25 ) =
 
 - Fix: Conflict with Divi child themes

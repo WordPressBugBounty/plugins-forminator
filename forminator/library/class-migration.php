@@ -1038,7 +1038,7 @@ class Forminator_Migration {
 	 * @return mixed
 	 */
 	public static function migrate_payment_plan_field( $field ) {
-		if ( 'stripe' === $field['type'] && empty( $field['payments'] ) ) {
+		if ( ( 'stripe' === $field['type'] || 'stripe-ocs' === $field['type'] ) && empty( $field['payments'] ) ) {
 			$payment_plan = array(
 				'plan_name'                => esc_html__( 'Plan 1', 'forminator' ),
 				'payment_method'           => 'single',
@@ -1129,8 +1129,9 @@ class Forminator_Migration {
 		}
 
 		foreach ( $fields as $field ) {
-			if ( isset( $field['type'] ) && 'stripe' === $field['type'] ) {
+			if ( isset( $field['type'] ) && ( 'stripe' === $field['type'] || 'stripe-ocs' === $field['type'] ) ) {
 				$settings['enable-ajax'] = 'true';
+				break;
 			}
 		}
 		return $settings;

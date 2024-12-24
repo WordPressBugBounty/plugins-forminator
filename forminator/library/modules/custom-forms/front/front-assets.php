@@ -160,7 +160,7 @@ class Forminator_Assets_Enqueue_Form extends Forminator_Assets_Enqueue {
 
 		$has_currency = $render_obj->has_field_type( 'currency' );
 		$has_paypal   = $render_obj->has_field_type( 'paypal' );
-		$has_stripe   = $render_obj->has_field_type( 'stripe' );
+		$has_stripe   = $render_obj->has_field_type( 'stripe' ) || $render_obj->has_field_type( 'stripe-ocs' );
 
 		$has_password = $render_obj->has_field_type( 'password' );
 

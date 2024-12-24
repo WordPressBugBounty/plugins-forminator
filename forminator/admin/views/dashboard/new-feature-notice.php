@@ -21,7 +21,7 @@ $banner_2x = forminator_plugin_url() . 'assets/images/Feature_highlight@2x.png';
 		aria-labelledby="forminator-new-feature__title"
 	>
 
-		<div class="sui-box forminator-feature-modal" data-prop="forminator_dismiss_feature_1370" data-nonce="<?php echo esc_attr( wp_create_nonce( 'forminator_dismiss_notification' ) ); ?>">
+		<div class="sui-box forminator-feature-modal" data-prop="forminator_dismiss_feature_1380" data-nonce="<?php echo esc_attr( wp_create_nonce( 'forminator_dismiss_notification' ) ); ?>">
 
 			<div class="sui-box-header sui-flatten sui-content-center">
 
@@ -39,15 +39,26 @@ $banner_2x = forminator_plugin_url() . 'assets/images/Feature_highlight@2x.png';
 				</button>
 
 				<h3 class="sui-box-title sui-lg" style="overflow: initial; white-space: initial; text-overflow: initial;">
-					<?php esc_html_e( 'New: Inherit Theme Styles', 'forminator' ); ?>
+					<?php esc_html_e( 'New: Stripe Optimized Checkout Suite (OCS)', 'forminator' ); ?>
 				</h3>
 
 				<p class="sui-description">
 					<?php
 					printf(
-						/* translators: 1. Admin name 2. Open b tag, 3. Close b tag */
-						esc_html__( 'Hey, %s! we’re excited to introduce a new feature for styling your forms. Your forms can now automatically match your site’s theme, creating a unified appearance. This feature simplifies maintaining a consistent and professional brand image.', 'forminator' ),
+						/* translators: 1. Admin name */
+						esc_html__( 'Hello, %s! we’ve made important improvements to the Forminator Stripe field and integrated a new Dynamic Payment Method, Payment Element. You can now enjoy enhanced security and support for multiple payment methods, such as PayPal, GPay, Apple Pay, and more.', 'forminator' ),
 						esc_html( ucfirst( $user->display_name ) ),
+					);
+					?>
+				</p>
+				<p></p>
+				<p class="sui-description">
+					<?php
+					printf(
+						/* translators: 1. Open a tag. 2, Close a tag. */
+						esc_html__( 'If you\'ve been using the old Stripe setup in your form(s), migrate to the new Stripe field today to ensure uninterrupted transactions. %1$sLearn more%2$s.', 'forminator' ),
+						'<a href="https://wpmudev.com/docs/wpmu-dev-plugins/forminator/#stripe-field" target="_blank">',
+						'</a>'
 					);
 					?>
 				</p>
@@ -56,8 +67,11 @@ $banner_2x = forminator_plugin_url() . 'assets/images/Feature_highlight@2x.png';
 
 			<div class="sui-box-footer sui-flatten sui-content-center">
 
+				<button class="sui-button sui-button-ghost forminator-dismiss-new-feature" data-modal-close>
+					<?php esc_html_e( 'Close', 'forminator' ); ?>
+				</button>
 				<button data-link="<?php echo esc_url( add_query_arg( array( 'page' => 'forminator-cform' ), admin_url( 'admin.php' ) ) ); ?>" class="sui-button sui-button-blue forminator-dismiss-new-feature" data-modal-close>
-					<?php esc_html_e( 'Check it out', 'forminator' ); ?>
+					<?php esc_html_e( 'Migrate Forms', 'forminator' ); ?>
 				</button>
 
 			</div>

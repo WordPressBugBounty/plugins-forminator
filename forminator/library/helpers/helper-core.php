@@ -499,6 +499,8 @@ function forminator_localize_data() {
 			// This is the file "/build/js/utils.js" found into intlTelInput plugin. Renamed so it makes sense within the "js/library" directory context.
 			'intlTelInput_utils_script' => forminator_plugin_url() . 'assets/js/library/intlTelInputUtils.js',
 			'process_error'             => esc_html__( 'Please try again', 'forminator' ),
+			'payment_failed'            => esc_html__( 'Payment failed. Please try again.', 'forminator' ),
+			'payment_cancelled'         => esc_html__( 'Payment was cancelled', 'forminator' ),
 		),
 		'poll'    => array(
 			'processing' => esc_html__( 'Submitting vote, please wait', 'forminator' ),

@@ -566,6 +566,12 @@ class Forminator_Custom_Form_Admin extends Forminator_Admin_Module {
 
 		// Save data.
 		$id = $model->save();
+		if ( ! is_wp_error( $id ) ) {
+			$form_model = $model->load( $id );
+			if ( false !== $form_model ) {
+				Forminator_Base_Form_Model::module_update_do_action( 'form', $id, $form_model );
+			}
+		}
 
 		return $id;
 	}

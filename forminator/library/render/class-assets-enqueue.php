@@ -207,8 +207,10 @@ abstract class Forminator_Assets_Enqueue {
 		}
 
 		// Check if Divi theme is active.
-		$theme = wp_get_theme();
-		if ( $theme->exists() && 'Divi' === $theme->get_template() ) {
+		$theme    = wp_get_theme();
+		$template = strtolower( $theme->get_template() );
+
+		if ( $theme->exists() && ( 'divi' === $template || 'extra' === $template ) ) {
 			return false;
 		}
 

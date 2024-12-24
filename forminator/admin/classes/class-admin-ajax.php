@@ -2110,6 +2110,7 @@ class Forminator_Admin_AJAX {
 			$test_secret      = isset( $post_data['test_secret'] ) ? $post_data['test_secret'] : $stripe->get_test_secret();
 			$live_key         = isset( $post_data['live_key'] ) ? $post_data['live_key'] : $stripe->get_live_key();
 			$live_secret      = isset( $post_data['live_secret'] ) ? $post_data['live_secret'] : $stripe->get_live_secret();
+			$page_slug        = isset( $post_data['page_slug'] ) ? $post_data['page_slug'] : '';
 			$default_currency = $stripe->get_default_currency();
 
 			$template_vars['test_key']    = $test_key;
@@ -2159,8 +2160,9 @@ class Forminator_Admin_AJAX {
 				 * @param string $test_secret Test secret.
 				 * @param string $live_key Live key.
 				 * @param string $live_secret Live secret.
+				 * @param string $page_slug Page slug.
 				 */
-				do_action( 'forminator_before_stripe_connected', $test_key, $test_secret, $live_key, $live_secret );
+				do_action( 'forminator_before_stripe_connected', $test_key, $test_secret, $live_key, $live_secret, $page_slug );
 
 				Forminator_Gateway_Stripe::store_settings(
 					array(

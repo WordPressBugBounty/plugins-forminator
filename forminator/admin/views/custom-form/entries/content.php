@@ -100,6 +100,14 @@ if ( $this->total_entries() > 0 ) :
 					$detail       = $entries['detail'];
 					$detail_items = $detail['items'];
 
+					// Fix for Stripe OCS and Stripe old field to show only one.
+					$item_types = wp_list_pluck( $detail_items, 'type' );
+					if ( in_array( 'stripe-ocs', $item_types, true ) && in_array( 'stripe', $item_types, true ) ) {
+						$stripe_key = array_search( 'stripe', $item_types, true );
+
+						unset( $detail_items[ $stripe_key ] );
+					}
+
 					$accordion_classes = '';
 					// Open entry tab by received submission link.
 					if ( $url_entry_id === (int) $db_entry_id ) {
