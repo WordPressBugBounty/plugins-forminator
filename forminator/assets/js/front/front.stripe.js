@@ -237,6 +237,7 @@
 
 			if ( this.intent ) {
 				updateFormData.append( 'stripe-intent', true );
+				updateFormData.append( 'stripe_first_payment_intent', ! this._paymentElement ? 1 : 0 );
 			}
 			var receipt = this.getStripeData('receipt');
 			var receiptEmail = this.getStripeData('receiptEmail');

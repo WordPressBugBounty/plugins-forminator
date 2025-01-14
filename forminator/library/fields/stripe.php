@@ -683,10 +683,17 @@ class Forminator_Stripe extends Forminator_Field {
 		Forminator_Gateway_Stripe::set_stripe_app_info();
 
 		$field_id = Forminator_Field::get_property( 'element_id', $field );
-		$amount   = $submitted_data[ $field_id ];
+		$amount   = $submitted_data[ $field_id ] ?? 0;
 		$id       = $submitted_data['paymentid'];
 		// Check if we already have payment ID, if not generate new one.
 		if ( empty( $id ) ) {
+			if ( ! $amount && ! empty( $submitted_data['stripe_first_payment_intent'] ) ) {
+				// If amount is empty, set it to 1 for payment intent. Anyway, it will be updated during actual payment.
+				$amount = 1;
+				// Filter amount. It can be used to modify amount before creating payment intent for low-value currency
+				// to achieve minimum Stripe charge amount .5 euro. Use $field['currency'] to get currency code.
+				$amount = apply_filters( 'forminator_stripe_default_payment_intent_amount', $amount, $field );
+			}
 			$payment_intent = $this->generate_paymentIntent( $amount, $field );
 
 			$id = $payment_intent->id;

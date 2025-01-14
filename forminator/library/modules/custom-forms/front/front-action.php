@@ -201,7 +201,9 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 
 		self::check_fields_visibility();
 
-		if ( empty( self::$info['stripe_field'] ) ) {
+		$first_intent = ! empty( self::$prepared_data['stripe_first_payment_intent'] );
+
+		if ( ! $first_intent && empty( self::$info['stripe_field'] ) ) {
 			wp_send_json_error(
 				array(
 					'message' => esc_html__( 'Error: Stripe field doesn\'t exist in your form!', 'forminator' ),
@@ -212,7 +214,7 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 		$forminator_stripe_field = Forminator_Core::get_field_object( 'stripe' );
 
 		if ( $forminator_stripe_field instanceof Forminator_Stripe ) {
-			if ( ! empty( self::$prepared_data['stripe-intent'] ) && isset( self::$prepared_data['paymentPlan'] ) &&
+			if ( ! $first_intent && ! empty( self::$prepared_data['stripe-intent'] ) && isset( self::$prepared_data['paymentPlan'] ) &&
 				( empty( $forminator_stripe_field->payment_plan )
 					|| self::$prepared_data['paymentPlan'] === $forminator_stripe_field->payment_plan_hash )
 			) {

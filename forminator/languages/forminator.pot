@@ -1,14 +1,14 @@
-# Copyright (C) 2024 WPMU DEV
+# Copyright (C) 2025 WPMU DEV
 # This file is distributed under the same license as the Forminator package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Forminator 1.38.1\n"
+"Project-Id-Version: Forminator 1.38.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/build\n"
-"POT-Creation-Date: 2024-12-24 14:16:19+00:00\n"
+"POT-Creation-Date: 2025-01-13 11:40:17+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2024-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2025-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Generator: grunt-wp-i18n 1.0.3\n"
@@ -3289,7 +3289,7 @@ msgstr ""
 #: library/addon/admin/class-integration-admin-ajax.php:97
 #: library/class-export.php:192 library/helpers/helper-core.php:148
 #: library/helpers/helper-core.php:162
-#: library/modules/custom-forms/front/front-action.php:2785
+#: library/modules/custom-forms/front/front-action.php:2787
 msgid "Invalid request, you are not allowed to do that action."
 msgstr ""
 
@@ -6799,7 +6799,7 @@ msgid "Email input label"
 msgstr ""
 
 #: admin/locale.php:312
-#: library/modules/custom-forms/front/front-action.php:1297
+#: library/modules/custom-forms/front/front-action.php:1299
 msgid "Send draft link to"
 msgstr ""
 
@@ -6808,7 +6808,7 @@ msgid "Placeholder (Optional)"
 msgstr ""
 
 #: admin/locale.php:314
-#: library/modules/custom-forms/front/front-action.php:1298
+#: library/modules/custom-forms/front/front-action.php:1300
 msgid "E.g., johndoe@gmail.com"
 msgstr ""
 
@@ -6817,7 +6817,7 @@ msgid "Send link button label"
 msgstr ""
 
 #: admin/locale.php:316
-#: library/modules/custom-forms/front/front-action.php:1299
+#: library/modules/custom-forms/front/front-action.php:1301
 msgid "Send draft link"
 msgstr ""
 
@@ -9095,12 +9095,12 @@ msgid "Autofilled (Chrome and Safari only)"
 msgstr ""
 
 #: admin/locale.php:840 admin/views/custom-form/entries/content-details.php:242
-#: library/fields/stripe.php:1408
+#: library/fields/stripe.php:1415
 #: library/modules/custom-forms/front/front-mail.php:645
 msgid "One Time"
 msgstr ""
 
-#: admin/locale.php:841 library/fields/stripe.php:1411
+#: admin/locale.php:841 library/fields/stripe.php:1418
 msgid "Subscription"
 msgstr ""
 
@@ -17461,7 +17461,7 @@ msgid "Post Custom Data"
 msgstr ""
 
 #: library/class-export.php:206
-#: library/modules/custom-forms/front/front-action.php:2825
+#: library/modules/custom-forms/front/front-action.php:2827
 #: library/modules/custom-forms/user/class-forminator-cform-user-data.php:95
 msgid "Invalid form ID."
 msgstr ""
@@ -18168,36 +18168,36 @@ msgstr ""
 msgid "The slider should be less than %1$d and greater than %2$d."
 msgstr ""
 
-#: library/fields/stripe.php:722
+#: library/fields/stripe.php:729
 msgid "Your Payment ID is empty, please reload the page and try again!"
 msgstr ""
 
-#: library/fields/stripe.php:751
+#: library/fields/stripe.php:758
 msgid "The selected Payment Method is not supported."
 msgstr ""
 
-#: library/fields/stripe.php:755
-#: library/modules/custom-forms/front/front-action.php:789
+#: library/fields/stripe.php:762
+#: library/modules/custom-forms/front/front-action.php:791
 msgid "Payment amount should be larger than 0."
 msgstr ""
 
-#: library/fields/stripe.php:760
+#: library/fields/stripe.php:767
 msgid "Your Payment ID is empty!"
 msgstr ""
 
-#: library/fields/stripe.php:765
+#: library/fields/stripe.php:772
 msgid "Your Payment Method is empty!"
 msgstr ""
 
-#: library/fields/stripe.php:995
+#: library/fields/stripe.php:1002
 msgid "Payment Intent object is not valid Payment object."
 msgstr ""
 
-#: library/fields/stripe.php:1000
+#: library/fields/stripe.php:1007
 msgid "Payment Intent ID is not valid!"
 msgstr ""
 
-#: library/fields/stripe.php:1092 library/fields/stripe.php:1130
+#: library/fields/stripe.php:1099 library/fields/stripe.php:1137
 msgid "Stripe Payment ID does not exist."
 msgstr ""
 
@@ -21801,7 +21801,7 @@ msgstr ""
 #: library/modules/custom-forms/form-templates/template-post.php:92
 #: library/modules/custom-forms/form-templates/template-quote.php:159
 #: library/modules/custom-forms/form-templates/template-registration.php:115
-#: library/modules/custom-forms/front/front-action.php:1707
+#: library/modules/custom-forms/front/front-action.php:1709
 msgid "Error: Your form is not valid, please fix the errors!"
 msgstr ""
 
@@ -21979,89 +21979,89 @@ msgid ""
 "us for further assistance."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:207
+#: library/modules/custom-forms/front/front-action.php:209
 msgid "Error: Stripe field doesn't exist in your form!"
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:397
+#: library/modules/custom-forms/front/front-action.php:399
 msgid "Whoops, the passcode you entered was incorrect or expired."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:686
+#: library/modules/custom-forms/front/front-action.php:688
 msgid ""
 "The form is empty and cannot be saved as a draft. Please fill out at least "
 "one form field and try again."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:689
-#: library/modules/custom-forms/front/front-action.php:1363
+#: library/modules/custom-forms/front/front-action.php:691
+#: library/modules/custom-forms/front/front-action.php:1365
 msgid "At least one field must be filled out to submit the form."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:835
+#: library/modules/custom-forms/front/front-action.php:837
 msgid "Forminator Stripe Subscription Add-on is required to submit this form."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:933
-#: library/modules/custom-forms/front/front-action.php:1876
+#: library/modules/custom-forms/front/front-action.php:935
+#: library/modules/custom-forms/front/front-action.php:1878
 msgid "Payment failed, please try again!"
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:958
+#: library/modules/custom-forms/front/front-action.php:960
 msgid ""
 "This payment require additional authentication! Please follow the "
 "instructions."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:972
+#: library/modules/custom-forms/front/front-action.php:974
 msgid ""
 "This payment require 3D Secure authentication! Please follow the "
 "instructions."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:1019
+#: library/modules/custom-forms/front/front-action.php:1021
 #: library/modules/custom-forms/front/front-render.php:2837
 msgid "SSL required to submit this form, please check your URL."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:2651
+#: library/modules/custom-forms/front/front-action.php:2653
 msgid "There was an error saving the post data. Please try again"
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:2685
+#: library/modules/custom-forms/front/front-action.php:2687
 msgid "Please try again."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:2700
+#: library/modules/custom-forms/front/front-action.php:2702
 msgid "Your code has been sent to your email."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:2799
+#: library/modules/custom-forms/front/front-action.php:2801
 msgid "Email is required."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:2811
+#: library/modules/custom-forms/front/front-action.php:2813
 msgid "Please enter a valid email."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:2843
+#: library/modules/custom-forms/front/front-action.php:2845
 msgid ""
 "We've sent the resume form link to your email address. Please check your "
 "spam folder if you can't find the link in your inbox."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:2844
+#: library/modules/custom-forms/front/front-action.php:2846
 msgid "Change email"
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:2849
+#: library/modules/custom-forms/front/front-action.php:2851
 msgid ""
 "We couldn't send the form resume link to your email at this time. Click on "
 "the link below to resend it or manually copy and save the link in a safe "
 "place."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:2850
+#: library/modules/custom-forms/front/front-action.php:2852
 msgid "Resend link"
 msgstr ""
 
