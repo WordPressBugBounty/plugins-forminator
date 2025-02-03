@@ -22,6 +22,19 @@ class Forminator_Mixpanel_Settings extends Events {
 		add_action( 'forminator_after_uninstall', array( __CLASS__, 'tracking_plugin_uninstall' ), 10, 2 );
 		add_action( 'deactivated_plugin', array( __CLASS__, 'tracking_deactivate' ) );
 		add_action( 'forminator_before_stripe_connected', array( __CLASS__, 'tracking_stripe_rak_use' ), 10, 5 );
+		add_action( 'forminator_after_stripe_migrated', array( __CLASS__, 'tracking_stripe_migrated' ) );
+	}
+
+	/**
+	 * Track stripe migrated.
+	 *
+	 * @return void
+	 */
+	public static function tracking_stripe_migrated() {
+		if ( ! self::is_tracking_active() ) {
+			return;
+		}
+		self::track_event( 'stripe_field_migrated', array() );
 	}
 
 	/**

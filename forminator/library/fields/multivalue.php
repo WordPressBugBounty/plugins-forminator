@@ -353,7 +353,7 @@ class Forminator_MultiValue extends Forminator_Field {
 		if ( $is_required ) {
 			$required_message = self::get_property( 'required_message', $field );
 			if ( empty( $required_message ) ) {
-				$required_message = esc_html__( 'This field is required. Please select a value.', 'forminator' );
+				$required_message = __( 'This field is required. Please select a value.', 'forminator' );
 			}
 			$required_message = apply_filters(
 				'forminator_multi_field_required_validation_message',

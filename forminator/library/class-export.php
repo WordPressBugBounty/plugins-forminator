@@ -91,15 +91,7 @@ class Forminator_Export {
 	 * @since 1.27 Change from WP cron to Action Scheduler
 	 */
 	public function schedule_entries_exporter() {
-		// Clear old cron schedule.
-		if ( wp_next_scheduled( 'forminator_send_export' ) ) {
-			wp_clear_scheduled_hook( 'forminator_send_export' );
-		}
-
-		// Create new schedule using AS.
-		if ( false === as_has_scheduled_action( 'forminator_send_export' ) ) {
-			as_schedule_recurring_action( time() + 10, MINUTE_IN_SECONDS, 'forminator_send_export', array(), 'forminator', true );
-		}
+		forminator_set_recurring_action( 'forminator_send_export', MINUTE_IN_SECONDS );
 	}
 
 	/**

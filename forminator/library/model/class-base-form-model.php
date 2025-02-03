@@ -704,12 +704,15 @@ abstract class Forminator_Base_Form_Model {
 			$class         = get_class( $this );
 			$object        = new $class();
 			$meta          = get_post_meta( $post->ID, self::META_KEY, true );
-			$maps          = array_merge( $this->get_default_maps(), $this->get_maps() );
 			$fields        = ! empty( $meta['fields'] ) ? $meta['fields'] : array();
 			$form_settings = array(
 				'version'                    => '1.0',
 				'cform-section-border-color' => '#E9E9E9',
 			);
+			if ( $fields ) {
+				$meta['fields'] = static::disable_fields( $fields );
+			}
+			$maps = array_merge( $this->get_default_maps(), $this->get_maps() );
 
 			// Update version from form settings.
 			if ( isset( $meta['settings']['version'] ) ) {
@@ -788,6 +791,16 @@ abstract class Forminator_Base_Form_Model {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Disable fields
+	 *
+	 * @param array $fields Fields.
+	 * @return array
+	 */
+	protected static function disable_fields( $fields ) {
+		return $fields;
 	}
 
 	/**
@@ -887,7 +900,6 @@ abstract class Forminator_Base_Form_Model {
 					'wrapper_id' => $form_id,
 				);
 			}
-
 			$field_data                           = $field->to_formatted_array();
 			$field_data                           = $this->migrate_payments( $field_data );
 			$wrappers[ $form_id ]['parent_group'] = ! empty( $field->parent_group ) ? $field->parent_group : '';
@@ -1481,28 +1493,22 @@ abstract class Forminator_Base_Form_Model {
 	 * @since 1.6.1
 	 */
 	private static function is_global_ajax_load( $force = false ) {
-		// default disabled.
-
-		// from settings.
-		$settings_enabled = get_option( 'forminator_module_enable_load_ajax', false );
-
 		// from constant.
 		$enabled = defined( 'FORMINATOR_MODULE_ENABLE_LOAD_AJAX' ) && FORMINATOR_MODULE_ENABLE_LOAD_AJAX;
 
 		// if one is true, then its enabled.
-		$enabled = $force || $settings_enabled || $enabled;
+		$enabled = $force || $enabled;
 
 		/**
 		 * Filter flag is ajax load of module
 		 *
 		 * @param bool $enabled
-		 * @param bool $settings_enabled
 		 * @param bool $force
 		 *
 		 * @return bool
 		 * @since  1.6
 		 */
-		$enabled = apply_filters( 'forminator_module_is_ajax_load', $enabled, $settings_enabled, $force );
+		$enabled = apply_filters( 'forminator_module_is_ajax_load', $enabled, $force );
 
 		return $enabled;
 	}
@@ -1546,16 +1552,8 @@ abstract class Forminator_Base_Form_Model {
 	 * @since 1.6.1
 	 */
 	private static function is_global_use_donotcachepage_constant() {
-		// default disabled.
-
-		// from settings.
-		$settings_enabled = get_option( 'forminator_module_use_donotcachepage', false );
-
 		// from constant.
 		$enabled = defined( 'FORMINATOR_MODULE_USE_DONOTCACHEPAGE' ) && FORMINATOR_MODULE_USE_DONOTCACHEPAGE;
-
-		// if one is true, then its enabled.
-		$enabled = $settings_enabled || $enabled;
 
 		/**
 		 * Filter flag is use `DONOTCACHEPAGE` of module

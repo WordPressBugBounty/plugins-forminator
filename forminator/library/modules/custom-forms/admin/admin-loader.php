@@ -691,6 +691,18 @@ class Forminator_Custom_Form_Admin extends Forminator_Admin_Module {
 			 * @param array  $settings - form settings.
 			 */
 			do_action( 'forminator_custom_form_action_' . $action, $id, $title, $status, $fields, $settings );
+		} catch ( Forminator\Stripe\Exception\AuthenticationException $e ) {
+			$stripe_link   = admin_url( 'admin.php?page=forminator-settings&section=payments' );
+			$error_message = sprintf(
+					/* Translators: 1. Opening <b> tag, 2. closing <b> tag, 3. <br> tag, 4. Opening <a> tag with link to payments settings section, 5. closing <a> tag. */
+				esc_html__( '%1$sError: Action Could Not Be Completed%2$s %3$sPlease check that your %1$sStripe API Key%2$s is valid. %4$sCheck API Key%5$s', 'forminator' ),
+				'<b>',
+				'</b>',
+				'<br>',
+				'<a href="' . esc_url( $stripe_link ) . '" target="_blank">',
+				'</a>',
+			);
+			return new WP_Error( 'forminator_stripe_authentication_error', $error_message );
 		} catch ( Exception $e ) {
 			return new WP_Error( 'forminator_stripe_error', $e->getMessage() );
 		}

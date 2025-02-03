@@ -474,7 +474,7 @@ abstract class Forminator_Render_Form {
 			$post_id   = $this->get_post_id();
 
 			if ( ! $this->is_admin && forminator_global_tracking() ) {
-				$form_view->save_view( $id, $post_id, '' );
+				$form_view->save_view( $id, $post_id );
 			}
 		}
 

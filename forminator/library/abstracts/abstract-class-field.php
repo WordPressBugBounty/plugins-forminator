@@ -2048,6 +2048,9 @@ abstract class Forminator_Field {
 	 */
 	public static function check_upload_root_index_file() {
 		$upload_root = forminator_upload_root();
+		if ( is_wp_error( $upload_root ) ) {
+			return;
+		}
 		// Make sure it was not called before WP init.
 		if ( ! file_exists( $upload_root . 'index.php' ) && function_exists( 'insert_with_markers' ) ) {
 			self::add_index_file( $upload_root );
@@ -2106,7 +2109,7 @@ abstract class Forminator_Field {
 		$form_id     = absint( $form_id );
 		$upload_root = forminator_upload_root();
 
-		if ( ! is_dir( $upload_root ) ) {
+		if ( is_wp_error( $upload_root ) || ! is_dir( $upload_root ) ) {
 			return;
 		}
 
@@ -2132,7 +2135,7 @@ abstract class Forminator_Field {
 
 		$upload_root = forminator_upload_root();
 
-		if ( ! is_dir( $upload_root ) ) {
+		if ( is_wp_error( $upload_root ) || ! is_dir( $upload_root ) ) {
 			return;
 		}
 

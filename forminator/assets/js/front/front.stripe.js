@@ -93,6 +93,11 @@
 				}
 
 				self._stripe.createPaymentMethod( { elements: self._elements } ).then(function (result) {
+					if (result.error) {
+						let resultError = result.error.message || window.ForminatorFront.cform.payment_failed;
+						self.show_error(resultError);
+						return;
+					}
 					var paymentMethod = self.getObjectValue(result, 'paymentMethod');
 
 					self._stripeData['paymentMethod'] = self.getObjectValue(paymentMethod, 'id');

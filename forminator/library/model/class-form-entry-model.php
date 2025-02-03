@@ -504,7 +504,19 @@ class Forminator_Form_Entry_Model {
 	 * @since 1.0
 	 */
 	public static function ignored_fields() {
-		return apply_filters( 'forminator_entry_ignored_fields', array( 'html', 'page-break', 'captcha', 'section' ) );
+		$ignored_fields = array(
+			'html',
+			'page-break',
+			'captcha',
+			'section',
+		);
+		if ( forminator_payments_disabled() ) {
+			$ignored_fields[] = 'stripe';
+			$ignored_fields[] = 'paypal';
+			$ignored_fields[] = 'stripe-ocs';
+		}
+
+		return apply_filters( 'forminator_entry_ignored_fields', $ignored_fields );
 	}
 
 	/**

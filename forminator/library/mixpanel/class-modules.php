@@ -11,6 +11,13 @@
 class Forminator_Mixpanel_Modules extends Events {
 
 	/**
+	 * Stripe OCS data
+	 *
+	 * @var array
+	 */
+	public static array $stripe_ocs = array();
+
+	/**
 	 * Initialize class.
 	 *
 	 * @since 1.27.0
@@ -227,7 +234,7 @@ class Forminator_Mixpanel_Modules extends Events {
 	 */
 	private static function module_integration( $module_id, $module_slug ) {
 		$addons           = array();
-		$connected_addons = forminator_get_registered_addons_grouped_by_module_connected( $module_id, $module_slug );
+		$connected_addons = forminator_get_registered_addons_grouped_by_module_connected( $module_id, $module_slug, true );
 		if ( ! empty( $connected_addons['connected'] ) ) {
 			foreach ( $connected_addons['connected'] as $addon ) {
 				$addons[] = esc_html( $addon['short_title'] );
@@ -253,6 +260,18 @@ class Forminator_Mixpanel_Modules extends Events {
 		$property['Design Style']        = self::settings_value( $settings, 'form-style', 'default' );
 		$property['Save and Continue']   = self::settings_value( $settings, 'use_save_and_continue', false );
 		$property['Email Notifications'] = self::settings_value( $settings, 'notification_count', 0 );
+
+		if ( isset( self::$stripe_ocs['payment_method'] ) ) {
+			if ( 'false' === self::$stripe_ocs['payment_method'] ) {
+				$property['Stripe Payment Method'] = 'card only';
+			} else {
+				$property['Stripe Payment Method'] = 'dynamic';
+			}
+		}
+
+		if ( isset( self::$stripe_ocs['mode'] ) ) {
+			$property['Stripe Mode'] = 'live' === self::$stripe_ocs['mode'] ? 'live' : 'test';
+		}
 
 		// Addon data.
 		$addon_data                            = self::addon_data( $module_id, $fields, $settings );
@@ -347,6 +366,12 @@ class Forminator_Mixpanel_Modules extends Events {
 					}
 				} else {
 					$field_list[] = ucfirst( esc_html( $field['type'] ) );
+					if ( ! empty( $field['type'] ) && 'stripe-ocs' === $field['type'] ) {
+						self::$stripe_ocs = array(
+							'mode'           => $field['mode'] ?? '',
+							'payment_method' => $field['automatic_payment_methods'] ?? '',
+						);
+					}
 				}
 			}
 		}

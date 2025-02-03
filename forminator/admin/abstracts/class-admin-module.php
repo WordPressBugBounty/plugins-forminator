@@ -283,7 +283,18 @@ abstract class Forminator_Admin_Module {
 	 * @throws Exception When import failed.
 	 */
 	public static function import_json( string $json, string $name, string $slug, bool $change_recipients, bool $draft = false, array $extra_args = array() ) {
-		$import_data = Forminator_Core::sanitize_array( json_decode( $json, true ) );
+		$import_data = json_decode( $json, true );
+
+		if ( $import_data ) {
+			array_walk_recursive(
+				$import_data,
+				function ( &$item ) {
+					$item = html_entity_decode( $item, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+				}
+			);
+		}
+
+		$import_data = Forminator_Core::sanitize_array( $import_data );
 
 		if ( $change_recipients ) {
 			$import_data = self::change_recipients( $import_data );

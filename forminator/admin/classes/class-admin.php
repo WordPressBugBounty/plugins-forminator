@@ -213,9 +213,6 @@ class Forminator_Admin {
 
 		// TODO: remove this after converted to JS.
 		$addons = Forminator_Integration_Loader::get_instance()->get_addons()->to_array();
-
-		$old_addon_list = Forminator_Addon_Loader::get_instance()->get_addons()->to_array();
-		$addons         = array_merge( $addons, $old_addon_list );
 		foreach ( $addons as $slug => $addon_array ) {
 			$addon_class = forminator_get_addon( $slug );
 
@@ -1170,6 +1167,7 @@ class Forminator_Admin {
 				'jquery',
 				'react',
 				'react-dom',
+				'wp-element',
 			),
 			FORMINATOR_VERSION,
 			true

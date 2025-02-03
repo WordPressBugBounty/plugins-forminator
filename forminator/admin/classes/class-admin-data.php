@@ -195,8 +195,7 @@ class Forminator_Admin_Data {
 			'pdfExtensionsEnabled'           => $this->pdf_extensions_enabled(),
 			'userPermissions'                => $user->get_role_caps(),
 			'manage_forminator_templates'    => forminator_is_user_allowed( 'forminator-templates' ),
-			'canWhitelabel'                  => forminator_can_whitelabel(),
-			'isWPMUDEVAdmin'                 => is_wpmu_dev_admin(),
+			'cloudDisabled'                  => forminator_cloud_templates_disabled(),
 			'globalTracking'                 => forminator_global_tracking(),
 		);
 	}

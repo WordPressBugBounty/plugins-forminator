@@ -30,7 +30,7 @@ if ( FORMINATOR_PRO ) {
 		>
 			<?php esc_html_e( 'Preset Templates', 'forminator' ); ?>
 		</button>
-		<?php if ( is_wpmu_dev_admin() || ! forminator_can_whitelabel() ) { ?>
+		<?php if ( ! forminator_cloud_templates_disabled() ) { ?>
 			<button
 				type="button"
 				role="tab"
@@ -51,7 +51,7 @@ if ( FORMINATOR_PRO ) {
 	<div class="sui-tabs-content">
 		<?php
 		echo forminator_template( 'templates/preset/content' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		if ( is_wpmu_dev_admin() || ! forminator_can_whitelabel() ) {
+		if ( ! forminator_cloud_templates_disabled() ) {
 			echo forminator_template( 'templates/cloud/content' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 		?>

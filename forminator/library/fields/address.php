@@ -82,6 +82,7 @@ class Forminator_Address extends Forminator_Field {
 			'address_zip'                      => 'true',
 			'address_country'                  => 'true',
 			'address_line'                     => 'true',
+			'field_label'                      => esc_html__( 'Address', 'forminator' ),
 			'street_address_label'             => esc_html__( 'Street Address', 'forminator' ),
 			'street_address_placeholder'       => esc_html__( 'E.g. 42 Wallaby Way', 'forminator' ),
 			'address_city_label'               => esc_html__( 'City', 'forminator' ),

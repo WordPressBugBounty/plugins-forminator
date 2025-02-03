@@ -360,6 +360,11 @@ class Forminator_Select extends Forminator_Field {
 				$calculation_value = $calc_enabled && isset( $option['calculation'] ) ? esc_html( $option['calculation'] ) : 0.0;
 				$option_selected   = false;
 
+				// Skip options with empty values.
+				if ( '' === $value ) {
+					continue;
+				}
+
 				if ( isset( $is_limit ) && 'enable' === $is_limit
 						&& Forminator_Form_Entry_Model::is_option_limit_reached( $form_id, $name, $field_type, $option ) ) {
 					continue;

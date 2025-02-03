@@ -3,7 +3,7 @@ Contributors: WPMUDEV
 Tags: contact form, custom form, forms, payment form, WordPress form plugin
 Requires at least: 6.4
 Tested up to: 6.7
-Stable tag: 1.38.2
+Stable tag: 1.39.1
 Requires PHP: 7.4
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -225,6 +225,48 @@ We take plugin security incredibly seriously; if you have a bug or vulnerability
 9. Allow simple drag and drop multi-file uploads for users.
 
 == Changelog ==
+
+
+= 1.39.1 ( 2025-01-28 ) =
+
+- Update readme information
+
+= 1.39.0 ( 2025-01-28 ) =
+
+- Enhancement: Phone field validation
+- Enhancement: Optimize DB queries and their execution frequency
+- Enhancement: Add block previews and update Forminator icon in Gutenberg editor
+- Enhancement: Migrate packages and build to support @wordpress/element and native React from WordPress
+- Enhancement: Remove deprecated classes from integrations
+- Enhancement: Improve method to fetch upload directory
+- New: Add submission date placeholder
+- New: Add filter to disable Cloud Template features
+- New: Add Filter to disable all payment-related features
+- Fix: Stripe Field doesn't load when Visibility Condition is set for Stripe Field with Live Mode
+- Fix: Link to Stripe Payment Methods goes to test dashboard
+- Fix: No error is displayed when Stripe Tax ID is invalid
+- Fix: Stripe field error in Course Enrollment Form
+- Fix: Incorrect country ordering if translation is applied
+- Fix: Certain long numbers are messed up when pushed to Google Sheet integration
+- Fix: When you input the form's name and hit the "Enter" button multiple times, it creates multiple forms
+- Fix: Phone field with international validation appears broken inside Group field
+- Fix: Form redirect behavior is not working properly
+- Fix: Modern multi-select style breaks other field Visibility Conditions
+- Fix: "Is before" and "Is after" conditions are not working as expected
+- Fix: Disable removal of dial code for International Validation
+- Fix: Double country flag when there is an error after form submission
+- Fix: Draft Submitted/Expired warning is not shown if form is loaded via Ajax
+- Fix: Import certain forms fails
+- Fix: iFrame is removed from HTML field
+- Fix: Country names don't appear properly in international phone field when using Colibri WP Theme
+- Fix: Signature field is not shown as full width when it is inserted after page break
+- Fix: Creating new form with Stripe field and without connecting it causes an error
+- Fix: Error Message for Password strength setting contains an HTML entity code
+- Fix: Select field options without value issue
+- Fix: Address label is not translated when {all_fields} is used in Email Notification
+- Fix: PHP notice on Submissions page
+- Fix: Fatal error when ActionScheduler tables are missing
+
 
 = 1.38.3 ( 2025-01-22 ) =
 

@@ -442,11 +442,11 @@ class Forminator_Password extends Forminator_Field {
 			$strength_validation_message = self::get_property( 'strength_validation_message', $field, '' );
 			$min_strength_error          = apply_filters(
 				'forminator_text_field_min_password_strength_validation_message',
-				! empty( $strength_validation_message ) ? $strength_validation_message : esc_html__( 'Your password doesn\'t meet the minimum strength requirement. We recommend using 8 or more characters with a mix of letters, numbers & symbols.', 'forminator' ),
+				! empty( $strength_validation_message ) ? $strength_validation_message : __( 'Your password doesn\'t meet the minimum strength requirement. We recommend using 8 or more characters with a mix of letters, numbers & symbols.', 'forminator' ),
 				$id,
 				$field
 			);
-			$messages                   .= '"forminatorPasswordStrength": "' . $min_strength_error . '",' . "\n";
+			$messages                   .= '"forminatorPasswordStrength": "' . esc_html( $min_strength_error ) . '",' . "\n";
 		}
 		$messages .= '},';
 
@@ -534,7 +534,7 @@ class Forminator_Password extends Forminator_Field {
 			if ( ! $this->get_password_strength( $data ) ) {
 				$this->validation_message[ $id ] = apply_filters(
 					'forminator_text_field_min_password_strength_validation_message',
-					! empty( $strength_validation_message ) ? $strength_validation_message : esc_html__( 'Your password doesn\'t meet the minimum strength requirement. We recommend using 8 or more characters with a mix of letters, numbers & symbols.', 'forminator' ),
+					! empty( $strength_validation_message ) ? $strength_validation_message : __( 'Your password doesn\'t meet the minimum strength requirement. We recommend using 8 or more characters with a mix of letters, numbers & symbols.', 'forminator' ),
 					$id,
 					$field
 				);

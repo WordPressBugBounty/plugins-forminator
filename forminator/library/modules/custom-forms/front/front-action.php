@@ -957,7 +957,7 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 		// Delete entry if 3d security or additional confirmation is needed, we will store it on next attempt.
 		$entry->delete();
 		$error_data = array(
-			'message' => __( 'This payment require additional authentication! Please follow the instructions.', 'forminator' ),
+			'message' => __( 'This payment requires additional authentication! Please follow the instructions.', 'forminator' ),
 		);
 
 		if ( ! empty( $result->next_action->redirect_to_url->url ) && 0 !== strpos( $result->next_action->redirect_to_url->url, 'https://hooks.stripe.com' ) ) {
@@ -971,7 +971,7 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 		} else {
 			$error_data['stripe3d'] = true;
 
-			$error_data['message'] = __( 'This payment require 3D Secure authentication! Please follow the instructions.', 'forminator' );
+			$error_data['message'] = __( 'This payment requires 3D Secure authentication! Please follow the instructions.', 'forminator' );
 		}
 
 		return apply_filters( 'forminator_stripe_next_action_after_payment_confirmation', $error_data, $result );
@@ -1928,6 +1928,11 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 					// if it's stripe field and there is stripe OCS field - skip it.
 					if ( 'stripe' === $field_type && in_array( 'stripe-ocs-1', $field_slugs, true ) ) {
 						continue;
+					}
+
+					if ( 'stripe-ocs' === $field_type && 'true' === filter_input( INPUT_POST, 'stripe-intent' ) ) {
+						// Do not skip saving 'stripe_field' - even if they unspecified some code uses them.
+						self::$info['stripe_field'] = $field_settings;
 					}
 
 					if ( $conditions ) {

@@ -350,7 +350,7 @@ class Forminator_Admin_AJAX {
 
 		$id = Forminator_Custom_Form_Admin::update( $id, $title, $status, $template );
 		if ( is_wp_error( $id ) ) {
-			wp_send_json_error( $id->get_error_message() );
+			wp_send_json_error( $id );
 		} else {
 			wp_send_json_success( $id );
 		}
@@ -1511,7 +1511,7 @@ class Forminator_Admin_AJAX {
 		$change_recipients = 'checked' === Forminator_Core::sanitize_text_field( 'change_recipients' );
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput
-		$json  = html_entity_decode( wp_unslash( $_POST['importable'] ) );
+		$json  = wp_unslash( $_POST['importable'] );
 		$model = $this->import_json( $json, $slug, $change_recipients );
 
 		$return_url = admin_url( 'admin.php?page=forminator-' . forminator_get_prefix( $slug, 'c' ) );
