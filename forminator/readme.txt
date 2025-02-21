@@ -227,6 +227,11 @@ We take plugin security incredibly seriously; if you have a bug or vulnerability
 == Changelog ==
 
 
+= 1.39.2 ( 2025-02-21 ) =
+
+- Fix: Security improvements
+
+
 = 1.39.1 ( 2025-01-28 ) =
 
 - Update readme information
