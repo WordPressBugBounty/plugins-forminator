@@ -153,7 +153,6 @@ class Forminator_Password extends Forminator_Field {
 		$default     = self::get_property( 'default', $field, false );
 		$placeholder = $this->sanitize_value( self::get_property( 'placeholder', $field ) );
 		$field_type  = trim( self::get_property( 'input_type', $field ) );
-		$design      = $this->get_form_style( $settings );
 		$label       = self::get_property( 'field_label', $field, '' );
 		$description = self::get_property( 'description', $field, '' );
 		$limit       = self::get_property( 'limit', $field, 0, 'num' );
@@ -193,7 +192,6 @@ class Forminator_Password extends Forminator_Field {
 				$label,
 				'',
 				$required,
-				$design
 			);
 
 		$html .= '</div>';
@@ -263,7 +261,6 @@ class Forminator_Password extends Forminator_Field {
 				$confirm_password_label,
 				'',
 				$required,
-				$design
 			);
 
 			$html .= '</div>';

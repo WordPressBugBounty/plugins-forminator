@@ -202,6 +202,8 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 		self::check_fields_visibility();
 
 		$first_intent = ! empty( self::$prepared_data['stripe_first_payment_intent'] );
+		$is_intent    = ! empty( self::$prepared_data['stripe-intent'] );
+		$card_only    = empty( self::$info['stripe_field']['automatic_payment_methods'] ) || 'true' !== self::$info['stripe_field']['automatic_payment_methods'];
 
 		if ( ! $first_intent && empty( self::$info['stripe_field'] ) ) {
 			wp_send_json_error(
@@ -211,10 +213,13 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 				)
 			);
 		}
+		if ( $is_intent && $card_only ) {
+			wp_send_json_success( array() );
+		}
 		$forminator_stripe_field = Forminator_Core::get_field_object( 'stripe' );
 
 		if ( $forminator_stripe_field instanceof Forminator_Stripe ) {
-			if ( ! $first_intent && ! empty( self::$prepared_data['stripe-intent'] ) && isset( self::$prepared_data['paymentPlan'] ) &&
+			if ( ! $first_intent && $is_intent && isset( self::$prepared_data['paymentPlan'] ) &&
 				( empty( $forminator_stripe_field->payment_plan )
 					|| self::$prepared_data['paymentPlan'] === $forminator_stripe_field->payment_plan_hash )
 			) {
@@ -230,6 +235,8 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 				self::$info['stripe_field']
 			);
 		}
+
+		wp_send_json_success();
 	}
 
 	/**
@@ -643,7 +650,7 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 		}
 		$form_field_obj->is_valid_entry();
 
-		if ( ! empty( $field_data ) || '0' === $field_data ) {
+		if ( ! self::is_empty_field( $field_array, $field_data ) ) {
 			self::$info['field_data_array'][] = array(
 				'name'           => $field_id,
 				'value'          => $field_data,
@@ -653,6 +660,31 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 				'form_field_obj' => $form_field_obj,
 			);
 		}
+	}
+
+	/**
+	 * Check field has empty value.
+	 *
+	 * @param array $field Field.
+	 * @param mixed $field_data Field value.
+	 *
+	 * @return bool
+	 */
+	private static function is_empty_field( $field, $field_data ) {
+		$is_empty = true;
+		if ( ! empty( $field['type'] ) && 'postdata' === $field['type'] ) {
+			// Check if any post data field has a value.
+			if ( ! empty( $field_data ) && is_array( $field_data ) ) {
+				foreach ( $field_data as $value ) {
+					if ( '' !== $value ) {
+						return false;
+					}
+				}
+			}
+		} elseif ( ! empty( $field_data ) || '0' === $field_data ) {
+			$is_empty = false;
+		}
+		return $is_empty;
 	}
 
 	/**
@@ -1493,7 +1525,7 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 		}
 
 		// If Stripe field exist & submit is AJAX we fall back to hide to force page reload when form submitted.
-		if ( ( ! empty( self::$info['stripe_field'] ) || ! empty( self::$info['paypal_field'] ) ) && self::$module_object->is_ajax_submit() ) {
+		if ( ! empty( self::$info['stripe_field'] ) && self::$module_object->is_ajax_submit() ) {
 			$submission_behaviour = 'behaviour-hide';
 		}
 

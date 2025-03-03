@@ -42,6 +42,7 @@
 		this._beforeSubmitCallback = null;
 		this._form                 = null;
 		this.intent                = true;
+		this.billingDetails        = {};
 		this.init();
 	}
 
@@ -92,7 +93,7 @@
 					return;
 				}
 
-				self._stripe.createPaymentMethod( { elements: self._elements } ).then(function (result) {
+				self._stripe.createPaymentMethod( { elements: self._elements, params: { billing_details: this.billingDetails } } ).then(function (result) {
 					if (result.error) {
 						let resultError = result.error.message || window.ForminatorFront.cform.payment_failed;
 						self.show_error(resultError);
@@ -562,6 +563,7 @@
 			}
 
 			if ( Object.keys(billingDetails).length ) {
+				this.billingDetails = billingDetails;
 				this._paymentElement.update({
 					defaultValues: {
 						billingDetails,

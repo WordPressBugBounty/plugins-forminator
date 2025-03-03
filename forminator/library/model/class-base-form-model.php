@@ -1763,27 +1763,32 @@ abstract class Forminator_Base_Form_Model {
 		$post_status                 = ! empty( $model_array['status'] ) ? $model_array['status'] : '';
 		$settings                    = ! empty( $model_array['settings'] ) ? $model_array['settings'] : array();
 		$settings['previous_status'] = 'draft';
-		switch ( $type ) {
-			case 'form':
-				$fields    = ! empty( $model->fields ) ? $model->get_fields_grouped() : array();
-				$form_name = $model_array['settings']['formName'];
-				/** This action is documented in library/modules/custom-forms/admin/admin-loader.php */
-				do_action( 'forminator_custom_form_action_update', $post_id, $form_name, $post_status, $fields, $settings );
-				break;
-			case 'poll':
-				$answer = ! empty( $model->fields ) ? $model->get_fields_as_array() : array();
-				/** This action is documented in library/modules/polls/admin/admin-loader.php */
-				do_action( 'forminator_poll_action_update', $post_id, $post_status, $answer, $settings );
-				break;
-			case 'quiz':
-				$quiz_type = $model_array['quiz_type'];
-				$questions = $model_array['questions'];
-				$results   = $model_array['results'];
-				/** This action is documented in library/modules/quizzes/admin/admin-loader.php */
-				do_action( 'forminator_quiz_action_update', $post_id, $quiz_type, $post_status, $questions, $results, $settings );
-				break;
-			default:
-				break;
+		try {
+			switch ( $type ) {
+				case 'form':
+					$fields    = ! empty( $model->fields ) ? $model->get_fields_grouped() : array();
+					$form_name = $model_array['settings']['formName'];
+					/** This action is documented in library/modules/custom-forms/admin/admin-loader.php */
+					do_action( 'forminator_custom_form_action_update', $post_id, $form_name, $post_status, $fields, $settings );
+					break;
+				case 'poll':
+					$answer = ! empty( $model->fields ) ? $model->get_fields_as_array() : array();
+					/** This action is documented in library/modules/polls/admin/admin-loader.php */
+					do_action( 'forminator_poll_action_update', $post_id, $post_status, $answer, $settings );
+					break;
+				case 'quiz':
+					$quiz_type = $model_array['quiz_type'];
+					$questions = $model_array['questions'];
+					$results   = $model_array['results'];
+					/** This action is documented in library/modules/quizzes/admin/admin-loader.php */
+					do_action( 'forminator_quiz_action_update', $post_id, $quiz_type, $post_status, $questions, $results, $settings );
+					break;
+				default:
+					break;
+			}
+		} catch ( Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
+			// Ignore errors coming from the add-on for now.
+			// TODO: Display an appropriate error message.
 		}
 	}
 }

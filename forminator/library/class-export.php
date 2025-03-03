@@ -455,11 +455,11 @@ class Forminator_Export {
 
 				$export_result->model = $model;
 
-				$entries = Forminator_Form_Entry_Model::get_entries( $form_id );
-
 				if ( ! empty( $filter ) ) {
 					$filters = $export_result->request_filters();
-					$entries = Forminator_Form_Entry_Model::get_filter_entries( $form_id, $filters );
+					$entries = Forminator_Form_Entry_Model::get_all_entries( $form_id, $filters );
+				} else {
+					$entries = Forminator_Form_Entry_Model::get_all_entries( $form_id );
 				}
 
 				$headers = array(
@@ -600,7 +600,7 @@ class Forminator_Export {
 
 				$export_result->model = $model;
 
-				$entries = Forminator_Form_Entry_Model::get_entries( $form_id );
+				$entries = Forminator_Form_Entry_Model::get_all_entries( $form_id );
 
 				foreach ( $entries as $entry ) {
 					if ( $entry->entry_id > $latest_exported_entry_id ) {
@@ -651,9 +651,9 @@ class Forminator_Export {
 				}
 				if ( ! empty( $filter ) ) {
 					$filters = $export_result->request_filters();
-					$entries = Forminator_Form_Entry_Model::get_filter_entries( $form_id, $filters );
+					$entries = Forminator_Form_Entry_Model::get_all_entries( $form_id, $filters );
 				} else {
-					$entries = Forminator_Form_Entry_Model::get_entries( $form_id );
+					$entries = Forminator_Form_Entry_Model::get_all_entries( $form_id );
 				}
 				$mappers              = $this->get_custom_form_export_mappers( $model );
 				$addon_mappers        = $this->attach_form_addons_on_export_render_title_row( $form_id, $entries );

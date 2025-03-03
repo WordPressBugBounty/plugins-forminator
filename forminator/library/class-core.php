@@ -100,6 +100,8 @@ class Forminator_Core {
 			add_action( 'wp_head', array( $this, 'localize_pointers' ) );
 		}
 
+		Forminator_Hub_Connector::get_instance();
+
 		// Get enabled modules.
 		$modules       = new Forminator_Modules();
 		$this->modules = $modules->get_modules();
@@ -134,9 +136,6 @@ class Forminator_Core {
 			if ( ! FORMINATOR_PRO ) {
 				$this->admin->add_upgrade_page();
 			}
-
-			// Call Mixpanel class.
-			new Forminator_Mixpanel();
 		}
 
 		// Protection management.
@@ -212,6 +211,36 @@ class Forminator_Core {
 		}
 
 		return $field_type;
+	}
+
+	/**
+	 * Initialize Mixpanel tracking.
+	 *
+	 * @param bool $force Force tracking.
+	 * @return void
+	 */
+	public static function init_mixpanel( bool $force = false ) {
+		if ( ( ! self::is_tracking_active() && ! $force ) || ! is_admin() ) {
+			return;
+		}
+		$autoload = plugin_dir_path( __FILE__ ) . 'lib/analytics/autoload.php';
+		if ( ! file_exists( $autoload ) ) {
+			return;
+		}
+		// Prefixed vendor autoload.
+		include_once $autoload;
+		include_once plugin_dir_path( __FILE__ ) . 'mixpanel/class-mixpanel.php';
+
+		Forminator_Mixpanel::get_instance();
+	}
+
+	/**
+	 * Check if usage tracking is active.
+	 *
+	 * @return bool
+	 */
+	public static function is_tracking_active() {
+		return get_option( 'forminator_usage_tracking' );
 	}
 
 	/**
@@ -330,6 +359,13 @@ class Forminator_Core {
 		/* @noinspection PhpIncludeInspection */
 		include_once forminator_plugin_dir() . 'library/model/class-form-views-model.php';
 		include_once forminator_plugin_dir() . 'library/model/class-form-reports-model.php';
+
+		include_once forminator_plugin_dir() . 'library/class-forminator-hub-connector.php';
+		$hub_connector_lib = forminator_plugin_dir() . 'library/lib/hub-connector/connector.php';
+		if ( file_exists( $hub_connector_lib ) ) {
+			include_once $hub_connector_lib;
+		}
+
 		if ( is_admin() ) {
 			/* @noinspection PhpIncludeInspection */
 			include_once forminator_plugin_dir() . 'admin/abstracts/class-admin-page.php';
@@ -354,8 +390,7 @@ class Forminator_Core {
 				/* @noinspection PhpIncludeInspection */
 				require_once ABSPATH . 'wp-admin/includes/template.php';
 			}
-			/* @noinspection PhpIncludeInspection */
-			include_once forminator_plugin_dir() . 'library/mixpanel/class-mixpanel.php';
+			self::init_mixpanel();
 		}
 
 		if ( Forminator::is_internal_page_cache_support_enabled() ) {

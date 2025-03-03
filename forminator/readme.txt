@@ -3,7 +3,7 @@ Contributors: WPMUDEV
 Tags: contact form, custom form, forms, payment form, WordPress form plugin
 Requires at least: 6.4
 Tested up to: 6.7
-Stable tag: 1.39.2
+Stable tag: 1.39.3
 Requires PHP: 7.4
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -225,6 +225,31 @@ We take plugin security incredibly seriously; if you have a bug or vulnerability
 9. Allow simple drag and drop multi-file uploads for users.
 
 == Changelog ==
+
+= 1.40.0 ( 2025-02-24 ) =
+
+- New: Ability to place field description text above or below field inputs
+- Enhancement: Cloud templates feature is now available for WPMU DEV Free Plan members
+- Enhancement: Stop creating the same Stripe payment intents each time when a form loads
+- Enhancement: Improve performance by caching DB query results for getting entries
+- Enhancement: Compatibility with OceanWP Theme
+- Enhancement: Only load Mixpanel classes if Usage Tracking is enabled
+- Fix: Stripe not assigning the customer when new Stripe field is used
+- Fix: Indian clients unable to receive Stripe payments due to missing Customer Name and Address
+- Fix: Avoiding conflicts with intl-tel-input library in 3rd-party plugins
+- Fix: Form disappears after PayPal payment for AJAX Submission Method
+- Fix: Incorrect order of Personalities when there is a tie in Personality Quiz results
+- Fix: Hidden field Values "HTTP Refer URL" and "Embed URL" are working in reverse
+- Fix: Submitted form data shows incomplete information in some cases
+- Fix: Remove .rar files from supported upload file types
+- Fix: Empty form with Post field can be submitted
+- Fix: Hide Select field options without values
+- Fix: Upload fields not working properly
+- Fix: Upload field with conditional visibility remains visible after form submission
+- Fix: Form Submission fails with PHP Fatal Error when Visibility Condition set to Contains for Upload field
+- Fix: Fatal Error when Google Sheet API token is invalid
+- Fix: Fatal Error when publishing or unpublishing a form with Stripe Field and invalid Stripe Key
+- Fix: Empty screen appears after entering name for existing Google sheet file and then clicking on "Enter" button
 
 
 = 1.39.3 ( 2025-02-24 ) =

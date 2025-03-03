@@ -138,6 +138,8 @@ class Forminator_Upload extends Forminator_Field {
 		$settings    = $views_obj->model->settings;
 		$this->field = $field;
 
+		self::$description_position = self::get_description_position( $field, $settings );
+
 		$html        = '';
 		$id          = self::get_property( 'element_id', $field );
 		$name        = $id;

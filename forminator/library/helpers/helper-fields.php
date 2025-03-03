@@ -707,6 +707,7 @@ function forminator_replace_field_data( $custom_form, $element_id, $data, $quiz_
 			}
 		} else {
 			$selected_values = is_array( $field_value ) ? $field_value : array( $field_value );
+			$selected_values = array_map( 'htmlspecialchars_decode', $selected_values );
 			$value           = implode( ', ', array_keys( array_intersect( array_flip( $field_options ), array_map( 'stripslashes', $selected_values ) ) ) );
 		}
 	}
@@ -2032,7 +2033,6 @@ function forminator_get_ext_types() {
 			'tar'     => 'application/x-tar',
 			'zip'     => 'application/zip',
 			'gz|gzip' => 'application/x-gzip',
-			'rar'     => 'application/rar',
 			'7z'      => 'application/x-7z-compressed',
 		),
 		'text'        => array(
@@ -2808,6 +2808,25 @@ function forminator_trim_array( $value ) {
 }
 
 /**
+ * Convert special HTML entities back to characters
+ *
+ * @since 1.40
+ * @param array $value Value array.
+ * @return array
+ */
+function forminator_htmlspecialchars_decode_array( $value ) {
+	foreach ( $value as $key => $val ) {
+		if ( is_array( $val ) ) {
+			$value[ $key ] = forminator_htmlspecialchars_decode_array( $val );
+		} else {
+			$value[ $key ] = htmlspecialchars_decode( $val );
+		}
+	}
+
+	return $value;
+}
+
+/**
  * Get cloned fields keys
  *
  * @param object $entry Entry object.
@@ -2907,7 +2926,7 @@ function forminator_allowed_mime_types( $mimes = array(), $allow = true ) {
 		$mimes = get_allowed_mime_types();
 	}
 	if ( ! $allow ) {
-		$filters = array( 'htm|html', 'js', 'jse', 'jar', 'php', 'php3', 'php4', 'php5', 'phtml', 'svg', 'swf', 'exe', 'html', 'htm', 'shtml', 'xhtml', 'xml', 'css', 'asp', 'aspx', 'jsp', 'sql', 'hta', 'dll', 'bat', 'com', 'sh', 'bash', 'py', 'pl', 'dfxp' );
+		$filters = array( 'htm|html', 'js', 'jse', 'jar', 'php', 'php3', 'php4', 'php5', 'phtml', 'svg', 'swf', 'exe', 'html', 'htm', 'shtml', 'xhtml', 'xml', 'css', 'asp', 'aspx', 'jsp', 'sql', 'hta', 'dll', 'bat', 'com', 'sh', 'bash', 'py', 'pl', 'dfxp', 'rar' );
 		foreach ( array_keys( $mimes ) as $mime_key ) {
 			$key = strtolower( $mime_key );
 			if ( in_array( $key, $filters, true ) ) {

@@ -226,7 +226,7 @@
 		 */
 		on_restart: function (e) {
 			// restart condition
-			this.$el.find('.forminator-field input:not([type="file"]), .forminator-row input[type=hidden], .forminator-field select, .forminator-field textarea').trigger( 'change', 'forminator_emulate_trigger' );
+			this.$el.find('.forminator-field input, .forminator-row input[type=hidden], .forminator-field select, .forminator-field textarea').trigger( 'forminator.change', 'forminator_emulate_trigger' );
 		},
 
 		/**
@@ -302,7 +302,8 @@
                 if ( 0 === value.length ) {
                     value = null;
                 }
-			} else if (this.field_is_select($element)) {
+			// Check if the element is a multi-select.
+			} else if (this.field_is_select($element) && $element.attr( "multiple" ) ) {
                 value = [];
                 var selected = $element.find("option").filter(':selected');
                 if (selected.length > 0) {

@@ -1274,6 +1274,8 @@
 				$input.val('');
 				$label.html( $label.data( 'empty-text' ) );
 				$self.hide();
+				// Reset related conditional fields.
+				$input.trigger( 'forminator.change', 'forminator_emulate_trigger' );
 
 			});
 
