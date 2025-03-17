@@ -59,7 +59,7 @@ abstract class Forminator_GFBlock_Abstract {
 	 */
 	public function register_block() {
 		global $pagenow;
-		if ( is_admin() && 'site-editor.php' === $pagenow ) {
+		if ( is_admin() && in_array( strval( $pagenow ), array( 'site-editor.php', 'post.php', 'post-new.php' ), true ) ) {
 			// Load block scripts.
 			$this->load_assets();
 
