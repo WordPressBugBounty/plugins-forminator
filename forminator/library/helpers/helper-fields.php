@@ -894,7 +894,13 @@ function forminator_prepare_formatted_form_entry(
 				$html .= '<li>';
 				$label = $form_field->get_label_for_entry();
 
-				if ( ! empty( $label ) && $show_label ) {
+				$display_label = $show_label;
+				// Hide label for multiple name field.
+				if ( 'name' === $field_type && ! empty( $field_array['multiple_name'] ) && 'true' === $field_array['multiple_name'] ) {
+					$display_label = false;
+				}
+
+				if ( ! empty( $label ) && $display_label ) {
 					$html .= '<b>' . $label . '</b><br/>';
 				}
 				if ( isset( $value ) && '' !== $value ) {
@@ -1199,19 +1205,22 @@ function forminator_replace_variables( $content, $id = false, $entry = null ) {
 			'{user_email}'          => forminator_get_user_data( 'user_email' ),
 			// Handle User Login variable.
 			'{user_login}'          => forminator_get_user_data( 'user_login' ),
-			// Handle Submissions number.
-			'{submissions_number}'  => Forminator_Form_Entry_Model::count_entries( $id ),
 			// Handle site title variable.
 			'{site_title}'          => get_bloginfo( 'name' ),
 		);
-		// Handle form_name data.
-		if ( strpos( $content, '{form_name}' ) !== false ) {
-			$variables['{form_name}'] = ( false !== $id ) ? esc_html( forminator_get_form_name( $id ) ) : '';
-		}
-
-		// handle form_id.
 		if ( $id ) {
+			// Handle form_name data.
+			if ( strpos( $content, '{form_name}' ) !== false ) {
+				$variables['{form_name}'] = esc_html( forminator_get_form_name( $id ) );
+			}
+			// handle form_id.
 			$variables['{form_id}'] = $id;
+			// Handle Submissions number.
+			$variables['{submissions_number}'] = Forminator_Form_Entry_Model::count_entries( $id );
+		} else {
+			$variables['{form_name}']          = '';
+			$variables['{form_id}']            = '';
+			$variables['{submissions_number}'] = '';
 		}
 
 		$content = str_replace( array_keys( $variables ), array_values( $variables ), $content );

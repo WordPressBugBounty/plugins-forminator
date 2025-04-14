@@ -430,10 +430,12 @@ class Forminator_Admin_L10n {
 				'approve_user_successfull'       => esc_html__( 'User approved successfully.', 'forminator' ),
 				'error_message'                  => esc_html__( 'Something went wrong!', 'forminator' ),
 				'approve_user_unsuccessfull'     => esc_html__( 'Error! User was not approved.', 'forminator' ),
+				/* translators: %s - error code(s) */
+				'turnstile_error'                => esc_html__( 'Turnstile error code(s): %s', 'forminator' ),
 			),
 			'social'        => array(
 				'facebook'    => esc_html__( 'Facebook', 'forminator' ),
-				'twitter'     => esc_html__( 'Twitter', 'forminator' ),
+				'twitter'     => esc_html__( 'X', 'forminator' ),
 				'google_plus' => esc_html__( 'Google+', 'forminator' ),
 				'linkedin'    => esc_html__( 'LinkedIn', 'forminator' ),
 			),

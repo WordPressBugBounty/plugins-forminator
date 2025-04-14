@@ -1405,6 +1405,29 @@
 			}
 		},
 
+		renderTurnstileCaptcha: function ( captcha_field ) {
+			var self = this;
+			//render captcha only if not rendered
+			if (typeof $( captcha_field ).data( 'forminator-turnstile-widget' ) === 'undefined') {
+				var sitekey = $( captcha_field ).data( 'sitekey' ),
+					data = {
+						'response-field-name': 'forminator-turnstile-response',
+						callback: function (token, data, test) {
+							$( captcha_field ).parent( '.forminator-col' )
+								.removeClass( 'forminator-has_error' )
+								.remove( '.forminator-error-message' );
+						}
+					};
+
+				if ( sitekey !== "" ) {
+					// noinspection Annotator
+					var widgetId = turnstile.render( captcha_field, data );
+					// mark as rendered
+					$( captcha_field ).data( 'forminator-turnstile-widget', widgetId );
+				}
+			}
+		},
+
 		addCaptchaAria: function ( captcha_field ) {
 			var gRecaptchaResponse = $( captcha_field ).find( '.g-recaptcha-response' ),
 				gRecaptcha = $( captcha_field ).find( '>div' );
@@ -1768,6 +1791,7 @@
 	jQuery( document ).on( 'elementor/popup/show', () => {
 		forminator_render_captcha();
 		forminator_render_hcaptcha();
+		forminator_render_turnstile();
 	} );
 
 	/**
@@ -1785,6 +1809,24 @@
 	}
 
 })(jQuery, window, document);
+
+// noinspection JSUnusedGlobalSymbols
+var forminator_render_turnstile = function () {
+	jQuery('.forminator-turnstile').each(function () {
+		// find closest form.
+		var thisCaptcha = jQuery(this),
+			form 		= thisCaptcha.closest('form');
+
+		if ( form.length > 0 && '' === thisCaptcha.html() ) {
+			window.setTimeout( function() {
+				var forminatorFront = form.data( 'forminatorFront' );
+				if ( typeof forminatorFront !== 'undefined' ) {
+					forminatorFront.renderTurnstileCaptcha( thisCaptcha[0] );
+				}
+			}, 100 );
+		}
+	});
+};
 
 // noinspection JSUnusedGlobalSymbols
 var forminator_render_captcha = function () {

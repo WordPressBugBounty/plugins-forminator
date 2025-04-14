@@ -1285,6 +1285,8 @@ class Forminator_Stripe extends Forminator_Field {
 	private static function get_conditions_dependent_fields( $field_settings ) {
 		$depend_field = array();
 
+		$all_conditions = self::get_property( 'conditions', $field_settings, array() );
+
 		$payments = self::get_property( 'payments', $field_settings, array() );
 
 		foreach ( $payments as $payment ) {
@@ -1292,10 +1294,12 @@ class Forminator_Stripe extends Forminator_Field {
 			if ( empty( $conditions ) || ! is_array( $conditions ) ) {
 				continue;
 			}
-			foreach ( $conditions as $condition ) {
-				if ( ! empty( $condition['element_id'] ) ) {
-					$depend_field[] = $condition['element_id'];
-				}
+			$all_conditions = array_merge( $all_conditions, $conditions );
+		}
+
+		foreach ( $all_conditions as $condition ) {
+			if ( ! empty( $condition['element_id'] ) ) {
+				$depend_field[] = $condition['element_id'];
 			}
 		}
 

@@ -759,7 +759,7 @@
 		},
 
 		processCaptcha: function( self, e, $target_message, submitter ) {
-			var $captcha_field = self.$el.find('.forminator-g-recaptcha, .forminator-hcaptcha');
+			var $captcha_field = self.$el.find('.forminator-g-recaptcha, .forminator-hcaptcha, .forminator-turnstile');
 
 			if ($captcha_field.length) {
 				//validate only first
@@ -826,6 +826,20 @@
 					// reset after getResponse
 					if ( self.$el.hasClass( 'forminator_ajax' ) && 'forminator:preSubmit:paypal' !== e.type ) {
 						hcaptcha.reset( captcha_widget );
+					}
+				} else if ( $captcha_field.hasClass( 'forminator-turnstile' ) ) {
+					var captcha_widget   = $captcha_field.data( 'forminator-turnstile-widget' ),
+						$captcha_response = $captcha_field.find( 'input[name="forminator-turnstile-response"]' ).val();
+
+					// Ignore CAPTCHA validation after a PayPal payment.
+					if( 'forminator:submit:paypal' === submitter ) {
+						turnstile.reset( captcha_widget );
+						return true;
+					}
+
+					// reset after getResponse
+					if ( self.$el.hasClass( 'forminator_ajax' ) && 'forminator:preSubmit:paypal' !== e.type ) {
+						turnstile.reset( captcha_widget );
 					}
 				}
 

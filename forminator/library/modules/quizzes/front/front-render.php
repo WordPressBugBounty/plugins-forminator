@@ -349,7 +349,7 @@ class Forminator_QForm_Front extends Forminator_Render_Form {
 					$answer_id     = $field_slug . '-' . $k . $uniq_id;
 					$label         = isset( $answer['title'] ) ? $answer['title'] : '';
 					$image         = isset( $answer['image'] ) ? $answer['image'] : '';
-					$image_alt     = '';
+					$image_alt     = isset( $answer['image_filename'] ) ? $answer['image_filename'] : '';
 					$has_label     = isset( $label ) && '' !== $label;
 					$has_image     = ( isset( $image ) && ! empty( $image ) );
 					$has_image_alt = ( isset( $image_alt ) && ! empty( $image_alt ) );

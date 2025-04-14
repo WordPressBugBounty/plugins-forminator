@@ -203,7 +203,6 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 
 		$first_intent = ! empty( self::$prepared_data['stripe_first_payment_intent'] );
 		$is_intent    = ! empty( self::$prepared_data['stripe-intent'] );
-		$card_only    = empty( self::$info['stripe_field']['automatic_payment_methods'] ) || 'true' !== self::$info['stripe_field']['automatic_payment_methods'];
 
 		if ( ! $first_intent && empty( self::$info['stripe_field'] ) ) {
 			wp_send_json_error(
@@ -213,9 +212,6 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 				)
 			);
 		}
-		if ( $is_intent && $card_only ) {
-			wp_send_json_success( array() );
-		}
 		$forminator_stripe_field = Forminator_Core::get_field_object( 'stripe' );
 
 		if ( $forminator_stripe_field instanceof Forminator_Stripe ) {
@@ -223,10 +219,13 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 				( empty( $forminator_stripe_field->payment_plan )
 					|| self::$prepared_data['paymentPlan'] === $forminator_stripe_field->payment_plan_hash )
 			) {
-				// No need to update paymentIntent if it's the same plan.
+				// No need to update paymentIntent if the plan is not set or it's the same plan.
+				// Do not reset the payment plan if it's already set.
+				$new_plan_hash = empty( $forminator_stripe_field->payment_plan_hash ) && ! empty( self::$prepared_data['paymentPlan'] )
+					? self::$prepared_data['paymentPlan'] : $forminator_stripe_field->payment_plan_hash;
 				wp_send_json_success(
 					array(
-						'paymentPlan' => $forminator_stripe_field->payment_plan_hash,
+						'paymentPlan' => $new_plan_hash,
 					)
 				);
 			}
@@ -337,6 +336,8 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 				$captcha_user_response = self::$prepared_data['g-recaptcha-response'];
 			} elseif ( isset( self::$prepared_data['h-captcha-response'] ) ) {
 				$captcha_user_response = self::$prepared_data['h-captcha-response'];
+			} elseif ( isset( self::$prepared_data['forminator-turnstile-response'] ) ) {
+				$captcha_user_response = self::$prepared_data['forminator-turnstile-response'];
 			}
 
 			/**
@@ -610,6 +611,10 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 	private static function set_field_data( $field_id, $field_array, $field_index ) {
 		$field_type     = $field_array['type'];
 		$form_field_obj = Forminator_Core::get_field_object( $field_type );
+		// Skip if field object is not found.
+		if ( empty( $form_field_obj ) ) {
+			return;
+		}
 		if ( isset( self::$prepared_data[ $field_id ] ) ) {
 			$field_data = self::$prepared_data[ $field_id ];
 		} else {
@@ -1958,6 +1963,11 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 					$field_type   = Forminator_Field::get_property( 'type', $field_settings );
 					$field_object = Forminator_Core::get_field_object( $field_type );
 
+					// Skip if field object is not found.
+					if ( empty( $field_object ) ) {
+						continue;
+					}
+
 					// if it's stripe field and there is stripe OCS field - skip it.
 					if ( 'stripe' === $field_type && in_array( 'stripe-ocs-1', $field_slugs, true ) ) {
 						continue;
@@ -2103,7 +2113,8 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 		if ( 'group-' === substr( $field_id, 0, 6 ) ) {
 			$group_fields = self::$module_object->get_grouped_fields( $field_id );
 			foreach ( $group_fields as $field ) {
-				self::update_hidden_fields_array( $field->slug, '', $field_settings );
+				$subfield_settings = $field->to_formatted_array();
+				self::update_hidden_fields_array( $field->slug, '', $subfield_settings );
 			}
 			return;
 		}

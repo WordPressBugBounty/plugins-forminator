@@ -187,7 +187,8 @@ class Forminator_Select extends Forminator_Field {
 			$post_value  = self::get_post_data( $name, self::FIELD_PROPERTY_VALUE_NOT_EXIST );
 			$field_name  = $name;
 			$name        = $name . '[]';
-			$draft_value = isset( $draft_value['value'] ) ? array_map( 'trim', $draft_value['value'] ) : '';
+			$draft_value = isset( $draft_value['value'] ) ? (array) $draft_value['value'] : array();
+			$draft_value = array_map( 'trim', $draft_value );
 
 			$html .= sprintf(
 				'<div class="forminator-multiselect" aria-labelledby="%s"%s>',

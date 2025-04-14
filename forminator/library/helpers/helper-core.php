@@ -676,6 +676,22 @@ function forminator_has_hcaptcha_settings() {
 }
 
 /**
+ * Return if Cloudflare Turnstile keys are filled
+ *
+ * @return bool
+ */
+function forminator_has_turnstile_settings(): bool {
+	$key    = get_option( 'forminator_turnstile_key', false );
+	$secret = get_option( 'forminator_turnstile_secret', false );
+
+	if ( empty( $key ) || empty( $secret ) ) {
+		return false;
+	}
+
+	return true;
+}
+
+/**
  * Return if Stripe is is_connected
  *
  * @since 1.7

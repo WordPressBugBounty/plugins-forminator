@@ -3,7 +3,7 @@ Contributors: WPMUDEV
 Tags: contact form, custom form, forms, payment form, WordPress form plugin
 Requires at least: 6.4
 Tested up to: 6.7
-Stable tag: 1.41.1
+Stable tag: 1.41.2
 Requires PHP: 7.4
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -225,6 +225,31 @@ We take plugin security incredibly seriously; if you have a bug or vulnerability
 9. Allow simple drag and drop multi-file uploads for users.
 
 == Changelog ==
+
+= 1.42.0 ( 2025-04-08 ) =
+
+- Enhancement: Add Cloudflare Turnstile Integration
+- Enhancement: Add the ability to allow or block specific emails or domains in the Email field
+- Enhancement: Add Email Confirmation Field
+- Enhancement: Add PDF template based on DIV tags
+- Enhancement: Add ability to hide empty fields in the generated PDF
+- Enhancement: Twitter rebranding
+- Fix: Apple Pay amount defaults to $1 when using Stripe dynamic payment methods
+- Fix: Stripe field displays a note about future charges even for one-time payments
+- Fix: Form fails to submit when using Indian Stripe accounts with restricted keys using dynamic payment methods
+- Fix: Incorrect Google address in Autocomplete for certain countries
+- Fix: Visibility Conditions in Field Groups cause calculation errors
+- Fix: Draft does not load if the Select field mode was changed
+- Fix: Images added to quiz answers don't have alt attributes
+- Fix: Fatal error when submitting expired Draft forms
+- Fix: Fatal error on free version when Signature field is added to the form
+- Fix: Label is added twice for the Name field with Multiple options
+- Fix: Textarea field does not preserve formatting for the default value
+- Fix: Slider field handle overlaps the calendar when the Date Picker field is clicked
+- Fix: Issue with replacing spaces with dashes in PDF names
+- Fix: Slider custom colors revert to default after closing form preview
+- Fix: Hidden field with Submission Date as default returns empty value
+
 
 = 1.41.2 ( 2025-03-24 ) =
 
