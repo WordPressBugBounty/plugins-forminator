@@ -962,7 +962,8 @@
 					;
 
 					if ($limit.length) {
-						if ($limit.data('limit')) {
+						var textLimit = parseInt( $limit.data('limit') );
+						if (textLimit) {
 							if ($limit.data('type') !== "words") {
 								if ( $limit.data( 'editor' ) === 1 ) {
 									const content = $( this )
@@ -980,7 +981,7 @@
 										) !== -1;
 									// Allow to delete and backspace when limit is reached.
 									if (
-										count >= $limit.data( 'limit' ) &&
+										count >= textLimit &&
 										! isCtrlPressed &&
 										! isSpecialKey
 									) {
@@ -996,14 +997,14 @@
 
 								// Prevent additional words from being added when limit is reached.
 								numwords = field_value.trim().split(/\s+/).length;
-								if ( numwords >= $limit.data( 'limit' ) ) {
+								if ( numwords >= textLimit ) {
 									// Allow to delete and backspace when limit is reached.
 									if( e.which === 32 ) {
 										e.preventDefault();
 									}
 								}
 							}
-							$limit.html(count + ' / ' + $limit.data('limit'));
+							$limit.text(count + ' / ' + textLimit);
 						}
 					}
 				});
@@ -1687,9 +1688,9 @@
 				limit = field.find( '.forminator-description span' ),
 				content = editor.getContent().replace( /<[^>]*>/g, '' );
 			if ( limit.length ) {
-				if ( limit.data( 'limit' ) ) {
+				const maxLength = parseInt( limit.data( 'limit' ) );
+				if ( maxLength ) {
 					content = $( '<div/>' ).html( content ).text();
-					const maxLength = limit.data( 'limit' );
 					const isCtrlPressed = e.ctrlKey || e.metaKey; // Handle macOS Command key (metaKey).
 					const isSpecialKey =
 						[ 37, 38, 39, 40, 8, 46 ].indexOf( e.keyCode ) !== -1;

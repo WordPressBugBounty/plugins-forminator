@@ -2,8 +2,8 @@
 Contributors: WPMUDEV
 Tags: contact form, custom form, forms, payment form, WordPress form plugin
 Requires at least: 6.4
-Tested up to: 6.7
-Stable tag: 1.41.2
+Tested up to: 6.8
+Stable tag: 1.42.0
 Requires PHP: 7.4
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -48,6 +48,10 @@ Start taking payments with Forminator. No Pro upgrade required! SCA compliant St
 ### Stripe Verified Partner
 
 Forminator is also proud to be a Stripe Verified Partner. This partnership allows us to help you get the most out of our Stripe integration thanks to additional resources, e.g. the ability to escalate support questions, or request custom pricing reviews.
+
+### Stripe Dynamic Payments
+
+Offer 40+ payment methods with Stripe’s Dynamic Payment Element, including Apple Pay, Google Pay, Klarna, and more. Easily manage which payment options are available to your users.
 
 ### Calculations are a Lead Magnet
 
@@ -112,6 +116,14 @@ Want to let your visitors share a post submission without needing access to the 
 ### Google reCAPTCHA
 
 You don’t want your inbox flooded with a bunch of form spam. Google ReCAPTCHA is free with Forminator. Now you can stop the crazy bots without making it hard on your visitors. No more hard to read random phrases.
+
+### Antispam Features
+
+Protect your forms with built-in antispam tools like reCAPTCHA, hCaptcha, and Cloudflare Turnstile. You can also allow or block specific email addresses, domains, or TLDs using customizable email filters.
+
+### Cloud and Preset Templates
+
+Jumpstart form creation with free and premium Preset Templates, or save time by reusing your own custom forms across sites using Cloud Templates synced through the HUB.
 
 ### Collect, Track and GDPR Ready
 
@@ -188,13 +200,17 @@ It sure does. Forminator is built to work in both the Gutenberg and ClassicPress
 
 Forminator makes it easy for you to comply with the GDPR and other local privacy regulations...all the tools are included but ultimately it is up to you to implement healthy privacy and data protection on your site. Do the right thing y'all.
 
-= Can you take payments with Forminator? =
+= Can I accept payments with Forminator? =
 
-Forminator currently includes integration with the Stripe payment gateway and PayPal...both included completely free.
+Yes! Forminator includes free integrations with Stripe and PayPal. Stripe’s Dynamic Payment Element supports 40+ options—including Apple Pay, Google Pay, Amazon Pay, and Klarna.
 
 = Are Forminator payment options SCA compliant? =
 
 Yes! Forminator is not managing the payment processing. We worked with Stripe and PayPal to ensure the built-in integrations follow the EU's Strong Customer Authentication regulations (PSD2).
+
+= Can Forminator help prevent spam submissions? =
+
+Forminator includes built-in antispam tools like Captcha integrations from multiple providers, honeypot Fields, email filters, and support for third-party services like Akismet.
 
 = How do I create a contact form in WordPress with Forminator? =
 
@@ -225,6 +241,12 @@ We take plugin security incredibly seriously; if you have a bug or vulnerability
 9. Allow simple drag and drop multi-file uploads for users.
 
 == Changelog ==
+
+
+= 1.42.1 ( 2025-04-16 ) =
+
+- Fix: Security improvements
+
 
 = 1.42.0 ( 2025-04-08 ) =
 
