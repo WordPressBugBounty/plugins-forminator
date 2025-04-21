@@ -3,7 +3,7 @@ Contributors: WPMUDEV
 Tags: contact form, custom form, forms, payment form, WordPress form plugin
 Requires at least: 6.4
 Tested up to: 6.8
-Stable tag: 1.42.0
+Stable tag: 1.42.1
 Requires PHP: 7.4
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -230,17 +230,18 @@ We take plugin security incredibly seriously; if you have a bug or vulnerability
 
 == Screenshots ==
 
-1. Setup WordPress contact forms in seconds.
-2. Add lead generating calculators to your site.
-3. Take payments with Stripe or PayPal.
-4. Forminator includes its own Gutenberg block.
-5. All your favorite integrations built-in.
-6. Who doesn't love a good no wrong answer buzzfeed-style quiz?
-7. Publish polls with real-time stats and graphs.
-8. Customize the available dates shown on your date field calendar.
-9. Allow simple drag and drop multi-file uploads for users.
+1. Create a Blank Form or Select a Template 
+2. Manage Complex Calculations
+3. Accept Stripe and PayPal Payments
+4. Integrate with 1000+ Apps
+5. Build Engagements with Quizzes
+6. Publish Polls with Real-time Stats
 
 == Changelog ==
+
+= 1.42.2 ( 2025-04-21 ) =
+
+- Enhancement: Add a new menu item to help you discover other free plugins by WPMU DEV and more
 
 
 = 1.42.1 ( 2025-04-16 ) =

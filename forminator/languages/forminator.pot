@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Forminator package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Forminator 1.42.1\n"
+"Project-Id-Version: Forminator 1.42.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/build\n"
-"POT-Creation-Date: 2025-04-16 09:40:34+00:00\n"
+"POT-Creation-Date: 2025-04-21 13:45:00+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1125,6 +1125,7 @@ msgstr ""
 #: admin/classes/class-admin.php:184
 #: admin/views/dashboard/widgets/widget-upgrade.php:15
 #: library/helpers/helper-core.php:742
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:171
 msgid "Forminator Pro"
 msgstr ""
 
@@ -17511,7 +17512,7 @@ msgstr ""
 msgid "Failed to save new entry meta."
 msgstr ""
 
-#: library/class-core.php:427
+#: library/class-core.php:458
 msgid "Post Custom Data"
 msgstr ""
 
@@ -22681,6 +22682,199 @@ msgstr ""
 
 #: library/lib/hub-connector/inc/class-upgrader.php:159
 msgid "Invalid or empty slug."
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/app/rest-endpoints/class-activate-plugin.php:102
+msgid "Plugin not found."
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/app/rest-endpoints/class-install-plugin.php:106
+msgid "You are already using this plugin."
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/app/rest-endpoints/class-install-plugin.php:115
+msgid "Plugin installed successfully."
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/app/rest-endpoints/class-install-plugin.php:118
+msgid "Plugin already installed."
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/app/submenus/class-cross-sell.php:258
+#: library/lib/plugins-cross-sell-page/app/submenus/class-cross-sell.php:259
+msgid "More free Plugins?"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:24
+msgid "Smush"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:25
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:192
+msgid "Smush images down to size for faster page loading."
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:41
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:172
+msgid "Surveys, subscriptions, feedback, quizzes: Forminator makes it easy."
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:56
+msgid "Defender"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:57
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:212
+msgid "Automated and reliable WordPress security in a matter of clicks."
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:72
+msgid "Hummingbird"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:73
+msgid "For sites that load in one flap of a hummingbird’s wing. "
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:88
+msgid "SmartCrawl"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:89
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:252
+msgid "Take the mystery out of optimizing your site."
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:104
+msgid "Hustle"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:105
+msgid "Create high-converting and targeted marketing campaigns in minutes."
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:120
+msgid "Branda"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:121
+msgid "Rebrand, customize, and white label WordPress without code."
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:136
+msgid "Beehive"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:137
+msgid "Customizable Google Analytics dashboards, statistics, and reports."
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:152
+msgid "Broken Link Checker"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:153
+msgid "Check posts, pages & content for broken links to improve SEO. "
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:174
+msgid "Generate and send PDF files"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:175
+msgid "Accept recurring payment"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:176
+msgid "Get form submitter’s geolocation"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:191
+msgid "Smush Pro"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:194
+msgid "Ultra Smush with 5X compression"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:195
+msgid "123 point CDN + 50GB bandwidth"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:196
+msgid "Unlimited bulk and auto smushing"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:211
+msgid "Defender Pro"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:214
+msgid "Scheduled malware scanning"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:215
+msgid "AntiBot Global Firewall"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:216
+msgid "Comprehensive audit logging"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:231
+msgid "Hummingbird Pro"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:232
+msgid "For sites that load in one flap of a hummingbird’s wing."
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:234
+msgid "Delay JavaScript execution"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:235
+msgid "Automated critical CSS generation"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:236
+msgid "Turbocharged asset optimization"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:251
+msgid "SmartCrawl Pro"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:254
+msgid "Site crawler SEO scan & reports"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:255
+msgid "SEO health audit reports"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:256
+msgid "Automatic integrated linking"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:271
+msgid "Snapshot Pro"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:272
+msgid "Space-efficient backups that happen effortlessly while you sleep."
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:274
+msgid "Our PRO-only backup plugin"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:275
+msgid "Comes with up to 50GB storage"
+msgstr ""
+
+#: library/lib/plugins-cross-sell-page/core/plugins-list.php:276
+msgid "Store backups for 50 days"
 msgstr ""
 
 #: library/lib/recommended-plugins/notice.php:193
