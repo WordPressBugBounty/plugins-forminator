@@ -152,7 +152,7 @@ class Forminator_Admin_L10n {
 				'new_form_placeholder'         => esc_html__( 'E.g., Blank Form', 'forminator' ),
 				'new_poll_placeholder'         => esc_html__( 'E.g., Blank Poll', 'forminator' ),
 				'new_quiz_placeholder'         => esc_html__( 'E.g., My Awesome Quiz', 'forminator' ),
-				'create'                       => esc_html__( 'Create', 'forminator' ),
+				'create'                       => esc_html__( 'Add New', 'forminator' ),
 				'reset'                        => esc_html__( 'RESET', 'forminator' ),
 				'disconnect'                   => esc_html__( 'Disconnect', 'forminator' ),
 				'apply_submission_filter'      => esc_html__( 'Apply Submission Filters', 'forminator' ),

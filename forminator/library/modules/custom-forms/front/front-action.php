@@ -213,6 +213,11 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 			);
 		}
 		$forminator_stripe_field = Forminator_Core::get_field_object( 'stripe' );
+		$is_subscription         = ! empty( $forminator_stripe_field->payment_plan['payment_method'] )
+			&& 'subscription' === $forminator_stripe_field->payment_plan['payment_method'];
+		if ( $is_intent && $is_subscription ) {
+			wp_send_json_success( array() );
+		}
 
 		if ( $forminator_stripe_field instanceof Forminator_Stripe ) {
 			if ( ! $first_intent && $is_intent && isset( self::$prepared_data['paymentPlan'] ) &&

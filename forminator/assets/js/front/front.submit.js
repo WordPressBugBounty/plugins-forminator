@@ -302,6 +302,9 @@
 								$this.find( '.forminator-error-message' ).not('.forminator-uploaded-files .forminator-error-message').remove();
 								$this.find( '.forminator-field' ).removeClass( 'forminator-has_error' );
 
+								// Remove invalid attribute for screen readers.
+								$this.find( 'input, select, textarea' ).removeAttr( 'aria-invalid' );
+
 								$this.find( 'button' ).removeAttr( 'disabled' );
 								$target_message.html( '' ).removeClass( 'forminator-accessible forminator-error forminator-success' );
 								if( self.settings.hasLeads && 'undefined' !== typeof data.data.entry_id ) {
@@ -435,12 +438,15 @@
 
 								if (data.success === true) {
 									var hideForm = typeof data.data.behav !== "undefined" && data.data.behav === 'behaviour-hide';
-									// Reset form
-									if ($this[0]) {
-										var resetEnabled = self.settings.resetEnabled;
-										if(resetEnabled && ! hideForm) {
-											$this[0].reset();
-										}
+									var redirectSameTab = typeof data.data.url !== "undefined" && typeof data.data.newtab !== "undefined" && data.data.newtab === 'sametab';
+									var resetEnabled = self.settings.resetEnabled;
+
+									// Reset the form fields to accept a new submission
+									// but skip resetting the form fields if the form behavior after submission
+									// is set to redirect to specific url on the same tab or if set to be hidden
+									if ($this[0] && resetEnabled && !hideForm && !redirectSameTab) {
+
+										$this[0].reset();
 
 										self.$el.trigger('forminator:field:condition:toggled');
 
@@ -1479,7 +1485,7 @@
 			}
 
 			function focusElement( $element ) {
-				if ( ! $element.attr("tabindex") ) {
+				if ( ! $element.attr("tabindex") && $element.is( 'div' ) ) {
 					$element.attr("tabindex", -1);
 				}
 

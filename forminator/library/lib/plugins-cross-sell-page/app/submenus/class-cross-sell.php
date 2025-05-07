@@ -105,17 +105,25 @@ class CrossSell {
 		$this->utilities       = $container->get( 'utilities' );
 		$menu_hook_priority    = ! empty( $this->submenu_params['menu_hook_priority'] ) ? intval( $this->submenu_params['menu_hook_priority'] ) : 10;
 
-
 		if ( ! $this->utilities instanceof \WPMUDEV\Modules\Plugin_Cross_Sell\Utilities ) {
 			$this->utilities = new \WPMUDEV\Modules\Plugin_Cross_Sell\Utilities;
 		}
-
-		// Register the submenu.
-		add_action( 'admin_menu', array( $this, 'register_submenu' ), $menu_hook_priority );
+		
 		// Enqueue assets.
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
 		// Add body class to admin pages.
 		add_filter( 'admin_body_class', array( $this, 'admin_body_classes' ) );
+
+		
+		// Register the submenu.
+		// On multisites pluins can be installed only from network admin so it shouldn't be shown on subsites.
+		if ( ! is_multisite() ) {
+			add_action( 'admin_menu', array( $this, 'register_submenu' ), $menu_hook_priority );
+		} else {
+			if ( is_network_admin() ) {
+				add_action( 'network_admin_menu', array( $this, 'register_submenu' ), $menu_hook_priority );
+			}
+		}
 	}
 
 	/**
@@ -266,6 +274,10 @@ class CrossSell {
 
 		if ( empty( $submenu_params['parent_slug'] ) ) {
 			return false;
+		}
+
+		if ( is_network_admin() ) {
+			$submenu_params['capability'] = 'manage_network_options';
 		}
 
 		// The position param was added in WP version 5.3. Mentioned in docs : https://developer.wordpress.org/reference/functions/add_submenu_page/.
@@ -523,7 +535,11 @@ class CrossSell {
 
 	protected function is_current_page(): bool {
 		$current_screen = get_current_screen();
-
-		return ! empty( $current_screen->id ) && ! empty( $this->page_slug ) && (bool) str_ends_with( $current_screen->id, $this->page_slug );
+		return ! empty( $current_screen->id )
+			&& ! empty( $this->page_slug )
+			&& (
+				str_ends_with( $current_screen->id, $this->page_slug )
+				|| ( is_network_admin() && str_ends_with( $current_screen->id, $this->page_slug . '-network' ) )
+			);
 	}
 }

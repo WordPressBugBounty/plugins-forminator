@@ -3,7 +3,7 @@ Contributors: WPMUDEV
 Tags: contact form, custom form, forms, payment form, WordPress form plugin
 Requires at least: 6.4
 Tested up to: 6.8
-Stable tag: 1.42.1
+Stable tag: 1.42.2
 Requires PHP: 7.4
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -22,8 +22,6 @@ Forminator’s drag and drop visual builder makes it easy to setup and add forms
 
 Level up immediately with exclusive Pro features like Stripe subscription forms, dynamic PDF generation, and easy geolocation & autocomplete. [Learn more about Pro](https://wpmudev.com/project/forminator-pro/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=forminator-readme-above-the-fold&utm_content=forminator_pro).
 
-[youtube https://www.youtube.com/watch?v=q2oBKNWTu5s&feature=youtu.be]
-
 ### Forminator Forms, Surveys, Quizzes, Polls, Calculations and More...
 - Forms - Custom forms for all your needs with as many fields as you like.
 - Polls - Interactive polls to collect users opinions, with lots of dynamic options and settings.
@@ -41,9 +39,7 @@ Level up immediately with exclusive Pro features like Stripe subscription forms,
 
 ### Accept Payments With Stripe and PayPal
 
-Start taking payments with Forminator. No Pro upgrade required! SCA compliant Stripe and PayPal come included. Just enter your publish keys to activate the Forminator payment module for both fixed and variable payments. Check out how it works in the video below:
-
-[youtube https://www.youtube.com/watch?v=hha0W-A1Kq8&feature=youtu.be]
+Start taking payments with Forminator. No Pro upgrade required! SCA compliant Stripe and PayPal come included. Just enter your publish keys to activate the Forminator payment module for both fixed and variable payments.
 
 ### Stripe Verified Partner
 
@@ -98,9 +94,7 @@ Who hasn't been roped into taking “IQ tests” and “figure out which Star Wa
 
 ### Collect Leads With Your Quizzes
 
-Looking to use your quizzes for more than just entertainment and a way to engage your audience? Forminator also allows you to collect participants' details (e.g., name, email, etc.) by integrating a lead generation form in your quiz. See how it works below:
-
-[youtube https://www.youtube.com/watch?v=17uR2HdDsKw&feature=youtu.be]
+Looking to use your quizzes for more than just entertainment and a way to engage your audience? Forminator also allows you to collect participants' details (e.g., name, email, etc.) by integrating a lead generation form in your quiz.
 
 ### Gutenberg Block
 
@@ -135,9 +129,7 @@ Looking to move existing forms over from CF7? Forminator’s Import Wizard allow
 
 ### Custom Login and Registration Forms
 
-Create and embed custom login and registration forms for your sites (or multisites!). Take L&R forms to the next level: choose from a range of form fields, and customize settings, style, and behavior. Learn more in the video below:
-
-[youtube https://www.youtube.com/watch?v=UdgSb-GwpSU&feature=youtu.be]
+Create and embed custom login and registration forms for your sites (or multisites!). Take L&R forms to the next level: choose from a range of form fields, and customize settings, style, and behavior.
 
 ### Multi-file Upload Field
 
@@ -238,6 +230,38 @@ We take plugin security incredibly seriously; if you have a bug or vulnerability
 6. Publish Polls with Real-time Stats
 
 == Changelog ==
+
+= 1.43.0 ( 2025-04-30 ) =
+
+- Enhancement: Numerous accessibility improvements
+- Enhancement: Add label for AM/PM selectbox
+- Enhancement: Update Toggle colors in High Contrast Mode to make them more visible
+- Enhancement: Prevent modal from closing when clicking outside it while adding forms
+- Enhancement: Add placeholder for date and time in Email Notification subject
+- Enhancement: CC and BCC fields are now also replaced when importing forms
+- Fix: “Invalid user role” error on multisite Registration form
+- Fix: Condition is not working properly for decimal numbers
+- Fix: Currency field formatting issue in email notifications
+- Fix: File was not uploaded if the form was submitted before the upload completed
+- Fix: Post Data Field labels are not translatable
+- Fix: PayPal Field is not rendering in Gutenberg editor
+- Fix: Visibility rules based on Email field don't work when Confirm Email field is enabled
+- Fix: Prevent creating duplicate Stripe payment intents on form load for subscriptions
+- Fix: Validation issue caused by Signature Field
+- Fix: Captcha field compatibility issue with Elementor popup
+- Fix: Submission error caused by "is not" condition in PayPal field
+- Fix: Email notifications fail if routing is based on field values containing spaces or special characters
+- Fix: Consent Field placeholder is not working inside HTML field
+- Fix: "Go back" behaves incorrectly after previewing form templates
+- Fix: PHP deprecated error on PHP 8.2 during import forms
+- Fix: PHP deprecated errors while connecting Slack integration with any form
+- Fix: Quiz submit button custom text doesn't update when Leads option is enabled
+- Fix: Missing text format in PDF Payment field
+- Fix: Paginated form reloads to first page before redirecting in the same tab
+- Fix: Additional CSS classes on PDF page header and footer not working properly
+- Fix: PDF CSS selectors do not work in Custom CSS option
+- Fix: Select field was displaying HTML entity &#039; instead of the correct character (') in placeholder
+
 
 = 1.42.2 ( 2025-04-21 ) =
 

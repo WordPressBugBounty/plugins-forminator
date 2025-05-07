@@ -583,6 +583,7 @@ class Forminator_Core {
 			'payee_info',
 			'payer_info',
 			'payment_note',
+			'product_value',
 		);
 
 		$allow_iframe = array( 'variations' );

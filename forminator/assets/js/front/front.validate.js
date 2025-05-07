@@ -378,9 +378,8 @@
 			});
 
 			$form.off('forminator.validate.signature').on('forminator.validate.signature', function () {
-				//validator.element( $( this ).find( "input[id$='_data']" ) );
 				var validator = $( this ).validate();
-				validator.form();
+				validator.element( $( this ).find( "input[id$='_data']" ) );
 			});
 
 			// Inline validation for upload field.

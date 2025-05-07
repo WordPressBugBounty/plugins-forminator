@@ -438,7 +438,7 @@ class Forminator_Select extends Forminator_Field {
 				$name,
 				$default,
 				$hidden_calc_behavior,
-				$this->sanitize_value( $placeholder ),
+				esc_attr( wp_strip_all_tags( html_entity_decode( $placeholder ) ) ),
 				$search,
 				$search_placeholder,
 				$has_checkbox,

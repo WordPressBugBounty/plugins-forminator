@@ -65,12 +65,14 @@ $new = true;
 								<button
 									type="button"
 									class="sui-button-icon sui-tabs-navigation--left"
+									aria-label="<?php esc_attr_e( 'Scroll left', 'forminator' ); ?>"
 								>
 									<span class="sui-icon-chevron-left"></span>
 								</button>
 								<button
 									type="button"
 									class="sui-button-icon sui-tabs-navigation--right"
+									aria-label="<?php esc_attr_e( 'Scroll right', 'forminator' ); ?>"
 								>
 									<span class="sui-icon-chevron-right"></span>
 								</button>

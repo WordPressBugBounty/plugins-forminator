@@ -859,25 +859,9 @@ class Forminator_Admin_AJAX {
 		update_option( 'forminator_turnstile_key', Forminator_Core::sanitize_text_field( 'turnstile_key' ) );
 		update_option( 'forminator_turnstile_secret', Forminator_Core::sanitize_text_field( 'turnstile_secret' ) );
 
-		$hcaptcha_key = '';
-		if ( isset( $_POST['hcaptcha_key'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Verified in forminator_validate_ajax.
-			// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Verified in forminator_validate_ajax.
-			$hcaptcha_key = sanitize_text_field( wp_unslash( $_POST['hcaptcha_key'] ) );
-		}
-		$hcaptcha_secret = '';
-		if ( isset( $_POST['hcaptcha_secret'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Verified in forminator_validate_ajax.
-			// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Verified in forminator_validate_ajax.
-			$hcaptcha_secret = sanitize_text_field( wp_unslash( $_POST['hcaptcha_secret'] ) );
-		}
-		$captcha_tab_saved = '';
-		if ( isset( $_POST['captcha_tab_saved'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Verified in forminator_validate_ajax.
-			// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Verified in forminator_validate_ajax.
-			$captcha_tab_saved = sanitize_text_field( wp_unslash( $_POST['captcha_tab_saved'] ) );
-		}
-
-		update_option( 'forminator_hcaptcha_key', $hcaptcha_key );
-		update_option( 'forminator_hcaptcha_secret', $hcaptcha_secret );
-		update_option( 'forminator_captcha_tab_saved', $captcha_tab_saved );
+		update_option( 'forminator_hcaptcha_key', Forminator_Core::sanitize_text_field( 'hcaptcha_key' ) );
+		update_option( 'forminator_hcaptcha_secret', Forminator_Core::sanitize_text_field( 'hcaptcha_secret' ) );
+		update_option( 'forminator_captcha_tab_saved', Forminator_Core::sanitize_text_field( 'captcha_tab_saved' ) );
 
 		update_option( 'forminator_captcha_language', Forminator_Core::sanitize_text_field( 'captcha_language' ) );
 

@@ -1788,6 +1788,12 @@
 	focus_to_nearest_input();
 	$( document ).on( 'after.load.forminator', focus_to_nearest_input );
 
+	$( document ).on( 'after.load.forminator', () => {
+		forminator_render_captcha();
+		forminator_render_hcaptcha();
+		forminator_render_turnstile();
+	} );
+
 	// Elementor Popup show event
 	jQuery( document ).on( 'elementor/popup/show', () => {
 		forminator_render_captcha();
