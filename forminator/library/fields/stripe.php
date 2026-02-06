@@ -699,7 +699,8 @@ class Forminator_Stripe extends Forminator_Field {
 			// to achieve minimum Stripe charge amount .5 euro. Use $field['currency'] to get currency code.
 			$amount = apply_filters( 'forminator_stripe_default_payment_intent_amount', $amount, $field );
 		}
-		$payment_intent_key = $mode . '_' . $currency . '_' . $amount . '_' . substr( $key, -5 );
+		$payment_method     = filter_var( $field['automatic_payment_methods'], FILTER_VALIDATE_BOOLEAN ) ? 'dynamic' : 'card';
+		$payment_intent_key = $mode . '_' . $currency . '_' . $amount . '_' . substr( $key, -5 ) . '_' . $payment_method;
 		$is_intent          = ! empty( $submitted_data['stripe-intent'] );
 		// Check if we already have payment ID, if not generate new one.
 		if ( empty( $id ) ) {
@@ -783,9 +784,12 @@ class Forminator_Stripe extends Forminator_Field {
 				}
 
 				$options = array(
-					'amount'         => $this->calculate_amount( $amount, $currency ),
-					'payment_method' => $submitted_data['payment_method'],
+					'amount' => $this->calculate_amount( $amount, $currency ),
 				);
+
+				if ( 'blik' !== $submitted_data['payment_method_type'] ) {
+					$options['payment_method'] = $submitted_data['payment_method'];
+				}
 
 				// Update receipt email if set on front-end.
 				if ( isset( $submitted_data['receipt_email'] ) && ! empty( $submitted_data['receipt_email'] ) ) {

@@ -22,6 +22,7 @@ if ( $this->has_payments() && $count <= 100 ) {
 		'submissions'     => $live_payment_count,
 		'min_submissions' => 0,
 		'notice'          => /* Translators: 1. Opening <strong> tag, 2. closing <strong> tag. */ sprintf( esc_html__( "%1\$sCongratulations!%2\$s You have started collecting live payments on this form - that's awesome. We have spent countless hours developing this free plugin for you, and we would really appreciate it if you could drop us a rating on wp.org to help us spread the word and boost our motivation.", 'forminator' ), '<strong>', '</strong>' ),
+		'type'            => 'one_payment',
 	);
 } else {
 	$notice_args = array(
@@ -172,8 +173,10 @@ if ( $this->total_entries() > 0 ) :
 
 								echo esc_html( $db_entry_id );
 
-								if ( ! empty( $draft_id ) ) {
-									echo '<span class="sui-tag draft-tag">' . esc_html__( 'Draft', 'forminator' ) . '</span>';
+								if ( 'draft' === $entries['status'] ) {
+									echo '<span class="sui-tag draft-tag status-tag">' . esc_html__( 'Draft', 'forminator' ) . '</span>';
+								} elseif ( 'abandoned' === $entries['status'] ) {
+									echo '<span class="sui-tag sui-tag-yellow status-tag">' . esc_html__( 'Abandoned', 'forminator' ) . '</span>';
 								}
 
 								if ( $pending_approval ) {
@@ -305,7 +308,7 @@ if ( $this->total_entries() > 0 ) :
 
 									<div class="sui-actions-right">
 
-										<?php if ( empty( $entries['draft_id'] ) ) { ?>
+										<?php if ( 'active' === $entries['status'] ) { ?>
 											<button
 												role="button"
 												class="sui-button sui-button-ghost forminator-resend-notification-email"
@@ -316,11 +319,10 @@ if ( $this->total_entries() > 0 ) :
 												<?php esc_html_e( 'Resend Notification Email', 'forminator' ); ?>
 											</button>
 											<?php
-										}
-
-										if ( class_exists( 'Forminator_PDF_Generation' ) ) {
-											// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Output is already escaped.
-											echo Forminator_PDF_Generation::download_button( $this->form_id, $this->model->name, $entries['entry_id'] );
+											if ( class_exists( 'Forminator_PDF_Generation' ) ) {
+												// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Output is already escaped.
+												echo Forminator_PDF_Generation::download_button( $this->form_id, $this->model->name, $entries['entry_id'] );
+											}
 										}
 
 										if ( ( isset( $entries['activation_method'] ) && 'email' === $entries['activation_method'] ) && isset( $entries['activation_key'] ) ) {

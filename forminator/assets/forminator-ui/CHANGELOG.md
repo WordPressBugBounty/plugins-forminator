@@ -1,5 +1,24 @@
 # Change Log
 
+## 1.12.39
+
+### Patch Changes
+
+- 3810db1: fix: country dropdown layout is broken in preview
+- 497f4ab: fix: field and label description issue in material design
+
+## 1.12.38
+
+### Patch Changes
+
+- c5a14e2: fix: labels overlap with description in material design
+
+## 1.12.37
+
+### Patch Changes
+
+- 53c76e1: Select placeholder is duplicated when use Elementor PopUp.
+
 ## 1.12.36
 
 ### Patch Changes

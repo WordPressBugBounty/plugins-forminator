@@ -2,8 +2,8 @@
 Contributors: WPMUDEV
 Tags: contact form, custom form, forms, payment form, WordPress form plugin
 Requires at least: 6.4
-Tested up to: 6.8
-Stable tag: 1.46.2
+Tested up to: 6.9
+Stable tag: 1.49.2
 Requires PHP: 7.4
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -74,7 +74,7 @@ Forminator comes stacked with crowd favorite third-party integrations – email 
 - [Campaign Monitor](https://www.campaignmonitor.com/)
 - [ActiveCampaign](https://www.activecampaign.com/)
 - [Google Sheets](https://www.google.com/sheets/about/)
-- Webhooks ([Zapier](https://zapier.com/), [Make](https://www.make.com/), [Tray](https://tray.io/), etc)
+- Webhooks ([n8n](https://n8n.io/), ([Zapier](https://zapier.com/), [Make](https://www.make.com/), [Tray](https://tray.io/), etc)
 - [Trello](https://trello.com/)
 - [MailChimp](https://mailchimp.com/)
 - [AWeber](https://www.aweber.com/)
@@ -117,7 +117,7 @@ Protect your forms with built-in antispam tools like reCAPTCHA, hCaptcha, and Cl
 
 ### Cloud and Preset Templates
 
-Jumpstart form creation with free and premium Preset Templates, or save time by reusing your own custom forms across sites using Cloud Templates synced through the HUB.
+Jumpstart form creation with Preset Templates, or save time by reusing your own custom forms across sites using Cloud Templates synced through the HUB.
 
 ### Collect, Track and GDPR Ready
 
@@ -230,6 +230,146 @@ We take plugin security incredibly seriously; if you have a bug or vulnerability
 6. Publish Polls with Real-time Stats
 
 == Changelog ==
+
+= 1.50.1 ( 2026-01-15 ) =
+
+- Fix: Fatal error caused by 'FORMINATOR_ENCRYPTION_KEY' when leftover integration data exists in the database
+
+
+= 1.50.0 ( 2026-01-12 ) =
+
+- Enhancement: Improve Stripe Payments to support BLIK payment method
+- Enhancement: Add an "Email Image Options" setting to choose between image links or image previews in Email Notifications
+- Enhancement: Add Forminator plugin deactivation survey
+- Enhancement: Add Hub disconnect survey
+- Enhancement: Remove all documentation links when White Label is enabled
+- Enhancement: Improve compatibility with B2BKing plugin
+- Enhancement: Add notification when webhook connection fails
+- Enhancement: Add the 'forminator_custom_form_mail_exclude_html_fields' filter to exclude HTML fields from email notifications
+- Enhancement: Add the 'forminator_akismet_values' filter to modify data sent to Akismet
+- Enhancement: Add an admin notice prompting users to set FORMINATOR_ENCRYPTION_KEY for security integration API keys
+- Enhancement: Collapse the WordPress admin menu in the Form Builder
+- Enhancement: Add response data to the 'forminator:form:submit:success' JS event
+- Enhancement: Add character limit to Feature survey
+- Fix: An error occurs when pre-filling PayPal billing details using the Name field
+- Fix: The PayPal checkout button doesn't display for some languages
+- Fix: Submit button visibility condition can be bypassed by removing hidden class in browser
+- Fix: Users with permission to view the Add-ons page cannot install add-ons
+- Fix: Send the Select field "Other option" value to the Google Sheets integration
+- Fix: Line breaks don't work on the Submissions page for Post Content and Textarea fields
+- Fix: Weekly notifications don't work when scheduled for a time other than 12:00 AM
+- Fix: Filtering by ID doesn't work for quizzes without leads on the Submissions page
+- Fix: Form fields don't reset when submitting a draft
+- Fix: Select field checkboxes don't reset after submission
+- Fix: Date field's Start Date option doesn't work inside Group field
+- Fix: "Save as draft" link isn't enabled when adding or removing items from a Field Group
+- Fix: Special characters like "&" in Select options break submission limits
+- Fix: Select fields have a grey background even when the "Use Theme Colors" option is enabled
+- Fix: Required error messages don't display for the Signature field in paginated forms
+- Fix: Color picker is missing transparency setting in Appearance Presets editor
+- Fix: Field rows overflow in the Form Builder on small screens
+- Fix: Akismet Protection toggle issue
+- Fix: Stripe field amount issues caused by custom currency field formatting
+- Fix: Rich-text editor for Textarea field doesn't load in preview
+- Fix: Euro currency values are rounded in emails
+- Fix: The first section isn't selected in the Field Settings popup for some fields
+- Fix: Field labels and descriptions overlap when using the Material Design style
+- Fix: Button text and icons overlap in the Form Builder for RTL languages
+- Fix: Some Email notification conditions aren't displayed for Personality Quizzes
+- Fix: Name prefix is not translated on Submissions page
+- Fix: Calculation field causes Google PSI issue
+
+
+= 1.49.2 ( 2025-12-18 ) =
+
+- Fix: Security improvements
+
+
+= 1.49.1 ( 2025-12-12 ) =
+
+- Miscellaneous improvements
+
+
+= 1.49.0 ( 2025-01-12 ) =
+
+- Enhancement: Add Instant Preview
+- Enhancement: Add the ability to insert new fields at any location in the Form Editor
+- Enhancement: Update the Status Bar in the Editor
+- Enhancement: Update the Editor sidebar
+- Enhancement: Update Appearance settings
+- Enhancement: Remove other admin notices in the Editor
+- Enhancement: Show a success notification after creating an Appearance Preset
+- Enhancement: Show free templates without errors when the Hub has issues
+- Enhancement: Include information about using Cloud Templates in the Import and Export modals
+- Enhancement: Remove the file name format from the PDF title
+- Enhancement: Add a survey to collect user feedback
+- Fix: Stripe notice appears in logs when a subscription payment requiring additional steps is submitted
+- Fix: PayPal field throws an error when the amount is greater than 1000 in Japanese Yen
+- Fix: Visibility Conditions missing on the Email Notification tab for Quizzes
+- Fix: Some hidden fields trigger accessibility issues
+- Fix: Export adds a <br> tag when multiple checkbox values are selected
+- Fix: Active submissions count in form stats shows all submission types when clicked
+- Fix: Incomplete submissions appear in the stats graph on the forms listing page
+- Fix: Removing an image in the Upload field doesn't toggle visibility conditions
+- Fix: Notices appear when using Number and Calculation fields in a form
+- Fix: Issue with required Radio fields that have no options
+- Fix: Fatal error when using the {signature-1} placeholder in PDFs
+- Fix: Calculations not showing the slider value when it's not a whole number
+- Fix: Sending multiple options from Checkbox and Select fields to HubSpot
+- Fix: Fatal error on the Add-ons page when the Add-ons list from the Dashboard plugin is not synced due to a network issue
+- Fix: Retention description for the '0' case
+- Fix: Highlighting the parent block when selecting the child element in Appearance settings
+
+
+= 1.48.3 ( 2025-11-20 ) =
+
+- Miscellaneous improvements
+
+
+= 1.48.2 ( 2025-10-15 ) =
+
+- Fix: Issue with some submission data not properly rendering when object cache is enabled
+- Fix: Error message for required Select fields is not cleared after submission
+
+
+= 1.48.1 ( 2025-10-10 ) =
+
+- Fix: Google Sheets token refresh issue
+
+
+= 1.48.0 ( 2025-10-06 ) =
+
+- Enhancement: Respect WordPress network settings that disable site creation and display a notice on the Form Editor screen for registration forms on the main site of multisite networks
+- Enhancement: Respect WordPress settings that disable user registration and display a notice on the Form Editor screen for registration forms
+- Enhancement: Add a new "Map ID" field to Geolocation settings
+- Enhancement: Improve browser autofill
+- Enhancement: Add option to enable or disable browser autofill for input fields (Name, Address, and Phone)
+- Enhancement: Display Signature, Radio, Checkbox, and Upload fields in the email body as images instead of text or URLs
+- Enhancement: Add "status" column to "frmt_form_entry" table in the database for submissions
+- Enhancement: Improve WP caching for submissions based on their status
+- Enhancement: Improve compatibility with Photonic Gallery plugin
+- Enhancement: Hide integration API keys
+- Enhancement: Add add-on page notices when there is no connection to the Hub
+- Enhancement: Hide HTML field from Payment custom metadata
+- Enhancement: Enable the Slider step values toggle by default
+- Fix: Registration is still allowed even when the network option is deactivated
+- Fix: Can't set conditions that include the Date Picker field if the site language differs from English
+- Fix: Stripe payment method does not change on the front end if the user visited the form before and did not submit it
+- Fix: Select placeholder is duplicated when using an Elementor popup triggered by an On Click event
+- Fix: Single Upload field not working in the media library with the Stripe field
+- Fix: Sudden layout changes move the Submit button after filling out a required field
+- Fix: Calculation field removes the modulo operator without brackets
+- Fix: The min/max validation message is reversed for Number and Currency fields
+- Fix: Fields with conditional visibility inside repeater groups do not record all data
+- Fix: PayPal field breaks the selected values when the variable amount is not properly configured
+- Fix: Word "array" for the Upload field appears in the PDF if no files are uploaded
+- Fix: Show correct navigation links when some features are disabled
+- Fix: Categories and Tags (Multiple) in the Post Data field remain selected when the form is submitted
+- Fix: Incorrect classes on Submit button for paginated forms
+- Fix: Number field value does not display in HTML fields if it is on the same row as a hidden Calculation field
+- Fix: Default Radio/Checkbox image background color isn't working
+- Fix: Issue with Group field, HTML widget, and visibility conditionals
+
 
 = 1.47.0 ( 2025-09-09 ) =
 

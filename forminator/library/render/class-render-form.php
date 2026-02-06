@@ -305,17 +305,13 @@ abstract class Forminator_Render_Form {
 		$id            = (int) $id;
 		$html          = '';
 		$forminator_ui = '';
-
-		$data_design = '';
-		$data_grid   = '';
-		$draft_page  = '';
-		$maybe_draft = '';
+		$maybe_draft   = '';
 
 		$form_type         = $this->get_form_type();
 		$form_fields       = $this->get_fields();
 		$form_settings     = $this->get_form_settings();
 		$form_design       = $this->get_form_design();
-		$form_enctype      = $this->form_enctype();
+		$extra_attrs       = $this->form_enctype();
 		$extra_classes     = $this->form_extra_classes();
 		$track_views       = $this->can_track_views();
 		$fields_type_class = $this->get_fields_type_class();
@@ -336,28 +332,33 @@ abstract class Forminator_Render_Form {
 		$forminator_ui = 'forminator-ui ';
 
 		if ( ! empty( $form_settings['cform-color-option'] ) && 'theme' === $form_settings['cform-color-option'] ) {
-			$data_color_option = 'data-color-option="theme"';
+			$extra_attrs .= ' data-color-option="theme"';
 		} else {
-			$data_color_option = 'data-color-option="default"';
+			$extra_attrs .= ' data-color-option="default"';
 		}
 
 		if ( 'quiz' === $form_type ) {
-			$data_design = 'data-design="' . $this->get_quiz_theme() . '"';
+			$extra_attrs .= ' data-design="' . $this->get_quiz_theme() . '"';
 		} else {
-			$data_design = 'data-design="' . $this->get_form_design() . '"';
+			$extra_attrs .= ' data-design="' . $this->get_form_design() . '"';
 		}
 
 		if ( 'custom-form' === $form_type ) {
 			$is_draft_enabled = isset( $form_settings['use_save_and_continue'] ) ? filter_var( $form_settings['use_save_and_continue'], FILTER_VALIDATE_BOOLEAN ) : false;
 			$maybe_draft      = $this->set_draft_data( $is_draft_enabled );
-			$data_grid        = 'data-grid="' . $this->get_fields_style() . '"';
+			$extra_attrs     .= ' data-grid="' . $this->get_fields_style() . '"';
 
 			if ( $is_draft_enabled ) {
 				$extra_classes .= ' draft-enabled';
 			}
 
+			if ( ! empty( $form_settings['abandonment'] ) ) {
+				$extra_classes .= ' forminator-tracking-abandonment';
+				$extra_attrs   .= $this->get_abandonment_required_fields();
+			}
+
 			if ( $this->has_pagination() ) {
-				$draft_page = $this->get_draft_page();
+				$extra_attrs .= $this->get_draft_page();
 			}
 
 			add_filter( 'forminator_field_description', array( $this, 'maybe_wrap_description' ), 10, 4 );
@@ -383,35 +384,30 @@ abstract class Forminator_Render_Form {
 			$loader = '';
 		}
 
-		$quiz_type      = '';
-		$quiz_spacing   = '';
-		$quiz_columns   = '';
-		$quiz_alignment = '';
-		$aria_live      = '';
-
 		if ( 'quiz' === $form_type ) {
-			$quiz_type      = $this->model->quiz_type;
-			$quiz_type      = 'data-quiz="' . $quiz_type . '"';
-			$aria_live      = 'aria-live="polite"'; // Listen to live changes on form.
-			$quiz_spacing   = 'data-spacing="default"';
-			$quiz_alignment = 'data-alignment="left"';
+			$quiz_type    = $this->model->quiz_type;
+			$extra_attrs .= ' data-quiz="' . $quiz_type . '"';
+			$extra_attrs .= ' aria-live="polite"'; // Listen to live changes on form.
 
 			if ( isset( $form_settings['quiz-spacing'] ) && ! empty( $form_settings['quiz-spacing'] ) ) {
-				$quiz_spacing = 'data-spacing="' . $form_settings['quiz-spacing'] . '"';
+				$extra_attrs .= ' data-spacing="' . $form_settings['quiz-spacing'] . '"';
+			} else {
+				$extra_attrs .= ' data-spacing="default"';
 			}
 
 			if ( isset( $form_settings['quiz-alignment'] ) && ! empty( $form_settings['quiz-alignment'] ) ) {
-				$quiz_alignment = 'data-alignment="' . $form_settings['quiz-alignment'] . '"';
+				$extra_attrs .= ' data-alignment="' . $form_settings['quiz-alignment'] . '"';
 			} elseif ( false !== strpos( $form_design, 'grid' ) ) {
-
-					$quiz_alignment = 'data-alignment="center"';
+				$extra_attrs .= ' data-alignment="center"';
+			} else {
+				$extra_attrs .= ' data-alignment="left"';
 			}
 
 			if ( isset( $form_settings['visual_style'] ) && 'grid' === $form_settings['visual_style'] ) {
 				if ( isset( $form_settings['quiz-grid-cols'] ) ) {
-					$quiz_columns = 'data-columns="' . $form_settings['quiz-grid-cols'] . '"';
+					$extra_attrs .= ' data-columns="' . $form_settings['quiz-grid-cols'] . '"';
 				} else {
-					$quiz_columns = 'data-columns="3"';
+					$extra_attrs .= ' data-columns="3"';
 				}
 			}
 		}
@@ -420,10 +416,8 @@ abstract class Forminator_Render_Form {
 
 		$html .= $loader;
 
-		$hidden = $hide ? 'style="display: none;"' : '';
-
-		if ( $this->is_preview || is_admin() ) {
-			$hidden = '';
+		if ( $hide && ! $this->is_preview && ! is_admin() ) {
+			$extra_attrs .= ' style="display: none;"';
 		}
 
 		if ( 'quiz' === $form_type && $has_lead ) {
@@ -439,16 +433,6 @@ abstract class Forminator_Render_Form {
 				data-form-id="%s"
 				%s
 				%s
-				%s
-				%s
-				%s
-				%s
-				%s
-				%s
-				%s
-				%s
-				%s
-				%s
 			>',
 			$id,
 			$forminator_ui,
@@ -460,17 +444,7 @@ abstract class Forminator_Render_Form {
 			$extra_classes,
 			$render_id,
 			$id,
-			$quiz_type,
-			$data_design,
-			$data_color_option,
-			$quiz_spacing,
-			$quiz_columns,
-			$quiz_alignment,
-			$data_grid,
-			$form_enctype,
-			$aria_live,
-			$hidden,
-			$draft_page,
+			$extra_attrs,
 			$form_uid
 		);
 		if ( 'quiz' === $form_type ) {
@@ -672,6 +646,7 @@ abstract class Forminator_Render_Form {
 		$html     .= $nonce;
 		$html     .= sprintf( '<input type="hidden" name="form_id" value="%s">', $form_id );
 		$html     .= sprintf( '<input type="hidden" name="page_id" value="%s">', $post_id );
+		$settings  = $this->model->settings ?? array();
 		if ( isset( self::$render_ids[ $form_id ] ) ) {
 			$html .= sprintf( '<input type="hidden" name="render_id" value="%s">', self::$render_ids[ $form_id ] );
 		}
@@ -681,11 +656,12 @@ abstract class Forminator_Render_Form {
 		} else {
 			$html .= sprintf( '<input type="hidden" name="action" value="%s">', 'forminator_submit_form_' . $form_type );
 		}
+		$html = apply_filters( 'forminator_render_form_submit_markup', $html, $form_id, $post_id, $nonce, $settings );
 		if ( $render ) {
-			echo apply_filters( 'forminator_render_form_submit_markup', $html, $form_id, $post_id, $nonce ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
 			/* @noinspection PhpInconsistentReturnPointsInspection */
-			return apply_filters( 'forminator_render_form_submit_markup', $html, $form_id, $post_id, $nonce );
+			return $html;
 		}
 	}
 
@@ -880,6 +856,10 @@ abstract class Forminator_Render_Form {
 	 * @return string
 	 */
 	protected static function get_custom_css( $properties ) {
+		if ( empty( $properties['use-custom-css'] ) || 'false' === $properties['use-custom-css'] ) {
+			return '';
+		}
+
 		$slug   = forminator_get_prefix( static::$module_slug, 'custom-' );
 		$prefix = '.forminator-ui.forminator-' . $slug . '-' . $properties['form_id'];
 		if ( method_exists( static::class, 'get_css_prefix' ) ) {
@@ -1442,6 +1422,7 @@ abstract class Forminator_Render_Form {
 		$verify_nonce = apply_filters( 'forminator_ajax_load_module_nonce_verification', false );
 		$nonce        = Forminator_Core::sanitize_text_field( 'nonce' );
 		$is_preview   = filter_input( INPUT_POST, 'is_preview', FILTER_VALIDATE_BOOLEAN );
+		$live_preview = filter_input( INPUT_POST, 'instant_preview', FILTER_VALIDATE_BOOLEAN );
 
 		if ( $verify_nonce && ! $is_preview && ! wp_verify_nonce( $nonce, 'forminator_load_module' ) ) {
 			wp_send_json_error( new WP_Error( 'invalid_code' ) );
@@ -1510,6 +1491,39 @@ abstract class Forminator_Render_Form {
 			$response['style']        = $response['style'] . $lead_response['style'];
 			$response['lead_options'] = $lead_response['options'];
 		}
+
+		wp_send_json_success( $response );
+	}
+
+	/**
+	 * Update live preview
+	 */
+	public static function update_live_preview() {
+		$nonce = Forminator_Core::sanitize_text_field( '_wpnonce' );
+		if ( ! $nonce || ! wp_verify_nonce( $nonce, 'forminator_update_live_preview' ) ) {
+			wp_send_json_error( new WP_Error( 'invalid_nonce' ) );
+		}
+
+		$id    = filter_input( INPUT_POST, 'id', FILTER_VALIDATE_INT );
+		$model = Forminator_Base_Form_Model::get_model( $id );
+
+		if ( 'form' !== $model::$module_slug ) {
+			wp_send_json_error( new WP_Error( 'invalid_module_type' ) );
+		}
+		$preview_data = isset( $_POST['preview_data'] ) ? Forminator_Core::sanitize_array( $_POST['preview_data'], 'preview_data' ) : '{}'; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		$preview_data = json_decode( $preview_data, true );
+
+		if ( ! empty( $preview_data['settings'] ) ) {
+			$model->settings = $preview_data['settings'];
+		}
+
+		$obj = new Forminator_CForm_Front();
+		ob_start();
+		$obj->generate_styles( $model );
+		$styles   = ob_get_clean();
+		$response = array(
+			'styles' => $styles,
+		);
 
 		wp_send_json_success( $response );
 	}
@@ -1624,7 +1638,7 @@ abstract class Forminator_Render_Form {
 		}
 
 		// setup extra param.
-		if ( isset( $extra ) && is_array( $extra ) ) {
+		if ( ! empty( $extra ) && is_array( $extra ) ) {
 			if ( isset( $extra['_wp_http_referer'] ) ) {
 				$this->_wp_http_referer = $extra['_wp_http_referer'];
 			}
@@ -1713,6 +1727,8 @@ abstract class Forminator_Render_Form {
 
 				if ( isset( $properties['custom_css'] ) && isset( $properties['form_id'] ) ) {
 					$properties['custom_css'] = static::get_custom_css( $properties );
+				} else {
+					$properties['custom_css'] = '';
 				}
 
 				$theme = $this->get_form_design();
@@ -1888,6 +1904,23 @@ abstract class Forminator_Render_Form {
 		}
 
 		return $draft_page;
+	}
+
+	/**
+	 * Get abandonment required fields
+	 *
+	 * @return string
+	 */
+	public function get_abandonment_required_fields() {
+		$required_fields = '';
+
+		if ( ! empty( $this->model->settings['abandonment_required_fields'] )
+				&& is_array( $this->model->settings['abandonment_required_fields'] ) ) {
+			$required_fields = ' data-abandonment-required-fields="'
+				. esc_attr( implode( ',', $this->model->settings['abandonment_required_fields'] ) ) . '"';
+		}
+
+		return $required_fields;
 	}
 
 	/**

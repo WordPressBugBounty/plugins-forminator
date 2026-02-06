@@ -222,6 +222,14 @@
 
 					formData = new FormData(this); // reinit values
 
+					// Set raw values for number, currency, and calculation fields instead of their masked values.
+					self.$el.find('.forminator-number--field, .forminator-currency, .forminator-calculation').each(function () {
+						if ( $( this ).inputmask ) {
+							formData.set( $( this ).attr('name'), $( this ).val() );
+						}
+					});
+
+					formData.append( 'form_uid', self.$el.data( 'uid' ) );
 					if ( $saveDraft && hasPagination ) {
 						formData.append( 'draft_page', formStep );
 					}
@@ -457,6 +465,10 @@
 									var hideForm = typeof data.data.behav !== "undefined" && data.data.behav === 'behaviour-hide';
 									var redirectSameTab = typeof data.data.url !== "undefined" && typeof data.data.newtab !== "undefined" && data.data.newtab === 'sametab';
 									var resetEnabled = self.settings.resetEnabled;
+									const isDraftSubmit = $this.find('input[name="previous_draft_id"]').length > 0;
+									if (isDraftSubmit) {
+										hideForm = true;
+									}
 
 									// Reset the form fields to accept a new submission
 									// but skip resetting the form fields if the form behavior after submission
@@ -477,10 +489,9 @@
 													$.each(value, function (i, v) {
 														if (v['value']) {
 															if (v['type'] === 'multiselect') {
-																$this.find("#" + index + " input[value=" + v['value'] + "]").closest('.forminator-option').remove().trigger("change");
-															} else {
-																$this.find("#" + index + " option[value=" + v['value'] + "]").remove().trigger("change");
+																$this.find("#" + index + " input").filter((_, input) => input.value === v['value']).closest('.forminator-option').remove().trigger("change");
 															}
+															$this.find("#" + index + " option").filter((_, option) => option.value === v['value']).remove().trigger("change");
 														}
 													});
 												}
@@ -496,13 +507,15 @@
 										//self.$el.find( '.forminator-input-file' ).val('');
 
 										// Reset selects
-										if ( $this.find('.forminator-select').length > 0 ) {
-											$this.find('.forminator-select').each(function (index, value) {
+										if ( $this.find('.forminator-select2').length > 0 ) {
+											$this.find('.forminator-select2').each(function (index, value) {
+												// Reset Select2 checkboxes by removing the data-select2-id attribute.
+												$(value).find('option').removeAttr('data-select2-id');
 												var defaultValue = $(value).data('default-value');
 												if ( '' === defaultValue ) {
 													defaultValue = $(value).val();
 												}
-												$(value).val(defaultValue).trigger("fui:change");
+												$(value).val(defaultValue).trigger("change.select2");
 											});
 										}
 										// Reset multiselect
@@ -521,15 +534,24 @@
 											});
 										});
 
+										// Reset Post data multiselect fields.
+										$this.find( '.forminator-field-postdata' ).each(function () {
+											let multiSelect = $(this).find( '.forminator-multiselect' );
+											multiSelect.find('input[type="checkbox"]').each(function (i, val) {
+												$(val).prop('checked', false);
+												$(val).closest('label').removeClass('forminator-is_checked');
+											});
+										});
+
 										// Reset slider.
 										$this.find('.forminator-slider').each(function () {
 											var $element = $(this),
 												$slide = $element.find('.forminator-slide'),
 												$slider = $slide.slider("option"),
-												$minRange = parseInt($slide.data('min')) || 0,
-												$maxRange = parseInt($slide.data('max')) || 100,
-												$value = parseInt($slide.data('value')) || $minRange,
-												$valueMax = parseInt($slide.data('value-max')) || $maxRange;
+												$minRange = parseFloat($slide.data('min')) || 0,
+												$maxRange = parseFloat($slide.data('max')) || 100,
+												$value = parseFloat($slide.data('value')) || $minRange,
+												$valueMax = parseFloat($slide.data('value-max')) || $maxRange;
 
 											// Remove slider custom labels.
 											$element.find('.forminator-slider-labels').remove();
@@ -547,7 +569,7 @@
 										// restart condition after form reset to ensure values of input already reset-ed too
 										$this.trigger('forminator.front.condition.restart');
 									}
-									$this.trigger('forminator:form:submit:success', formData);
+									$this.trigger('forminator:form:submit:success', [ formData, data ]);
 
 									if (typeof data.data.url !== "undefined") {
 

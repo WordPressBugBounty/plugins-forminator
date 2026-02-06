@@ -81,6 +81,9 @@ class Forminator_Mixpanel {
 		include_once $this->mixpanel_dir() . 'class-general.php';
 		include_once $this->mixpanel_dir() . 'class-modules.php';
 		include_once $this->mixpanel_dir() . 'class-notifications.php';
+		include_once $this->mixpanel_dir() . 'class-feedback.php';
+		include_once $this->mixpanel_dir() . 'class-deactivation-survey.php';
+		include_once $this->mixpanel_dir() . 'class-hub-deactivation-survey.php';
 	}
 
 	/**
@@ -93,6 +96,9 @@ class Forminator_Mixpanel {
 		Forminator_Mixpanel_General::init();
 		Forminator_Mixpanel_Modules::init();
 		Forminator_Mixpanel_Notifications::init();
+		Forminator_Mixpanel_Feedback::init();
+		Forminator_Mixpanel_Deactivation_Survey::init();
+		Forminator_Mixpanel_Hub_Deactivation_Survey::init();
 	}
 
 	/**
@@ -257,7 +263,7 @@ class Forminator_Mixpanel {
 			'gravityforms/gravityforms.php'        => 'Gravity Forms',
 			'contact-form-7/wp-contact-form-7.php' => 'Contact Form 7',
 			'formidable/formidable.php'            => 'Formidable Forms',
-			'everest-forms/everest-forms.php'      => 'Formidable Forms',
+			'everest-forms/everest-forms.php'      => 'Everest Forms',
 			'fluentform/fluentform.php'            => 'Fluent Forms (Contact Form Plugin)',
 		);
 
