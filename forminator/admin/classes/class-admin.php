@@ -707,16 +707,22 @@ class Forminator_Admin {
 			data-nonce="<?php echo esc_attr( wp_create_nonce( 'forminator_dismiss_notification' ) ); ?>">
 			<p style="color: #72777C; line-height: 22px;">
 				<?php
-				$stripe_link = admin_url( 'admin.php?page=forminator-settings&section=payments' );
+				$learn_more = '';
+				if ( forminator_is_show_documentation_link() ) {
+					$learn_more = sprintf(
+						' <a href="%1$s" target="_blank">%2$s</a>.',
+						esc_url( 'https://wpmudev.com/docs/wpmu-dev-plugins/forminator/#connect-to-stripe' ),
+						esc_html__( 'Learn More', 'forminator' )
+					);
+				}
 				printf(
-					/* Translators: 1. Opening <b> tag, 2. closing <b> tag, 3. Opening <a> tag with link to payments settings section, 4. closing <a> tag, 5. Opening <a> tag with link Stripe API key, 6. closing <a> tag. */
-					esc_html__( '%1$sStripe API Notice:%2$s You are currently using the deprecated Stripe Secret key in your %3$sForminator Stripe integration%4$s. We recommend switching to the Restricted API key (RAK) instead. %5$sLearn More%6$s.', 'forminator' ),
+				/* Translators: 1. Opening <b> tag, 2. closing <b> tag, 3. Opening <a> tag with link to payments settings section, 4. closing <a> tag, 5. Learn More with link (optional, already formatted HTML, may be empty). */
+					esc_html__( '%1$sStripe API Notice:%2$s You are currently using the deprecated Stripe Secret key in your %3$sForminator Stripe integration%4$s. We recommend switching to the Restricted API key (RAK) instead.%5$s', 'forminator' ),
 					'<b>',
 					'</b>',
-					'<a href="' . esc_url( $stripe_link ) . '" target="_blank">',
+					'<a href="' . esc_url( admin_url( 'admin.php?page=forminator-settings&section=payments' ) ) . '" target="_blank">',
 					'</a>',
-					'<a href="https://wpmudev.com/docs/wpmu-dev-plugins/forminator/#connect-to-stripe" target="_blank">',
-					'</a>'
+					wp_kses_post( $learn_more )
 				);
 				?>
 			</p>

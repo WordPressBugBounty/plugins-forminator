@@ -186,10 +186,7 @@
 				} else {
 					newDate = newDate.add( sdata[1], sdata[2] );
 				}
-				var formatedDate = moment( newDate ).format( 'YYYY-MM-DD' ),
-					dateVal = new Date( formatedDate );
-
-				return dateVal;
+				return newDate.toDate();
 			}
 		},
 

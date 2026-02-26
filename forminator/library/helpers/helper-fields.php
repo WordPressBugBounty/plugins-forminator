@@ -196,6 +196,49 @@ function forminator_decode_html_entity( $fields ) {
 }
 
 /**
+ * Sort fields so that grouped fields appear immediately after their parent group.
+ *
+ * @since 1.51.0
+ * @param array $fields Array of field arrays.
+ * @return array Sorted fields array.
+ */
+function forminator_sort_fields_with_groups( array $fields ): array {
+	if ( empty( $fields ) ) {
+		return $fields;
+	}
+
+	$top_level = array();
+	$children  = array();
+
+	// Separate top-level fields from grouped (child) fields.
+	foreach ( $fields as $field ) {
+		$parent_group = $field['parent_group'] ?? '';
+		if ( '' === $parent_group ) {
+			$top_level[] = $field;
+		} else {
+			$children[ $parent_group ][] = $field;
+		}
+	}
+
+	// No need to sort if there are no grouped fields.
+	if ( empty( $children ) ) {
+		return $top_level;
+	}
+
+	// Build sorted array: each group field followed by its children.
+	$sorted = array();
+	foreach ( $top_level as $field ) {
+		$sorted[] = $field;
+		$field_id = $field['element_id'] ?? '';
+		if ( isset( $children[ $field_id ] ) ) {
+			array_push( $sorted, ...$children[ $field_id ] );
+		}
+	}
+
+	return $sorted;
+}
+
+/**
  * Sanitize text area
  *
  * @param string $field Field value.

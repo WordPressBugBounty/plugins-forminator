@@ -126,7 +126,7 @@ abstract class Forminator_Base_Form_Model {
 						$post_data[ $map['field'] ] = $map['default'];
 					}
 				} elseif ( 'fields' === $map['field'] ) {
-						$meta_data[ $map['field'] ] = $this->get_fields_as_array();
+					$meta_data[ $map['field'] ] = forminator_sort_fields_with_groups( $this->get_fields_as_array() );
 				} else {
 					$meta_data[ $map['field'] ] = $this->{$attribute};
 				}
@@ -1414,6 +1414,11 @@ abstract class Forminator_Base_Form_Model {
 			$meta['settings']['form_id']         = $post_id;
 			$meta['settings']['previous_status'] = 'draft';
 
+			// Sort fields to ensure grouped fields appear after their parent group.
+			if ( ! empty( $meta['fields'] ) && is_array( $meta['fields'] ) ) {
+				$meta['fields'] = forminator_sort_fields_with_groups( $meta['fields'] );
+			}
+
 			update_post_meta( $post_id, self::META_KEY, $meta );
 
 			/**
@@ -1825,7 +1830,7 @@ abstract class Forminator_Base_Form_Model {
 		}
 
 		// Disable submit if submit button is hidden by conditions.
-		if ( $can_show['can_submit'] && 'form' === static::$module_slug && true === Forminator_Field::is_hidden( $form_settings['submitData'] ) ) {
+		if ( $can_show['can_submit'] && 'form' === static::$module_slug && true === Forminator_Field::is_hidden( $form_settings['submitData'] ) && false === $this->has_active_paypal() ) {
 			$invalid_form_message = esc_html__( 'Error: Your form is not valid, please fix the errors!', 'forminator' );
 			if ( ! empty( $form_settings['submitData']['custom-invalid-form-message'] ) ) {
 				$invalid_form_message = $form_settings['submitData']['custom-invalid-form-message'];
@@ -1837,6 +1842,29 @@ abstract class Forminator_Base_Form_Model {
 		}
 
 		return apply_filters( 'forminator_cform_' . static::$module_slug . '_is_submittable', $can_show, $this->id, $form_settings );
+	}
+
+	/**
+	 * Check if form has active PayPal field
+	 *
+	 * @return bool
+	 * @since 1.51.0
+	 */
+	public function has_active_paypal() {
+		$is_enabled = forminator_has_paypal_settings();
+		$active     = 0;
+		$fields     = $this->get_fields_as_array();
+
+		if ( ! empty( $fields ) ) {
+			foreach ( $fields as $field ) {
+				if ( 'paypal' === $field['type'] && ! Forminator_Field::is_hidden( $field ) ) {
+					++$active;
+					break;
+				}
+			}
+		}
+
+		return ( $is_enabled && $active > 0 ) ? true : false;
 	}
 
 	/**

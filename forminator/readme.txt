@@ -3,7 +3,7 @@ Contributors: WPMUDEV
 Tags: contact form, custom form, forms, payment form, WordPress form plugin
 Requires at least: 6.4
 Tested up to: 6.9
-Stable tag: 1.50.1
+Stable tag: 1.50.3
 Requires PHP: 7.4
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -230,6 +230,29 @@ We take plugin security incredibly seriously; if you have a bug or vulnerability
 6. Publish Polls with Real-time Stats
 
 == Changelog ==
+
+= 1.51.0 ( 2026-02-16 ) =
+
+- Enhancement: Migrate the Geolocation autocomplete feature to the "Google Places API (NEW)"
+- Enhancement: Add the ability to save forms as Cloud Templates during import
+- Enhancement: Improve field order handling when sending data to the Google Sheets integration
+- Enhancement: Add a filter to allow modifying fields before sending data to the Google Sheets integration
+- Enhancement: Review the use of external resources for GDPR compliance
+- Fix: PayPal payment fails when Visibility Conditions are applied to the submit button
+- Fix: Conflict between PayPal and Group fields
+- Fix: Error in the Calculation field when re-sending email notifications
+- Fix: Signature field does not work correctly when used in Visibility Conditions for other fields
+- Fix: Conflict between Avada theme, SmartCrawl, and Forminator
+- Fix: Custom user meta gets mixed up during drag & drop in the Registration form
+- Fix: Strange behavior when dragging & dropping custom fields in the Post Data field
+- Fix: Extra space when ReCAPTCHA or Page Break fields are in the same row as other fields
+- Fix: JS error in the console when a signature is drawn in Preview mode
+- Fix: Issue with Pro template buttons for additional site administrators when White Label is enabled
+- Fix: HubSpot fatal error when the account no longer exists
+- Fix: Incorrect column order for cloned Group sub-fields in the Google Sheets integration
+- Fix: "Open in New Tab" is not working in the HTML field
+- Fix: Offset calculation for the Datepicker is affected by the visitor's timezone
+
 
 = 1.50.3 ( 2026-02-10 ) =
 

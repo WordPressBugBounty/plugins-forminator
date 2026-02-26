@@ -355,11 +355,15 @@
 
 				messages: messages
 
-			});
+		});
 
 			$form.off('forminator.validate.signature').on('forminator.validate.signature', function () {
 				var validator = $( this ).validate();
-				validator.element( $( this ).find( "input[id$='_data']" ) );
+				var $signatureInput = $( this ).find( "input[id$='_data']" );
+				// Only validate if the element exists and has a type property
+				if ( $signatureInput.length && $signatureInput[0] && typeof $signatureInput[0].type !== 'undefined' ) {
+					validator.element( $signatureInput );
+				}
 			});
 
 			// Inline validation for upload field.

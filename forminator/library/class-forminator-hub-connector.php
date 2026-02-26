@@ -36,13 +36,14 @@ class Forminator_Hub_Connector {
 	 * Forminator_Hub_Connector constructor.
 	 */
 	private function __construct() {
+		add_filter( 'forminator_data', array( __CLASS__, 'add_hub_connector_data' ) );
+
 		if ( forminator_cloud_templates_disabled() ) {
 			return;
 		}
-		$this->init();
 
-		add_filter( 'forminator_data', array( __CLASS__, 'add_hub_connector_data' ) );
 		add_filter( 'wpmudev_hub_connector_localize_text_vars', array( __CLASS__, 'customize_text_vars' ), 10, 2 );
+		$this->init();
 	}
 
 	/**
@@ -337,7 +338,7 @@ class Forminator_Hub_Connector {
 			return __( 'You don\'t have the WPMU DEV Dashboard plugin, which you\'ll need to access Pro preset templates. Install and log in to the dashboard to unlock the complete list of preset templates.', 'forminator' );
 		}
 
-		return __( 'Save your forms as templates in the Hub cloud to easily reuse them on any sites you manage via the Hub. Customize once and reuse on different sites with one click.', 'forminator' );
+		return __( 'Save your forms as templates in The Hub cloud to easily reuse them on any sites you manage via The Hub. Customize once and reuse on different sites with one click.', 'forminator' );
 	}
 
 	/**

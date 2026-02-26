@@ -455,7 +455,7 @@ class Forminator_Hubspot_Wp_Api {
 	 * @param array $args Arguments.
 	 *
 	 * @return array|mixed|object
-	 * @throws Forminator_Hubspot_Wp_Api_Exception Throws Integration Exception.
+	 * @throws Forminator_Integration_Exception Throws Integration Exception.
 	 */
 	public function get_access_token( $args = array() ) {
 		$default_args = array(
@@ -488,7 +488,7 @@ class Forminator_Hubspot_Wp_Api {
 				$error = sprintf( esc_html__( 'Failed to process request : %s', 'forminator' ), esc_html( $response->error ) );
 			}
 
-			throw new Forminator_Hubspot_Wp_Api_Exception( $error ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is already escaped.
+			throw new Forminator_Integration_Exception( $error ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is already escaped.
 		}
 
 		return $response;

@@ -1598,12 +1598,17 @@ class Forminator_Admin_AJAX {
 		// Modify recipients if replace all recipients checkbox has been checked.
 		$change_recipients = 'checked' === Forminator_Core::sanitize_text_field( 'change_recipients' );
 
+		$save_to_cloud = 'checked' === Forminator_Core::sanitize_text_field( 'save_to_cloud' );
+
 		// phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput
 		$json  = wp_unslash( $_POST['importable'] );
 		$model = $this->import_json( $json, $slug, $change_recipients );
 
 		$return_url = admin_url( 'admin.php?page=forminator-' . forminator_get_prefix( $slug, 'c' ) );
 
+		if ( $save_to_cloud && ! forminator_cloud_templates_disabled() && forminator_is_site_connected_to_hub() ) {
+			Forminator_Template_API::create_template( $model->name, wp_json_encode( $model->to_exportable_data() ) );
+		}
 		/**
 		 * Fires after form import
 		 *
@@ -2512,6 +2517,9 @@ class Forminator_Admin_AJAX {
 
 		if ( ! empty( $input_value ) ) {
 			update_option( $notification_name, $input_value );
+		} elseif ( 'forminator_addons_update_place_api_notice_dismissed' === $notification_name ) {
+			// Delete the option so the notice will not be shown again.
+			delete_option( 'forminator_geolocation_update_place_api_notice' );
 		} else {
 			update_option( $notification_name, true );
 		}

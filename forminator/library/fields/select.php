@@ -728,7 +728,7 @@ class Forminator_Select extends Forminator_Field {
 		$options    = self::get_property( 'options', $field_settings, array() );
 		$is_single  = 'multiselect' !== $field_type;
 
-		if ( $is_single ) {
+		if ( $is_single && ! is_array( $submitted_field ) ) {
 			// process as array.
 			$submitted_field = array( $submitted_field );
 		}

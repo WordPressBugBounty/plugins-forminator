@@ -133,7 +133,7 @@
 			var $input = field.$input;
 			var res = this.maybeReplaceValue(field.value);
 			if ( typeof window.DOMPurify !== 'undefined' ) {
-				let config = {};
+				let config = { ADD_ATTR: [ 'target' ] };
 				// Allow iframe tags and attributes if the original value contains iframes.
 				if( this.hasIframes(field.value) ) {
 					config = {
@@ -152,6 +152,7 @@
 							'marginwidth',
 							'marginheight',
 							'allowfullscreen',
+							'target'
 						]
 					};
 				}

@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Forminator
- * Version: 1.50.3
+ * Version: 1.51.0
  * Plugin URI:  https://wpmudev.com/project/forminator/
  * Description: Build powerful, customizable forms with ease using Forminator’s drag-and-drop builder, conditional logic, payment support, real-time analytics, and seamless integrations—no coding needed.
  * Author: WPMU DEV
@@ -126,6 +126,7 @@ if ( ! class_exists( 'Forminator' ) ) {
 			add_option( 'forminator_activation_hook', 'activated' );
 
 			self::set_free_installation_timestamp();
+			self::set_activation_dates();
 		}
 
 		/**
@@ -398,6 +399,55 @@ if ( ! class_exists( 'Forminator' ) ) {
 
 			if ( empty( $install_date ) ) {
 				update_site_option( 'forminator_free_install_date', current_time( 'timestamp' ) ); // phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp.Requested -- We are using the current timestamp based on the site's timezone.
+			}
+		}
+
+		/**
+		 * Set activation dates
+		 *
+		 * @since 1.51.0
+		 *
+		 * @return void
+		 */
+		public static function set_activation_dates() {
+			$activation_date   = get_site_option( 'forminator_first_activation_date' );
+			$current_timestamp = time();
+
+			if ( empty( $activation_date ) ) {
+				$activation_date = get_site_option( 'forminator_free_install_date' );
+				if ( empty( $activation_date ) ) {
+					$form_created_date = self::get_earliest_form_creation_date();
+					$activation_date   = empty( $form_created_date ) ? $current_timestamp : $form_created_date;
+				}
+				// Ensure activation date is not in the future.
+				if ( $activation_date > $current_timestamp ) {
+					$activation_date = $current_timestamp;
+				}
+				update_site_option( 'forminator_first_activation_date', $activation_date );
+			}
+			update_site_option( 'forminator_last_activation_date', $current_timestamp );
+		}
+
+		/**
+		 * Get earliest form created date
+		 *
+		 * @since 1.51.0
+		 *
+		 * @return string
+		 */
+		private static function get_earliest_form_creation_date() {
+			$args  = array(
+				'post_type'      => array( 'forminator_forms', 'forminator_polls', 'forminator_quizzes' ),
+				'post_status'    => 'any',
+				'posts_per_page' => 1,
+				'order'          => 'ASC',
+				'orderby'        => 'post_date',
+			);
+			$query = new WP_Query( $args );
+			if ( ! empty( $query->posts[0] ) ) {
+				return strtotime( $query->posts[0]->post_date );
+			} else {
+				return '';
 			}
 		}
 

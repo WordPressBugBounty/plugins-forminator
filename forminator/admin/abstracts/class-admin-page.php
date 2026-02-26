@@ -419,11 +419,11 @@ abstract class Forminator_Admin_Page {
 								<b><?php esc_html_e( 'Congratulations!', 'forminator' ); ?></b>
 								<?php
 								if ( 'preset-template' === $feature ) {
-									esc_html_e( 'Your site is now connected to the Hub, and preset templates are unlocked. Start building forms faster with any of our ready-made templates.', 'forminator' );
+									esc_html_e( 'Your site is now connected to The Hub, and preset templates are unlocked. Start building forms faster with any of our ready-made templates.', 'forminator' );
 								} elseif ( 'extension-pack' === $feature ) {
-									esc_html_e( 'Your site is now connected to the Hub, and the following features are now unlocked.', 'forminator' );
+									esc_html_e( 'Your site is now connected to The Hub, and the following features are now unlocked.', 'forminator' );
 								} else {
-									esc_html_e( 'Your site is connected to the Hub. You can now save your forms to the Hub cloud.', 'forminator' );
+									esc_html_e( 'Your site is connected to The Hub. You can now save your forms to The Hub cloud.', 'forminator' );
 								}
 							}
 							?>
@@ -440,8 +440,8 @@ abstract class Forminator_Admin_Page {
 											<li class="sui-icon-check-tick"><?php esc_html_e( 'Save form templates to the cloud for easy reuse', 'forminator' ); ?></li>
 											<li class="sui-icon-check-tick"><?php esc_html_e( 'Access your cloud templates from any connected site', 'forminator' ); ?></li>
 											<li class="sui-icon-check-tick"><?php esc_html_e( 'Discover additional ready-made form templates', 'forminator' ); ?></li>
-											<li class="sui-icon-check-tick"><?php esc_html_e( 'Manage your site using the Hub’s site management tools', 'forminator' ); ?></li>
-											<li class="sui-icon-check-tick"><?php printf( /* translators: 1: Open Italic tag, 2: Close Italic tag */ esc_html__( 'Enable add-ons via the Hub %1$s(coming soon)%2$s', 'forminator' ), '<i>', '</i>' ); ?></li>
+											<li class="sui-icon-check-tick"><?php esc_html_e( 'Manage your site using The Hub’s site management tools', 'forminator' ); ?></li>
+											<li class="sui-icon-check-tick"><?php printf( /* translators: 1: Open Italic tag, 2: Close Italic tag */ esc_html__( 'Enable add-ons via The Hub %1$s(coming soon)%2$s', 'forminator' ), '<i>', '</i>' ); ?></li>
 										</ul>
 									</div>
 								</div>

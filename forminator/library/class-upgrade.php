@@ -31,6 +31,23 @@ class Forminator_Upgrade {
 
 			if ( $version_changed ) {
 				update_option( 'forminator_version_upgraded', true );
+				// Set last updated date.
+				update_site_option( 'forminator_last_updated_date', time() );
+
+				$activation_date      = get_site_option( 'forminator_first_activation_date' );
+				$last_activation_date = get_site_option( 'forminator_last_activation_date' );
+				// Set activation dates if not set already.
+				if ( empty( $activation_date ) || empty( $last_activation_date ) ) {
+					Forminator::set_activation_dates();
+				}
+			}
+
+			// Show notice for Place API update if the old version is less than 1.51.0.
+			if ( version_compare( $old_version, '1.51.0', 'lt' ) ) {
+				$geolocation_settings = get_option( 'forminator_geolocation_settings', array() );
+				if ( ! empty( $geolocation_settings['api_key'] ) ) {
+					update_option( 'forminator_geolocation_update_place_api_notice', true );
+				}
 			}
 		} else {
 			$version_changed = true;

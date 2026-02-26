@@ -227,18 +227,38 @@ class Forminator_Googlesheet_Form_Hooks extends Forminator_Integration_Form_Hook
 	 * @return array
 	 */
 	private static function maybe_add_group_cloned_fields( $form_fields ) {
-		if ( empty( Forminator_CForm_Front_Action::$prepared_data ) ) {
+		$prepared_data = Forminator_CForm_Front_Action::$prepared_data;
+		if ( empty( $prepared_data ) ) {
 			return $form_fields;
 		}
 
-		foreach ( $form_fields as $field ) {
-			$i = 1;
-			while ( isset( Forminator_CForm_Front_Action::$prepared_data[ $field['element_id'] . '-' . ( ++$i ) ] ) ) {
-				$form_fields[] = array_merge( $field, array( 'element_id' => $field['element_id'] . '-' . $i ) );
+		$result       = array();
+		$group_fields = array();
+
+		foreach ( $form_fields as $key => $field ) {
+			$parent      = $field['parent_group'] ?? '';
+			$next_parent = $form_fields[ $key + 1 ]['parent_group'] ?? '';
+
+			$result[] = $field;
+
+			if ( $parent ) {
+				$group_fields[ $parent ][] = $field;
+
+				// When leaving a group, append all clones for that group.
+				if ( $next_parent !== $parent ) {
+					for ( $i = 2; isset( $prepared_data[ $group_fields[ $parent ][0]['element_id'] . '-' . $i ] ); $i++ ) {
+						foreach ( $group_fields[ $parent ] as $gf ) {
+							$cloned_id = $gf['element_id'] . '-' . $i;
+							if ( isset( $prepared_data[ $cloned_id ] ) ) {
+								$result[] = array_merge( $gf, array( 'element_id' => $cloned_id ) );
+							}
+						}
+					}
+				}
 			}
 		}
 
-		return $form_fields;
+		return $result;
 	}
 
 	/**
@@ -255,6 +275,16 @@ class Forminator_Googlesheet_Form_Hooks extends Forminator_Integration_Form_Hook
 	public function get_sheet_headers( $file_id, $worksheet_id = 0 ) {
 		$form_fields = $this->settings_instance->get_form_fields();
 		$form_fields = self::maybe_add_group_cloned_fields( $form_fields );
+
+		/**
+		 * Filter form fields to be sent to Google Sheets integration
+		 *
+		 * @since 1.51
+		 *
+		 * @param array $form_fields Form fields.
+		 * @param int $module_id Current Module ID.
+		 */
+		$form_fields = apply_filters( 'forminator_addon_googlesheet_form_fields', $form_fields, $this->module_id );
 
 		$google_client = $this->addon->get_google_client();
 		$google_client->setAccessToken( $this->addon->get_client_access_token() );

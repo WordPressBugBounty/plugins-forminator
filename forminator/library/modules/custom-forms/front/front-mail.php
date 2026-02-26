@@ -367,8 +367,11 @@ class Forminator_CForm_Front_Mail extends Forminator_Mail {
 		 * @param array                        $data        POST data.
 		 * @param Forminator_Form_Entry_Model  $entry       entry model.
 		 * @param Forminator_CForm_Front_Mail  $this        mail class.
+		 *
+		 * @since 1.51.0 Added $notification parameter.
+		 * @param array $notification Notification.
 		 */
-		$cc_addresses = apply_filters( 'forminator_custom_form_mail_admin_cc_addresses', $cc_addresses, $custom_form, $data, $entry, $this );
+		$cc_addresses = apply_filters( 'forminator_custom_form_mail_admin_cc_addresses', $cc_addresses, $custom_form, $data, $entry, $this, $notification );
 
 		$notification_bcc_addresses = $this->replace_placeholders( $notification, 'bcc-email', $custom_form, $entry );
 		$notification_bcc_addresses = array_map( 'trim', explode( ',', $notification_bcc_addresses ) );
