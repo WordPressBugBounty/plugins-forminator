@@ -201,6 +201,11 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 	 * @since 1.7.3
 	 */
 	public function update_payment_amount() {
+		$form_id = Forminator_Core::sanitize_text_field( 'form_id' );
+		if ( empty( $form_id ) || ! $this->validate_ajax( 'forminator_submit_form' . $form_id, 'POST', 'forminator_nonce' ) ) {
+			wp_send_json_error( esc_html__( 'Invalid nonce. Please refresh your browser.', 'forminator' ) );
+		}
+
 		$this->init_properties();
 
 		self::check_fields_visibility();
@@ -982,21 +987,19 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 
 			// Don't process confirm if status is requires_capture as it confirmed already.
 			if ( 'requires_confirmation' === $intent->status ) {
-				$result = $intent->confirm(
+				$intent = $intent->confirm(
 					array(
 						'return_url' => Forminator_Stripe::get_return_url(),
 					)
 				);
-			} else {
-				$result = $intent;
 			}
 
 			// If we have 3D security on the card return for verification.
-			if ( 'requires_action' === $result->status || 'requires_confirmation' === $result->status || 'requires_payment_method' === $result->status ) {
-				$error_data = self::handle_failed_stripe_response( $result, $entry );
+			if ( 'requires_action' === $intent->status || 'requires_confirmation' === $intent->status || 'requires_payment_method' === $intent->status ) {
+				$error_data = self::handle_failed_stripe_response( $intent, $entry );
 
 				self::$response_attrs           = array_merge( self::$response_attrs, $error_data );
-				self::$response_attrs['secret'] = $result->client_secret;
+				self::$response_attrs['secret'] = $intent->client_secret;
 				return new WP_Error( 'forminator_stripe_error', esc_html( $error_data['message'] ) );
 			}
 		} catch ( Exception $e ) {
