@@ -139,10 +139,22 @@
 					var holderField = holder.closest( '.forminator-field' );
 					var holderDate  = holder.closest( '.forminator-date-input' );
 					var holderTime  = holder.closest( '.forminator-timepicker' );
+					var holderMultiUpload = holder.closest( '.forminator-multi-upload' );
 					var holderError = '';
 					var getColumn   = false;
 					var getError    = false;
 					var getDesc     = false;
+
+					if (holderMultiUpload.length > 0) {
+						const hasRequiredError = Array.isArray(this.errorList) &&
+							this.errorList.some(err =>
+								err.element === element && err.method === 'required'
+							);
+						if (!hasRequiredError) {
+							// Handle validation separately for multi-upload fields except for 'required' errors.
+							return;
+						}
+					}
 
 					var errorMessage    = this.errorMap[element.name];
 					var errorId         = holder.attr('id') + '-error';
@@ -307,6 +319,10 @@
 					var holderTime  = holder.closest( '.forminator-timepicker' );
 					var holderDate  = holder.closest( '.forminator-date-input' );
 					var holderError = '';
+					// Skip unhighlight for delete button in upload field.
+					if (holder.hasClass("forminator-uploaded-file--delete")) {
+						return;
+					}
 
 					var errorId = holder.attr('id') + '-error';
 					var ariaDescribedby = holder.attr('aria-describedby');
@@ -643,6 +659,10 @@
 		}
 
 		return this.optional(element) || check;
+	});
+
+	$.validator.addMethod("multiFileValid", function (value, element, param) {
+		return $(element).data("valid") ?? true;
 	});
 
 	// $.validator.methods.required = function(value, element, param) {

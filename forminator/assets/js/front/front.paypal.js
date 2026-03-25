@@ -214,6 +214,8 @@
 					});
 				},
 				onApprove: function(data, actions) {
+					const $stripe_element = $form.find('.forminator-field-stripe-ocs:not(.forminator-hidden),.forminator-field-stripe:not(.forminator-hidden)');
+					$stripe_element.addClass("forminator-hidden");
 					if( typeof self.settings.has_loader !== "undefined" && self.settings.has_loader ) {
 						// Disable form fields
 						$form.addClass('forminator-fields-disabled');

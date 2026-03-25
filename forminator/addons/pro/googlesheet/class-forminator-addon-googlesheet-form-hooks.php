@@ -56,6 +56,7 @@ class Forminator_Googlesheet_Form_Hooks extends Forminator_Integration_Form_Hook
 
 		$form_id                = $this->module_id;
 		$form_settings_instance = $this->settings_instance;
+		$module                 = $form_settings_instance->get_module();
 
 		try {
 			/**
@@ -128,6 +129,7 @@ class Forminator_Googlesheet_Form_Hooks extends Forminator_Integration_Form_Hook
 			$values = array();
 			foreach ( $header_fields as $element_id => $header_field ) {
 				$field_type = Forminator_Core::get_field_type( $element_id );
+				$field      = $module->get_field( $element_id );
 
 				$meta_value = '';
 				// take from entry fields (to be saved).
@@ -139,7 +141,12 @@ class Forminator_Googlesheet_Form_Hooks extends Forminator_Integration_Form_Hook
 				}
 				forminator_addon_maybe_log( __METHOD__, $field_type, $meta_value );
 
-				$form_value = Forminator_Form_Entry_Model::meta_value_to_string( $field_type, $meta_value, false );
+				if ( in_array( $field_type, array( 'paypal', 'stripe', 'stripe-ocs' ), true ) ) {
+					if ( isset( $meta_value['amount'] ) ) {
+						$meta_value['amount'] = Forminator_Field::get_formatted_amount( $field, $meta_value, $module );
+					}
+				}
+				$form_value = Forminator_Form_Entry_Model::meta_value_to_string( $field_type, $meta_value, false, PHP_INT_MAX, $field );
 
 				// Replace custom_option with actual custom value.
 				if ( false !== strpos( $form_value, 'custom_option' ) && isset( $submitted_data[ 'custom-' . $element_id ] ) ) {

@@ -2705,9 +2705,11 @@ class Forminator_Admin_AJAX {
 	 */
 	public function module_search() {
 		forminator_validate_ajax( 'forminator-nonce-search-module', false, 'forminator' );
-		$html    = '';
-		$keyword = Forminator_Core::sanitize_text_field( 'search_keyword' );
-		$modules = Forminator_Admin_Module_Edit_Page::get_searched_modules( $keyword );
+		$keyword               = Forminator_Core::sanitize_text_field( 'search_keyword' );
+		$page_number           = Forminator_Core::sanitize_text_field( 'paged', 1 );
+		$module_search_results = Forminator_Admin_Module_Edit_Page::get_searched_modules( $keyword, $page_number );
+		$modules               = $module_search_results['modules'] ?? array();
+		$total_modules         = $module_search_results['total_modules'] ?? 0;
 
 		ob_start();
 		Forminator_Admin_Module_Edit_Page::show_modules(
@@ -2722,9 +2724,19 @@ class Forminator_Admin_AJAX {
 			Forminator_Core::sanitize_text_field( 'wizard_page' ),
 			$keyword
 		);
-		$html = ob_get_clean();
+		$result_html = ob_get_clean();
 
-		wp_send_json_success( $html );
+		ob_start();
+		forminator_list_pagination( $total_modules, 'listing', true );
+		$pagination_html = ob_get_clean();
+
+		wp_send_json_success(
+			array(
+				'result_html'     => $result_html,
+				'pagination_html' => $pagination_html,
+				'total_modules'   => $total_modules,
+			)
+		);
 	}
 
 	/**

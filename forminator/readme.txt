@@ -3,7 +3,7 @@ Contributors: WPMUDEV
 Tags: contact form, custom form, forms, payment form, WordPress form plugin
 Requires at least: 6.4
 Tested up to: 6.9
-Stable tag: 1.51	
+Stable tag: 1.51.1	
 Requires PHP: 7.4
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -231,6 +231,46 @@ We take plugin security incredibly seriously; if you have a bug or vulnerability
 
 == Changelog ==
 
+= 1.52.0 ( 2026-03-18 ) =
+
+- Enhancement: Show notification when an unsupported PHP version is detected and deactivate the plugin
+- Enhancement: Improve plugin architecture by removing unnecessary PHP version checks and legacy compatibility logic
+- Enhancement: Improve wp.org guidelines compliance across the plugin
+- Enhancement: Compatibility with PHP 8.5
+- Enhancement: Improve email notifications by skipping attachments larger than 15MB
+- Enhancement: Improve minimum version comparison logic across Add-ons
+- Enhancement: Add default values validation for Slider field
+- Enhancement: Improve Material Design accessibility by highlighting required field indicators
+- Enhancement: Improve permission handling when accessing Registration form editing
+- Enhancement: Auto-populate submissions when only one form exists
+- Enhancement: Display Group fields in the main table on Submissions page
+- Enhancement: Add pagination in form search results
+- Enhancement: Update HubSpot Contact Lists API to v3
+- Enhancement: Update successful submission messages for different templates
+- Fix: Stripe and PayPal fields not working together when added without conditions
+- Fix: Users able to proceed after uploading forbidden file types
+- Fix: Fatal error occurs when uploading PDF files and submit button visibility condition is set
+- Fix: Submission data missing Group field values
+- Fix: Resend Email Notification is not working correctly for routed email notifications
+- Fix: PayPal button is incorrectly active in Instant Preview
+- Fix: Datepicker positioning issues in popups
+- Fix: Group visibility condition is not working correctly for draft forms
+- Fix: Extra paragraph tags added when editing Consent field descriptions
+- Fix: Some placeholders aren't replaced in the admin area
+- Fix: HTTP Referer URL missing when resending notification emails
+- Fix: Incorrect color displayed in Mailjet connection status message
+- Fix: reCAPTCHA v3 not displaying on the frontend when configured inline
+- Fix: Calculation errors when processing extremely large numeric values
+- Fix: European numeric format not processed correctly in certain cases
+- Fix: Placeholder visibility issue in Stripe fixed amount field
+- Fix: Remove unsupported option to assign Variable Quantity to Currency field
+- Fix: Invalid label validation on the Consent field
+- Fix: CSS selector issues affecting Group fields in generated PDFs
+- Fix: Forms could be published with an empty name after autosave
+- Fix: Translation issue with the "Select" string
+- Fix: PDF output font weight adjusted to allow proper HTML formatting in textareas
+
+
 = 1.51.1 ( 2026-02-27 ) =
 
 - Fix: Security improvements
@@ -407,13 +447,6 @@ We take plugin security incredibly seriously; if you have a bug or vulnerability
 - Fix: Number field value does not display in HTML fields if it is on the same row as a hidden Calculation field
 - Fix: Default Radio/Checkbox image background color isn't working
 - Fix: Issue with Group field, HTML widget, and visibility conditionals
-
-
-= 1.47.0 ( 2025-09-09 ) =
-
-- Enhancement: Add page visibility conditions for paginated forms
-- Enhancement: Improve Page Break field design
-- Fix: Prevent placing the Page Break field in the same row with other fields
 
 **Full changelog can be found here – [Forminator changelog](https://wpmudev.com/project/forminator-pro/#changelog_all?utm_source=wordpress.org&utm_medium=readme&utm_campaign=forminator-readme&utm_content=wpmu_dev_changelog_link).**
 

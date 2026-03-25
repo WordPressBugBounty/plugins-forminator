@@ -82,7 +82,7 @@ class Forminator_Template_Login extends Forminator_Template {
 		return array(
 			'form-type'                         => 'login',
 			'submission-behaviour'              => 'behaviour-redirect',
-			'thankyou-message'                  => esc_html__( 'Thank you for contacting us, we will be in touch shortly.', 'forminator' ),
+			'thankyou-message'                  => esc_html__( 'Welcome back! You’re now logged in.', 'forminator' ),
 			'redirect-url'                      => admin_url(),
 			'submitData'                        => array(
 				'custom-submit-text'          => esc_html__( 'Login', 'forminator' ),

@@ -833,10 +833,6 @@ class Forminator_CForm_Front extends Forminator_Render_Form {
 		$style = '';
 		if ( $this->is_only_hidden( $wrapper ) ) {
 			$class .= ' forminator-hidden';
-
-			if ( isset( $wrapper['fields'] ) && isset( $wrapper['fields'][0]['custom-class'] ) ) {
-				$class .= ' ' . $wrapper['fields'][0]['custom-class'];
-			}
 		} elseif ( isset( $wrapper['fields'] ) && $this->is_only_invisible_field( $wrapper['fields'] ) ) {
 			// Remove margin for wrappers with only invisible fields.
 			$style = ' style="margin: 0;"';
@@ -1464,7 +1460,8 @@ class Forminator_CForm_Front extends Forminator_Render_Form {
 		if ( self::is_hidden( $field ) || 'paypal' === $field['type'] ) {
 			return true;
 		} elseif ( 'captcha' === $field['type'] && ! empty( $field['captcha_provider'] ) ) {
-			if ( ( ! empty( $field['captcha_type'] ) && 'recaptcha' === $field['captcha_provider'] && in_array( $field['captcha_type'], array( 'v2_invisible', 'v3_recaptcha' ), true ) )
+			if ( ( ! empty( $field['captcha_type'] ) && 'recaptcha' === $field['captcha_provider'] && in_array( $field['captcha_type'], array( 'v2_invisible', 'v3_recaptcha' ), true )
+			&& ( ! empty( $field['captcha_badge'] ) && 'inline' !== $field['captcha_badge'] ) )
 			|| ( ! empty( $field['hcaptcha_type'] ) && 'hcaptcha' === $field['captcha_provider'] && 'hc_invisible' === $field['hcaptcha_type'] ) ) {
 				return true;
 			}

@@ -1089,7 +1089,7 @@ class Forminator_Stripe extends Forminator_Field {
 
 			$entry_data['mode']     = $mode;
 			$entry_data['currency'] = $currency;
-			$entry_data['amount']   = number_format( $charge_amount, 2, '.', '' );
+			$entry_data['amount']   = $charge_amount;
 			if ( ! empty( $this->payment_plan ) ) {
 				$entry_data['product_name'] = $this->payment_plan['plan_name'];
 				$entry_data['payment_type'] = $this->payment_method( $this->payment_plan['payment_method'] );
