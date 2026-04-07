@@ -599,7 +599,7 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 		$element_id  = Forminator_Field::get_property( 'element_id', $field_array );
 
 		if ( self::$is_draft ) {
-			if ( in_array( $field_type, array( 'hidden', 'stripe', 'stripe-ocs', 'paypal', 'signature' ), true ) ) {
+			if ( in_array( $field_type, array( 'hidden', 'stripe', 'stripe-ocs', 'paypal', 'signature', 'upload' ), true ) ) {
 				return;
 			}
 
@@ -1222,6 +1222,7 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 				$key                       = 'forminator_lead_object_temporary_storage_' . $random_id;
 				set_transient( $key, $entry, DAY_IN_SECONDS );
 			}
+			do_action( 'forminator_after_handle_form', $entry );
 		} catch ( Exception $e ) {
 			if ( ! empty( $delete_submission ) && ! empty( $entry->entry_id ) ) {
 				$entry->delete();
@@ -2577,13 +2578,15 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 	 * @param array $field_settings Field settings.
 	 */
 	private static function handle_upload_field( $field_settings ) {
+		$field_id = Forminator_Field::get_property( 'element_id', $field_settings );
+		// Initialize upload field data as an empty array to prevent setting data from POST data.
+		self::$prepared_data[ $field_id ] = array();
 		if ( self::$is_draft || self::$is_abandoned ) {
 			return;
 		}
 
 		$file_type     = Forminator_Field::get_property( 'file-type', $field_settings, 'single' );
 		$upload_method = Forminator_Field::get_property( 'upload-method', $field_settings, 'ajax' );
-		$field_id      = Forminator_Field::get_property( 'element_id', $field_settings );
 
 		$form_upload_data = isset( self::$prepared_data['forminator-multifile-hidden'] )
 			? self::$prepared_data['forminator-multifile-hidden']
@@ -2598,8 +2601,6 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 		if ( ! empty( $upload_data ) ) {
 			self::$has_upload                         = true;
 			self::$prepared_data[ $field_id ]['file'] = $upload_data;
-		} else {
-			self::$prepared_data[ $field_id ] = '';
 		}
 	}
 

@@ -351,8 +351,30 @@ abstract class Forminator_Mail {
 		// Set email context to false to avoid replacing images in PDFs.
 		$old_value              = self::$is_email_context;
 		self::$is_email_context = false;
+		$attachment             = $this->filter_attachments( $attachment );
 		$this->attachment       = apply_filters( 'forminator_custom_form_mail_attachment', $attachment, $custom_form, $entry, $this->pdfs );
 		self::$is_email_context = $old_value;
+	}
+
+	/**
+	 * Filter attachments to make sure only files in upload dir can be attached.
+	 *
+	 * @param array $attachments Attachments to filter.
+	 * @return array
+	 */
+	private function filter_attachments( $attachments ) {
+		if ( ! empty( $attachments ) ) {
+			$upload_dir = wp_upload_dir();
+			if ( ! empty( $upload_dir['basedir'] ) ) {
+				foreach ( $attachments as $key => $attachment ) {
+					if ( 0 !== strpos( $attachment, $upload_dir['basedir'] ) ) {
+						unset( $attachments[ $key ] );
+					}
+				}
+			}
+		}
+
+		return $attachments;
 	}
 
 	/**
