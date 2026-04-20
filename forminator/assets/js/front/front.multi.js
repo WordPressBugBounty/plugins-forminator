@@ -600,6 +600,15 @@
 						args.separateDialCode = true;
 					}
 
+					// Adjust dropdown for mobile in elementor popup to prevent overflow.
+					const popupModal = form_selector.closest('.elementor-popup-modal');
+					const isMobileDevice = typeof elementorFrontend !== 'undefined'
+						&& elementorFrontend.getCurrentDeviceMode() === 'mobile';
+
+					if ( popupModal && isMobileDevice ) {
+						args.dropdownContainer = popupModal;
+					}
+
 					var iti = window.intlTelInput(self, args);
 
 					if ( 'undefined' !== typeof ( validation ) && 'standard' === validation ) {
@@ -610,6 +619,11 @@
 								form.validate().element( $( self ) );
 							}
 						});
+					}
+
+					// Set RTL attribute to LTR for intlTelInput plugin if the form is in RTL, to prevent the plugin from breaking.
+					if( 'rtl' === $( 'html' ).attr( 'dir' ) ) {
+						$(this).closest( '.forminator-field' ).find( 'div.iti' ).attr( 'dir', 'ltr' );
 					}
 
 					if ( ! is_material ) {

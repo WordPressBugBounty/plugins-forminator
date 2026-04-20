@@ -161,6 +161,42 @@ class Forminator_Core {
 		// Clean up Action Scheduler.
 		add_action( 'init', array( $this, 'schedule_action_scheduler_cleanup' ), 999 );
 		add_action( 'forminator_action_scheduler_cleanup', array( &$this, 'action_scheduler_cleanup' ) );
+
+		// Ensure Forminator shortcodes render inside Synced Patterns in Block Editor templates.
+		if ( ! is_admin() ) {
+			add_filter( 'render_block', array( $this, 'maybe_process_forminator_shortcodes' ), 10 );
+		}
+	}
+
+	/**
+	 * Process Forminator shortcodes in block content.
+	 *
+	 * Workaround for Gutenberg not parsing shortcodes inside Synced Patterns
+	 * (formerly Reusable Blocks) when used in Block Editor Page Templates.
+	 *
+	 * @since 1.54.0
+	 *
+	 * @param string $block_content The rendered block content.
+	 * @return string The block content with Forminator shortcodes rendered.
+	 */
+	public function maybe_process_forminator_shortcodes( $block_content ) {
+		if ( empty( $block_content ) ) {
+			return $block_content;
+		}
+
+		if ( false === strpos( $block_content, '[forminator_' ) ) {
+			return $block_content;
+		}
+
+		// Only process if block content contains a Forminator shortcode.
+		if ( has_shortcode( $block_content, 'forminator_form' )
+			|| has_shortcode( $block_content, 'forminator_poll' )
+			|| has_shortcode( $block_content, 'forminator_quiz' )
+		) {
+			$block_content = do_shortcode( $block_content );
+		}
+
+		return $block_content;
 	}
 
 	/**
@@ -818,3 +854,4 @@ class Forminator_Core {
 		return $allowed_html;
 	}
 }
+

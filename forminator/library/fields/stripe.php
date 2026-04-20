@@ -1442,8 +1442,7 @@ class Forminator_Stripe extends Forminator_Field {
 						$field_object = Forminator_Core::get_field_object( $form_field['type'] );
 						if ( $field_object ) {
 
-							$field_id             = $form_field['element_id'];
-							$submitted_field_data = isset( $submitted_data[ $field_id ] ) ? $submitted_data[ $field_id ] : null;
+							$submitted_field_data = $submitted_data[ $amount_var ] ?? null;
 							$payment_amount       = $field_object::get_calculable_value( $submitted_field_data, $form_field );
 						}
 					}

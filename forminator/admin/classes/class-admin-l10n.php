@@ -351,7 +351,8 @@ class Forminator_Admin_L10n {
 				'display_name'          => esc_html__( 'User Display Name', 'forminator' ),
 				'user_email'            => esc_html__( 'User Email', 'forminator' ),
 				'user_login'            => esc_html__( 'User Login', 'forminator' ),
-				'shortcode_copied'      => esc_html__( 'Shortcode has been copied successfully.', 'forminator' ),
+				// translators: %s: Shortcode string, e.g. [forminator_form id="276"].
+				'shortcode_copied'      => esc_html__( 'Shortcode %s has been copied successfully.', 'forminator' ),
 				'uri_copied'            => esc_html__( 'URI has been copied successfully.', 'forminator' ),
 			),
 			'commons'       => array(

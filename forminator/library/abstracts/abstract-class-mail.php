@@ -522,25 +522,4 @@ abstract class Forminator_Mail {
 
 		return false;
 	}
-
-	/**
-	 * Get the result slug for Personality Quiz
-	 *
-	 * @since   1.15.3
-	 *
-	 * @param   array $form_data Submitted data.
-	 *
-	 * @return  string
-	 */
-	public static function get_result_slug( $form_data ) {
-		if ( ! empty( $form_data ) ) {
-			if ( isset( $form_data['entry'] ) ) {
-				if ( isset( $form_data['entry'][0]['value']['result'] ) ) {
-					return $form_data['entry'][0]['value']['result']['slug'];
-				}
-			}
-		}
-
-		return '';
-	}
 }
