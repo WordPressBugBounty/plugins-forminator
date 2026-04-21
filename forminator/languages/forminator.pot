@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Forminator package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Forminator 1.53.0\n"
+"Project-Id-Version: Forminator 1.53.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/build\n"
-"POT-Creation-Date: 2026-04-14 16:59:28+00:00\n"
+"POT-Creation-Date: 2026-04-21 12:54:13+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -997,14 +997,14 @@ msgstr ""
 #: addons/pro/googlesheet/class-forminator-addon-googlesheet-quiz-hooks.php:145
 #: addons/pro/slack/class-forminator-addon-slack-quiz-hooks.php:220
 #: admin/views/quiz/entries/content-leads-none.php:172
-#: admin/views/quiz/entries/content-leads.php:233 library/class-export.php:576
+#: admin/views/quiz/entries/content-leads.php:233 library/class-export.php:577
 msgid "Correct"
 msgstr ""
 
 #: addons/pro/googlesheet/class-forminator-addon-googlesheet-quiz-hooks.php:145
 #: addons/pro/slack/class-forminator-addon-slack-quiz-hooks.php:220
 #: admin/views/quiz/entries/content-leads-none.php:174
-#: admin/views/quiz/entries/content-leads.php:235 library/class-export.php:576
+#: admin/views/quiz/entries/content-leads.php:235 library/class-export.php:577
 msgid "Incorrect"
 msgstr ""
 
@@ -2063,7 +2063,7 @@ msgstr ""
 
 #: addons/pro/slack/class-forminator-addon-slack-poll-hooks.php:204
 #: addons/pro/trello/class-forminator-addon-trello-poll-hooks.php:277
-#: library/class-export.php:627
+#: library/class-export.php:628
 msgid "Extra"
 msgstr ""
 
@@ -2800,7 +2800,7 @@ msgid "Publish"
 msgstr ""
 
 #: admin/abstracts/class-admin-module-edit-page.php:412 admin/locale.php:1559
-#: admin/views/common/dashboard/widget.php:157 library/class-export.php:1548
+#: admin/views/common/dashboard/widget.php:157 library/class-export.php:1549
 msgid "View Submissions"
 msgstr ""
 
@@ -2990,27 +2990,27 @@ msgstr ""
 msgid "forminator"
 msgstr ""
 
-#: admin/abstracts/class-admin-module-edit-page.php:1060
+#: admin/abstracts/class-admin-module-edit-page.php:1067
 msgid ""
 "The selected form(s) have been deleted. Note: This action cannot be "
 "performed on forms without sufficient permissions."
 msgstr ""
 
-#: admin/abstracts/class-admin-module-edit-page.php:1079
+#: admin/abstracts/class-admin-module-edit-page.php:1086
 msgid ""
 "The selected form(s) have been duplicated. Note: This action cannot be "
 "performed on forms without sufficient permissions."
 msgstr ""
 
-#: admin/abstracts/class-admin-module-edit-page.php:1133
-#: admin/abstracts/class-admin-module-edit-page.php:1146
-#: admin/abstracts/class-admin-module-edit-page.php:1162
+#: admin/abstracts/class-admin-module-edit-page.php:1140
+#: admin/abstracts/class-admin-module-edit-page.php:1153
+#: admin/abstracts/class-admin-module-edit-page.php:1169
 msgid ""
 "The selected form(s) have been updated. Note: This action cannot be "
 "performed on forms without sufficient permissions."
 msgstr ""
 
-#: admin/abstracts/class-admin-module-edit-page.php:1164
+#: admin/abstracts/class-admin-module-edit-page.php:1171
 msgid ""
 "The selected form(s) have been updated. Note: Some forms could not be "
 "published due to validation errors."
@@ -3167,7 +3167,7 @@ msgstr ""
 #: admin/views/addons/addon-details.php:246
 #: admin/views/addons/addons-activate-popup.php:46
 #: admin/views/common/popup/export.php:51
-#: admin/views/custom-form/popup/import-cf7.php:515
+#: admin/views/custom-form/popup/import-cf7.php:505
 #: admin/views/templates/preset/popup.php:24
 #: admin/views/templates/preset/popup.php:36
 #: library/addon/class-integration.php:1238
@@ -3402,7 +3402,7 @@ msgstr ""
 #: admin/classes/class-admin-ajax.php:480
 #: admin/classes/class-admin-ajax.php:509
 #: library/addon/admin/class-integration-admin-ajax.php:97
-#: library/class-export.php:195 library/helpers/helper-core.php:148
+#: library/class-export.php:194 library/helpers/helper-core.php:148
 #: library/helpers/helper-core.php:162
 #: library/modules/custom-forms/front/front-action.php:3111
 msgid "Invalid request, you are not allowed to do that action."
@@ -3698,7 +3698,7 @@ msgstr ""
 msgid "Current user cannot add recipient."
 msgstr ""
 
-#: admin/classes/class-admin-ajax.php:2872 library/class-export.php:233
+#: admin/classes/class-admin-ajax.php:2872 library/class-export.php:234
 msgid "Invalid email."
 msgstr ""
 
@@ -3719,8 +3719,8 @@ msgid "Fields"
 msgstr ""
 
 #: admin/classes/class-admin-l10n.php:66 admin/classes/class-admin-l10n.php:345
-#: admin/locale.php:905 library/class-export.php:477
-#: library/class-export.php:625 library/fields/date.php:86
+#: admin/locale.php:905 library/class-export.php:478
+#: library/class-export.php:626 library/fields/date.php:86
 msgid "Date"
 msgstr ""
 
@@ -3954,7 +3954,7 @@ msgstr ""
 
 #: admin/classes/class-admin-l10n.php:123 admin/locale.php:118
 #: admin/views/common/popup/import.php:84
-#: admin/views/custom-form/popup/import-cf7.php:562
+#: admin/views/custom-form/popup/import-cf7.php:577
 #: admin/views/custom-form/popup/import-gravityforms.php:49
 #: admin/views/custom-form/popup/import-ninjaforms.php:48
 #: admin/views/settings/hub-connector/popup.php:50
@@ -5515,7 +5515,7 @@ msgid "Forminator Add-ons"
 msgstr ""
 
 #: admin/classes/class-admin.php:351 admin/locale.php:63
-#: admin/views/custom-form/popup/import-cf7.php:184
+#: admin/views/custom-form/popup/import-cf7.php:174
 msgid "Add-ons"
 msgstr ""
 
@@ -5737,7 +5737,7 @@ msgstr ""
 msgid "Submitting..."
 msgstr ""
 
-#: admin/classes/thirdparty-importers/class-importer-cf7.php:252
+#: admin/classes/thirdparty-importers/class-importer-cf7.php:257
 msgid "reCaptcha"
 msgstr ""
 
@@ -5989,7 +5989,7 @@ msgstr ""
 #: admin/views/common/entries/filter.php:166
 #: admin/views/common/entries/filter.php:185
 #: admin/views/common/entries/filter.php:214
-#: admin/views/custom-form/popup/import-cf7.php:126
+#: admin/views/custom-form/popup/import-cf7.php:116
 #: library/modules/custom-forms/loader.php:295
 msgid "All"
 msgstr ""
@@ -6903,7 +6903,7 @@ msgstr ""
 
 #: admin/locale.php:941 admin/views/quiz/entries/content-leads-none.php:197
 #: admin/views/quiz/entries/content-leads.php:196
-#: admin/views/quiz/entries/content-leads.php:258 library/class-export.php:478
+#: admin/views/quiz/entries/content-leads.php:258 library/class-export.php:479
 #: library/modules/polls/admin/admin-loader.php:197
 #: library/modules/quizzes/admin/admin-loader.php:699
 msgid "Question"
@@ -7090,8 +7090,8 @@ msgstr ""
 
 #: admin/locale.php:996 admin/views/quiz/entries/content-leads-none.php:198
 #: admin/views/quiz/entries/content-leads.php:197
-#: admin/views/quiz/entries/content-leads.php:259 library/class-export.php:479
-#: library/class-export.php:626
+#: admin/views/quiz/entries/content-leads.php:259 library/class-export.php:480
+#: library/class-export.php:627
 #: library/modules/quizzes/admin/admin-loader.php:679
 msgid "Answer"
 msgstr ""
@@ -8855,7 +8855,7 @@ msgid "Choose when you want to open and close voting"
 msgstr ""
 
 #: admin/locale.php:1437 admin/views/common/dashboard/widget.php:77
-#: admin/views/settings/dashboard/content.php:41 library/class-export.php:1169
+#: admin/views/settings/dashboard/content.php:41 library/class-export.php:1170
 #: library/helpers/helper-fields.php:492
 #: library/lib/action-scheduler/classes/ActionScheduler_AdminView.php:301
 #: library/lib/action-scheduler/classes/ActionScheduler_ListTable.php:97
@@ -13451,7 +13451,7 @@ msgstr ""
 msgid "To"
 msgstr ""
 
-#: admin/locale.php:2500 library/class-export.php:1157
+#: admin/locale.php:2500 library/class-export.php:1158
 #: library/fields/currency.php:83 library/fields/currency.php:104
 #: library/helpers/helper-fields.php:490
 #: library/modules/custom-forms/admin/admin-page-entries.php:483
@@ -13831,7 +13831,7 @@ msgstr ""
 msgid "Enter an amount or select a value from a form field in the Variable tab."
 msgstr ""
 
-#: admin/locale.php:2586 library/class-export.php:1153
+#: admin/locale.php:2586 library/class-export.php:1154
 #: library/helpers/helper-fields.php:489
 #: library/modules/custom-forms/admin/admin-page-entries.php:479
 #: library/modules/custom-forms/admin/admin-page-entries.php:528
@@ -13842,7 +13842,7 @@ msgstr ""
 msgid "Choose form field"
 msgstr ""
 
-#: admin/locale.php:2588 library/class-export.php:1161
+#: admin/locale.php:2588 library/class-export.php:1162
 #: library/modules/custom-forms/admin/admin-page-entries.php:487
 msgid "Quantity"
 msgstr ""
@@ -13945,7 +13945,7 @@ msgstr ""
 msgid "Plan Name is required."
 msgstr ""
 
-#: admin/locale.php:2612 library/class-export.php:1149
+#: admin/locale.php:2612 library/class-export.php:1150
 #: library/modules/custom-forms/admin/admin-page-entries.php:475
 msgid "Payment type"
 msgstr ""
@@ -15915,7 +15915,7 @@ msgid "Your Forminator %1$s summary for %2$s"
 msgstr ""
 
 #: admin/views/common/reports/email-report.php:117
-#: library/class-export.php:1518
+#: library/class-export.php:1519
 #. translators: %s: Recipient name
 #. translators: %s is Blog name.
 msgid "Hi %s,"
@@ -16273,40 +16273,32 @@ msgstr ""
 #: admin/views/custom-form/popup/import-cf7.php:71
 #. Translators: 1. Opening <strong> tag, 2. closing <strong> tag.
 msgid ""
-"%1$s3. reCAPTCHA v3 integration:%2$s At this stage, Forminator can't import "
-"your existing reCAPTCHA integration. You can set this up manually on your "
-"imported forms once they are transferred."
+"%1$s3. Additional settings:%2$s Forminator doesn't support CF7’s additional "
+"form settings."
 msgstr ""
 
 #: admin/views/custom-form/popup/import-cf7.php:81
 #. Translators: 1. Opening <strong> tag, 2. closing <strong> tag.
 msgid ""
-"%1$s4. Additional settings:%2$s Forminator doesn't support CF7’s additional "
-"form settings."
-msgstr ""
-
-#: admin/views/custom-form/popup/import-cf7.php:91
-#. Translators: 1. Opening <strong> tag, 2. closing <strong> tag.
-msgid ""
-"%1$s5. Custom field IDs:%2$s Forminator creates a unique ID for each field, "
+"%1$s4. Custom field IDs:%2$s Forminator creates a unique ID for each field, "
 "and the conditional logic relies on them. However, you can provide a custom "
 "CSS class for each field."
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:104
+#: admin/views/custom-form/popup/import-cf7.php:94
 #. Translators: 1. Opening <span> tag, 2. closing <span> tag.
 msgid "Dismiss%1$s this notice%2$s"
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:138
+#: admin/views/custom-form/popup/import-cf7.php:128
 msgid "Specific Forms"
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:149
+#: admin/views/custom-form/popup/import-cf7.php:139
 msgid "Choose Forms"
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:190
+#: admin/views/custom-form/popup/import-cf7.php:180
 #. Translators: 1. Opening <strong> tag, 2. closing <strong> tag.
 msgid ""
 "Choose the Contact Form 7 add-ons you wish to import form data and settings "
@@ -16315,39 +16307,39 @@ msgid ""
 "equivalent functionality in those imported forms."
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:215
+#: admin/views/custom-form/popup/import-cf7.php:205
 msgid "Flamingo"
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:218
+#: admin/views/custom-form/popup/import-cf7.php:208
 msgid ""
 "Import your form submissions from Flamingo and show them on the submissions "
 "page."
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:242
+#: admin/views/custom-form/popup/import-cf7.php:232
 msgid "Honeypot for Contact Form 7"
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:245
+#: admin/views/custom-form/popup/import-cf7.php:235
 msgid "Enable honeypot protection on the imported forms in Forminator."
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:269
+#: admin/views/custom-form/popup/import-cf7.php:259
 msgid "Contact Form 7 Database Addon – CFDB7"
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:272
+#: admin/views/custom-form/popup/import-cf7.php:262
 msgid ""
 "Import your form submissions from CFDB7 add-on and show them on the "
 "submissions page."
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:296
+#: admin/views/custom-form/popup/import-cf7.php:286
 msgid "Contact Form 7 Redirection"
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:299
+#: admin/views/custom-form/popup/import-cf7.php:289
 msgid ""
 "Import redirection URL settings and apply them on your imported forms in "
 "Forminator. Note that Forminator doesn’t support passing form fields as "
@@ -16355,111 +16347,111 @@ msgid ""
 "after form submission."
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:323
+#: admin/views/custom-form/popup/import-cf7.php:313
 msgid "Contact Form 7 Conditional Fields"
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:326
+#: admin/views/custom-form/popup/import-cf7.php:316
 msgid ""
 "Import your form fields conditions and apply them automatically on your "
 "imported forms."
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:350
+#: admin/views/custom-form/popup/import-cf7.php:340
 msgid "Contact Form Submissions"
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:353
-#: admin/views/custom-form/popup/import-cf7.php:407
+#: admin/views/custom-form/popup/import-cf7.php:343
+#: admin/views/custom-form/popup/import-cf7.php:397
 msgid "Import your form submissions and show them on the submissions page."
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:377
-msgid "Contact Form 7 - reCAPTCHA v2"
+#: admin/views/custom-form/popup/import-cf7.php:367
+msgid "Contact Form 7 - reCAPTCHA"
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:380
+#: admin/views/custom-form/popup/import-cf7.php:370
 msgid ""
-"Import your reCaptcha v2 API keys and configure the reCaptcha v2 on your "
+"Import your reCAPTCHA API keys and configure reCAPTCHA (v2 or v3) on your "
 "imported forms."
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:404
+#: admin/views/custom-form/popup/import-cf7.php:394
 msgid "Advanced Contact form 7 DB"
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:419
+#: admin/views/custom-form/popup/import-cf7.php:409
 msgid "We couldn't find any supported add-ons."
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:437
+#: admin/views/custom-form/popup/import-cf7.php:427
 msgid "Begin Import"
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:456
+#: admin/views/custom-form/popup/import-cf7.php:446
 msgid ""
 "Please keep this modal open while we import your Contact Form 7 forms and "
 "add-ons. It will only take a few seconds."
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:478
+#: admin/views/custom-form/popup/import-cf7.php:468
 msgid "Importing submissions from Flamingo"
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:493
+#: admin/views/custom-form/popup/import-cf7.php:483
 msgid ""
 "Your selected forms from Contact Form 7 and the add-ons imported "
 "successfully."
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:498
+#: admin/views/custom-form/popup/import-cf7.php:488
 msgid "Recommendations"
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:500
+#: admin/views/custom-form/popup/import-cf7.php:490
 msgid "Following are the next recommended steps:"
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:503
+#: admin/views/custom-form/popup/import-cf7.php:493
 msgid ""
 "1. Visit Forminator and preview your forms to make sure everything looks "
 "perfect and adjust your forms with the additional settings Forminator "
 "offers as per your needs."
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:504
+#: admin/views/custom-form/popup/import-cf7.php:494
 msgid ""
 "2. Use the Gutenberg block or shortcode to embed your forms in the required "
 "places."
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:505
+#: admin/views/custom-form/popup/import-cf7.php:495
 msgid ""
 "3. Deactivate Contact Form 7 and the add-ons if you don’t wish to use them "
 "anymore."
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:524
+#: admin/views/custom-form/popup/import-cf7.php:530
 msgid "Deactivate contact form 7"
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:541
+#: admin/views/custom-form/popup/import-cf7.php:556
 msgid ""
 "We have encountered an error while importing your forms from Contact Form 7 "
 "and selected add-ons."
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:545
+#: admin/views/custom-form/popup/import-cf7.php:560
 #. Translators: 1. Opening <a> tag with link to the support url, 2. closing <a>
 #. tag.
 msgid "Unable to solve this? Contact our %1$ssupport%2$s team for further help."
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:554
+#: admin/views/custom-form/popup/import-cf7.php:569
 msgid "We couldn't find any compatible data to import."
 msgstr ""
 
-#: admin/views/custom-form/popup/import-cf7.php:569
+#: admin/views/custom-form/popup/import-cf7.php:584
 msgid "Retry Import"
 msgstr ""
 
@@ -18400,7 +18392,7 @@ msgstr ""
 msgid "Failed to save new entry meta."
 msgstr ""
 
-#: library/class-core.php:497
+#: library/class-core.php:504
 msgid "Post Custom Data"
 msgstr ""
 
@@ -18412,57 +18404,57 @@ msgstr ""
 msgid "Invalid nonce."
 msgstr ""
 
-#: library/class-export.php:209
+#: library/class-export.php:210
 #: library/modules/custom-forms/front/front-action.php:3151
 #: library/modules/custom-forms/user/class-forminator-cform-user-data.php:95
 msgid "Invalid form ID."
 msgstr ""
 
-#: library/class-export.php:220
+#: library/class-export.php:221
 msgid "Invalid form type."
 msgstr ""
 
-#: library/class-export.php:480
+#: library/class-export.php:481
 msgid "Result"
 msgstr ""
 
-#: library/class-export.php:777
+#: library/class-export.php:778
 #. Translators: 1. Rating value, 2. Maximum rating
 msgid " %1$d out of %2$d"
 msgstr ""
 
-#: library/class-export.php:970
+#: library/class-export.php:971
 msgid "Submission Time"
 msgstr ""
 
-#: library/class-export.php:1141 library/helpers/helper-fields.php:491
+#: library/class-export.php:1142 library/helpers/helper-fields.php:491
 #: library/modules/custom-forms/admin/admin-page-entries.php:466
 #: library/modules/custom-forms/admin/admin-page-entries.php:518
 msgid "Mode"
 msgstr ""
 
-#: library/class-export.php:1145
+#: library/class-export.php:1146
 #: library/modules/custom-forms/admin/admin-page-entries.php:471
 msgid "Product / Plan Name"
 msgstr ""
 
-#: library/class-export.php:1165 library/helpers/helper-fields.php:493
+#: library/class-export.php:1166 library/helpers/helper-fields.php:493
 #: library/modules/custom-forms/admin/admin-page-entries.php:491
 #: library/modules/custom-forms/admin/admin-page-entries.php:537
 msgid "Transaction ID"
 msgstr ""
 
-#: library/class-export.php:1173
+#: library/class-export.php:1174
 #: library/modules/custom-forms/admin/admin-page-entries.php:506
 msgid "Manage"
 msgstr ""
 
-#: library/class-export.php:1454
+#: library/class-export.php:1455
 #. translators: %s is form name.
 msgid "Submissions data for %s"
 msgstr ""
 
-#: library/class-export.php:1522
+#: library/class-export.php:1523
 #. translators: 1$s is total new submission(s), %2$s is total submissions.
 msgid ""
 "Your scheduled exports have arrived! Forminator has captured %1$s new "
@@ -18470,15 +18462,15 @@ msgid ""
 "scheduled export sent."
 msgstr ""
 
-#: library/class-export.php:1543
+#: library/class-export.php:1544
 msgid "New Submissions"
 msgstr ""
 
-#: library/class-export.php:1545
+#: library/class-export.php:1546
 msgid "Total Submissions"
 msgstr ""
 
-#: library/class-export.php:1553
+#: library/class-export.php:1554
 msgid "Cheers,"
 msgstr ""
 

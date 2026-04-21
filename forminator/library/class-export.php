@@ -188,14 +188,15 @@ class Forminator_Export {
 		$action = Forminator_Core::sanitize_text_field( 'action' );
 		if ( 'forminator_export_entries' === $action ) {
 			$nonce = Forminator_Core::sanitize_text_field( '_forminator_nonce' );
-			if ( ! $nonce || ! wp_verify_nonce( $nonce, 'forminator_export' ) ) {
 
-				$redirect = add_query_arg(
-					array(
-						'err_msg' => rawurlencode( esc_html__( 'Invalid request, you are not allowed to do that action.', 'forminator' ) ),
-					)
-				);
+			$redirect = add_query_arg(
+				array(
+					'err_msg' => rawurlencode( esc_html__( 'Invalid request, you are not allowed to do that action.', 'forminator' ) ),
+				)
+			);
 
+			if ( ! $nonce || ! wp_verify_nonce( $nonce, 'forminator_export' )
+					|| ! forminator_is_user_allowed( 'forminator-entries' ) ) {
 				wp_safe_redirect( $redirect );
 				exit;
 			}

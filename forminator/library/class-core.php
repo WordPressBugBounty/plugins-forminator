@@ -164,7 +164,7 @@ class Forminator_Core {
 
 		// Ensure Forminator shortcodes render inside Synced Patterns in Block Editor templates.
 		if ( ! is_admin() ) {
-			add_filter( 'render_block', array( $this, 'maybe_process_forminator_shortcodes' ), 10 );
+			add_filter( 'render_block', array( $this, 'maybe_process_forminator_shortcodes' ), 10, 2 );
 		}
 	}
 
@@ -177,10 +177,17 @@ class Forminator_Core {
 	 * @since 1.54.0
 	 *
 	 * @param string $block_content The rendered block content.
+	 * @param array  $block         The parsed block data including blockName.
 	 * @return string The block content with Forminator shortcodes rendered.
 	 */
-	public function maybe_process_forminator_shortcodes( $block_content ) {
+	public function maybe_process_forminator_shortcodes( $block_content, $block ) {
 		if ( empty( $block_content ) ) {
+			return $block_content;
+		}
+
+		// Raw/classic blocks are already handled by the_content.
+		// Processing them here can wrap Divi background spans in <p> and break direct-child selectors.
+		if ( ! isset( $block['blockName'] ) || 'core/freeform' === $block['blockName'] ) {
 			return $block_content;
 		}
 

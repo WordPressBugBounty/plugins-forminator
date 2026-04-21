@@ -85,12 +85,14 @@
 			// If form from hustle popup, do not show
 			if (this.$el.closest('.wph-modal').length === 0) {
 				this.$el.show();
+				$( document ).trigger( 'forminator.front.loaded' );
 			}
 
 			// Show form when popup trigger with click
 			$(document).on("hustle:module:displayed", function (e, data) {
 				var $modal = $('.wph-modal-active');
 				$modal.find('form').css('display', '');
+				$( document ).trigger( 'forminator.front.loaded' );
 			});
 
 			self.reint_intlTelInput();
@@ -99,6 +101,7 @@
 			setTimeout(function () {
 				var $modal = $('.wph-modal-active');
 				$modal.find('form').css('display', '');
+				$( document ).trigger( 'forminator.front.loaded' );
 			}, 10);
 
 			//selective activation based on type of form
@@ -601,12 +604,12 @@
 					}
 
 					// Adjust dropdown for mobile in elementor popup to prevent overflow.
-					const popupModal = form_selector.closest('.elementor-popup-modal');
+					const popupModal = form.closest('.elementor-popup-modal');
 					const isMobileDevice = typeof elementorFrontend !== 'undefined'
 						&& elementorFrontend.getCurrentDeviceMode() === 'mobile';
 
-					if ( popupModal && isMobileDevice ) {
-						args.dropdownContainer = popupModal;
+					if ( popupModal.length && isMobileDevice ) {
+						args.dropdownContainer = popupModal[0];
 					}
 
 					var iti = window.intlTelInput(self, args);

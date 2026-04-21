@@ -3,7 +3,7 @@ Contributors: WPMUDEV
 Tags: contact form, custom form, forms, payment form, WordPress form plugin
 Requires at least: 6.4
 Tested up to: 6.9
-Stable tag: 1.52.2	
+Stable tag: 1.53.0	
 Requires PHP: 7.4
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -230,6 +230,16 @@ We take plugin security incredibly seriously; if you have a bug or vulnerability
 6. Publish Polls with Real-time Stats
 
 == Changelog ==
+
+= 1.53.1 ( 2026-04-21 ) =
+
+- Enhancement: Improve Contact Form 7 import
+- Fix: Security improvements
+- Fix: Divi theme background pattern not loading correctly
+- Fix: Signature field not working properly
+- Fix: Phone field validation issues
+- Fix: Date Picker is displayed in the footer area when Default Date is set
+
 
 = 1.53.0 ( 2026-04-14 ) =
 

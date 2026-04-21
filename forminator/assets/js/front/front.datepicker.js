@@ -221,15 +221,22 @@
 		syncDateValueWithLimits: function () {
 			var dateValue = this.$el.val();
 
-			if ( ! dateValue || ! this.applyDatepickerLimits() ) {
+			if ( ! dateValue ) {
 				return;
 			}
 
-			this.$el.datepicker( 'setDate', dateValue );
+			var hasLimits = this.applyDatepickerLimits();
 
-			if ( dateValue !== this.$el.val() ) {
-				this.$el.trigger( 'change' );
+			if ( hasLimits ) {
+				this.$el.datepicker( 'setDate', dateValue );
+
+				if ( dateValue !== this.$el.val() ) {
+					this.$el.trigger( 'change' );
+				}
 			}
+
+			// Hide datepicker panel populated by programmatic option/date changes during init.
+			this.$el.datepicker( 'widget' ).hide();
 		},
 
 		getLimitDate: function ( dependentField, offset ) {
