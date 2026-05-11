@@ -1439,15 +1439,19 @@ abstract class Forminator_Render_Form {
 			wp_send_json_error( new WP_Error( 'invalid_code' ) );
 		}
 
-		$id                = filter_input( INPUT_POST, 'id', FILTER_VALIDATE_INT );
-		$type              = Forminator_Core::sanitize_text_field( 'type' );
-		$preview_data      = isset( $_POST['preview_data'] ) ? Forminator_Core::sanitize_array( $_POST['preview_data'], 'preview_data' ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-		$last_submit_data  = isset( $_POST['last_submit_data'] ) ? Forminator_Core::sanitize_array( $_POST['last_submit_data'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-		$extra             = isset( $_POST['extra'] ) ? Forminator_Core::sanitize_array( $_POST['extra'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-		$has_lead          = Forminator_Core::sanitize_text_field( 'has_lead' );
-		$leads_id          = filter_input( INPUT_POST, 'leads_id', FILTER_VALIDATE_INT );
-		$lead_preview_data = isset( $_POST['lead_preview_data'] ) ? Forminator_Core::sanitize_array( $_POST['lead_preview_data'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-		$render_id         = filter_input( INPUT_POST, 'render_id', FILTER_VALIDATE_INT );
+		$preview_data      = array();
+		$lead_preview_data = array();
+		if ( $is_preview ) {
+			$preview_data      = isset( $_POST['preview_data'] ) ? Forminator_Core::sanitize_array( $_POST['preview_data'], 'preview_data' ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+			$lead_preview_data = isset( $_POST['lead_preview_data'] ) ? Forminator_Core::sanitize_array( $_POST['lead_preview_data'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		}
+		$id               = filter_input( INPUT_POST, 'id', FILTER_VALIDATE_INT );
+		$type             = Forminator_Core::sanitize_text_field( 'type' );
+		$last_submit_data = isset( $_POST['last_submit_data'] ) ? Forminator_Core::sanitize_array( $_POST['last_submit_data'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		$extra            = isset( $_POST['extra'] ) ? Forminator_Core::sanitize_array( $_POST['extra'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		$has_lead         = Forminator_Core::sanitize_text_field( 'has_lead' );
+		$leads_id         = filter_input( INPUT_POST, 'leads_id', FILTER_VALIDATE_INT );
+		$render_id        = filter_input( INPUT_POST, 'render_id', FILTER_VALIDATE_INT );
 
 		if ( empty( $id ) && ! $is_preview ) {
 			wp_send_json_error( new WP_Error( 'invalid_id' ) );
