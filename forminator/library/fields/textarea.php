@@ -412,6 +412,9 @@ class Forminator_Textarea extends Forminator_Field {
 			$data = forminator_sanitize_textarea( $data );
 		}
 
+		// Balance tags to ensure that user-added HTML tags are properly closed.
+		$data = force_balance_tags( $data );
+
 		return apply_filters( 'forminator_field_text_sanitize', $data, $field, $original_data );
 	}
 }

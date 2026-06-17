@@ -1242,7 +1242,7 @@ class Forminator_Date extends Forminator_Field {
 		$year        = $date['year'];
 
 		// strtotime does not recognize all of our date formats so we need to convert all dates to 1 accepted format before processing.
-		if ( 'Y-m-d' !== datepicker_default_format( $date_format ) && ! is_array( $data ) ) {
+		if ( ! is_array( $data ) ) {
 			$format_date = date_create_from_format( datepicker_default_format( $date_format ), $data );
 			if ( $format_date ) {
 				$data = date_format( $format_date, 'Y-m-d' );
@@ -1405,8 +1405,7 @@ class Forminator_Date extends Forminator_Field {
 						if ( 'today' === $start_date_type ) {
 							$start_date = date_i18n( 'Y-m-d', strtotime( $start_offset_operator . $start_offset_value . ' ' . $start_offset_duration, current_time( 'U' ) ) ); // phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp.Requested -- We are using the current timestamp based on the site's timezone.
 						} else {
-							$start_date_value = isset( Forminator_CForm_Front_Action::$prepared_data[ $start_date_type ] )
-								? Forminator_CForm_Front_Action::$prepared_data[ $start_date_type ] : '';
+							$start_date_value = $this->get_grouped_date_limit_value( $field, $id, $start_date_type, $custom_form );
 							$start_date       = '';
 							if ( ! empty( $start_date_value ) ) {
 								$start_date_field  = $custom_form->get_field( $start_date_type, true );
@@ -1434,8 +1433,7 @@ class Forminator_Date extends Forminator_Field {
 						if ( 'today' === $end_date_type ) {
 							$end_date = date_i18n( 'Y-m-d', strtotime( $end_offset_operator . $end_offset_value . ' ' . $end_offset_duration, current_time( 'U' ) ) ); // phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp.Requested -- We are using the current timestamp based on the site's timezone.
 						} else {
-							$end_date_value = isset( Forminator_CForm_Front_Action::$prepared_data[ $end_date_type ] )
-								? Forminator_CForm_Front_Action::$prepared_data[ $end_date_type ] : '';
+							$end_date_value = $this->get_grouped_date_limit_value( $field, $id, $end_date_type, $custom_form );
 							$end_date       = '';
 							if ( ! empty( $end_date_value ) ) {
 								$end_date_field  = $custom_form->get_field( $end_date_type, true );
@@ -1509,6 +1507,34 @@ class Forminator_Date extends Forminator_Field {
 		}
 
 		return apply_filters( 'forminator_field_date_sanitize', $data, $field, $original_data );
+	}
+
+	/**
+	 * Resolve a dependent date field value for the current group row when possible.
+	 *
+	 * @param array                 $field              Current field settings.
+	 * @param string                $current_field_id   Current field ID.
+	 * @param string                $dependent_field_id Dependent date field ID.
+	 * @param Forminator_Form_Model $custom_form        Form model.
+	 *
+	 * @return string
+	 */
+	private function get_grouped_date_limit_value( $field, $current_field_id, $dependent_field_id, $custom_form ) {
+		$group_suffix = '';
+		$parent_group = $field['parent_group'] ?? '';
+
+		if ( ! empty( $parent_group ) ) {
+			$grouped_fields = $custom_form->get_grouped_fields_slugs( $parent_group );
+
+			foreach ( $grouped_fields as $grouped_field_id ) {
+				if ( preg_match( '/^' . preg_quote( $grouped_field_id, '/' ) . '(-.+)$/', $current_field_id, $matches ) ) {
+					$group_suffix = $matches[1];
+					break;
+				}
+			}
+		}
+
+		return Forminator_CForm_Front_Action::$prepared_data[ $dependent_field_id . $group_suffix ] ?? ( Forminator_CForm_Front_Action::$prepared_data[ $dependent_field_id ] ?? '' );
 	}
 
 	/**

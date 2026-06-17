@@ -12,14 +12,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Return custom form
  *
- * @param int  $id Id.
- * @param bool $is_preview Is preview?.
- * @param bool $is_block_editor Is block editor?.
+ * @param int      $id Id.
+ * @param bool     $is_preview Is preview?.
+ * @param bool     $is_block_editor Is block editor?.
+ * @param int|null $forced_render_id Optional. Force render ID for unique selectors.
  *
  * @since 1.0
  * @return mixed
  */
-function forminator_form( $id, $is_preview = false, $is_block_editor = false ) {
+function forminator_form( $id, $is_preview = false, $is_block_editor = false, $forced_render_id = null ) {
+	if ( is_numeric( $forced_render_id ) ) {
+		Forminator_CForm_Front::get_instance()->generate_render_id( $id, (int) $forced_render_id );
+	}
+
 	$view = new Forminator_CForm_Front();
 
 	return $view->render_shortcode(
@@ -1772,7 +1777,7 @@ function render_entry( $item, $column_name, $field = null, $type = '', $remove_e
 									}
 								}
 
-									// Featured Image.
+								// Featured Image.
 								if ( ! empty( $data['value']['post-image'] ) && ! empty( $data['value']['post-image']['attachment_id'] ) ) {
 									$post_image_id = $data['value']['post-image']['attachment_id'];
 									$image_label   = $field['post_image_label'] ?? esc_html__( 'Featured image', 'forminator' );
@@ -3906,7 +3911,7 @@ function forminator_render_rating_field( $rating_value, $rating_items ) {
  * @return bool
  */
 function forminator_can_display_as_image( $file_url ) {
-	$image_extensions = array( 'jpg', 'jpeg', 'jpe', 'gif', 'png', 'bmp', 'tiff', 'tif', 'ico', 'webp', 'heic' );
+	$image_extensions = array( 'jpg', 'jpeg', 'jpe', 'gif', 'png', 'bmp', 'tiff', 'tif', 'ico', 'webp', 'heic', 'heif', 'avif' );
 	$file_extension   = strtolower( pathinfo( $file_url, PATHINFO_EXTENSION ) );
 
 	return in_array( $file_extension, $image_extensions, true );

@@ -1268,7 +1268,30 @@ abstract class Forminator_Render_Form {
 	 * @return bool
 	 */
 	public function can_track_views() {
-		return $this->track_views;
+		return $this->track_views && ! $this->is_preview && ! $this->is_admin && ! $this->is_admin_ajax_render();
+	}
+
+	/**
+	 * Check if the current ajax render originated from a wp-admin screen.
+	 *
+	 * @since 1.55.0
+	 * @return bool
+	 */
+	protected function is_admin_ajax_render() {
+		if ( ! wp_doing_ajax() ) {
+			return false;
+		}
+
+		$is_block_editor = filter_input( INPUT_POST, 'is_block_editor', FILTER_VALIDATE_BOOLEAN );
+		if ( $is_block_editor ) {
+			return true;
+		}
+
+		if ( empty( $this->_wp_http_referer ) ) {
+			return false;
+		}
+
+		return false !== strpos( wp_normalize_path( $this->_wp_http_referer ), '/wp-admin/' );
 	}
 
 	/**
@@ -1483,7 +1506,7 @@ abstract class Forminator_Render_Form {
 			}(jQuery, document, window));';
 
 		// on real render use add_inline_script to avoid late initialization.
-		if ( ! $is_preview ) {
+		if ( ! $is_preview && ! wp_script_is( 'forminator-front-scripts', 'done' ) ) {
 			wp_add_inline_script( 'forminator-front-scripts', $forminator_loader_script );
 		} else {
 			// we are on preview, and its ajax called, so scripts need to be output-ed rather than add it on enqueued script.

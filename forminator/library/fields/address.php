@@ -581,17 +581,19 @@ class Forminator_Address extends Forminator_Field {
 
 					$html .= '<div class="forminator-field">';
 
-						$default_country = self::get_property( 'address_country_placeholder', $field );
+					$country_select_value = $country
+						? $country
+						: self::get_property( 'address_country_placeholder', $field );
 
-						$html .= self::create_country_select(
-							$country_data,
-							self::get_property( 'address_country_label', $field ),
-							$countries,
-							$default_country,
-							$country_desc,
-							$country_required,
-							$descr_position,
-						);
+					$html .= self::create_country_select(
+						$country_data,
+						self::get_property( 'address_country_label', $field ),
+						$countries,
+						$country_select_value,
+						$country_desc,
+						$country_required,
+						$descr_position,
+					);
 
 					$html .= '</div>';
 

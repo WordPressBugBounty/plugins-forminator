@@ -181,10 +181,17 @@
 			    message         = '',
 			    wrapper_message = null;
 
-			wrapper_message = $(html).find('.forminator-response-message');
-			if (wrapper_message.length) {
+			// Try to find message in current DOM, if not found, try to find in new HTML
+			wrapper_message = this.$el.find('.forminator-response-message');
+			if (wrapper_message.length && $.trim(wrapper_message.text()) !== '') {
 				message = wrapper_message.get(0).outerHTML;
+			} else {
+				wrapper_message = $(html).find('.forminator-response-message');
+				if (wrapper_message.length && $.trim(wrapper_message.text()) !== '') {
+					message = wrapper_message.get(0).outerHTML;
+				}
 			}
+
 			wrapper_message = this.$el.find('.forminator-poll-response-message');
 			if (wrapper_message.length) {
 				message = wrapper_message.get(0).outerHTML;
