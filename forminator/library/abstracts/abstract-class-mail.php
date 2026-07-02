@@ -365,12 +365,9 @@ abstract class Forminator_Mail {
 	 */
 	private function filter_attachments( $attachments ) {
 		if ( ! empty( $attachments ) ) {
-			$upload_dir = wp_upload_dir();
-			if ( ! empty( $upload_dir['basedir'] ) ) {
-				foreach ( $attachments as $key => $attachment ) {
-					if ( 0 !== strpos( $attachment, $upload_dir['basedir'] ) ) {
-						unset( $attachments[ $key ] );
-					}
+			foreach ( $attachments as $key => $attachment ) {
+				if ( ! forminator_attachment_path_is_allowed( $attachment ) ) {
+					unset( $attachments[ $key ] );
 				}
 			}
 		}

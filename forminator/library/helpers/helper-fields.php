@@ -3130,6 +3130,47 @@ function forminator_get_upload_url( $form_id, $dir = '' ) {
 	return $upload_url;
 }
 
+/**
+ * Check whether a file path resolves inside the WordPress uploads directory.
+ *
+ * @since 1.55.1
+ *
+ * @param string|array $path File path or list of paths.
+ * @return bool
+ */
+function forminator_attachment_path_is_allowed( $path ) {
+	$paths = is_array( $path ) ? $path : array( $path );
+
+	if ( empty( $paths ) ) {
+		return false;
+	}
+
+	$upload_dir = wp_upload_dir();
+	if ( empty( $upload_dir['basedir'] ) ) {
+		return false;
+	}
+
+	$basedir_real = realpath( $upload_dir['basedir'] );
+	if ( false === $basedir_real ) {
+		return false;
+	}
+
+	$basedir_prefix = trailingslashit( wp_normalize_path( $basedir_real ) );
+
+	foreach ( $paths as $single_path ) {
+		if ( ! is_string( $single_path ) || '' === $single_path ) {
+			return false;
+		}
+
+		$path_real = realpath( $single_path );
+		if ( false === $path_real || 0 !== strpos( wp_normalize_path( $path_real ), $basedir_prefix ) ) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
 
 /**
  * Replace lead form data

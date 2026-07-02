@@ -752,6 +752,12 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 		 */
 		$field_data = $form_field_obj->sanitize( $field_array, $field_data );
 
+		// Legitimate file_path is added in process_uploads(); clearing request values here is intentional.
+		if ( 'upload' === $field_type && ! empty( $field_data['file']['file_path'] ) ) {
+			$field_data = array();
+			unset( self::$prepared_data[ $field_id ] );
+		}
+
 		if ( ! self::$is_draft && ! self::$is_abandoned ) {
 			$field_data = $form_field_obj->validate_entry( $field_array, $field_data );
 		}
@@ -1912,6 +1918,8 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 			wp_send_json_error( $response );
 		}
 
+		unset( $response['file_path'] );
+
 		wp_send_json_success( $response );
 	}
 
@@ -2803,6 +2811,9 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 					$upload_data = $form_field_obj->transfer_upload( self::$module_id, $form_upload_data, $field_settings );
 				} elseif ( ! self::$has_payment && ! empty( $form_upload_data['file'] ) ) {
 					$upload_data = $form_upload_data['file'];
+					if ( isset( $upload_data['file_path'] ) && ! forminator_attachment_path_is_allowed( $upload_data['file_path'] ) ) {
+						$upload_data = array( 'success' => false );
+					}
 				}
 			}
 

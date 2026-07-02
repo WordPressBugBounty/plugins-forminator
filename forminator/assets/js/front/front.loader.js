@@ -54,8 +54,8 @@
 	// Avoid Plugin.prototype conflicts
 	$.extend(ForminatorLoader.prototype, {
 		init: function () {
-			var param = (decodeURI(document.location.search)).replace(/(^\?)/, '').split("&").map(function (n) {
-				return n = n.split("="), this[n[0]] = n[1], this
+			const param = (decodeURI(document.location.search)).replace(/(^\?)/, '').split("&").map(function (n) {
+				return n = n.split("="), this[n[0].replace(/[.]/g, '_')] = n[1], this
 			}.bind({}))[0];
 			var saved_render_id = param.render_id;
 

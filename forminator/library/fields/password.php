@@ -221,7 +221,7 @@ class Forminator_Password extends Forminator_Field {
 		// Counter.
 		if ( ! empty( $description ) || ( ! empty( $limit ) && ! empty( $limit_type ) ) ) {
 
-			$html .= sprintf( '<div class="forminator-description forminator-description-password" id="%s">', $id . '-description' );
+			$html .= sprintf( '<div class="forminator-description forminator-description-password" id="%s">', esc_attr( $id . '-description' ) );
 
 			$description = str_replace( '{lostpassword_url}', wp_lostpassword_url( get_permalink() ), $description );
 
@@ -230,7 +230,7 @@ class Forminator_Password extends Forminator_Field {
 			}
 
 			if ( ( ! empty( $limit ) && ! empty( $limit_type ) ) ) {
-				$html .= sprintf( '<span data-limit="%s" data-type="%s">0 / %s</span>', $limit, $limit_type, $limit );
+				$html .= sprintf( '<span data-limit="%s" data-type="%s">0 / %s</span>', esc_attr( $limit ), esc_attr( $limit_type ), esc_html( $limit ) );
 			}
 
 			$html .= '</div>';
@@ -273,7 +273,7 @@ class Forminator_Password extends Forminator_Field {
 
 			$html                           .= '<div class="forminator-row">';
 			$cols                            = 12;
-			$html_before_conf_password_field = sprintf( '<div class="forminator-col forminator-col-%s">', $cols );
+			$html_before_conf_password_field = sprintf( '<div class="forminator-col forminator-col-%s">', esc_attr( $cols ) );
 
 			$html .= apply_filters( 'forminator_before_conf_password_field_markup', $html_before_conf_password_field );
 			$html .= '<div class="forminator-field">';
@@ -304,7 +304,7 @@ class Forminator_Password extends Forminator_Field {
 				}
 
 				if ( ( ! empty( $limit ) && ! empty( $limit_type ) ) ) {
-					$html .= sprintf( '<span data-limit="%s" data-type="%s">0 / %s</span>', $limit, $limit_type, $limit );
+					$html .= sprintf( '<span data-limit="%s" data-type="%s">0 / %s</span>', esc_attr( $limit ), esc_attr( $limit_type ), esc_html( $limit ) );
 				}
 				$html .= '</span>';
 			}

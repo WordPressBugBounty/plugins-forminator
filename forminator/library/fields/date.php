@@ -384,7 +384,7 @@ class Forminator_Date extends Forminator_Field {
 
 					case 'dd':
 						$day_id = self::get_subfield_id( $name, '-day' );
-						$html  .= '<div id="' . $day_id . '" class="forminator-col">';
+						$html  .= '<div id="' . esc_attr( $day_id ) . '" class="forminator-col">';
 
 						$html .= '<div class="forminator-field">';
 
@@ -407,7 +407,7 @@ class Forminator_Date extends Forminator_Field {
 							if ( ! empty( $label ) ) {
 								$html .= sprintf(
 									'<label for="%s" class="forminator-label">%s %s</label>',
-									$day_data['id'],
+									esc_attr( $day_data['id'] ),
 									self::convert_markdown( esc_html( $label ) ),
 									'<span class="forminator-required">*</span>'
 								);
@@ -438,7 +438,7 @@ class Forminator_Date extends Forminator_Field {
 
 					case 'mm':
 						$month_id = self::get_subfield_id( $name, '-month' );
-						$html    .= '<div id="' . $month_id . '" class="forminator-col">';
+						$html    .= '<div id="' . esc_attr( $month_id ) . '" class="forminator-col">';
 
 						$html .= '<div class="forminator-field">';
 
@@ -461,7 +461,7 @@ class Forminator_Date extends Forminator_Field {
 							if ( ! empty( $label ) ) {
 								$html .= sprintf(
 									'<label for="%s" class="forminator-label">%s %s</label>',
-									$month_data['id'],
+									esc_attr( $month_data['id'] ),
 									self::convert_markdown( esc_html( $label ) ),
 									'<span class="forminator-required">*</span>'
 								);
@@ -492,7 +492,7 @@ class Forminator_Date extends Forminator_Field {
 
 					case 'yy':
 						$year_id = self::get_subfield_id( $name, '-year' );
-						$html   .= '<div id="' . $year_id . '" class="forminator-col">';
+						$html   .= '<div id="' . esc_attr( $year_id ) . '" class="forminator-col">';
 
 						$html .= '<div class="forminator-field">';
 
@@ -516,7 +516,7 @@ class Forminator_Date extends Forminator_Field {
 
 								$html .= sprintf(
 									'<label for="%s" class="forminator-label">%s %s</label>',
-									$year_data['id'],
+									esc_attr( $year_data['id'] ),
 									self::convert_markdown( esc_html( $label ) ),
 									'<span class="forminator-required">*</span>'
 								);
@@ -593,7 +593,7 @@ class Forminator_Date extends Forminator_Field {
 
 					case 'dd':
 						$day   = self::get_subfield_id( $name, '-day' );
-						$html .= '<div id="' . $day . '" class="forminator-col">';
+						$html .= '<div id="' . esc_attr( $day ) . '" class="forminator-col">';
 
 						$html .= '<div class="forminator-field">';
 
@@ -623,7 +623,7 @@ class Forminator_Date extends Forminator_Field {
 
 								$html .= sprintf(
 									'<label for="%s" class="forminator-label">%s %s</label>',
-									$day_data['id'],
+									esc_attr( $day_data['id'] ),
 									self::convert_markdown( esc_html( $label ) ),
 									'<span class="forminator-required">*</span>'
 								);
@@ -654,7 +654,7 @@ class Forminator_Date extends Forminator_Field {
 
 					case 'mm':
 						$month = self::get_subfield_id( $name, '-month' );
-						$html .= '<div id="' . $month . '" class="forminator-col">';
+						$html .= '<div id="' . esc_attr( $month ) . '" class="forminator-col">';
 
 						$html .= '<div class="forminator-field">';
 
@@ -684,7 +684,7 @@ class Forminator_Date extends Forminator_Field {
 
 								$html .= sprintf(
 									'<label for="%s" class="forminator-label">%s %s</label>',
-									$month_data['id'],
+									esc_attr( $month_data['id'] ),
 									self::convert_markdown( esc_html( $label ) ),
 									'<span class="forminator-required">*</span>'
 								);
@@ -713,7 +713,7 @@ class Forminator_Date extends Forminator_Field {
 
 					case 'yy':
 						$year  = self::get_subfield_id( $name, '-year' );
-						$html .= '<div id="' . $year . '" class="forminator-col">';
+						$html .= '<div id="' . esc_attr( $year ) . '" class="forminator-col">';
 
 						$html .= '<div class="forminator-field">';
 
@@ -741,7 +741,7 @@ class Forminator_Date extends Forminator_Field {
 							if ( ! empty( $label ) ) {
 								$html .= sprintf(
 									'<label for="%s" class="forminator-label">%s %s</label>',
-									$year_data['id'],
+									esc_attr( $year_data['id'] ),
 									self::convert_markdown( esc_html( $label ) ),
 									'<span class="forminator-required">*</span>'
 								);

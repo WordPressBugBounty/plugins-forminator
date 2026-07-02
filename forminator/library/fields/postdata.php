@@ -417,7 +417,7 @@ class Forminator_Postdata extends Forminator_Field {
 
 			$html .= '<div class="forminator-row">';
 
-				$html .= sprintf( '<div class="forminator-col forminator-col-%s">', $cols );
+				$html .= sprintf( '<div class="forminator-col forminator-col-%s">', esc_attr( $cols ) );
 
 					$html .= '<div class="forminator-field">';
 
@@ -529,13 +529,13 @@ class Forminator_Postdata extends Forminator_Field {
 						$selected_class = esc_attr( 'forminator-option' );
 					}
 
-					$html .= sprintf( '<label for="%s" class="%s">', $input_id, $selected_class );
+					$html .= sprintf( '<label for="%s" class="%s">', esc_attr( $input_id ), $selected_class );
 
 					$html .= sprintf(
 						'<input type="checkbox" name="%s" value="%s" id="%s" %s />',
-						$name,
-						$value,
-						$input_id,
+						esc_attr( $name ),
+						esc_attr( $value ),
+						esc_attr( $input_id ),
 						$selected
 					);
 

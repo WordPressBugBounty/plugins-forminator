@@ -279,15 +279,15 @@ class Forminator_Select extends Forminator_Field {
 
 				$label_id = $input_id . '-label';
 
-				$html .= sprintf( '<label id="' . $label_id . '" for="%s" class="' . $class . '">', $input_id );
+				$html .= sprintf( '<label id="' . esc_attr( $label_id ) . '" for="%s" class="' . esc_attr( $class ) . '">', esc_attr( $input_id ) );
 
 				$html .= sprintf(
 					'<input type="checkbox" name="%s" value="%s" id="%s" aria-labelledby="%s" data-calculation="%s" %s %s />',
-					$name,
+					esc_attr( $name ),
 					$value,
-					$input_id,
-					$label_id,
-					$calculation_value,
+					esc_attr( $input_id ),
+					esc_attr( $label_id ),
+					esc_attr( $calculation_value ),
 					$hidden_calc_behavior,
 					$selected
 				);
@@ -305,7 +305,7 @@ class Forminator_Select extends Forminator_Field {
 
 			$html .= sprintf(
 				"<input type='hidden' name='%s' class='%s' value='%s' />",
-				$field_name . '-multiselect-default-values',
+				esc_attr( $field_name . '-multiselect-default-values' ),
 				'multiselect-default-values',
 				$default
 			);
@@ -453,17 +453,17 @@ class Forminator_Select extends Forminator_Field {
 			$html .= sprintf(
 				'<select %s id="%s" class="%s" data-required="%s" name="%s" data-default-value="%s"%s data-placeholder="%s" data-search="%s" data-search-placeholder="%s" data-checkbox="%s" data-allow-clear="%s" aria-labelledby="%s"%s>',
 				$select_type,
-				$id,
+				esc_attr( $id ),
 				'forminator-select--field forminator-select2 forminator-select2-multiple', // class.
-				$required,
-				$name,
+				esc_attr( $required ),
+				esc_attr( $name ),
 				esc_attr( $default ),
 				$hidden_calc_behavior,
 				esc_attr( wp_strip_all_tags( html_entity_decode( $placeholder ) ) ),
-				$search,
-				$search_placeholder,
-				$has_checkbox,
-				$allow_clear,
+				esc_attr( $search ),
+				esc_attr( $search_placeholder ),
+				esc_attr( $has_checkbox ),
+				esc_attr( $allow_clear ),
 				esc_attr( $id . '-label' ),
 				( ! empty( $description ) ? ' aria-describedby="' . esc_attr( $id . '-description' ) . '"' : '' )
 			);

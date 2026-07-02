@@ -239,7 +239,7 @@ class Forminator_Upload extends Forminator_Field {
 		}
 
 		if ( 'multiple' === $file_type ) {
-			$html .= sprintf( '<ul class="forminator-uploaded-files upload-container-%s"></ul>', $uniq_id );
+			$html .= sprintf( '<ul class="forminator-uploaded-files upload-container-%s"></ul>', esc_attr( $uniq_id ) );
 		}
 
 		$html .= '</div>';
