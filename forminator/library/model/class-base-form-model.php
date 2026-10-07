@@ -157,14 +157,40 @@ abstract class Forminator_Base_Form_Model {
 	}
 
 	/**
-	 * Save temporary settings
+	 * Check an ID is a Forminator module, optionally of an expected post type
 	 *
-	 * @param int   $id Module ID.
-	 * @param array $module_data Module data.
+	 * Temporary settings are written as post meta, so the target must be verified
+	 * server side rather than trusted from the request.
+	 *
+	 * @since 1.58
+	 *
+	 * @param int    $id Module ID.
+	 * @param string $expected_type Optional. Expected module post type.
 	 *
 	 * @return bool
 	 */
-	public static function save_temp_settings( int $id, array $module_data ): bool {
+	private static function is_module_of_type( int $id, string $expected_type = '' ): bool {
+		if ( ! self::get_model_class( $id ) ) {
+			return false;
+		}
+
+		return '' === $expected_type || get_post_type( $id ) === $expected_type;
+	}
+
+	/**
+	 * Save temporary settings
+	 *
+	 * @param int    $id Module ID.
+	 * @param array  $module_data Module data.
+	 * @param string $expected_type Optional. Expected module post type.
+	 *
+	 * @return bool
+	 */
+	public static function save_temp_settings( int $id, array $module_data, string $expected_type = '' ): bool {
+		if ( ! self::is_module_of_type( $id, $expected_type ) ) {
+			return false;
+		}
+
 		unset( $module_data['pdfs'] ); // Remove PDFs from temp settings.
 		$response = update_post_meta( $id, self::TEMP_META_KEY, $module_data );
 		// It can be false, if new data is the same as old data.
@@ -195,10 +221,15 @@ abstract class Forminator_Base_Form_Model {
 	/**
 	 * Remove temporary settings
 	 *
-	 * @param int $id Module ID.
+	 * @param int    $id Module ID.
+	 * @param string $expected_type Optional. Expected module post type.
 	 * @return bool
 	 */
-	public static function remove_temp_settings( int $id ): bool {
+	public static function remove_temp_settings( int $id, string $expected_type = '' ): bool {
+		if ( ! self::is_module_of_type( $id, $expected_type ) ) {
+			return false;
+		}
+
 		$response = delete_post_meta( $id, self::TEMP_META_KEY );
 
 		return (bool) $response;
@@ -374,7 +405,7 @@ abstract class Forminator_Base_Form_Model {
 	 * @since 1.2 Add $sanitize_function as optional param
 	 */
 	public function set_var_in_array( $property, $name, $array_values, $sanitize_function = 'sanitize_title' ) {
-		$val = isset( $array_values[ $name ] ) ? $array_values[ $name ] : null;
+		$val = $array_values[ $name ] ?? '';
 		if ( is_callable( $sanitize_function ) ) {
 			$val = call_user_func_array( $sanitize_function, array( $val ) );
 		}
@@ -931,6 +962,10 @@ abstract class Forminator_Base_Form_Model {
 				$form_settings         = self::validate_registration_fields_mapping( $form_settings, $fields );
 				$object->settings      = Forminator_Migration::migrate_custom_form_settings( $form_settings, $fields );
 				$object->notifications = Forminator_Migration::migrate_custom_form_notifications( $object->notifications, $form_settings, $meta );
+
+				if ( 'leads' !== $object->status && $object->has_stripe_field() ) {
+					$object->notifications = Forminator_Migration::migrate_stripe_notifications( $object->notifications );
+				}
 			}
 
 			// Migrate settings Polls.
@@ -942,6 +977,10 @@ abstract class Forminator_Base_Form_Model {
 			if ( 'forminator_quizzes' === $this->post_type ) {
 				$object->settings      = Forminator_Migration::migrate_quizzes_settings( $form_settings );
 				$object->notifications = Forminator_Migration::migrate_quizzes_notifications( $object->notifications, $form_settings, $meta );
+
+				if ( self::has_stripe_field_in_quiz( $form_settings ) ) {
+					$object->notifications = Forminator_Migration::migrate_stripe_notifications( $object->notifications );
+				}
 			}
 
 			$object->raw = $post;
@@ -950,6 +989,23 @@ abstract class Forminator_Base_Form_Model {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Check if the quiz has a stripe field
+	 *
+	 * @param array $form_settings Form settings.
+	 * @return bool
+	 */
+	protected static function has_stripe_field_in_quiz( $form_settings ) {
+		$stripe_exists = false;
+		if ( ! empty( $form_settings['hasLeads'] ) && ! empty( $form_settings['leadsId'] ) ) {
+			$lead_form = Forminator_Form_Model::model()->load( $form_settings['leadsId'] );
+			if ( ! empty( $lead_form ) && $lead_form->has_stripe_field() ) {
+				$stripe_exists = true;
+			}
+		}
+		return $stripe_exists;
 	}
 
 	/**

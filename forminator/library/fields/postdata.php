@@ -539,7 +539,7 @@ class Forminator_Postdata extends Forminator_Field {
 						$selected
 					);
 
-					$html .= $option['label'];
+					$html .= esc_html( $option['label'] );
 
 					$html .= '</label>';
 

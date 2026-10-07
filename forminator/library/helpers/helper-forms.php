@@ -1373,3 +1373,70 @@ function forminator_is_allowed_rich_textarea_url_attribute( $url_value ) {
 
 	return true;
 }
+
+/**
+ * Filter value for submissions page. Allow only a few tags to avoid XSS issues.
+ *
+ * @since 1.58
+ *
+ * @param string $value Value.
+ * @param string $type Type.
+ * @return string
+ */
+function forminator_submissions_value_filter( $value, $type = '' ) {
+	$allowed_tags = array(
+		'a'      => array(
+			'href'   => true,
+			'title'  => true,
+			'target' => true,
+			'rel'    => true,
+			'class'  => true,
+		),
+		'span'   => array(
+			'class'       => true,
+			'aria-hidden' => true,
+		),
+		'img'    => array(
+			'src'    => true,
+			'alt'    => true,
+			'title'  => true,
+			'class'  => true,
+			'width'  => true,
+			'height' => true,
+		),
+		'b'      => array(),
+		'i'      => array(),
+		'strong' => array(),
+		'br'     => array(),
+	);
+
+	if ( 'geolocation' === $type ) {
+		$allowed_tags['table'] = array(
+			'class' => true,
+			'id'    => true,
+		);
+		$allowed_tags['tbody'] = array();
+		$allowed_tags['tr']    = array();
+		$allowed_tags['td']    = array(
+			'class' => true,
+			'style' => true,
+		);
+		$allowed_tags['div']   = array(
+			'id'                  => true,
+			'class'               => true,
+			'data-height'         => true,
+			'data-lat'            => true,
+			'data-lng'            => true,
+			'data-zoom'           => true,
+			'data-maptypecontrol' => true,
+			'data-maptype'        => true,
+			'data-styles'         => true,
+			'data-mapid'          => true,
+			'data-styled_type'    => true,
+		);
+		$allowed_tags['p']     = array(
+			'class' => true,
+		);
+	}
+	return wp_kses( $value, $allowed_tags );
+}

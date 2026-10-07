@@ -333,8 +333,8 @@ class Forminator_Number extends Forminator_Field {
 	 */
 	public function validate( $field, $data ) {
 		$id             = self::get_property( 'element_id', $field );
-		$max            = self::get_property( 'limit_max', $field, $data );
-		$min            = self::get_property( 'limit_min', $field, $data );
+		$max            = self::get_property( 'limit_max', $field );
+		$min            = self::get_property( 'limit_min', $field );
 		$custom_message = self::get_property( 'limit_message', $field, false, 'bool' );
 		$precision      = self::get_calculable_precision( $field );
 		$separator      = self::get_property( 'separators', $field, 'blank' );

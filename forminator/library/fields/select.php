@@ -396,7 +396,11 @@ class Forminator_Select extends Forminator_Field {
 				}
 
 				if ( $option_default && ! $draft_valid && ! $prefil_valid && ! $post_valid ) {
-					$default = $value;
+					if ( 'multiselect' === $field_type && 'modern' === $field_style ) {
+						$default_arr[] = $value;
+					} else {
+						$default = $value;
+					}
 				}
 
 				if ( $post_valid ) {

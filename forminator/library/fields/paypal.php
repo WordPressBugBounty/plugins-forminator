@@ -301,6 +301,16 @@ class Forminator_PayPal extends Forminator_Field {
 
 		// Validate intent.
 		if ( ! isset( $order->intent ) || 'CAPTURE' !== $order->intent ) {
+			forminator_maybe_log(
+				__METHOD__,
+				array(
+					'validation'     => 'intent',
+					'transaction_id' => $transaction_id,
+					'mode'           => $mode,
+					'order'          => $order,
+				)
+			);
+
 			return array(
 				'error' => esc_html__( 'Error! Something went wrong during checkout and payment couldn\'t be approved.', 'forminator' ),
 			);
@@ -308,6 +318,16 @@ class Forminator_PayPal extends Forminator_Field {
 
 		// Validate status.
 		if ( ! isset( $order->status ) || 'APPROVED' !== $order->status ) {
+			forminator_maybe_log(
+				__METHOD__,
+				array(
+					'validation'     => 'status',
+					'transaction_id' => $transaction_id,
+					'mode'           => $mode,
+					'order'          => $order,
+				)
+			);
+
 			return array(
 				'error' => esc_html__( 'Error! Something went wrong during checkout and payment couldn\'t be approved.', 'forminator' ),
 			);
@@ -315,6 +335,17 @@ class Forminator_PayPal extends Forminator_Field {
 
 		// Validate amount.
 		if ( ! isset( $order->purchase_units[0]->amount->value ) || floatval( $order->purchase_units[0]->amount->value ) !== floatval( $charge_amount ) ) {
+			forminator_maybe_log(
+				__METHOD__,
+				array(
+					'validation'     => 'amount',
+					'transaction_id' => $transaction_id,
+					'mode'           => $mode,
+					'expected'       => $charge_amount,
+					'order'          => $order,
+				)
+			);
+
 			return array(
 				'error' => esc_html__( 'Error! Invalid payment amount!', 'forminator' ),
 			);
@@ -322,6 +353,17 @@ class Forminator_PayPal extends Forminator_Field {
 
 		// Validate currency.
 		if ( ! isset( $order->purchase_units[0]->amount->currency_code ) || $order->purchase_units[0]->amount->currency_code !== $currency ) {
+			forminator_maybe_log(
+				__METHOD__,
+				array(
+					'validation'     => 'currency',
+					'transaction_id' => $transaction_id,
+					'mode'           => $mode,
+					'expected'       => $currency,
+					'order'          => $order,
+				)
+			);
+
 			return array(
 				'error' => esc_html__( 'Error! Invalid currency code!', 'forminator' ),
 			);
@@ -377,10 +419,10 @@ class Forminator_PayPal extends Forminator_Field {
 	 * @return string
 	 */
 	public static function linkify_transaction_id( $transaction_id, $meta_value ) {
-		$transaction_link = $transaction_id;
+		$transaction_link = esc_html( $transaction_id );
 		if ( isset( $meta_value['transaction_link'] ) && ! empty( $meta_value['transaction_link'] ) ) {
 			$url              = $meta_value['transaction_link'];
-			$transaction_link = '<a href="' . $url . '" target="_blank" rel="noopener noreferrer" title="' . $transaction_id . '">' . $transaction_id . '</a>';
+			$transaction_link = '<a href="' . esc_url( $url ) . '" target="_blank" rel="noopener noreferrer" title="' . esc_attr( $transaction_id ) . '">' . esc_html( $transaction_id ) . '</a>';
 		}
 
 		/**

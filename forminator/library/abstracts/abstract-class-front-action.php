@@ -203,6 +203,14 @@ abstract class Forminator_Front_Action {
 										: false;
 
 			self::$is_abandoned = ! forminator_form_abandonment_disabled() && ! empty( self::$prepared_data['abandoned_form'] ) && ! empty( self::$module_settings['abandonment'] );
+
+			// Only accept a draft ID that belongs to this form.
+			if ( ! is_null( self::$previous_draft_id ) ) {
+				$entry_model = new Forminator_Form_Entry_Model();
+				if ( ! is_string( self::$previous_draft_id ) || ! $entry_model->get_entry_id_by_draft_id( self::$previous_draft_id, self::$module_id ) ) {
+					self::$previous_draft_id = null;
+				}
+			}
 		} elseif ( wp_doing_ajax() ) {
 				wp_send_json_error(
 					array(
@@ -288,6 +296,20 @@ abstract class Forminator_Front_Action {
 		$data = apply_filters( 'forminator_addon_formatted_' . static::$module_slug . '_submitted_data', $data );
 
 		return $data;
+	}
+
+	/**
+	 * Get entry ID from submit response.
+	 *
+	 * @param array|mixed $response Submit response.
+	 * @return int
+	 */
+	protected static function get_response_entry_id( $response ) {
+		if ( ! is_array( $response ) || empty( $response['entry_id'] ) ) {
+			return 0;
+		}
+
+		return absint( $response['entry_id'] );
 	}
 
 	/**
@@ -507,6 +529,8 @@ abstract class Forminator_Front_Action {
 			$response['message'] = wp_kses_post( $response['message'] );
 		}
 
+		$entry_id = self::get_response_entry_id( $response );
+
 		/**
 		 * Filter ajax response
 		 *
@@ -524,8 +548,9 @@ abstract class Forminator_Front_Action {
 		 *
 		 * @param int $form_id - the form id.
 		 * @param array $response - the post response.
+		 * @param int $entry_id - the entry id.
 		 */
-		do_action( 'forminator_' . static::$module_slug . $status_suffix . '_after_save_entry', self::$module_id, $response );
+		do_action( 'forminator_' . static::$module_slug . $status_suffix . '_after_save_entry', self::$module_id, $response, $entry_id );
 
 		if ( $response && is_array( $response ) ) {
 			if ( ! $response['success'] ) {
@@ -670,6 +695,8 @@ abstract class Forminator_Front_Action {
 			$response['message'] = wp_kses_post( $response['message'] );
 		}
 
+		$entry_id = self::get_response_entry_id( $response );
+
 		/**
 		 * Filter ajax response
 		 *
@@ -687,8 +714,9 @@ abstract class Forminator_Front_Action {
 		 *
 		 * @param int $form_id - the form id.
 		 * @param array $response - the post response.
+		 * @param int $entry_id - the entry id.
 		 */
-		do_action( 'forminator_' . static::$module_slug . '_after_save_entry', self::$module_id, $response );
+		do_action( 'forminator_' . static::$module_slug . '_after_save_entry', self::$module_id, $response, $entry_id );
 
 		if ( $response && is_array( $response ) ) {
 			if ( ! $response['success'] ) {

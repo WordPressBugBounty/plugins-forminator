@@ -354,57 +354,18 @@
 								if( self.settings.hasLeads && 'undefined' !== typeof data.data.entry_id ) {
 									self.showQuiz( self.$el );
 									$('#forminator-module-' + self.settings.quiz_id + ' input[name=entry_id]' ).val( data.data.entry_id );
+									if ( 'undefined' !== typeof data.data.entry_token ) {
+										$('#forminator-module-' + self.settings.quiz_id + ' input[name=entry_id]' ).attr( 'entry-token', data.data.entry_token );
+									}
 									if( 'end' === self.settings.form_placement ) {
 										$('#forminator-module-' + self.settings.quiz_id).submit();
 									}
 
 									return false;
 								}
-								if ( typeof data !== 'undefined' &&
-									 typeof data.data !== 'undefined' &&
-									 typeof data.data.authentication !== 'undefined' &&
-									( 'show' === data.data.authentication || 'invalid' === data.data.authentication ) ) {
-									var moduleId  = self.$el.attr( 'id' ),
-										authId    = moduleId + '-authentication',
-										authField = $( '#' + authId ),
-										authInput = $( '#' + authId + '-input' ),
-										authToken = $( '#' + authId + '-token' )
-									;
-									authField.find('.forminator-authentication-notice').removeClass('error');
-									authField.find('.lost-device-url').attr('href', data.data.lost_url);
-
-									if( 'show' === data.data.authentication ) {
-										if (
-											'undefined' !== typeof window.webauthn &&
-											'undefined' !== typeof data.data.username
-										) {
-											window.webauthn.username = data.data.username;
-										}
-
-										self.$el.find('.forminator-authentication-nav').html('').append( data.data.auth_nav );
-										self.$el.find('.forminator-authentication-box').hide();
-										if ( 'fallback-email' === data.data.auth_method ) {
-											self.$el.find('.wpdef-2fa-email-resend input').click();
-											self.$el.find('.notification').hide();
-										}
-										self.$el.find( '#forminator-2fa-' + data.data.auth_method ).show();
-										self.$el.find( '#forminator-2fa-' + data.data.auth_method + ' .option-row' ).attr( 'tabindex', '0' ).attr( 'role', 'button' );
-										self.$el.find('.forminator-authentication-box input').attr( 'disabled', true );
-										self.$el.find( '#forminator-2fa-' + data.data.auth_method + ' input' ).attr( 'disabled', false );
-										self.$el.find('.forminator-2fa-link').show();
-										self.$el.find('#forminator-2fa-link-' + data.data.auth_method).hide();
-										authInput.removeAttr( 'disabled' ).val(data.data.auth_method);
-										authToken.val( data.data.auth_token );
-										FUI.openAuthentication( authId, moduleId, authId + '-input' );
-									}
-									if ( 'invalid' === data.data.authentication ) {
-										authField.find('.forminator-authentication-notice').addClass('error');
-										authField.find('.forminator-authentication-notice').html('<p>' + data.data.message + '</p>');
-										$this.trigger('forminator:form:submit:failed', [ formData, data.data.message ] );
-									}
-
+								let authentication = forminatorUtils().handle_authentication_error( data, self, formData );
+								if ( false === authentication ) {
 									return false;
-
 								}
 								var $label_class = data.success ? 'forminator-success' : 'forminator-error';
 
@@ -867,6 +828,29 @@
 			} );
 		},
 
+		/**
+		 * Keep the captcha token in the form.
+		 *
+		 * Payment forms reset the widget before the payment request is sent, leaving the
+		 * provider's field empty. This copy survives the reset so the server still gets it.
+		 *
+		 * @param string token Captcha token.
+		 */
+		storeCaptchaToken: function( token ) {
+			var $field = this.$el.find( 'input[name="forminator-captcha-token"]' );
+
+			if ( ! token || ! token.length ) {
+				$field.remove();
+				return;
+			}
+
+			if ( ! $field.length ) {
+				$field = $( '<input>', { type: 'hidden', name: 'forminator-captcha-token' } ).appendTo( this.$el );
+			}
+
+			$field.val( token );
+		},
+
 		processCaptcha: function( self, e, $target_message, submitter ) {
 			const $captcha_fields = self.$el.find('.forminator-g-recaptcha, .forminator-hcaptcha, .forminator-turnstile');
 			let $captcha_field, $page;
@@ -978,6 +962,8 @@
 						turnstile.reset( captcha_widget );
 					}
 				}
+
+				self.storeCaptchaToken( $captcha_response );
 
 				$target_message.html('');
 				if ($captcha_field.hasClass("error")) {
@@ -1115,6 +1101,12 @@
 					var entry_id  = '';
 					if ( self.$el.find('input[name=entry_id]').length > 0 ) {
 						entry_id = self.$el.find('input[name=entry_id]').val();
+
+						// Prove this visitor created the pending lead entry.
+						var entryToken = self.$el.find('input[name=entry_id]').attr('entry-token') || '';
+						if ( entryToken ) {
+							ajaxData += '&entry_token=' + encodeURIComponent( entryToken );
+						}
 					}
 					if( 'end' === placement && entry_id === '' ) {
 						self.showForm( $('#forminator-module-' + leads_id ) );
@@ -1697,6 +1689,12 @@
 					var errorMessage = Object.values( value ),
 						errorMarkup  = '<span class="forminator-error-message" id="'+ errorId +'"></span>'
 						;
+
+					// Fields like e-Signature resolve to their column wrapper instead of an
+					// input, so .forminator-field is a descendant and not an ancestor.
+					if ( 0 === holderField.length ) {
+						holderField = holder.find( '.forminator-field' ).first();
+					}
 
 					if ( getElement.length ) {
 

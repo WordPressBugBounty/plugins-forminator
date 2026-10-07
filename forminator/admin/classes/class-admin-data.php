@@ -196,7 +196,7 @@ class Forminator_Admin_Data {
 			'isMainSite'                     => forminator_is_main_site(),
 			'isSubdomainNetwork'             => forminator_is_subdomain_network(),
 			'showFieldSettings'              => get_option( 'forminator_editor_settings', 'true' ),
-			'hasStripePro'                   => defined( 'FORMINATOR_STRIPE_ADDON' ) && class_exists( 'Forminator_Stripe_Addon' ),
+			'hasStripePro'                   => forminator_is_stripe_addon_compatible(),
 			'stripeForms'                    => $this->get_forms_by_field_type( 'stripe' ),
 			'paypalForms'                    => $this->get_forms_by_field_type( 'paypal' ),
 			'form_modules'                   => $this->get_modules( 'get_forms' ),
@@ -221,11 +221,13 @@ class Forminator_Admin_Data {
 			'EXTENSION_PACK_PID'             => Forminator_Admin_Addons_Page::EXTENSION_PACK_PID,
 			'isUserRegistrationEnabled'      => forminator_is_user_registration_enabled(),
 			'isSiteRegistrationEnabled'      => forminator_is_site_registration_enabled(),
+			'isLoggedInSiteRegistrationOnly' => is_multisite() && 'blog' === get_site_option( 'registration' ),
 			'networkAdminUrl'                => network_admin_url(),
 			'isMultisite'                    => is_multisite(),
 			'shareFeedbackNonce'             => wp_create_nonce( 'forminator_share_feedback' ),
 			'feedbackDisabled'               => forminator_feedback_disabled(),
 			'isTrackingActive'               => Forminator_Core::is_tracking_active(),
+			'stripeNotifications'            => forminator_get_stripe_payment_notifications(),
 		);
 	}
 

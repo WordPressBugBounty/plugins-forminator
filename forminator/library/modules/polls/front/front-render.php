@@ -839,7 +839,9 @@ class Forminator_Poll_Front extends Forminator_Render_Form {
 			return 'default';
 		}
 
-		return $form_settings['forminator-poll-design'];
+		$design = sanitize_html_class( $form_settings['forminator-poll-design'] );
+
+		return '' !== $design ? $design : 'default';
 	}
 
 	/**

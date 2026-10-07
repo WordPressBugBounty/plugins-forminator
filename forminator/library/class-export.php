@@ -1477,8 +1477,11 @@ class Forminator_Export {
 			}
 		}
 
-		/* translators: %s is form name. */
-		$subject = sprintf( esc_html__( 'Submissions data for %s', 'forminator' ), implode( ', ', $form_names ) );
+		$subject = sprintf(
+			/* translators: %s is form name. */
+			esc_html__( 'Submissions data for %s', 'forminator' ),
+			implode( ', ', array_map( 'esc_html', $form_names ) )
+		);
 
 		/**
 		 * Filter mail subject used for scheduled export email
@@ -1542,7 +1545,7 @@ class Forminator_Export {
 		$total_new_entries = array_sum( $new_entries_counts );
 
 		/* translators: %s is Blog name. */
-		$mail_content = '<p>' . sprintf( esc_html__( 'Hi %s,', 'forminator' ), $blog_name ) . '</p>' . PHP_EOL;
+		$mail_content = '<p>' . sprintf( esc_html__( 'Hi %s,', 'forminator' ), esc_html( $blog_name ) ) . '</p>' . PHP_EOL;
 
 		$mail_content .= '<p>' . sprintf(
 			/* translators: 1$s is total new submission(s), %2$s is total submissions. */
@@ -1552,7 +1555,7 @@ class Forminator_Export {
 			),
 			'<strong>' . (int) $total_new_entries . '</strong>',
 			'<strong>' . (int) $total_entries . '</strong>',
-			implode( ', ', $form_names )
+			implode( ', ', array_map( 'esc_html', $form_names ) )
 		) . '</p>' . PHP_EOL;
 
 		$mail_content .= '<ul>' . PHP_EOL;
@@ -1566,12 +1569,12 @@ class Forminator_Export {
 							<li><a href="%6$s">%7$s</a></li>
 						</ul>
 					</li>',
-					$form_names[ $key ],
+					esc_html( $form_names[ $key ] ),
 					esc_html__( 'New Submissions', 'forminator' ),
 					(int) $new_entries_counts[ $key ],
 					esc_html__( 'Total Submissions', 'forminator' ),
 					(int) $entries_counts[ $key ],
-					$submission_links[ $key ],
+					esc_url( $submission_links[ $key ] ),
 					esc_html__( 'View Submissions', 'forminator' )
 				) . PHP_EOL;
 		}
@@ -1621,9 +1624,16 @@ class Forminator_Export {
 	 * @return string
 	 */
 	public static function escape_csv_data( $data ) {
-		$active_content_triggers = array( '=', '+', '-', '@', "\t", "\r", "\n" );
-		if ( in_array( mb_substr( $data, 0, 1 ), $active_content_triggers, true ) ) {
-			$data = "'" . $data . "'";
+		if ( ! is_scalar( $data ) || is_bool( $data ) ) {
+			return '';
+		}
+
+		$data                      = (string) $data;
+		$active_content_triggers   = array( '=', '+', '-', '@', "\t", "\r", "\n" );
+		$first_non_whitespace_char = mb_substr( ltrim( $data ), 0, 1 );
+
+		if ( in_array( $first_non_whitespace_char, $active_content_triggers, true ) ) {
+			$data = "'" . $data;
 		}
 
 		return $data;
@@ -1646,13 +1656,12 @@ class Forminator_Export {
 		$formatted_fields = array();
 
 		foreach ( $fields as $field ) {
-			if ( ! is_scalar( $field ) ) {
+			if ( ! is_scalar( $field ) || is_bool( $field ) ) {
 				$formatted_fields[] = '';
 				continue;
 			}
-			if ( is_scalar( $field ) ) {
-				$formatted_fields[] = self::escape_csv_data( $field );
-			}
+
+			$formatted_fields[] = self::escape_csv_data( $field );
 		}
 
 		return $formatted_fields;

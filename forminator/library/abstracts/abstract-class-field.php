@@ -787,47 +787,6 @@ abstract class Forminator_Field {
 	}
 
 	/**
-	 * Return new simple select field
-	 *
-	 * @since 1.0
-	 *
-	 * @param array  $attr Field Attribute.
-	 * @param array  $options Field Options.
-	 * @param string $value Field Value.
-	 * @param string $description Field Description.
-	 *
-	 * @return mixed
-	 */
-	public static function create_simple_select( $attr = array(), $options = array(), $value = '', $description = '' ) {
-
-		_deprecated_function( 'create_simple_select', '1.6.1', 'create_select' );
-
-		$html = '';
-
-		$get_id = uniqid( 'forminator-select-' );
-
-		! empty( $description ) ? $attr['aria-describedby'] = $get_id . '-description' : '';
-
-		$markup = self::implode_attr( $attr );
-
-		if ( self::get_post_data( $attr['name'], false ) ) {
-			$value = self::get_post_data( $attr['name'] );
-		}
-
-		$html .= sprintf( '<select %s>', $markup );
-
-			$html .= self::populate_options_for_select( $options, $value );
-
-		$html .= '</select>';
-
-		if ( ! empty( $description ) ) {
-			$html .= self::get_description( $description, $get_id );
-		}
-
-		return apply_filters( 'forminator_field_create_simple_select', $html, $attr, $options, $value, $description );
-	}
-
-	/**
 	 * Populate <options>s for <select>
 	 *
 	 * @since 1.5.2
