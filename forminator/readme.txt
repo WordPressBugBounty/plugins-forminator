@@ -3,7 +3,7 @@ Contributors: WPMUDEV
 Tags: contact form, custom form, forms, payment form, WordPress form plugin
 Requires at least: 6.4
 Tested up to: 7.1
-Stable tag: 1.57.3
+Stable tag: 1.58.0
 Requires PHP: 7.4
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -230,6 +230,29 @@ We take plugin security incredibly seriously; if you have a bug or vulnerability
 6. Publish Polls with Real-time Stats
 
 == Changelog ==
+
+= 1.58.1 ( 2026-10-06 ) =
+
+- Enhancement: Password and Confirm Password field descriptions now render Markdown bold
+- Fix: Stripe subscription quantity no longer accepts 0 or negative values
+- Fix: Large Number and Currency values that use a thousand separator now match on the Submissions page
+- Fix: File upload fields now explain when a file exceeds the server upload limit
+- Fix: Quiz answers are now saved when a Stripe payment redirects and the lead form is placed before the results
+- Fix: A Stripe field hidden by visibility conditions no longer replaces the success message with a payment amount error
+- Fix: Radio and Checkbox options with an empty value are no longer shown, so selecting them no longer fails validation
+- Fix: HTML in Radio, Select, and Checkbox options is now sanitized consistently
+- Fix: HTML in Radio, Checkbox, and Select option labels is now stripped on the Calculations tab
+- Fix: Email allow and deny lists now match addresses regardless of letter case
+- Fix: HTML field content now resets after a successful submission
+- Fix: Polls using AJAX with multiple votes no longer get stuck on Back to Poll
+- Fix: Poll View Results and Back to Poll now work when permalinks are set to Plain
+- Fix: The Phone field no longer loads its scripts and styles twice on AJAX forms
+- Fix: The Forms, Polls, and Quizzes lists no longer show an extra empty last page
+- Fix: Selecting a date range on the Reports dashboard no longer logs a JavaScript error
+- Fix: Bulk actions after a search on forms, polls, or quizzes no longer log a JavaScript error
+- Fix: Calculation field settings no longer log a React unique key warning
+- Fix: Security hardening
+
 
 = 1.58.0 ( 2026-09-30 ) =
 

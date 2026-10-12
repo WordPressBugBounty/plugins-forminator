@@ -352,6 +352,7 @@
 								$this.find( 'button' ).removeAttr( 'disabled' );
 								$target_message.html( '' ).removeClass( 'forminator-accessible forminator-error forminator-success' );
 								if( self.settings.hasLeads && 'undefined' !== typeof data.data.entry_id ) {
+									$this.trigger( 'forminator:form:submit:leads:success', [ formData, data ] );
 									self.showQuiz( self.$el );
 									$('#forminator-module-' + self.settings.quiz_id + ' input[name=entry_id]' ).val( data.data.entry_id );
 									if ( 'undefined' !== typeof data.data.entry_token ) {
@@ -566,6 +567,12 @@
 										}
 
 										self.multi_upload_disable( $this, false );
+
+										// Clearing html fields.
+										var mergeTags = $this.data('forminatorFrontMergeTags');
+										if ( mergeTags ) {
+											mergeTags.replaceAll();
+										}
 
 										// restart condition after form reset to ensure values of input already reset-ed too
 										$this.trigger('forminator.front.condition.restart');
@@ -1320,10 +1327,16 @@
 				if ( 0 !== self.$el.find( 'input[type="hidden"][value="forminator_submit_preview_form_poll"]' ).length ) {
 					return false;
 				}
+
 				var $this    = $( this ),
 					formData  = new FormData( this ),
 					ajaxData  = $this.serialize()
 				;
+
+				// Results view has no submit fields. Let "Back to poll" submit natively to reload the poll.
+				if ( 0 === $this.find( 'input[name="action"]' ).length ) {
+					return true;
+				}
 
 				var $response = self.$el.find( '.forminator-response-message' ),
 					$options  = self.$el.find( 'fieldset' ),

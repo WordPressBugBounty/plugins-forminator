@@ -594,8 +594,8 @@ class Forminator_CForm_Front extends Forminator_Render_Form {
 				// load later via ajax to avoid cache.
 				$this->styles['intlTelInput-forminator-css'] = array( 'src' => add_query_arg( 'ver', $style_version, $style_src ) );
 				$this->scripts['forminator-intlTelInput']    = array(
-					'src'  => add_query_arg( 'ver', $style_version, $script_src ),
-					'on'   => '$',
+					'src'  => add_query_arg( 'ver', $script_version, $script_src ),
+					'on'   => 'window',
 					'load' => 'intlTelInput',
 				);
 			}

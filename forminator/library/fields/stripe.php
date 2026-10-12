@@ -1206,6 +1206,11 @@ class Forminator_Stripe extends Forminator_Field {
 	public function calculate_amount( $amount, $currency ) {
 		$zero_decimal_currencies = self::get_zero_decimal_currencies();
 
+		// Anything but a finite number that fits an integer amount counts as 0, which is never charged.
+		if ( ! is_numeric( $amount ) || ! is_finite( (float) $amount ) || abs( (float) $amount ) >= PHP_INT_MAX / 1000 ) {
+			$amount = 0;
+		}
+
 		// Check if currency is zero decimal, then return the rounded whole-number amount.
 		if ( in_array( $currency, $zero_decimal_currencies, true ) ) {
 			return (int) round( (float) $amount );
@@ -1358,8 +1363,9 @@ class Forminator_Stripe extends Forminator_Field {
 		Forminator_Gateway_Stripe::set_stripe_app_info();
 
 		$field_id = Forminator_Field::get_property( 'element_id', $field );
-		$amount   = $submitted_data[ $field_id ] ?? 0;
-		$id       = $submitted_data['paymentid'];
+		// Hidden or unresolved fields are never charged.
+		$amount = in_array( $field_id, Forminator_CForm_Front_Action::$hidden_fields, true ) ? 0 : $this->get_payment_amount( $field );
+		$id     = $submitted_data['paymentid'];
 		if ( ! $amount && ! empty( $submitted_data['stripe_first_payment_intent'] ) ) {
 			// If amount is empty, set it to 1 for payment intent. Anyway, it will be updated during actual payment.
 			$amount = 1;
@@ -1459,8 +1465,8 @@ class Forminator_Stripe extends Forminator_Field {
 				if ( ! empty( $submitted_data['payment_method_type'] ) && in_array( $submitted_data['payment_method_type'], self::get_unsupported_payment_methods(), true ) ) {
 					throw new Exception( esc_html__( 'The selected Payment Method is not supported.', 'forminator' ) );
 				}
-				// Check payment amount.
-				if ( 0 > $amount ) {
+				// Check payment amount, in the units Stripe charges.
+				if ( 1 > $this->calculate_amount( $amount, $currency ) ) {
 					throw new Exception( esc_html__( 'Payment amount should be greater than 0.', 'forminator' ) );
 				}
 
@@ -1582,7 +1588,8 @@ class Forminator_Stripe extends Forminator_Field {
 		}
 
 		$field_id = Forminator_Field::get_property( 'element_id', $field );
-		$amount   = $submitted_data[ $field_id ] ?? 0;
+		// Hidden or unresolved fields are never charged.
+		$amount = in_array( $field_id, Forminator_CForm_Front_Action::$hidden_fields, true ) ? 0 : $this->get_payment_amount( $field );
 
 		if ( empty( $submitted_data['stripe-intent'] ) && ! empty( $payment_id ) ) {
 			$this->retrieve_checkout_session_response( $payment_id, $field );
@@ -1606,14 +1613,14 @@ class Forminator_Stripe extends Forminator_Field {
 		$force_mount_stripe_field = false;
 		$currency                 = self::get_property( 'currency', $field, $this->get_default_currency() );
 
-		if ( 0 >= (float) $amount && $allow_default_amount ) {
+		if ( 1 > $this->calculate_amount( $amount, $currency ) && $allow_default_amount ) {
 			// Initial render still needs a Checkout Session; mark the fallback so submit can rebuild with real pricing.
 			$amount                   = $this->get_checkout_session_render_amount( 1, $currency, $field );
 			$validation_amount        = $this->calculate_amount( $amount, $currency );
 			$force_mount_stripe_field = true;
 		}
 
-		if ( 0 >= (float) $amount ) {
+		if ( 1 > $this->calculate_amount( $amount, $currency ) ) {
 			wp_send_json_error(
 				array(
 					'message'     => esc_html__( 'Payment amount should be greater than 0.', 'forminator' ),
@@ -2156,7 +2163,8 @@ class Forminator_Stripe extends Forminator_Field {
 				}
 			}
 
-			if ( 0 >= (float) $amount ) {
+			// Check the amount Stripe charges, e.g. 0.001 rounds to 0.
+			if ( 1 > $this->calculate_amount( $amount, self::get_property( 'currency', $field, $this->get_default_currency() ) ) ) {
 				$dependent_fields = self::get_plan_dependent_fields( $this->payment_plan );
 				$field_id         = ! empty( $dependent_fields ) ? reset( $dependent_fields ) : Forminator_Field::get_property( 'element_id', $field );
 
@@ -3480,8 +3488,8 @@ class Forminator_Stripe extends Forminator_Field {
 			self::get_checkout_session_option_key( $session_id ),
 			array(
 				'created_at' => time(),
-				// Not issued here as parallel first requests would race, the entry submission binds it.
-				'owner'      => self::get_payment_owner(),
+				// Bind the creating browser, so no other can claim it.
+				'owner'      => self::get_payment_owner( true ),
 			),
 			false
 		);
@@ -3511,8 +3519,8 @@ class Forminator_Stripe extends Forminator_Field {
 			return;
 		}
 
-		// Never attach an entry to another browser's session.
-		if ( ! empty( $option_data['owner'] ) && ! self::is_payment_owner( $option_data['owner'] ) ) {
+		// Only the owning browser may attach an entry.
+		if ( ! self::is_payment_owner( $option_data['owner'] ?? '' ) ) {
 			return;
 		}
 

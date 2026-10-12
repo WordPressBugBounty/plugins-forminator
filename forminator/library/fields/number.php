@@ -359,7 +359,8 @@ class Forminator_Number extends Forminator_Field {
 			}
 		}
 
-		if ( ! empty( $data ) ) {
+		// '0' is a value too, so it must respect the limits.
+		if ( ! empty( $data ) || '0' === $data ) {
 				// Reject non-scalar/non-numeric input (e.g. number-1[]=x) that would
 				// otherwise bypass the bounds checks via PHP type juggling.
 				$separators = $this->forminator_separators( $separator, $field );

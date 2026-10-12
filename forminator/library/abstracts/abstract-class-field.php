@@ -298,13 +298,23 @@ abstract class Forminator_Field {
 	}
 
 	/**
-	 * Get options for radio and selectbox fields
+	 * Get options for radio, checkbox and selectbox fields
 	 *
 	 * @param array $field Field settings.
 	 * @return array
 	 */
 	public static function get_options( $field ) {
 		$options = self::get_property( 'options', $field, array() );
+
+		// Submitting an empty-value option always fails validation, so never render one.
+		$options = array_values(
+			array_filter(
+				$options,
+				static function ( $option ) {
+					return isset( $option['value'] ) && '' !== trim( (string) $option['value'] );
+				}
+			)
+		);
 
 		if ( ! empty( $field['options_order'] ) && 'random' === $field['options_order'] ) {
 			shuffle( $options );
@@ -321,6 +331,28 @@ abstract class Forminator_Field {
 		}
 
 		return $options;
+	}
+
+	/**
+	 * Get allowed HTML for choice option labels.
+	 *
+	 * @return array
+	 */
+	protected static function get_choice_label_allowed_html() {
+		return array(
+			'a'      => array(
+				'href'  => array(),
+				'title' => array(),
+			),
+			'span'   => array(
+				'class' => array(),
+			),
+			'b'      => array(),
+			'i'      => array(),
+			'br'     => array(),
+			'em'     => array(),
+			'strong' => array(),
+		);
 	}
 
 	/**
@@ -701,10 +733,10 @@ abstract class Forminator_Field {
 
 		// Apply markdown replacements.
 		$patterns = array(
-			'/(?<=^|\s)`(\S(?:.*?\S)?)`(?=\s|$)/u'   => '<span class="forminator-monospace" style="font-family: monospace;">$1</span>',
-			'/(?<=^|\s)~(\S(?:.*?\S)?)~(?=\s|$)/u'   => '<del>$1</del>',
-			'/(?<=^|\s)_(\S(?:.*?\S)?)_(?=\s|$)/u'   => '<em>$1</em>',
-			'/(?<=^|\s)\*(\S(?:.*?\S)?)\*(?=\s|$)/u' => '<strong>$1</strong>',
+			'/(?<=^|>|\s)`(\S(?:.*?\S)?)`(?=\s|<|$)/u'   => '<span class="forminator-monospace" style="font-family: monospace;">$1</span>',
+			'/(?<=^|>|\s)~(\S(?:.*?\S)?)~(?=\s|<|$)/u'   => '<del>$1</del>',
+			'/(?<=^|>|\s)_(\S(?:.*?\S)?)_(?=\s|<|$)/u'   => '<em>$1</em>',
+			'/(?<=^|>|\s)\*(\S(?:.*?\S)?)\*(?=\s|<|$)/u' => '<strong>$1</strong>',
 		);
 		foreach ( $patterns as $pattern => $replacement ) {
 			$string = preg_replace( $pattern, $replacement, $string );
@@ -2247,6 +2279,12 @@ abstract class Forminator_Field {
 		$precision  = self::get_calculable_precision( $field );
 		$separator  = self::get_property( 'separators', $field, 'blank' );
 		$separators = self::forminator_separators( $separator, $field );
+
+		// If the number already contains the separator, we assume it is already formatted and return it as-is. - For backward compatibility.
+		if ( ! empty( $separators['separator'] ) && false !== strpos( $number, $separators['separator'] ) ) {
+			return $number;
+		}
+
 		// All unformatted numbers use either a comma or a dot as the decimal point. We need to convert commas to dots.
 		$data_value = (float) str_replace( ',', '.', $number );
 		$formatted  = number_format( $data_value, $precision, $separators['point'], $separators['separator'] );

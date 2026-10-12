@@ -593,20 +593,9 @@ abstract class Forminator_Base_Form_Model {
 	 * @since 1.6 add optional param `status`
 	 */
 	public function count_all( $status = '' ) {
-		$count_posts = wp_count_posts( $this->post_type );
-		$count_posts = (array) $count_posts;
-		if ( ! empty( $status ) ) {
-			if ( isset( $count_posts[ $status ] ) ) {
-				return $count_posts[ $status ];
-			} else {
-				return 0;
-			}
-		} elseif ( 'forminator_forms' === $this->post_type ) {
-				unset( $count_posts['leads'] );
-				unset( $count_posts['pdf_form'] );
-		}
+		$result = $this->get_all_paged( 1, 1, $status, null, '', false );
 
-		return array_sum( $count_posts );
+		return (int) $result['foundPosts'];
 	}
 
 	/**
@@ -642,14 +631,16 @@ abstract class Forminator_Base_Form_Model {
 	 * @param string      $status Status.
 	 * @param null|int    $pdf_parent_id PDF parent Id.
 	 * @param null|string $search Optional search. Added in 1.52.
+	 * @param bool        $load_models Whether to build module models. Added in 1.58.1.
 	 *
 	 * @return array
 	 * @since 1.5.4 add optional param per_page
 	 * @since 1.5.4 add optional param $status
+	 * @since 1.58.1 add optional param $load_models
 	 *
 	 * @since 1.2
 	 */
-	public function get_all_paged( $current_page = 1, $per_page = null, $status = '', $pdf_parent_id = null, $search = '' ) {
+	public function get_all_paged( $current_page = 1, $per_page = null, $status = '', $pdf_parent_id = null, $search = '', $load_models = true ) {
 		if ( is_null( $per_page ) ) {
 			$per_page = forminator_form_view_per_page();
 		}
@@ -691,6 +682,12 @@ abstract class Forminator_Base_Form_Model {
 			}
 		}
 
+		if ( ! $load_models ) {
+			$args['fields']                 = 'ids';
+			$args['update_post_meta_cache'] = false;
+			$args['update_post_term_cache'] = false;
+		}
+
 		$query = new WP_Query( $args );
 
 		if ( ! empty( $search ) ) {
@@ -699,8 +696,10 @@ abstract class Forminator_Base_Form_Model {
 
 		$models = array();
 
-		foreach ( $query->posts as $post ) {
-			$models[] = $this->_load( $post );
+		if ( $load_models ) {
+			foreach ( $query->posts as $post ) {
+				$models[] = $this->_load( $post );
+			}
 		}
 
 		return array(

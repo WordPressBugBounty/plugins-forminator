@@ -194,7 +194,7 @@ class Forminator_Upload extends Forminator_Field {
 			if ( ! empty( $upload_limit ) ) {
 				$filesize  = self::get_property( 'filesize', $field, 'MB' );
 				$file_size = $this->file_size( $filesize );
-				$max_size  = $upload_limit * $file_size;
+				$max_size  = min( $max_size, $upload_limit * $file_size );
 			}
 			$upload_attr['data-size']         = $max_size;
 			$rounded_max_size                 = $this->byte_to_size( $max_size );
@@ -454,10 +454,31 @@ class Forminator_Upload extends Forminator_Field {
 					);
 				}
 
-				if ( ! is_uploaded_file( $file_object['tmp_name'] ) ) {
+				$upload_dir       = wp_upload_dir(); // Set upload folder.
+				$file_path        = 'upload' === $upload_type ? $upload_temp_path : forminator_get_upload_path( $form_id, 'uploads' );
+				$file_url         = forminator_get_upload_url( $form_id, 'uploads' );
+				$unique_file_name = wp_unique_filename( $file_path, $file_name );
+				$exploded_name    = explode( '/', $unique_file_name );
+				$filename         = end( $exploded_name ); // Create base file name.
+
+				$max_size  = wp_max_upload_size();
+				$file_size = $this->file_size( $filesize );
+				if ( $custom_limit_size ) {
+					$max_size = min( $max_size, $upload_limit * $file_size ); // convert to byte.
+				}
+
+				if ( ( isset( $file_object['error'] ) && UPLOAD_ERR_INI_SIZE === $file_object['error'] )
+					|| $file_object['size'] > $max_size ) {
+
+					$rounded_max_size = $this->byte_to_size( $max_size );
+
 					return array(
 						'success' => false,
-						'message' => esc_html__( 'Error saving form. Failed to read uploaded file.', 'forminator' ),
+						'message' => sprintf(
+						/* translators: %s: Maximum size */
+							esc_html__( 'Maximum file size allowed is %s. ', 'forminator' ),
+							$rounded_max_size
+						),
 					);
 				}
 
@@ -470,37 +491,17 @@ class Forminator_Upload extends Forminator_Field {
 					);
 				}
 
-				$upload_dir       = wp_upload_dir(); // Set upload folder.
-				$file_path        = 'upload' === $upload_type ? $upload_temp_path : forminator_get_upload_path( $form_id, 'uploads' );
-				$file_url         = forminator_get_upload_url( $form_id, 'uploads' );
-				$unique_file_name = wp_unique_filename( $file_path, $file_name );
-				$exploded_name    = explode( '/', $unique_file_name );
-				$filename         = end( $exploded_name ); // Create base file name.
-
-				$max_size  = wp_max_upload_size();
-				$file_size = $this->file_size( $filesize );
-				if ( $custom_limit_size ) {
-					$max_size = $upload_limit * $file_size; // convert to byte.
+				if ( ! is_uploaded_file( $file_object['tmp_name'] ) ) {
+					return array(
+						'success' => false,
+						'message' => esc_html__( 'Error saving form. Failed to read uploaded file.', 'forminator' ),
+					);
 				}
 
 				if ( 0 === $file_object['size'] ) {
 					return array(
 						'success' => false,
 						'message' => esc_html__( 'The attached file is empty and can\'t be uploaded.', 'forminator' ),
-					);
-				}
-
-				if ( $file_object['size'] > $max_size ) {
-
-					$rounded_max_size = $this->byte_to_size( $max_size );
-
-					return array(
-						'success' => false,
-						'message' => sprintf(
-						/* translators: %s: Maximum size */
-							esc_html__( 'Maximum file size allowed is %s. ', 'forminator' ),
-							$rounded_max_size
-						),
 					);
 				}
 

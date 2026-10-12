@@ -344,7 +344,8 @@ class Forminator_Currency extends Forminator_Field {
 			}
 		}
 
-		if ( ! empty( $data ) ) {
+		// '0' is a value too, so it must respect the limits.
+		if ( ! empty( $data ) || '0' === $data ) {
 				// Currency must be a single numeric value. Reject non-scalar input such
 				// as currency-1[]=x, which would otherwise bypass the bounds checks via
 				// PHP type juggling (an array is never less than a numeric minimum).

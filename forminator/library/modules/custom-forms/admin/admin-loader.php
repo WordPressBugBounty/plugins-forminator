@@ -75,6 +75,10 @@ class Forminator_Custom_Form_Admin extends Forminator_Admin_Module {
 			if ( $id ) {
 				$data['formNonce'] = wp_create_nonce( 'forminator_save_builder_fields' );
 				$model             = Forminator_Base_Form_Model::get_model( $id );
+				// Only custom forms open here, a poll or quiz ID is treated as missing.
+				if ( ! $model instanceof Forminator_Form_Model ) {
+					$model = null;
+				}
 			}
 
 			$wrappers = array();

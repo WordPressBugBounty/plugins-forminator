@@ -425,6 +425,11 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 
 		self::check_fields_visibility();
 
+		// A Stripe field hidden by visibility conditions has no payment amount to update or validate.
+		if ( self::is_in_hidden_fields( 'stripe-' ) ) {
+			wp_send_json_success( array( 'paymentFieldHidden' => true ) );
+		}
+
 		$first_intent = ! empty( self::$prepared_data['stripe_first_payment_intent'] );
 		$is_intent    = ! empty( self::$prepared_data['stripe-intent'] );
 		$validate     = ! empty( self::$prepared_data['stripe_validate_submission'] );
@@ -612,7 +617,7 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 	private function submit_form_with_pending_status() {
 		// Only the browser that started the session may submit it.
 		$session_data = Forminator_Stripe::get_pending_checkout_session_data( self::$prepared_data['paymentid'] ?? '' );
-		if ( ! empty( $session_data['owner'] ) && ! Forminator_Stripe::is_payment_owner( $session_data['owner'] ) ) {
+		if ( ! Forminator_Stripe::is_payment_owner( $session_data['owner'] ?? '' ) ) {
 			wp_send_json_error(
 				array(
 					'message' => esc_html__( 'Checkout Session ID is not valid', 'forminator' ),
@@ -1776,7 +1781,7 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 
 		// Restore the draft ID kept on the pending entry, so the draft is deleted once the payment is completed.
 		self::$previous_draft_id = $entry->get_meta( '_previous_draft_id', null );
-		unset( self::$prepared_data['_previous_draft_id'] );
+		unset( self::$prepared_data['_previous_draft_id'], self::$prepared_data['_submitter_user_id'] );
 
 		// If the entry is pending, we need to re-prepare the fields info to handle post submission process.
 		$fields = self::get_fields();
@@ -2049,6 +2054,9 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 						$form_action = new Forminator_Quiz_Front_Action();
 						$form_action->run_post_submission_process( $entry );
 
+						// Remove the submitter from entry meta, as integrations have been processed.
+						$entry->remove_field( '_submitter_user_id' );
+
 						return true;
 					}
 
@@ -2115,6 +2123,9 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 
 					// Remove the draft ID from entry meta, as it's no longer needed after successful processing.
 					$entry->remove_field( '_previous_draft_id' );
+
+					// Remove the submitter from entry meta, as integrations have been processed.
+					$entry->remove_field( '_submitter_user_id' );
 
 					// If the form is set to prevent storing entries, delete the entry after processing.
 					if ( self::prevent_store() ) {
@@ -2196,6 +2207,9 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 
 			// Remove the draft ID from entry meta, as the payment failed and the draft is kept for another attempt.
 			$entry->remove_field( '_previous_draft_id' );
+
+			// Remove the submitter from entry meta, as the payment failed.
+			$entry->remove_field( '_submitter_user_id' );
 
 			// Process the failed email notification if it's set in the form settings.
 			$this->process_failed_email( $entry );
@@ -2854,6 +2868,14 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 			$added_data_array[] = array(
 				'name'  => '_previous_draft_id',
 				'value' => self::$previous_draft_id,
+			);
+		}
+
+		// Keep the submitter, 0 for guests, as integrations run without them once the payment completes.
+		if ( 'pending' === $entry->status ) {
+			$added_data_array[] = array(
+				'name'  => '_submitter_user_id',
+				'value' => get_current_user_id(),
 			);
 		}
 
@@ -3862,6 +3884,13 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 			// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
 			error_log( '[Forminator] Unspecified fields ' . wp_json_encode( array_keys( $unspecified ) ) );
 			self::$hidden_fields = array_merge( self::$hidden_fields, array_keys( $unspecified ) );
+
+			// An unresolved payment blocks the submission instead of being skipped. Drafts take no payment.
+			if ( ! self::$is_draft && ! self::$is_abandoned ) {
+				foreach ( preg_grep( '/^(stripe|stripe-ocs|paypal)-\d+$/', array_keys( $unspecified ) ) as $field_id ) {
+					self::$submit_errors[] = array( $field_id => esc_html__( 'Error! Invalid payment amount!', 'forminator' ) );
+				}
+			}
 		}
 
 		/**
@@ -3994,9 +4023,9 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 			if ( isset( self::$prepared_data[ $main_field ] ) ) {
 				$copied_fields = array( $main_field );
 			}
-			// If there are any field copy - add it to the array.
+			// If there are any field copy - add it to the array. Only copy keys end in their number.
 			foreach ( array_keys( self::$prepared_data ) as $key ) {
-				if ( 0 === strpos( $key, $main_field . '-' ) ) {
+				if ( preg_match( '/^' . preg_quote( $main_field, '/' ) . '-\d+$/', $key ) ) {
 					$copied_fields[] = $key;
 				}
 			}

@@ -391,7 +391,8 @@ class Forminator_Admin_AJAX {
 
 		$form_model = Forminator_Base_Form_Model::get_model( $id );
 
-		if ( ! is_object( $form_model ) ) {
+		// Only custom forms are saved here, never a poll or quiz.
+		if ( ! $form_model instanceof Forminator_Form_Model ) {
 			wp_send_json_error( esc_html__( 'Form model doesn\'t exist', 'forminator' ) );
 		}
 
@@ -406,6 +407,9 @@ class Forminator_Admin_AJAX {
 
 		if ( empty( $status ) ) {
 			$status = $form_model->status;
+		} elseif ( ! in_array( $status, array( Forminator_Form_Model::STATUS_PUBLISH, Forminator_Form_Model::STATUS_DRAFT ), true ) ) {
+			// The builder only publishes or drafts a form.
+			wp_send_json_error( esc_html__( 'Invalid request, you are not allowed to do that action.', 'forminator' ) );
 		}
 
 		// we need to empty fields cause we will send new data.
@@ -571,7 +575,8 @@ class Forminator_Admin_AJAX {
 		if ( $ids ) {
 			foreach ( $ids as $form_id ) {
 				$form_model = Forminator_Base_Form_Model::get_model( $form_id );
-				if ( ! $form_model ) {
+				// Presets only apply to custom forms, never a poll or quiz.
+				if ( ! $form_model instanceof Forminator_Form_Model ) {
 					continue;
 				}
 
@@ -2877,6 +2882,7 @@ class Forminator_Admin_AJAX {
 	 * Save permission.
 	 */
 	public function save_permissions() {
+		// No page slug, so only a Forminator admin passes.
 		forminator_validate_ajax( 'forminator_permission_nonce' );
 
 		$old_permissions = get_option( 'forminator_permissions', array() );
@@ -2884,6 +2890,10 @@ class Forminator_Admin_AJAX {
 		$permissions     = json_decode( wp_unslash( $post_data['permissions'] ), true );
 		$caps            = forminator_get_capabilities();
 		$permissions     = array_map( 'forminator_normalize_permission_rule', (array) $permissions );
+
+		if ( ! in_array( $post_data['mode'] ?? '', array( 'new', 'edit', 'delete' ), true ) ) {
+			wp_send_json_error( esc_html__( 'Invalid request, you are not allowed to do that action.', 'forminator' ) );
+		}
 
 		// Perform changes during save mode.
 		if ( 'new' === $post_data['mode'] ) {
@@ -2950,10 +2960,16 @@ class Forminator_Admin_AJAX {
 			 * If role, add or remove caps as per new state.
 			 */
 		} else {
-			$pid = $post_data['pid'];
+			$pid = $post_data['pid'] ?? '';
 			// phpcs:ignore WordPress.PHP.StrictInArray.MissingTrueStrict -- Possible for 0 or "0"
-			$old_permission = $old_permissions[ array_search( $pid, array_column( $old_permissions, 'pid' ) ) ];
-			$old_permission = forminator_normalize_permission_rule( $old_permission );
+			$old_index = array_search( $pid, array_column( $old_permissions, 'pid' ) );
+
+			// An unknown rule ID would act on the first rule.
+			if ( false === $old_index ) {
+				wp_send_json_error( esc_html__( 'Invalid request, you are not allowed to do that action.', 'forminator' ) );
+			}
+
+			$old_permission = forminator_normalize_permission_rule( $old_permissions[ $old_index ] );
 
 			if ( 'edit' === $post_data['mode'] ) {
 
@@ -2978,6 +2994,10 @@ class Forminator_Admin_AJAX {
 							// Add/remove caps to the current users.
 							foreach ( $permission['specific_user'] as $user_index => $user_id ) {
 								$user = get_user_by( 'ID', $user_id );
+								if ( false === $user ) {
+									continue;
+								}
+
 								forminator_apply_capabilities( $user, $permission );
 
 								// Set user info.

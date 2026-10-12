@@ -308,7 +308,7 @@ class Forminator_Assets_Enqueue_Form extends Forminator_Assets_Enqueue {
 		$script_src     = forminator_plugin_url() . 'assets/js/library/intlTelInput.min.js';
 		$script_version = FORMINATOR_VERSION;
 
-		Forminator_Assets_Enqueue::fui_enqueue_style( 'intlTelInput-forminator-css', $style_src, array(), $style_version ); // intlTelInput.
+		Forminator_Assets_Enqueue::fui_enqueue_style( 'intlTelInput-forminator', $style_src, array(), $style_version ); // intlTelInput.
 		wp_enqueue_script( 'forminator-intlTelInput', $script_src, array( 'jquery' ), $script_version, false ); // intlTelInput.
 	}
 

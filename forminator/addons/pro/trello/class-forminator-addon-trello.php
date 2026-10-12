@@ -668,13 +668,11 @@ final class Forminator_Trello extends Forminator_Integration {
 	 * @return mixed
 	 */
 	public function before_get_settings_values( $values ) {
-		forminator_addon_maybe_log( __METHOD__, $values );
 		if ( isset( $values['connected_account'] ) && ! empty( $values['connected_account'] ) && is_array( $values['connected_account'] ) ) {
 			$this->connected_account = $values['connected_account'];
 		}
 		if ( isset( $values['token'] ) ) {
 			$this->_token = $values['token'];
-			forminator_addon_maybe_log( __METHOD__, $this->_token );
 		}
 
 		return $values;
@@ -691,7 +689,6 @@ final class Forminator_Trello extends Forminator_Integration {
 		try {
 			$api = $this->get_api();
 			// revoke token from trello server.
-			forminator_addon_maybe_log( __METHOD__, $this->_token );
 			$api->delete_( 'tokens/' . $this->_token );
 		} catch ( Forminator_Integration_Exception $e ) {
 			forminator_addon_maybe_log( __METHOD__, $e->getMessage() );

@@ -66,6 +66,20 @@
 
 	// Avoid Plugin.prototype conflicts
 	$.extend(ForminatorFrontStripe.prototype, {
+		// Build a storage key for the lead quiz answers. Include render_id so multiple embeds of the same form do not share it.
+		getCheckoutQuizStateStorageKey: function() {
+			var formKey = this.$el.attr('id') || this.$el.data('form-id') || 'default';
+			var renderId = this.$el.data('forminator-render') || this.$el.find('[name="render_id"]').val() || '';
+
+			return 'forminatorStripeCheckoutQuizState:' + ( renderId ? formKey + ':' + renderId : formKey );
+		},
+
+		// Get the quiz this lead form belongs to.
+		getLeadQuizForm: function() {
+			var quizId = this.$el.find('input[name="lead_quiz"]').val();
+
+			return quizId ? $('#forminator-module-' + quizId) : $();
+		},
 
 		// Read the returned session ID from the URL and match it to this form's pending session.
 		getReturnedCheckoutSessionId: function() {
@@ -187,6 +201,97 @@
 			this.clearCheckoutSessionPaymentData();
 			this._returnedCheckoutSessionId = '';
 			this._isCheckoutReturnFlow = false;
+		},
+
+		// Save the lead quiz answers so they survive the redirect.
+		storeCheckoutQuizState: function() {
+			var $quiz = this.getLeadQuizForm();
+			var answers = [];
+
+			if ( ! $quiz.length ) {
+				return;
+			}
+
+			$quiz.find('.forminator-answer input:checked').each(function() {
+				answers.push({ name: $(this).attr('name'), value: $(this).val() });
+			});
+
+			try {
+				if ( answers.length ) {
+					window.sessionStorage.setItem(this.getCheckoutQuizStateStorageKey(), JSON.stringify(answers));
+				} else {
+					window.sessionStorage.removeItem(this.getCheckoutQuizStateStorageKey());
+				}
+			} catch ( error ) {
+				// Ignore storage errors.
+			}
+		},
+
+		// Restore the lead quiz answers. Call on DOM ready, after the quiz is initialized.
+		restoreCheckoutQuizState: function() {
+			var $quiz = this.getLeadQuizForm();
+			var answers = null;
+
+			if ( ! $quiz.length ) {
+				return false;
+			}
+
+			try {
+				answers = JSON.parse(window.sessionStorage.getItem(this.getCheckoutQuizStateStorageKey()) || 'null');
+			} catch ( error ) {
+				answers = null;
+			}
+
+			if ( ! Array.isArray(answers) || ! answers.length ) {
+				return false;
+			}
+
+			var $pages = $quiz.find('.forminator-pagination');
+
+			// Start paginated quizzes so they can move to results.
+			if ( $pages.length && ! $quiz.data('forminatorFrontPagination') ) {
+				$quiz.closest('.forminator-quiz-leads').find('.forminator-quiz-intro').hide();
+				$quiz.prepend('<button class="forminator-button forminator-quiz-start forminator-hidden"></button>')
+					.find('.forminator-quiz-start').trigger('click').remove();
+			}
+
+			var $inputs = $quiz.find('.forminator-answer input');
+
+			answers.forEach(function(answer) {
+				if ( ! answer || ! answer.name ) {
+					return;
+				}
+
+				// Match by property to avoid building selectors from stored values.
+				$inputs.filter(function() {
+					return this.name === String(answer.name) && this.value === String(answer.value);
+				}).prop('checked', true).trigger('change');
+			});
+
+			var pagination = $quiz.data('forminatorFrontPagination');
+			if ( pagination && $pages.length > 1 ) {
+				// Go to the last question page; the final step holds the results.
+				pagination.go_to($pages.length - 2);
+				pagination.update_buttons();
+			}
+
+			return true;
+		},
+
+		// Restore the answers and lead form after a failed redirect so the payment can be retried.
+		reopenCheckoutLeadForm: function() {
+			if ( this.restoreCheckoutQuizState() ) {
+				// Submitting without a lead entry shows the lead form again.
+				this.getLeadQuizForm().trigger('submit');
+			}
+		},
+
+		clearCheckoutQuizState: function() {
+			try {
+				window.sessionStorage.removeItem(this.getCheckoutQuizStateStorageKey());
+			} catch ( error ) {
+				// Ignore storage errors.
+			}
 		},
 
 		// Clear the currently mounted Checkout Session identifiers before the next payment attempt.
@@ -313,12 +418,16 @@
 					self.$el.find('#forminator-stripe-paymentid').val(recoveredPaymentId);
 					self._stripeData['paymentid'] = recoveredPaymentId;
 
-					window.setTimeout(function() {
+					$(function() {
+						self.restoreCheckoutQuizState();
 						self.$el.trigger('forminator:stripe:return:ready');
-					}, 0);
+					});
 				}).catch(function(error) {
 					var errorMessage = error && error.message ? error.message : window.ForminatorFront.cform.payment_failed;
 					self._isCheckoutReturnFlow = false;
+					$(function() {
+						self.reopenCheckoutLeadForm();
+					});
 					self.intent = false;
 					self.show_error(errorMessage);
 					self.intent = true;
@@ -333,9 +442,11 @@
 			}
 
 			if ( this._checkoutReturnError ) {
-				window.setTimeout(function() {
+				// Wait for DOM ready so the quiz is initialized first.
+				$(function() {
+					self.reopenCheckoutLeadForm();
 					self.show_error(self._checkoutReturnError);
-				}, 0);
+				});
 			}
 
 			$(this.element).on('payment.before.submit.forminator', async (e, formData, callback) => {
@@ -475,7 +586,8 @@
 				} );
 			});
 
-			this.$el.on('forminator:form:submit:success', function(e, formData, data) {
+			// Lead forms trigger their own success event.
+			this.$el.on('forminator:form:submit:success forminator:form:submit:leads:success', function(e, formData, data) {
 				if ( ! self.isCheckoutSession() ) {
 					return;
 				}
@@ -483,6 +595,12 @@
 				self._isCheckoutReturnFlow = false;
 				self._beforeSubmitCallback = null;
 				self.clearCheckoutSessionPaymentData();
+				self.clearCheckoutQuizState();
+
+				// The lead form is hidden once the quiz shows, so there is no Checkout to refresh.
+				if ( 'forminator:form:submit:leads:success' === e.type ) {
+					return;
+				}
 
 				var responseData = data && data.data ? data.data : {};
 				var hideForm = responseData.behav && responseData.behav === 'behaviour-hide';
@@ -555,6 +673,33 @@
 
 		isCheckoutSessionPreview: function() {
 			return this.isCheckoutSession() && this.settings.is_preview;
+		},
+
+		// Detect whether the Stripe field is hidden by visibility conditions.
+		// forminatorUtils().is_hidden() is avoided here because it also reports fields on an inactive page.
+		isStripeFieldHidden: function() {
+			var $paymentEl = this.settings.paymentEl;
+
+			if ( ! $paymentEl || ! $paymentEl.length ) {
+				return false;
+			}
+
+			var $column = $paymentEl.closest('.forminator-col');
+
+			return $column.hasClass('forminator-hidden') || $column.closest('.forminator-row').hasClass('forminator-hidden');
+		},
+
+		// Re-enable the form after a skipped amount update, leaving the response message untouched.
+		resumeAfterSkippedAmountUpdate: function(options, data) {
+			// Keep the form locked if a submit started while this update was in flight.
+			if ( this.intent ) {
+				this._form.find('button').removeAttr('disabled');
+				this.enable_form();
+			}
+
+			if ( typeof options.onSuccess === 'function' ) {
+				options.onSuccess(data);
+			}
 		},
 
 		getPreviewData: function() {
@@ -701,6 +846,8 @@
 			var $checkoutPhoneField = checkoutPhone ? this.get_form_field(checkoutPhone) : $();
 
 			return JSON.stringify({
+				// Track the Stripe field so Checkout is rebuilt once its conditions show it again.
+				stripeFieldVisible: ! this.isStripeFieldHidden(),
 				checkoutEmailVisible: $checkoutEmailField.length && ! forminatorUtils().is_hidden( $checkoutEmailField ),
 				checkoutPhoneVisible: $checkoutPhoneField.length && ! forminatorUtils().is_hidden( $checkoutPhoneField ),
 			});
@@ -873,6 +1020,12 @@
 		// Rebuild the Checkout Session before we try to confirm it.
 		refreshCheckoutSession: function() {
 			var self = this;
+
+			// Nothing to rebuild while the Stripe field is hidden by visibility conditions.
+			if ( self.isStripeFieldHidden() ) {
+				return Promise.resolve();
+			}
+
 			var previousIntent = self.intent;
 			var refreshRequestId = self.getNextCheckoutRefreshRequestId();
 			var restoreIntent = function() {
@@ -1116,6 +1269,8 @@
 				confirmOptions.billingAddress = checkoutBillingAddress;
 			}
 			try {
+				// Checkout may redirect away from the page, so keep the lead quiz answers for the return.
+				this.storeCheckoutQuizState();
 				const result = await this._checkoutActions.confirm(confirmOptions);
 
 				if ( result && result.type === 'error' ) {
@@ -1222,9 +1377,28 @@
 			if ( e && typeof e.preventDefault === 'function' ) {
 				e.preventDefault();
 			}
+
+			// Skip background refreshes for a hidden Stripe field, otherwise its payment errors
+			// overwrite the form response message. Submit requests are left to the server.
+			if ( this.intent && this.isStripeFieldHidden() ) {
+				this.resumeAfterSkippedAmountUpdate(options);
+
+				return;
+			}
+
 			var formData = new FormData( this.$el[0] );
 			var self = this;
+
+			// Set raw values for number, currency, and calculation fields instead of their masked values.
+			self.$el.find('.forminator-number--field, .forminator-currency, .forminator-calculation').each(function () {
+				if ( $( this ).inputmask ) {
+					formData.set( $( this ).attr('name'), $( this ).val() );
+				}
+			});
+			
 			var updateFormData = new FormData();
+			// Remember whether this request is the submit, since the intent flag can change before the response arrives.
+			var isSubmitRequest = ! this.intent;
 
 			// Every Checkout update can create or remount a Session, including the first page load.
 			if ( this.isCheckoutSession() && ! options.checkoutRefreshRequestId ) {
@@ -1316,6 +1490,21 @@
 						}
 
 						self._lastMountFailed = false;
+
+						// The server skipped the Stripe field because it is hidden.
+						if ( data.success === true && data.data && data.data.paymentFieldHidden ) {
+							if ( isSubmitRequest ) {
+								// Nothing to charge, so resume the pending submission instead of confirming a payment.
+								self.handlePayment();
+
+								return;
+							}
+
+							self.resumeAfterSkippedAmountUpdate(options, data);
+
+							return;
+						}
+
 						if (data.success === true) {
 							if ( self.isCheckoutSession() && options.validateOnly ) {
 								if ( typeof options.onSuccess === 'function' ) {
