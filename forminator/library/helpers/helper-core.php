@@ -2423,6 +2423,9 @@ function forminator_can_apply_default_color( $settings ) {
  * @return bool
  */
 function forminator_set_recurring_action( string $action, int $interval ): bool {
+	// No longer in the unscheduled/idle state.
+	delete_transient( $action . '_cleared' );
+
 	// Check cache first.
 	if ( get_transient( $action ) ) {
 		return true;
@@ -2450,6 +2453,39 @@ function forminator_set_recurring_action( string $action, int $interval ): bool 
 	}
 
 	return $scheduled;
+}
+
+/**
+ * Unschedule a Forminator Action Scheduler action and clear its cache.
+ *
+ * Caches the unscheduled state for 2 hours so unused export/report jobs do not
+ * hit Action Scheduler on every page load. The cache is cleared when scheduling.
+ *
+ * @since 1.58.3
+ *
+ * @param string $action Action name.
+ *
+ * @return void
+ */
+function forminator_unschedule_action( string $action ): void {
+	$cleared_key = $action . '_cleared';
+
+	// Already confirmed unscheduled recently.
+	if ( get_transient( $cleared_key ) ) {
+		return;
+	}
+
+	delete_transient( $action );
+
+	if ( wp_next_scheduled( $action ) ) {
+		wp_clear_scheduled_hook( $action );
+	}
+
+	if ( function_exists( 'as_unschedule_all_actions' ) && Forminator_Core::check_action_scheduler_tables() && as_has_scheduled_action( $action ) ) {
+		as_unschedule_all_actions( $action, array(), 'forminator' );
+	}
+
+	set_transient( $cleared_key, true, 2 * HOUR_IN_SECONDS );
 }
 
 /**

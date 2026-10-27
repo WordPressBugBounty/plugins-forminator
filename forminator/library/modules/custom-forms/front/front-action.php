@@ -562,6 +562,16 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 		self::$prepared_data['paymentid'] = $payment_id;
 		$session                          = $stripe_field->get_checkout_session( self::$info['stripe_field'] );
 
+		// Without local pending data, the owner bound to the session on Stripe decides.
+		if ( ! is_array( $session_data ) && ! is_wp_error( $session ) && ! Forminator_Stripe::is_checkout_session_owner( $session ) ) {
+			wp_send_json_error(
+				array(
+					'message'     => self::get_foreign_payment_message(),
+					'recoverable' => false,
+				)
+			);
+		}
+
 		if ( ! Forminator_Stripe::has_pending_checkout_session( $payment_id ) && Forminator_Stripe::can_restore_pending_checkout_session( $payment_id ) ) {
 			$session_form_id = is_object( $session ) && ! empty( $session->client_reference_id ) ? (string) $session->client_reference_id : '';
 			$payment_status  = is_object( $session ) && ! empty( $session->payment_status ) ? (string) $session->payment_status : '';
@@ -1730,10 +1740,12 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 	 */
 	private function post_submission_process( $entry ) {
 		if ( ! self::$is_draft && ! self::$is_abandoned ) {
-			$addon_data = array();
-			// Process integrated addons and attach their data to the entry.
-			$addon_data = self::attach_addons_add_entry_fields( $addon_data, $entry );
-			$entry->set_fields( $addon_data );
+			if ( $this->can_trigger_integrations( $entry ) ) {
+				$addon_data = array();
+				// Process integrated addons and attach their data to the entry.
+				$addon_data = self::attach_addons_add_entry_fields( $addon_data, $entry );
+				$entry->set_fields( $addon_data );
+			}
 		}
 		self::maybe_create_post( $entry );
 		self::attach_addons_after_entry_saved( $entry );
@@ -2016,6 +2028,20 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 			if ( ! empty( $stripe_data ) ) {
 				// Update stripe data in entry meta.
 				$this->update_stripe_meta( $entry, $stripe_data );
+
+				$trigger_integration = apply_filters( 'forminator_trigger_integrations_on_payment_in_process', false, $entry );
+				if ( true === $trigger_integration ) {
+					$addon_data = array();
+					// Process integrated addons and attach their data to the entry.
+					$addon_data = self::attach_addons_add_entry_fields( $addon_data, $entry );
+					// Add a flag to indicate that the entry has triggered integrations, so they won't be processed again on successful payment.
+					$addon_data[] = array(
+						'name'  => '_triggered_integrations',
+						'value' => 1,
+					);
+					$entry->set_fields( $addon_data );
+				}
+
 				return true;
 			}
 		} catch ( Exception $e ) {
@@ -2890,6 +2916,11 @@ class Forminator_CForm_Front_Action extends Forminator_Front_Action {
 	 */
 	protected static function get_prepared_submitted_data_for_addons( $current_entry_fields ) {
 		$data = self::get_submitted_data();
+
+		// An empty list only keeps addon rows out of the entry. Format values from the form fields.
+		if ( empty( $current_entry_fields ) && ! empty( self::$info['field_data_array'] ) ) {
+			$current_entry_fields = self::$info['field_data_array'];
+		}
 
 		foreach ( wp_list_pluck( $current_entry_fields, 'name' ) as $element_id ) {
 			$data[ $element_id ] = Forminator_Integration_Form_Hooks::prepare_field_value_for_addon( $element_id, $current_entry_fields, $data );
