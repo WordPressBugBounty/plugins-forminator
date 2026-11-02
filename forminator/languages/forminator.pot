@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Forminator package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Forminator 1.58.3\n"
+"Project-Id-Version: Forminator 1.58.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/build\n"
-"POT-Creation-Date: 2026-10-20 15:02:27+00:00\n"
+"POT-Creation-Date: 2026-10-29 10:56:48+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -473,7 +473,7 @@ msgstr ""
 #: addons/pro/activecampaign/views/module-settings/setup-options.php:50
 #: addons/pro/aweber/views/module-settings/setup-options.php:90
 #: addons/pro/mailchimp/class-forminator-addon-mailchimp-settings-trait.php:650
-#: library/fields/postdata.php:113 library/helpers/helper-fields.php:1982
+#: library/fields/postdata.php:113 library/helpers/helper-fields.php:2013
 #: library/modules/custom-forms/form-templates/template-post.php:58
 msgid "Tags"
 msgstr ""
@@ -1457,7 +1457,7 @@ msgid "Email on element %1$s not found or not filled on submitted data."
 msgstr ""
 
 #: addons/pro/hubspot/class-forminator-addon-hubspot-form-hooks.php:215
-#: addons/pro/hubspot/class-forminator-addon-hubspot-quiz-hooks.php:202
+#: addons/pro/hubspot/class-forminator-addon-hubspot-quiz-hooks.php:205
 msgid "Successfully send data to HubSpot"
 msgstr ""
 
@@ -1475,7 +1475,7 @@ msgstr ""
 #: addons/pro/trello/class-forminator-addon-trello-settings-trait.php:408
 #: admin/classes/class-admin-l10n.php:243 admin/locale.php:473
 #: library/addon/class-integration-quiz-settings.php:435
-#: library/helpers/helper-fields.php:3028
+#: library/helpers/helper-fields.php:3059
 #: library/modules/quizzes/admin/admin-loader.php:651
 msgid "Quiz Name"
 msgstr ""
@@ -2128,7 +2128,7 @@ msgstr ""
 #: addons/pro/slack/class-forminator-addon-slack-quiz-hooks.php:300
 #: addons/pro/trello/class-forminator-addon-trello-quiz-hooks.php:330
 #: addons/pro/trello/class-forminator-addon-trello-quiz-hooks.php:347
-#: admin/locale.php:484 library/helpers/helper-fields.php:3030
+#: admin/locale.php:484 library/helpers/helper-fields.php:3061
 msgid "Quiz Result"
 msgstr ""
 
@@ -2183,7 +2183,7 @@ msgstr ""
 
 #: addons/pro/slack/class-forminator-addon-slack-settings-trait.php:407
 #: addons/pro/trello/class-forminator-addon-trello-settings-trait.php:400
-#: admin/locale.php:880 library/helpers/helper-fields.php:2839
+#: admin/locale.php:880 library/helpers/helper-fields.php:2870
 msgid "Poll Name"
 msgstr ""
 
@@ -2388,13 +2388,13 @@ msgstr ""
 
 #: addons/pro/trello/class-forminator-addon-trello-form-hooks.php:275
 #: addons/pro/trello/class-forminator-addon-trello-form-hooks.php:290
-#: library/helpers/helper-fields.php:1922
+#: library/helpers/helper-fields.php:1953
 #: library/model/class-form-entry-model.php:1986
 msgid "Edit Post"
 msgstr ""
 
 #: addons/pro/trello/class-forminator-addon-trello-poll-hooks.php:277
-#: admin/locale.php:881 library/helpers/helper-fields.php:2840
+#: admin/locale.php:881 library/helpers/helper-fields.php:2871
 msgid "Poll Answer"
 msgstr ""
 
@@ -2967,7 +2967,7 @@ msgstr ""
 #: admin/views/settings/content.php:24
 #: admin/views/settings/tab-pagination.php:39
 #: admin/views/settings/tab-submissions.php:15
-#: library/helpers/helper-core.php:1910
+#: library/helpers/helper-core.php:1936
 msgid "Submissions"
 msgstr ""
 
@@ -3065,147 +3065,151 @@ msgid ""
 "again."
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:289
+#: admin/abstracts/class-admin-page.php:290
 #. translators: %s: SUI Icon .
 msgid "Made with %s by WPMU DEV"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:309
+#: admin/abstracts/class-admin-page.php:310
 msgid "Free Plugins"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:310
+#: admin/abstracts/class-admin-page.php:311
 msgid "Membership"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:311 admin/classes/class-admin.php:1019
+#: admin/abstracts/class-admin-page.php:312 admin/classes/class-admin.php:1019
 #: pro/forminator-pro.php:214
 msgid "Roadmap"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:312 admin/classes/class-admin.php:1017
+#: admin/abstracts/class-admin-page.php:313 admin/classes/class-admin.php:1017
 #: pro/forminator-pro.php:215
 msgid "Support"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:313 admin/classes/class-admin.php:946
+#: admin/abstracts/class-admin-page.php:314 admin/classes/class-admin.php:946
 #: pro/forminator-pro.php:216
 msgid "Docs"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:314 pro/forminator-pro.php:212
+#: admin/abstracts/class-admin-page.php:315 pro/forminator-pro.php:212
 msgid "The Hub"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:315 pro/forminator-pro.php:218
+#: admin/abstracts/class-admin-page.php:316 pro/forminator-pro.php:218
 msgid "Terms of Service"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:316 pro/forminator-pro.php:219
+#: admin/abstracts/class-admin-page.php:317 pro/forminator-pro.php:219
 msgid "Privacy Policy"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:325
+#: admin/abstracts/class-admin-page.php:326
 #: admin/classes/class-admin-l10n.php:440 admin/locale.php:489
 #: library/modules/quizzes/admin/admin-loader.php:634
 msgid "Facebook"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:329
+#: admin/abstracts/class-admin-page.php:330
 #: admin/classes/class-admin-l10n.php:441 admin/locale.php:490
 #: library/modules/quizzes/admin/admin-loader.php:635
 msgid "X"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:333
+#: admin/abstracts/class-admin-page.php:334
 msgid "Instagram"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:402
+#: admin/abstracts/class-admin-page.php:397
+msgid "You do not have permission to connect this site."
+msgstr ""
+
+#: admin/abstracts/class-admin-page.php:426
 msgid "Site connected successfully!"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:407
+#: admin/abstracts/class-admin-page.php:431
 msgid ""
 "Your site is now connected to your WPMU DEV account, unlocking powerful "
 "tools to help you work faster and manage forms across sites, including:"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:410
+#: admin/abstracts/class-admin-page.php:434
 #: admin/classes/class-admin-l10n.php:89
 msgid "Congratulations!"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:413
+#: admin/abstracts/class-admin-page.php:437
 msgid ""
 "Your site is now connected to The Hub, and preset templates are unlocked. "
 "Start building forms faster with any of our ready-made templates."
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:415
+#: admin/abstracts/class-admin-page.php:439
 msgid ""
 "Your site is now connected to The Hub, and the following features are now "
 "unlocked."
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:417
+#: admin/abstracts/class-admin-page.php:441
 msgid ""
 "Your site is connected to The Hub. You can now save your forms to The Hub "
 "cloud."
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:431
+#: admin/abstracts/class-admin-page.php:455
 msgid "Save form templates to the cloud for easy reuse"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:432
+#: admin/abstracts/class-admin-page.php:456
 msgid "Access your cloud templates from any connected site"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:433
+#: admin/abstracts/class-admin-page.php:457
 msgid "Discover additional ready-made form templates"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:434
+#: admin/abstracts/class-admin-page.php:458
 msgid "Manage your site using The Hub’s site management tools"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:435
+#: admin/abstracts/class-admin-page.php:459
 #. translators: 1: Open Italic tag, 2: Close Italic tag
 msgid "Enable add-ons via The Hub %1$s(coming soon)%2$s"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:449
+#: admin/abstracts/class-admin-page.php:473
 msgid "Preset and Cloud Templates"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:451
+#: admin/abstracts/class-admin-page.php:475
 msgid "Unlocked"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:458
+#: admin/abstracts/class-admin-page.php:482
 #: admin/classes/class-addons-page.php:646
 #: library/class-forminator-hub-connector.php:136
 msgid "Extension Pack Add-on"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:467
+#: admin/abstracts/class-admin-page.php:491
 msgid "Install & Activate"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:474
+#: admin/abstracts/class-admin-page.php:498
 #: admin/classes/class-addons-page.php:656 admin/locale.php:1158
 #: admin/views/common/reports/report-content.php:108
 #: admin/views/common/reports/report-content.php:143
 msgid "Form Abandonment"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:478
+#: admin/abstracts/class-admin-page.php:502
 #: admin/classes/class-addons-page.php:657
 msgid "More features coming soon"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:486
+#: admin/abstracts/class-admin-page.php:510
 #: admin/classes/class-admin-l10n.php:104 admin/locale.php:935
 #: admin/views/addons/addon-details.php:246
 #: admin/views/addons/addons-activate-popup.php:46
@@ -3218,11 +3222,11 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:720
+#: admin/abstracts/class-admin-page.php:744
 msgid "Migrate to new Forminator Stripe field"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:727
+#: admin/abstracts/class-admin-page.php:751
 #. Translators: 1. 'Learn more' link
 msgid ""
 "You are using the Stripe simple card payment element, which is being "
@@ -3231,18 +3235,18 @@ msgid ""
 "to the new Stripe payment element."
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:729
+#: admin/abstracts/class-admin-page.php:753
 msgid "Learn more."
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:780
+#: admin/abstracts/class-admin-page.php:804
 msgid ""
 "Forminator's CSS style cannot be loaded because your website's address is "
 "configured in WordPress to use HTTP instead of HTTPS. This may cause some "
 "web content, including Forminator forms, to display incorrectly."
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:813
+#: admin/abstracts/class-admin-page.php:837
 #: admin/classes/class-admin-l10n.php:169
 #: admin/views/custom-form/list/header.php:8
 #: admin/views/custom-form/popup/import-cf7.php:36
@@ -3254,7 +3258,7 @@ msgstr ""
 msgid "Forms"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:818
+#: admin/abstracts/class-admin-page.php:842
 #: admin/classes/class-admin-ajax.php:219
 #: admin/classes/class-admin-l10n.php:171
 #: admin/views/dashboard/widgets/widget-dashboard.php:165
@@ -3267,7 +3271,7 @@ msgstr ""
 msgid "Polls"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:823
+#: admin/abstracts/class-admin-page.php:847
 #: admin/classes/class-admin-ajax.php:238
 #: admin/classes/class-admin-l10n.php:170
 #: admin/views/dashboard/widgets/widget-dashboard.php:146
@@ -3281,18 +3285,18 @@ msgstr ""
 msgid "Quizzes"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:894
+#: admin/abstracts/class-admin-page.php:918
 msgid "Enable automatic payment updates"
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:897
+#: admin/abstracts/class-admin-page.php:921
 msgid ""
 "Your Stripe webhook is inactive. Reconnect your Stripe account to enable "
 "automatic webhook setup and receive instant payment status updates for "
 "seamless transaction tracking."
 msgstr ""
 
-#: admin/abstracts/class-admin-page.php:902
+#: admin/abstracts/class-admin-page.php:926
 #: admin/views/dashboard/new-feature-notice.php:78
 msgid "Reconnect with Stripe"
 msgstr ""
@@ -3517,10 +3521,10 @@ msgstr ""
 #: library/addon/admin/class-integration-admin-ajax.php:97
 #: library/class-export.php:247 library/helpers/helper-core.php:148
 #: library/helpers/helper-core.php:162
-#: library/modules/custom-forms/front/front-action.php:4833
-#: library/modules/custom-forms/front/front-action.php:4847
-#: library/modules/custom-forms/front/front-action.php:4876
-#: library/modules/custom-forms/front/front-action.php:4902
+#: library/modules/custom-forms/front/front-action.php:5018
+#: library/modules/custom-forms/front/front-action.php:5032
+#: library/modules/custom-forms/front/front-action.php:5061
+#: library/modules/custom-forms/front/front-action.php:5087
 msgid "Invalid request, you are not allowed to do that action."
 msgstr ""
 
@@ -3580,7 +3584,7 @@ msgstr ""
 #: admin/classes/class-admin-ajax.php:2864
 #: admin/classes/class-admin-ajax.php:2895
 #: admin/classes/class-admin-ajax.php:2942 admin/locale.php:1055
-#: library/abstracts/abstract-class-front-action.php:1137
+#: library/abstracts/abstract-class-front-action.php:1143
 #: library/modules/custom-forms/admin/admin-loader.php:963
 msgid "Something went wrong."
 msgstr ""
@@ -3876,37 +3880,37 @@ msgid "Month of the year"
 msgstr ""
 
 #: admin/classes/class-admin-l10n.php:78 admin/locale.php:1319
-#: library/helpers/helper-core.php:1168 library/helpers/helper-fields.php:605
+#: library/helpers/helper-core.php:1194 library/helpers/helper-fields.php:605
 msgid "Monday"
 msgstr ""
 
 #: admin/classes/class-admin-l10n.php:79 admin/locale.php:1321
-#: library/helpers/helper-core.php:1169 library/helpers/helper-fields.php:606
+#: library/helpers/helper-core.php:1195 library/helpers/helper-fields.php:606
 msgid "Tuesday"
 msgstr ""
 
 #: admin/classes/class-admin-l10n.php:80 admin/locale.php:1317
-#: library/helpers/helper-core.php:1170 library/helpers/helper-fields.php:607
+#: library/helpers/helper-core.php:1196 library/helpers/helper-fields.php:607
 msgid "Wednesday"
 msgstr ""
 
 #: admin/classes/class-admin-l10n.php:81 admin/locale.php:1320
-#: library/helpers/helper-core.php:1171 library/helpers/helper-fields.php:608
+#: library/helpers/helper-core.php:1197 library/helpers/helper-fields.php:608
 msgid "Thursday"
 msgstr ""
 
 #: admin/classes/class-admin-l10n.php:82 admin/locale.php:1322
-#: library/helpers/helper-core.php:1172 library/helpers/helper-fields.php:609
+#: library/helpers/helper-core.php:1198 library/helpers/helper-fields.php:609
 msgid "Friday"
 msgstr ""
 
 #: admin/classes/class-admin-l10n.php:83 admin/locale.php:1318
-#: library/helpers/helper-core.php:1173 library/helpers/helper-fields.php:610
+#: library/helpers/helper-core.php:1199 library/helpers/helper-fields.php:610
 msgid "Saturday"
 msgstr ""
 
 #: admin/classes/class-admin-l10n.php:84 admin/locale.php:1316
-#: library/helpers/helper-core.php:1174 library/helpers/helper-fields.php:604
+#: library/helpers/helper-core.php:1200 library/helpers/helper-fields.php:604
 msgid "Sunday"
 msgstr ""
 
@@ -4242,7 +4246,7 @@ msgstr ""
 
 #: admin/classes/class-admin-l10n.php:173 admin/classes/class-admin.php:260
 #: admin/locale.php:456 admin/views/settings/header.php:10
-#: library/helpers/helper-core.php:1936
+#: library/helpers/helper-core.php:1962
 #: library/modules/quizzes/admin/admin-loader.php:552
 msgid "Settings"
 msgstr ""
@@ -4600,7 +4604,7 @@ msgstr ""
 
 #: admin/classes/class-admin-l10n.php:269
 #: admin/views/templates/preset/content.php:24
-#: library/helpers/helper-fields.php:1959
+#: library/helpers/helper-fields.php:1990
 msgid "Categories"
 msgstr ""
 
@@ -4774,7 +4778,7 @@ msgstr ""
 
 #: admin/classes/class-admin-l10n.php:317 admin/locale.php:430
 #: library/field-autofill-providers/class-wp-post.php:59
-#: library/helpers/helper-fields.php:1919
+#: library/helpers/helper-fields.php:1950
 #: library/model/class-form-entry-model.php:1979
 #: library/modules/polls/admin/admin-loader.php:195
 #: library/modules/quizzes/admin/admin-loader.php:561
@@ -5598,7 +5602,7 @@ msgstr ""
 
 #: admin/classes/class-admin.php:229 admin/classes/class-admin.php:230
 #: admin/locale.php:455 admin/views/integrations/header.php:10
-#: library/helpers/helper-core.php:1923
+#: library/helpers/helper-core.php:1949
 msgid "Integrations"
 msgstr ""
 
@@ -5607,7 +5611,7 @@ msgid "Global Settings"
 msgstr ""
 
 #: admin/classes/class-admin.php:278 admin/views/templates/header.php:10
-#: library/helpers/helper-core.php:1904
+#: library/helpers/helper-core.php:1930
 msgid "Templates"
 msgstr ""
 
@@ -5626,12 +5630,12 @@ msgstr ""
 
 #: admin/classes/class-admin.php:350
 #: admin/views/custom-form/popup/import-cf7.php:174
-#: library/helpers/helper-core.php:1916
+#: library/helpers/helper-core.php:1942
 msgid "Add-ons"
 msgstr ""
 
 #: admin/classes/class-admin.php:370 admin/views/common/reports/header.php:10
-#: library/helpers/helper-core.php:1929
+#: library/helpers/helper-core.php:1955
 msgid "Reports"
 msgstr ""
 
@@ -6852,7 +6856,7 @@ msgstr ""
 msgid "Retake"
 msgstr ""
 
-#: admin/locale.php:475 library/helpers/helper-fields.php:1928
+#: admin/locale.php:475 library/helpers/helper-fields.php:1959
 #: library/model/class-form-entry-model.php:2012
 #: library/modules/quizzes/admin/admin-loader.php:643
 msgid "Content"
@@ -7548,7 +7552,7 @@ msgstr ""
 msgid "Subject"
 msgstr ""
 
-#: admin/locale.php:653 library/helpers/helper-fields.php:3029
+#: admin/locale.php:653 library/helpers/helper-fields.php:3060
 msgid "Quiz Answer"
 msgstr ""
 
@@ -7869,7 +7873,7 @@ msgstr ""
 #: library/modules/custom-forms/form-templates/template-contact-form.php:120
 #: library/modules/custom-forms/form-templates/template-leads.php:126
 #: library/modules/quizzes/admin/admin-loader.php:609
-#: library/render/class-render-form.php:782
+#: library/render/class-render-form.php:791
 msgid "Submit"
 msgstr ""
 
@@ -8118,7 +8122,7 @@ msgid ""
 "lead generation is enabled and set to show before the quiz."
 msgstr ""
 
-#: admin/locale.php:794 library/render/class-render-form.php:795
+#: admin/locale.php:794 library/render/class-render-form.php:804
 msgid "Start Quiz"
 msgstr ""
 
@@ -8459,7 +8463,7 @@ msgstr ""
 msgid "(Separate multiple emails with a comma)"
 msgstr ""
 
-#: admin/locale.php:882 library/helpers/helper-fields.php:2841
+#: admin/locale.php:882 library/helpers/helper-fields.php:2872
 msgid "Poll Result"
 msgstr ""
 
@@ -12930,7 +12934,7 @@ msgstr ""
 msgid "Choose whether to allow this field to be used in calculations or not."
 msgstr ""
 
-#: admin/locale.php:1910 library/helpers/helper-fields.php:1938
+#: admin/locale.php:1910 library/helpers/helper-fields.php:1969
 #: library/model/class-form-entry-model.php:2042
 msgid "Excerpt"
 msgstr ""
@@ -13141,7 +13145,7 @@ msgid "Pay with PayPal"
 msgstr ""
 
 #: admin/locale.php:1958 admin/views/settings/payments/section-paypal.php:27
-#: library/fields/paypal.php:74
+#: library/fields/paypal.php:95
 msgid "PayPal"
 msgstr ""
 
@@ -14137,7 +14141,7 @@ msgid ""
 "WordPress sites."
 msgstr ""
 
-#: admin/locale.php:2183 library/fields/stripe.php:4452
+#: admin/locale.php:2183 library/fields/stripe.php:4471
 msgid "Subscription"
 msgstr ""
 
@@ -14168,7 +14172,7 @@ msgstr ""
 
 #: admin/locale.php:2190
 #: admin/views/custom-form/entries/content-details.php:328
-#: library/fields/stripe.php:4449
+#: library/fields/stripe.php:4468
 #: library/modules/custom-forms/front/front-mail.php:830
 msgid "One Time"
 msgstr ""
@@ -14797,7 +14801,7 @@ msgid "Email input label"
 msgstr ""
 
 #: admin/locale.php:2330
-#: library/modules/custom-forms/front/front-action.php:3085
+#: library/modules/custom-forms/front/front-action.php:3262
 msgid "Send draft link to"
 msgstr ""
 
@@ -14806,7 +14810,7 @@ msgid "Placeholder (Optional)"
 msgstr ""
 
 #: admin/locale.php:2332
-#: library/modules/custom-forms/front/front-action.php:3086
+#: library/modules/custom-forms/front/front-action.php:3263
 msgid "E.g., johndoe@gmail.com"
 msgstr ""
 
@@ -14815,7 +14819,7 @@ msgid "Send link button label"
 msgstr ""
 
 #: admin/locale.php:2334
-#: library/modules/custom-forms/front/front-action.php:3087
+#: library/modules/custom-forms/front/front-action.php:3264
 msgid "Send draft link"
 msgstr ""
 
@@ -17962,7 +17966,7 @@ msgid ""
 msgstr ""
 
 #: admin/views/settings/tab-pagination.php:20
-#: library/helpers/helper-core.php:1898
+#: library/helpers/helper-core.php:1924
 msgid "Modules"
 msgstr ""
 
@@ -18264,8 +18268,8 @@ msgid "You can only select up to %d options."
 msgstr ""
 
 #: library/abstracts/abstract-class-front-action.php:188
-#: library/modules/custom-forms/front/front-action.php:1769
-#: library/modules/custom-forms/front/front-action.php:1780
+#: library/modules/custom-forms/front/front-action.php:1854
+#: library/modules/custom-forms/front/front-action.php:1865
 #: library/modules/custom-forms/user/class-forminator-cform-user-data.php:208
 #: library/modules/quizzes/front/front-action.php:935
 msgid "Error: Module object is corrupted!"
@@ -18276,8 +18280,8 @@ msgid "Error: Your module ID doesn't exist!"
 msgstr ""
 
 #: library/abstracts/abstract-class-front-action.php:490
-#: library/modules/custom-forms/front/front-action.php:418
-#: library/modules/custom-forms/front/front-action.php:503
+#: library/modules/custom-forms/front/front-action.php:421
+#: library/modules/custom-forms/front/front-action.php:506
 #: library/modules/quizzes/front/front-action.php:55
 msgid "Invalid nonce. Please refresh your browser."
 msgstr ""
@@ -18290,35 +18294,35 @@ msgstr ""
 msgid "Copy Link"
 msgstr ""
 
-#: library/abstracts/abstract-class-front-action.php:887
-#: library/abstracts/abstract-class-front-action.php:895
+#: library/abstracts/abstract-class-front-action.php:893
+#: library/abstracts/abstract-class-front-action.php:901
 #: library/fields/upload.php:341 library/fields/upload.php:444
 #: library/fields/upload.php:453
 msgid "Error saving form. Uploaded file extension is not allowed."
 msgstr ""
 
-#: library/abstracts/abstract-class-front-action.php:909
+#: library/abstracts/abstract-class-front-action.php:915
 #: library/fields/upload.php:497
 msgid "Error saving form. Failed to read uploaded file."
 msgstr ""
 
-#: library/abstracts/abstract-class-front-action.php:924
+#: library/abstracts/abstract-class-front-action.php:930
 #. translators: %s: Maximum size
 msgid "Error saving form. Uploaded file size exceeds %s upload limit. "
 msgstr ""
 
-#: library/abstracts/abstract-class-front-action.php:931
-#: library/abstracts/abstract-class-front-action.php:958
+#: library/abstracts/abstract-class-front-action.php:937
+#: library/abstracts/abstract-class-front-action.php:964
 msgid "Error saving form. Upload error. "
 msgstr ""
 
-#: library/abstracts/abstract-class-front-action.php:1186
+#: library/abstracts/abstract-class-front-action.php:1192
 msgid "Form entry saved"
 msgstr ""
 
-#: library/abstracts/abstract-class-front-action.php:1277
 #: library/abstracts/abstract-class-front-action.php:1283
-#: library/abstracts/abstract-class-front-action.php:1290
+#: library/abstracts/abstract-class-front-action.php:1289
+#: library/abstracts/abstract-class-front-action.php:1296
 #: library/class-handle-webhooks.php:72
 msgid "Invalid request."
 msgstr ""
@@ -18354,7 +18358,7 @@ msgid "Failed to disconnected from this module"
 msgstr ""
 
 #: library/addon/admin/class-integration-admin-ajax.php:370
-#: library/modules/custom-forms/front/front-action.php:2764
+#: library/modules/custom-forms/front/front-action.php:2944
 #. translators: %s: Required field
 #. translators: %s: Field name
 msgid "Field %s is required"
@@ -18757,7 +18761,7 @@ msgid "Invalid nonce."
 msgstr ""
 
 #: library/class-export.php:263
-#: library/modules/custom-forms/front/front-action.php:4890
+#: library/modules/custom-forms/front/front-action.php:5075
 #: library/modules/custom-forms/user/class-forminator-cform-user-data.php:97
 #: library/modules/custom-forms/user/class-forminator-cform-user-data.php:249
 msgid "Invalid form ID."
@@ -19107,7 +19111,7 @@ msgid ""
 msgstr ""
 
 #: library/fields/captcha.php:377
-#: library/modules/custom-forms/front/front-action.php:834
+#: library/modules/custom-forms/front/front-action.php:871
 msgid "Captcha verification failed. Please try again."
 msgstr ""
 
@@ -19204,11 +19208,11 @@ msgstr ""
 msgid "field name"
 msgstr ""
 
-#: library/fields/custom.php:288 library/fields/postdata.php:694
-#: library/fields/postdata.php:703 library/fields/postdata.php:712
-#: library/fields/postdata.php:831 library/fields/postdata.php:834
-#: library/fields/postdata.php:837 library/fields/postdata.php:1239
-#: library/fields/postdata.php:1253 library/fields/postdata.php:1267
+#: library/fields/custom.php:288 library/fields/postdata.php:697
+#: library/fields/postdata.php:706 library/fields/postdata.php:715
+#: library/fields/postdata.php:875 library/fields/postdata.php:878
+#: library/fields/postdata.php:881 library/fields/postdata.php:1320
+#: library/fields/postdata.php:1334 library/fields/postdata.php:1348
 #. translators: %s: Field name
 #. Translators: 1. Post title label
 #. Translators: 1. Post content label
@@ -19427,20 +19431,35 @@ msgstr ""
 msgid "Your passwords don't match."
 msgstr ""
 
-#: library/fields/paypal.php:315 library/fields/paypal.php:332
+#: library/fields/paypal.php:342 library/fields/paypal.php:359
+#: library/fields/paypal.php:571
 msgid ""
 "Error! Something went wrong during checkout and payment couldn't be "
 "approved."
 msgstr ""
 
-#: library/fields/paypal.php:350 library/fields/stripe.php:2436
+#: library/fields/paypal.php:377 library/fields/stripe.php:2436
 #: library/fields/stripe.php:2446
-#: library/modules/custom-forms/front/front-action.php:3922
+#: library/modules/custom-forms/front/front-action.php:4106
 msgid "Error! Invalid payment amount!"
 msgstr ""
 
-#: library/fields/paypal.php:368
+#: library/fields/paypal.php:395
 msgid "Error! Invalid currency code!"
+msgstr ""
+
+#: library/fields/paypal.php:641 library/fields/paypal.php:649
+#: library/fields/paypal.php:662 library/fields/stripe.php:2410
+#: library/fields/stripe.php:2422
+#: library/modules/custom-forms/front/front-action.php:2652
+#: library/modules/custom-forms/front/front-action.php:3897
+msgid "Payment failed, please try again!"
+msgstr ""
+
+#: library/fields/paypal.php:654
+msgid ""
+"Your payment is still being processed by PayPal and couldn't be confirmed. "
+"Please contact us before trying again."
 msgstr ""
 
 #: library/fields/phone.php:84
@@ -19499,40 +19518,40 @@ msgstr ""
 msgid "Post Excerpt"
 msgstr ""
 
-#: library/fields/postdata.php:112 library/helpers/helper-fields.php:1959
+#: library/fields/postdata.php:112 library/helpers/helper-fields.php:1990
 #: library/model/class-form-entry-model.php:2073
 #: library/model/class-form-entry-model.php:2090
 #: library/modules/custom-forms/form-templates/template-post.php:57
 msgid "Category"
 msgstr ""
 
-#: library/fields/postdata.php:683
+#: library/fields/postdata.php:686
 msgid "This field is required. Please fill in post data."
 msgstr ""
 
-#: library/fields/postdata.php:721 library/fields/postdata.php:1281
+#: library/fields/postdata.php:724 library/fields/postdata.php:1362
 #. Translators: 1. Post image label
 msgid "This field is required. Please upload a %s."
 msgstr ""
 
-#: library/fields/postdata.php:733 library/fields/postdata.php:1302
+#: library/fields/postdata.php:736 library/fields/postdata.php:1383
 #. translators: %s: Category Label
 #. translators: %s: Category singular
 msgid "This field is required. Please select a %s."
 msgstr ""
 
-#: library/fields/postdata.php:795 library/fields/postdata.php:1315
+#: library/fields/postdata.php:792 library/fields/postdata.php:1396
 msgid "Uploaded file's extension is not allowed."
 msgstr ""
 
-#: library/fields/postdata.php:819
+#: library/fields/postdata.php:863
 #. Translators: 1. Post title label, 2. Post excerpt label, 3. Post content
 #. label.
 msgid "At least one of these fields is required: %1$s, %2$s or %3$s."
 msgstr ""
 
-#: library/fields/postdata.php:822 library/fields/postdata.php:825
-#: library/fields/postdata.php:828
+#: library/fields/postdata.php:866 library/fields/postdata.php:869
+#: library/fields/postdata.php:872
 #. Translators: 1. Post title label, 2. Post content label.
 #. Translators: 1. Post title label, 2. Post excerpt label.
 #. Translators: 1. Post content label, 2. Post excerpt label.
@@ -19574,7 +19593,7 @@ msgstr ""
 
 #: library/fields/stripe.php:1426 library/fields/stripe.php:1448
 #: library/fields/stripe.php:2738 library/fields/stripe.php:2757
-#: library/fields/stripe.php:3965
+#: library/fields/stripe.php:3984
 msgid "Payment Intent ID is not valid"
 msgstr ""
 
@@ -19592,7 +19611,7 @@ msgstr ""
 
 #: library/fields/stripe.php:1498 library/fields/stripe.php:1654
 #: library/fields/stripe.php:2200
-#: library/modules/custom-forms/front/front-action.php:1431
+#: library/modules/custom-forms/front/front-action.php:1498
 msgid "Payment amount should be greater than 0."
 msgstr ""
 
@@ -19605,7 +19624,7 @@ msgid "Your Payment Method is empty!"
 msgstr ""
 
 #: library/fields/stripe.php:1585
-#: library/modules/custom-forms/front/front-action.php:1474
+#: library/modules/custom-forms/front/front-action.php:1541
 msgid "Forminator Stripe Subscription Add-on is required to submit this form."
 msgstr ""
 
@@ -19618,21 +19637,15 @@ msgstr ""
 #: library/fields/stripe.php:2917 library/fields/stripe.php:2927
 #: library/fields/stripe.php:2962 library/fields/stripe.php:2971
 #: library/fields/stripe.php:2979
-#: library/modules/custom-forms/front/front-action.php:593
-#: library/modules/custom-forms/front/front-action.php:633
+#: library/modules/custom-forms/front/front-action.php:596
+#: library/modules/custom-forms/front/front-action.php:636
 msgid "Checkout Session ID is not valid"
 msgstr ""
 
 #: library/fields/stripe.php:1831 library/fields/stripe.php:1842
 #: library/helpers/helper-core.php:505
-#: library/modules/custom-forms/front/front-action.php:607
+#: library/modules/custom-forms/front/front-action.php:610
 msgid "Payment failed. Please try again."
-msgstr ""
-
-#: library/fields/stripe.php:2410 library/fields/stripe.php:2422
-#: library/modules/custom-forms/front/front-action.php:2518
-#: library/modules/custom-forms/front/front-action.php:3743
-msgid "Payment failed, please try again!"
 msgstr ""
 
 #: library/fields/stripe.php:2727
@@ -19659,12 +19672,12 @@ msgstr ""
 msgid "Duplicate entry."
 msgstr ""
 
-#: library/fields/stripe.php:3957 library/fields/stripe.php:4070
+#: library/fields/stripe.php:3976 library/fields/stripe.php:4089
 msgid "Stripe Payment ID does not exist."
 msgstr ""
 
-#: library/fields/stripe.php:4005
-#: library/modules/custom-forms/front/front-action.php:512
+#: library/fields/stripe.php:4024
+#: library/modules/custom-forms/front/front-action.php:515
 msgid "Stripe Checkout Session ID does not exist."
 msgstr ""
 
@@ -19773,7 +19786,7 @@ msgstr ""
 #: library/fields/upload.php:511 library/fields/upload.php:583
 #: library/fields/upload.php:594 library/fields/upload.php:765
 #: library/fields/upload.php:899 library/fields/upload.php:990
-#: library/modules/custom-forms/front/front-action.php:3471
+#: library/modules/custom-forms/front/front-action.php:3648
 msgid "Error saving form. Upload error."
 msgstr ""
 
@@ -19925,414 +19938,415 @@ msgstr ""
 msgid "The results could not be loaded."
 msgstr ""
 
-#: library/helpers/helper-core.php:1332
+#: library/helpers/helper-core.php:1358
 msgid "Arabic"
 msgstr ""
 
-#: library/helpers/helper-core.php:1333
+#: library/helpers/helper-core.php:1359
 msgid "Afrikaans"
 msgstr ""
 
-#: library/helpers/helper-core.php:1334
+#: library/helpers/helper-core.php:1360
 msgid "Amharic"
 msgstr ""
 
-#: library/helpers/helper-core.php:1335
+#: library/helpers/helper-core.php:1361
 msgid "Armenian"
 msgstr ""
 
-#: library/helpers/helper-core.php:1336
+#: library/helpers/helper-core.php:1362
 msgid "Azerbaijani"
 msgstr ""
 
-#: library/helpers/helper-core.php:1337
+#: library/helpers/helper-core.php:1363
 msgid "Basque"
 msgstr ""
 
-#: library/helpers/helper-core.php:1338
+#: library/helpers/helper-core.php:1364
 msgid "Bengali"
 msgstr ""
 
-#: library/helpers/helper-core.php:1339
+#: library/helpers/helper-core.php:1365
 msgid "Bulgarian"
 msgstr ""
 
-#: library/helpers/helper-core.php:1340
+#: library/helpers/helper-core.php:1366
 msgid "Catalan"
 msgstr ""
 
-#: library/helpers/helper-core.php:1341
+#: library/helpers/helper-core.php:1367
 msgid "Chinese (Hong Kong)"
 msgstr ""
 
-#: library/helpers/helper-core.php:1342
+#: library/helpers/helper-core.php:1368
 msgid "Chinese (Simplified)"
 msgstr ""
 
-#: library/helpers/helper-core.php:1343
+#: library/helpers/helper-core.php:1369
 msgid "Chinese (Traditional)"
 msgstr ""
 
-#: library/helpers/helper-core.php:1344
+#: library/helpers/helper-core.php:1370
 msgid "Croatian"
 msgstr ""
 
-#: library/helpers/helper-core.php:1345
+#: library/helpers/helper-core.php:1371
 msgid "Czech"
 msgstr ""
 
-#: library/helpers/helper-core.php:1346
+#: library/helpers/helper-core.php:1372
 msgid "Danish"
 msgstr ""
 
-#: library/helpers/helper-core.php:1347
+#: library/helpers/helper-core.php:1373
 msgid "Dutch"
 msgstr ""
 
-#: library/helpers/helper-core.php:1348
+#: library/helpers/helper-core.php:1374
 msgid "English (UK)"
 msgstr ""
 
-#: library/helpers/helper-core.php:1349
+#: library/helpers/helper-core.php:1375
 msgid "English (US)"
 msgstr ""
 
-#: library/helpers/helper-core.php:1350
+#: library/helpers/helper-core.php:1376
 msgid "Estonian"
 msgstr ""
 
-#: library/helpers/helper-core.php:1351
+#: library/helpers/helper-core.php:1377
 msgid "Filipino"
 msgstr ""
 
-#: library/helpers/helper-core.php:1352
+#: library/helpers/helper-core.php:1378
 msgid "Finnish"
 msgstr ""
 
-#: library/helpers/helper-core.php:1353
+#: library/helpers/helper-core.php:1379
 msgid "French"
 msgstr ""
 
-#: library/helpers/helper-core.php:1354
+#: library/helpers/helper-core.php:1380
 msgid "French (Canadian)"
 msgstr ""
 
-#: library/helpers/helper-core.php:1355
+#: library/helpers/helper-core.php:1381
 msgid "Galician"
 msgstr ""
 
-#: library/helpers/helper-core.php:1356
+#: library/helpers/helper-core.php:1382
 msgid "Georgian"
 msgstr ""
 
-#: library/helpers/helper-core.php:1357
+#: library/helpers/helper-core.php:1383
 msgid "German"
 msgstr ""
 
-#: library/helpers/helper-core.php:1358
+#: library/helpers/helper-core.php:1384
 msgid "German (Austria)"
 msgstr ""
 
-#: library/helpers/helper-core.php:1359
+#: library/helpers/helper-core.php:1385
 msgid "German (Switzerland)"
 msgstr ""
 
-#: library/helpers/helper-core.php:1360
+#: library/helpers/helper-core.php:1386
 msgid "Greek"
 msgstr ""
 
-#: library/helpers/helper-core.php:1361
+#: library/helpers/helper-core.php:1387
 msgid "Gujarati"
 msgstr ""
 
-#: library/helpers/helper-core.php:1362
+#: library/helpers/helper-core.php:1388
 msgid "Hebrew"
 msgstr ""
 
-#: library/helpers/helper-core.php:1363
+#: library/helpers/helper-core.php:1389
 msgid "Hindi"
 msgstr ""
 
-#: library/helpers/helper-core.php:1364
+#: library/helpers/helper-core.php:1390
 msgid "Hungarain"
 msgstr ""
 
-#: library/helpers/helper-core.php:1365
+#: library/helpers/helper-core.php:1391
 msgid "Icelandic"
 msgstr ""
 
-#: library/helpers/helper-core.php:1366
+#: library/helpers/helper-core.php:1392
 msgid "Indonesian"
 msgstr ""
 
-#: library/helpers/helper-core.php:1367
+#: library/helpers/helper-core.php:1393
 msgid "Italian"
 msgstr ""
 
-#: library/helpers/helper-core.php:1368
+#: library/helpers/helper-core.php:1394
 msgid "Japanese"
 msgstr ""
 
-#: library/helpers/helper-core.php:1369
+#: library/helpers/helper-core.php:1395
 msgid "Kannada"
 msgstr ""
 
-#: library/helpers/helper-core.php:1370
+#: library/helpers/helper-core.php:1396
 msgid "Korean"
 msgstr ""
 
-#: library/helpers/helper-core.php:1371
+#: library/helpers/helper-core.php:1397
 msgid "Laothian"
 msgstr ""
 
-#: library/helpers/helper-core.php:1372
+#: library/helpers/helper-core.php:1398
 msgid "Latvian"
 msgstr ""
 
-#: library/helpers/helper-core.php:1373
+#: library/helpers/helper-core.php:1399
 msgid "Lithuanian"
 msgstr ""
 
-#: library/helpers/helper-core.php:1374
+#: library/helpers/helper-core.php:1400
 msgid "Malay"
 msgstr ""
 
-#: library/helpers/helper-core.php:1375
+#: library/helpers/helper-core.php:1401
 msgid "Malayalam"
 msgstr ""
 
-#: library/helpers/helper-core.php:1376
+#: library/helpers/helper-core.php:1402
 msgid "Marathi"
 msgstr ""
 
-#: library/helpers/helper-core.php:1377
+#: library/helpers/helper-core.php:1403
 msgid "Mongolian"
 msgstr ""
 
-#: library/helpers/helper-core.php:1378
+#: library/helpers/helper-core.php:1404
 msgid "Norwegian"
 msgstr ""
 
-#: library/helpers/helper-core.php:1379
+#: library/helpers/helper-core.php:1405
 msgid "Persian"
 msgstr ""
 
-#: library/helpers/helper-core.php:1380
+#: library/helpers/helper-core.php:1406
 msgid "Polish"
 msgstr ""
 
-#: library/helpers/helper-core.php:1381
+#: library/helpers/helper-core.php:1407
 msgid "Portuguese"
 msgstr ""
 
-#: library/helpers/helper-core.php:1382
+#: library/helpers/helper-core.php:1408
 msgid "Portuguese (Brazil)"
 msgstr ""
 
-#: library/helpers/helper-core.php:1383
+#: library/helpers/helper-core.php:1409
 msgid "Portuguese (Portugal)"
 msgstr ""
 
-#: library/helpers/helper-core.php:1384
+#: library/helpers/helper-core.php:1410
 msgid "Romanian"
 msgstr ""
 
-#: library/helpers/helper-core.php:1385
+#: library/helpers/helper-core.php:1411
 msgid "Russian"
 msgstr ""
 
-#: library/helpers/helper-core.php:1386
+#: library/helpers/helper-core.php:1412
 msgid "Serbian"
 msgstr ""
 
-#: library/helpers/helper-core.php:1387
+#: library/helpers/helper-core.php:1413
 msgid "Sinhalese"
 msgstr ""
 
-#: library/helpers/helper-core.php:1388
+#: library/helpers/helper-core.php:1414
 msgid "Slovak"
 msgstr ""
 
-#: library/helpers/helper-core.php:1389
+#: library/helpers/helper-core.php:1415
 msgid "Slovenian"
 msgstr ""
 
-#: library/helpers/helper-core.php:1390
+#: library/helpers/helper-core.php:1416
 msgid "Spanish"
 msgstr ""
 
-#: library/helpers/helper-core.php:1391
+#: library/helpers/helper-core.php:1417
 msgid "Spanish (Latin America)"
 msgstr ""
 
-#: library/helpers/helper-core.php:1392
+#: library/helpers/helper-core.php:1418
 msgid "Swahili"
 msgstr ""
 
-#: library/helpers/helper-core.php:1393
+#: library/helpers/helper-core.php:1419
 msgid "Swedish"
 msgstr ""
 
-#: library/helpers/helper-core.php:1394
+#: library/helpers/helper-core.php:1420
 msgid "Tamil"
 msgstr ""
 
-#: library/helpers/helper-core.php:1395
+#: library/helpers/helper-core.php:1421
 msgid "Telugu"
 msgstr ""
 
-#: library/helpers/helper-core.php:1396
+#: library/helpers/helper-core.php:1422
 msgid "Thai"
 msgstr ""
 
-#: library/helpers/helper-core.php:1397
+#: library/helpers/helper-core.php:1423
 msgid "Turkish"
 msgstr ""
 
-#: library/helpers/helper-core.php:1398
+#: library/helpers/helper-core.php:1424
 msgid "Ukrainian"
 msgstr ""
 
-#: library/helpers/helper-core.php:1399
+#: library/helpers/helper-core.php:1425
 msgid "Urdu"
 msgstr ""
 
-#: library/helpers/helper-core.php:1400
+#: library/helpers/helper-core.php:1426
 msgid "Vietnamese"
 msgstr ""
 
-#: library/helpers/helper-core.php:1401
+#: library/helpers/helper-core.php:1427
 msgid "Zulu"
 msgstr ""
 
-#: library/helpers/helper-core.php:1899
+#: library/helpers/helper-core.php:1925
 msgid "Create, edit, and delete modules (Forms, Polls, Quizzes)."
 msgstr ""
 
-#: library/helpers/helper-core.php:1900
+#: library/helpers/helper-core.php:1926
 msgid "Can create, edit, and delete modules (Forms, Polls, and Quizzes)."
 msgstr ""
 
-#: library/helpers/helper-core.php:1901
+#: library/helpers/helper-core.php:1927
 msgid "Can't create, edit, and delete modules (Forms, Polls, and Quizzes)."
 msgstr ""
 
-#: library/helpers/helper-core.php:1905
+#: library/helpers/helper-core.php:1931
 msgid "View templates page and manage cloud templates."
 msgstr ""
 
-#: library/helpers/helper-core.php:1906
+#: library/helpers/helper-core.php:1932
 msgid "Can create, edit, and delete templates."
 msgstr ""
 
-#: library/helpers/helper-core.php:1907
+#: library/helpers/helper-core.php:1933
 msgid "Can't create, edit, and delete templates."
 msgstr ""
 
-#: library/helpers/helper-core.php:1911
+#: library/helpers/helper-core.php:1937
 msgid "Access, export, and delete submissions."
 msgstr ""
 
-#: library/helpers/helper-core.php:1912
+#: library/helpers/helper-core.php:1938
 msgid "Can view and delete submissions."
 msgstr ""
 
-#: library/helpers/helper-core.php:1913
+#: library/helpers/helper-core.php:1939
 msgid "Can't view and delete submissions."
 msgstr ""
 
-#: library/helpers/helper-core.php:1917
+#: library/helpers/helper-core.php:1943
 msgid "View, install/uninstall, and configure Add-ons."
 msgstr ""
 
-#: library/helpers/helper-core.php:1918
+#: library/helpers/helper-core.php:1944
 msgid "Can configure add-ons."
 msgstr ""
 
-#: library/helpers/helper-core.php:1919
+#: library/helpers/helper-core.php:1945
 msgid "Can't configure add-ons."
 msgstr ""
 
-#: library/helpers/helper-core.php:1924
+#: library/helpers/helper-core.php:1950
 msgid "Access and configure global integrations."
 msgstr ""
 
-#: library/helpers/helper-core.php:1925
+#: library/helpers/helper-core.php:1951
 msgid "Can configure integrations."
 msgstr ""
 
-#: library/helpers/helper-core.php:1926
+#: library/helpers/helper-core.php:1952
 msgid "Can't configure integrations."
 msgstr ""
 
-#: library/helpers/helper-core.php:1930
+#: library/helpers/helper-core.php:1956
 msgid "View reports and schedule email notifications for modules."
 msgstr ""
 
-#: library/helpers/helper-core.php:1931
+#: library/helpers/helper-core.php:1957
 msgid "Can configure reports."
 msgstr ""
 
-#: library/helpers/helper-core.php:1932
+#: library/helpers/helper-core.php:1958
 msgid "Can't configure reports."
 msgstr ""
 
-#: library/helpers/helper-core.php:1937
+#: library/helpers/helper-core.php:1963
 msgid "Access and configure plugin settings."
 msgstr ""
 
-#: library/helpers/helper-core.php:1938
+#: library/helpers/helper-core.php:1964
 msgid "Can configure settings except permissions."
 msgstr ""
 
-#: library/helpers/helper-core.php:1939
+#: library/helpers/helper-core.php:1965
 msgid "Can't configure settings."
 msgstr ""
 
-#: library/helpers/helper-core.php:1940
+#: library/helpers/helper-core.php:1966
 msgid "Can configure all settings."
 msgstr ""
 
-#: library/helpers/helper-core.php:2233
+#: library/helpers/helper-core.php:2259
 msgid "Captcha can only be placed on the last page in a paginated form."
 msgstr ""
 
-#: library/helpers/helper-core.php:2316
+#: library/helpers/helper-core.php:2342
 #: library/modules/custom-forms/admin/admin-page-entries.php:123
 #: library/modules/custom-forms/user/class-forminator-cform-user-signups.php:509
-#: library/modules/custom-forms/user/class-forminator-cform-user-signups.php:597
+#: library/modules/custom-forms/user/class-forminator-cform-user-signups.php:521
+#: library/modules/custom-forms/user/class-forminator-cform-user-signups.php:603
 msgid ""
 "Unfortunately, you do not have the required permissions or user role to "
 "perform this action."
 msgstr ""
 
-#: library/helpers/helper-core.php:2355
+#: library/helpers/helper-core.php:2381
 msgid "Please map all required user fields before saving this registration form."
 msgstr ""
 
-#: library/helpers/helper-core.php:2653
+#: library/helpers/helper-core.php:2679
 msgid "Stripe - Failed Email Notification"
 msgstr ""
 
-#: library/helpers/helper-core.php:2657
+#: library/helpers/helper-core.php:2683
 msgid "Payment Failed for {form_name} (submission #{submission_id})"
 msgstr ""
 
-#: library/helpers/helper-core.php:2660
+#: library/helpers/helper-core.php:2686
 msgid ""
 "A payment attempt for {form_name} could not be completed. The submission "
 "details have been saved, but payment processing failed."
 msgstr ""
 
-#: library/helpers/helper-core.php:2661
+#: library/helpers/helper-core.php:2687
 msgid "Details:"
 msgstr ""
 
-#: library/helpers/helper-core.php:2662
+#: library/helpers/helper-core.php:2688
 msgid "Submission ID: #{submission_id}"
 msgstr ""
 
-#: library/helpers/helper-core.php:2663
+#: library/helpers/helper-core.php:2689
 msgid "Amount: {payment_amount} {payment_currency}"
 msgstr ""
 
@@ -20376,2448 +20390,2448 @@ msgstr ""
 msgid "Subscription ID"
 msgstr ""
 
-#: library/helpers/helper-fields.php:1527
+#: library/helpers/helper-fields.php:1558
 msgid "here"
 msgstr ""
 
-#: library/helpers/helper-fields.php:1898
+#: library/helpers/helper-fields.php:1929
 #: library/model/class-form-entry-model.php:1695
 msgid "View File"
 msgstr ""
 
-#: library/helpers/helper-fields.php:1915
+#: library/helpers/helper-fields.php:1946
 #: library/model/class-form-entry-model.php:1977
 msgid "(no title)"
 msgstr ""
 
-#: library/helpers/helper-fields.php:1982
+#: library/helpers/helper-fields.php:2013
 #: library/model/class-form-entry-model.php:2197
 msgid "Tag"
 msgstr ""
 
-#: library/helpers/helper-fields.php:1994
+#: library/helpers/helper-fields.php:2025
 #: library/model/class-form-entry-model.php:2226
 #: library/modules/quizzes/admin/admin-loader.php:567
 #: library/modules/quizzes/admin/admin-loader.php:656
 msgid "Featured image"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2005
+#: library/helpers/helper-fields.php:2036
 #: library/model/class-form-entry-model.php:2257
 msgid "Custom fields"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2163
+#: library/helpers/helper-fields.php:2194
 #. Translators: 1. Opening <strong> tag, 2. closing <strong> tag 3. currency
 #. symbol with cost
 msgid "%1$sTotal%2$s %3$s"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2295
+#: library/helpers/helper-fields.php:2326
 msgid "Afghanistan"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2296
+#: library/helpers/helper-fields.php:2327
 msgid "Albania"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2297
+#: library/helpers/helper-fields.php:2328
 msgid "Algeria"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2298
-#: library/helpers/helper-fields.php:3928
+#: library/helpers/helper-fields.php:2329
+#: library/helpers/helper-fields.php:3959
 msgid "American Samoa"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2299
+#: library/helpers/helper-fields.php:2330
 msgid "Andorra"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2300
+#: library/helpers/helper-fields.php:2331
 msgid "Angola"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2301
+#: library/helpers/helper-fields.php:2332
 msgid "Anguilla"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2302
+#: library/helpers/helper-fields.php:2333
 msgid "Antarctica"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2303
+#: library/helpers/helper-fields.php:2334
 msgid "Antigua & Barbuda"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2304
+#: library/helpers/helper-fields.php:2335
 msgid "Argentina"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2305
+#: library/helpers/helper-fields.php:2336
 msgid "Armenia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2306
+#: library/helpers/helper-fields.php:2337
 msgid "Australia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2307
+#: library/helpers/helper-fields.php:2338
 msgid "Aruba"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2308
+#: library/helpers/helper-fields.php:2339
 msgid "Ascension Island"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2309
+#: library/helpers/helper-fields.php:2340
 msgid "Austria"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2310
+#: library/helpers/helper-fields.php:2341
 msgid "Azerbaijan"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2311
+#: library/helpers/helper-fields.php:2342
 msgid "Bahamas"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2312
+#: library/helpers/helper-fields.php:2343
 msgid "Bahrain"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2313
+#: library/helpers/helper-fields.php:2344
 msgid "Bangladesh"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2314
+#: library/helpers/helper-fields.php:2345
 msgid "Barbados"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2315
+#: library/helpers/helper-fields.php:2346
 msgid "Belarus"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2316
+#: library/helpers/helper-fields.php:2347
 msgid "Belgium"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2317
+#: library/helpers/helper-fields.php:2348
 msgid "Belize"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2318
+#: library/helpers/helper-fields.php:2349
 msgid "Benin"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2319
+#: library/helpers/helper-fields.php:2350
 msgid "Bermuda"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2320
+#: library/helpers/helper-fields.php:2351
 msgid "Bhutan"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2321
+#: library/helpers/helper-fields.php:2352
 msgid "Bolivia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2322
+#: library/helpers/helper-fields.php:2353
 msgid "Bosnia and Herzegovina"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2323
+#: library/helpers/helper-fields.php:2354
 msgid "Botswana"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2324
+#: library/helpers/helper-fields.php:2355
 msgid "Bouvet Island"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2325
+#: library/helpers/helper-fields.php:2356
 msgid "Brazil"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2326
+#: library/helpers/helper-fields.php:2357
 msgid "British Indian Ocean Territory"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2327
+#: library/helpers/helper-fields.php:2358
 msgid "British Virgin Islands"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2328
+#: library/helpers/helper-fields.php:2359
 msgid "Brunei"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2329
+#: library/helpers/helper-fields.php:2360
 msgid "Bulgaria"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2330
+#: library/helpers/helper-fields.php:2361
 msgid "Burkina Faso"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2331
+#: library/helpers/helper-fields.php:2362
 msgid "Burundi"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2332
+#: library/helpers/helper-fields.php:2363
 msgid "Cambodia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2333
+#: library/helpers/helper-fields.php:2364
 msgid "Cameroon"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2334
+#: library/helpers/helper-fields.php:2365
 msgid "Canada"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2335
+#: library/helpers/helper-fields.php:2366
 msgid "Cabo Verde"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2336
+#: library/helpers/helper-fields.php:2367
 msgid "Caribbean Netherlands"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2337
+#: library/helpers/helper-fields.php:2368
 msgid "Cayman Islands"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2338
+#: library/helpers/helper-fields.php:2369
 msgid "Central African Republic"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2339
+#: library/helpers/helper-fields.php:2370
 msgid "Chad"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2340
+#: library/helpers/helper-fields.php:2371
 msgid "Chile"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2341
+#: library/helpers/helper-fields.php:2372
 msgid "China"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2342
+#: library/helpers/helper-fields.php:2373
 msgid "Christmas Island"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2343
+#: library/helpers/helper-fields.php:2374
 msgid "Cocos Islands"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2344
+#: library/helpers/helper-fields.php:2375
 msgid "Colombia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2345
+#: library/helpers/helper-fields.php:2376
 msgid "Comoros"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2346
+#: library/helpers/helper-fields.php:2377
 msgid "Congo, Democratic Republic of the"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2347
+#: library/helpers/helper-fields.php:2378
 msgid "Congo, Republic of the"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2348
+#: library/helpers/helper-fields.php:2379
 msgid "Cook Islands"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2349
+#: library/helpers/helper-fields.php:2380
 msgid "Costa Rica"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2350
+#: library/helpers/helper-fields.php:2381
 msgid "Côte d'Ivoire"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2351
+#: library/helpers/helper-fields.php:2382
 msgid "Croatia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2352
+#: library/helpers/helper-fields.php:2383
 msgid "Cuba"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2353
+#: library/helpers/helper-fields.php:2384
 msgid "Curaçao"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2354
+#: library/helpers/helper-fields.php:2385
 msgid "Cyprus"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2355
+#: library/helpers/helper-fields.php:2386
 msgid "Czechia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2356
+#: library/helpers/helper-fields.php:2387
 msgid "Denmark"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2357
+#: library/helpers/helper-fields.php:2388
 msgid "Djibouti"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2358
+#: library/helpers/helper-fields.php:2389
 msgid "Dominica"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2359
+#: library/helpers/helper-fields.php:2390
 msgid "Dominican Republic"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2360
+#: library/helpers/helper-fields.php:2391
 msgid "Ecuador"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2361
+#: library/helpers/helper-fields.php:2392
 msgid "Egypt"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2362
+#: library/helpers/helper-fields.php:2393
 msgid "El Salvador"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2363
+#: library/helpers/helper-fields.php:2394
 msgid "Equatorial Guinea"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2364
+#: library/helpers/helper-fields.php:2395
 msgid "Eritrea"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2365
+#: library/helpers/helper-fields.php:2396
 msgid "Estonia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2366
+#: library/helpers/helper-fields.php:2397
 msgid "Eswatini"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2367
+#: library/helpers/helper-fields.php:2398
 msgid "Ethiopia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2368
+#: library/helpers/helper-fields.php:2399
 msgid "Falkland Islands"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2369
+#: library/helpers/helper-fields.php:2400
 msgid "Faroe Islands"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2370
+#: library/helpers/helper-fields.php:2401
 msgid "Fiji"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2371
+#: library/helpers/helper-fields.php:2402
 msgid "Finland"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2372
+#: library/helpers/helper-fields.php:2403
 msgid "France"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2373
+#: library/helpers/helper-fields.php:2404
 msgid "French Guiana"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2374
+#: library/helpers/helper-fields.php:2405
 msgid "French Polynesia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2375
+#: library/helpers/helper-fields.php:2406
 msgid "French South Territories"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2376
+#: library/helpers/helper-fields.php:2407
 msgid "Gabon"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2377
+#: library/helpers/helper-fields.php:2408
 msgid "Gambia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2378
-#: library/helpers/helper-fields.php:3879
+#: library/helpers/helper-fields.php:2409
+#: library/helpers/helper-fields.php:3910
 msgid "Georgia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2379
+#: library/helpers/helper-fields.php:2410
 msgid "Germany"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2380
+#: library/helpers/helper-fields.php:2411
 msgid "Guernsey"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2381
+#: library/helpers/helper-fields.php:2412
 msgid "Ghana"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2382
+#: library/helpers/helper-fields.php:2413
 msgid "Gibraltar"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2383
+#: library/helpers/helper-fields.php:2414
 msgid "Greece"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2384
+#: library/helpers/helper-fields.php:2415
 msgid "Greenland"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2385
+#: library/helpers/helper-fields.php:2416
 msgid "Grenada"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2386
+#: library/helpers/helper-fields.php:2417
 msgid "Guadeloupe"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2387
-#: library/helpers/helper-fields.php:3930
+#: library/helpers/helper-fields.php:2418
+#: library/helpers/helper-fields.php:3961
 msgid "Guam"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2388
+#: library/helpers/helper-fields.php:2419
 msgid "Guatemala"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2389
+#: library/helpers/helper-fields.php:2420
 msgid "Guinea"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2390
+#: library/helpers/helper-fields.php:2421
 msgid "Guinea-Bissau"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2391
+#: library/helpers/helper-fields.php:2422
 msgid "Guyana"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2392
+#: library/helpers/helper-fields.php:2423
 msgid "Haiti"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2393
+#: library/helpers/helper-fields.php:2424
 msgid "Heard Island And Mcdonald Island"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2394
+#: library/helpers/helper-fields.php:2425
 msgid "Honduras"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2395
+#: library/helpers/helper-fields.php:2426
 msgid "Hong Kong SAR China"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2396
+#: library/helpers/helper-fields.php:2427
 msgid "Hungary"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2397
+#: library/helpers/helper-fields.php:2428
 msgid "Iceland"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2398
+#: library/helpers/helper-fields.php:2429
 msgid "India"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2399
+#: library/helpers/helper-fields.php:2430
 msgid "Indonesia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2400
+#: library/helpers/helper-fields.php:2431
 msgid "Iran"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2401
+#: library/helpers/helper-fields.php:2432
 msgid "Iraq"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2402
+#: library/helpers/helper-fields.php:2433
 msgid "Ireland"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2403
+#: library/helpers/helper-fields.php:2434
 msgid "Isle of Man"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2404
+#: library/helpers/helper-fields.php:2435
 msgid "Israel"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2405
+#: library/helpers/helper-fields.php:2436
 msgid "Italy"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2406
+#: library/helpers/helper-fields.php:2437
 msgid "Jamaica"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2407
+#: library/helpers/helper-fields.php:2438
 msgid "Japan"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2408
+#: library/helpers/helper-fields.php:2439
 msgid "Jersey"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2409
+#: library/helpers/helper-fields.php:2440
 msgid "Jordan"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2410
+#: library/helpers/helper-fields.php:2441
 msgid "Kazakhstan"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2411
+#: library/helpers/helper-fields.php:2442
 msgid "Kenya"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2412
+#: library/helpers/helper-fields.php:2443
 msgid "Kiribati"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2413
+#: library/helpers/helper-fields.php:2444
 msgid "Kosovo"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2414
+#: library/helpers/helper-fields.php:2445
 msgid "Kuwait"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2415
+#: library/helpers/helper-fields.php:2446
 msgid "Kyrgyzstan"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2416
+#: library/helpers/helper-fields.php:2447
 msgid "Lao People's Democratic Republic"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2417
+#: library/helpers/helper-fields.php:2448
 msgid "Latvia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2418
+#: library/helpers/helper-fields.php:2449
 msgid "Lebanon"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2419
+#: library/helpers/helper-fields.php:2450
 msgid "Lesotho"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2420
+#: library/helpers/helper-fields.php:2451
 msgid "Liberia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2421
+#: library/helpers/helper-fields.php:2452
 msgid "Libya"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2422
+#: library/helpers/helper-fields.php:2453
 msgid "Liechtenstein"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2423
+#: library/helpers/helper-fields.php:2454
 msgid "Lithuania"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2424
+#: library/helpers/helper-fields.php:2455
 msgid "Luxembourg"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2425
+#: library/helpers/helper-fields.php:2456
 msgid "Macao SAR China"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2426
+#: library/helpers/helper-fields.php:2457
 msgid "North Macedonia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2427
+#: library/helpers/helper-fields.php:2458
 msgid "Madagascar"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2428
+#: library/helpers/helper-fields.php:2459
 msgid "Malawi"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2429
+#: library/helpers/helper-fields.php:2460
 msgid "Malaysia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2430
+#: library/helpers/helper-fields.php:2461
 msgid "Maldives"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2431
+#: library/helpers/helper-fields.php:2462
 msgid "Mali"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2432
+#: library/helpers/helper-fields.php:2463
 msgid "Malta"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2433
-#: library/helpers/helper-fields.php:3931
+#: library/helpers/helper-fields.php:2464
+#: library/helpers/helper-fields.php:3962
 msgid "Marshall Islands"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2434
+#: library/helpers/helper-fields.php:2465
 msgid "Martinique"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2435
+#: library/helpers/helper-fields.php:2466
 msgid "Mauritania"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2436
+#: library/helpers/helper-fields.php:2467
 msgid "Mauritius"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2437
+#: library/helpers/helper-fields.php:2468
 msgid "Mayotte"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2438
+#: library/helpers/helper-fields.php:2469
 msgid "Mexico"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2439
+#: library/helpers/helper-fields.php:2470
 msgid "Micronesia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2440
+#: library/helpers/helper-fields.php:2471
 msgid "Moldova"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2441
+#: library/helpers/helper-fields.php:2472
 msgid "Monaco"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2442
+#: library/helpers/helper-fields.php:2473
 msgid "Mongolia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2443
+#: library/helpers/helper-fields.php:2474
 msgid "Montserrat"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2444
+#: library/helpers/helper-fields.php:2475
 msgid "Montenegro"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2445
+#: library/helpers/helper-fields.php:2476
 msgid "Morocco"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2446
+#: library/helpers/helper-fields.php:2477
 msgid "Mozambique"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2447
+#: library/helpers/helper-fields.php:2478
 msgid "Myanmar"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2448
+#: library/helpers/helper-fields.php:2479
 msgid "Namibia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2449
+#: library/helpers/helper-fields.php:2480
 msgid "Nauru"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2450
+#: library/helpers/helper-fields.php:2481
 msgid "Nepal"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2451
+#: library/helpers/helper-fields.php:2482
 msgid "Netherlands"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2452
+#: library/helpers/helper-fields.php:2483
 msgid "New Caledonia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2453
+#: library/helpers/helper-fields.php:2484
 msgid "New Zealand"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2454
+#: library/helpers/helper-fields.php:2485
 msgid "Nicaragua"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2455
+#: library/helpers/helper-fields.php:2486
 msgid "Niger"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2456
+#: library/helpers/helper-fields.php:2487
 msgid "Nigeria"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2457
+#: library/helpers/helper-fields.php:2488
 msgid "Niue"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2458
+#: library/helpers/helper-fields.php:2489
 msgid "Norfolk Island"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2459
+#: library/helpers/helper-fields.php:2490
 msgid "North Korea"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2460
-#: library/helpers/helper-fields.php:3932
+#: library/helpers/helper-fields.php:2491
+#: library/helpers/helper-fields.php:3963
 msgid "Northern Mariana Islands"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2461
+#: library/helpers/helper-fields.php:2492
 msgid "Norway"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2462
+#: library/helpers/helper-fields.php:2493
 msgid "Oman"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2463
+#: library/helpers/helper-fields.php:2494
 msgid "Pakistan"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2464
-#: library/helpers/helper-fields.php:3933
+#: library/helpers/helper-fields.php:2495
+#: library/helpers/helper-fields.php:3964
 msgid "Palau"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2465
+#: library/helpers/helper-fields.php:2496
 msgid "Palestinian Territories"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2466
+#: library/helpers/helper-fields.php:2497
 msgid "Panama"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2467
+#: library/helpers/helper-fields.php:2498
 msgid "Papua New Guinea"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2468
+#: library/helpers/helper-fields.php:2499
 msgid "Paraguay"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2469
+#: library/helpers/helper-fields.php:2500
 msgid "Peru"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2470
+#: library/helpers/helper-fields.php:2501
 msgid "Philippines"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2471
+#: library/helpers/helper-fields.php:2502
 msgid "Pitcairn Islands"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2472
+#: library/helpers/helper-fields.php:2503
 msgid "Poland"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2473
+#: library/helpers/helper-fields.php:2504
 msgid "Portugal"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2474
-#: library/helpers/helper-fields.php:3908
+#: library/helpers/helper-fields.php:2505
+#: library/helpers/helper-fields.php:3939
 msgid "Puerto Rico"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2475
+#: library/helpers/helper-fields.php:2506
 msgid "Qatar"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2476
+#: library/helpers/helper-fields.php:2507
 msgid "Réunion"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2477
+#: library/helpers/helper-fields.php:2508
 msgid "Romania"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2478
+#: library/helpers/helper-fields.php:2509
 msgid "Russia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2479
+#: library/helpers/helper-fields.php:2510
 msgid "Rwanda"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2480
+#: library/helpers/helper-fields.php:2511
 msgid "St. Barthélemy"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2481
+#: library/helpers/helper-fields.php:2512
 msgid "Saint Helena"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2482
+#: library/helpers/helper-fields.php:2513
 msgid "Saint Kitts and Nevis"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2483
+#: library/helpers/helper-fields.php:2514
 msgid "Saint Lucia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2484
+#: library/helpers/helper-fields.php:2515
 msgid "St. Martin"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2485
+#: library/helpers/helper-fields.php:2516
 msgid "St. Pierre & Miquelon"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2486
+#: library/helpers/helper-fields.php:2517
 msgid "Saint Vincent and the Grenadines"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2487
+#: library/helpers/helper-fields.php:2518
 msgid "Samoa"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2488
+#: library/helpers/helper-fields.php:2519
 msgid "San Marino"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2489
+#: library/helpers/helper-fields.php:2520
 msgid "São Tomé & Príncipe"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2490
+#: library/helpers/helper-fields.php:2521
 msgid "Saudi Arabia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2491
+#: library/helpers/helper-fields.php:2522
 msgid "Senegal"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2492
+#: library/helpers/helper-fields.php:2523
 msgid "Serbia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2493
+#: library/helpers/helper-fields.php:2524
 msgid "Seychelles"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2494
+#: library/helpers/helper-fields.php:2525
 msgid "Sierra Leone"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2495
+#: library/helpers/helper-fields.php:2526
 msgid "Singapore"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2496
+#: library/helpers/helper-fields.php:2527
 msgid "Sint Maarten"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2497
+#: library/helpers/helper-fields.php:2528
 msgid "Slovakia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2498
+#: library/helpers/helper-fields.php:2529
 msgid "Slovenia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2499
+#: library/helpers/helper-fields.php:2530
 msgid "Solomon Islands"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2500
+#: library/helpers/helper-fields.php:2531
 msgid "Somalia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2501
+#: library/helpers/helper-fields.php:2532
 msgid "South Africa"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2502
+#: library/helpers/helper-fields.php:2533
 msgid "South Georgia and South Sandwich"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2503
+#: library/helpers/helper-fields.php:2534
 msgid "South Korea"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2504
+#: library/helpers/helper-fields.php:2535
 msgid "South Sudan"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2505
+#: library/helpers/helper-fields.php:2536
 msgid "Spain"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2506
+#: library/helpers/helper-fields.php:2537
 msgid "Sri Lanka"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2507
+#: library/helpers/helper-fields.php:2538
 msgid "Sudan"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2508
+#: library/helpers/helper-fields.php:2539
 msgid "Suriname"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2509
+#: library/helpers/helper-fields.php:2540
 msgid "Svalbard and Jan Mayen"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2510
+#: library/helpers/helper-fields.php:2541
 msgid "Sweden"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2511
+#: library/helpers/helper-fields.php:2542
 msgid "Switzerland"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2512
+#: library/helpers/helper-fields.php:2543
 msgid "Syria"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2513
+#: library/helpers/helper-fields.php:2544
 msgid "Taiwan"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2514
+#: library/helpers/helper-fields.php:2545
 msgid "Tajikistan"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2515
+#: library/helpers/helper-fields.php:2546
 msgid "Tanzania"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2516
+#: library/helpers/helper-fields.php:2547
 msgid "Thailand"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2517
+#: library/helpers/helper-fields.php:2548
 msgid "Timor-Leste"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2518
+#: library/helpers/helper-fields.php:2549
 msgid "Togo"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2519
+#: library/helpers/helper-fields.php:2550
 msgid "Tokelau"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2520
+#: library/helpers/helper-fields.php:2551
 msgid "Tonga"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2521
+#: library/helpers/helper-fields.php:2552
 msgid "Trinidad & Tobago"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2522
+#: library/helpers/helper-fields.php:2553
 msgid "Tunisia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2523
+#: library/helpers/helper-fields.php:2554
 msgid "Turkey"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2524
+#: library/helpers/helper-fields.php:2555
 msgid "Turkmenistan"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2525
+#: library/helpers/helper-fields.php:2556
 msgid "Turks & Caicos Islands"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2526
+#: library/helpers/helper-fields.php:2557
 msgid "Tuvalu"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2527
+#: library/helpers/helper-fields.php:2558
 msgid "Uganda"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2528
+#: library/helpers/helper-fields.php:2559
 msgid "Ukraine"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2529
+#: library/helpers/helper-fields.php:2560
 msgid "United Arab Emirates"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2530
+#: library/helpers/helper-fields.php:2561
 msgid "United Kingdom"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2531
+#: library/helpers/helper-fields.php:2562
 msgid "US Minor Outlying Islands"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2532
+#: library/helpers/helper-fields.php:2563
 msgid "United States of America (USA)"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2533
+#: library/helpers/helper-fields.php:2564
 msgid "U.S. Virgin Islands"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2534
+#: library/helpers/helper-fields.php:2565
 msgid "Uruguay"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2535
+#: library/helpers/helper-fields.php:2566
 msgid "Uzbekistan"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2536
+#: library/helpers/helper-fields.php:2567
 msgid "Vanuatu"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2537
+#: library/helpers/helper-fields.php:2568
 msgid "Vatican City"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2538
+#: library/helpers/helper-fields.php:2569
 msgid "Venezuela"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2539
+#: library/helpers/helper-fields.php:2570
 msgid "Vietnam"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2540
+#: library/helpers/helper-fields.php:2571
 msgid "Wallis And Futuna Islands"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2541
+#: library/helpers/helper-fields.php:2572
 msgid "Western Sahara"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2542
+#: library/helpers/helper-fields.php:2573
 msgid "Yemen"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2543
+#: library/helpers/helper-fields.php:2574
 msgid "Zambia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2544
+#: library/helpers/helper-fields.php:2575
 msgid "Zimbabwe"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2902
-#: library/helpers/helper-fields.php:2936
+#: library/helpers/helper-fields.php:2933
+#: library/helpers/helper-fields.php:2967
 msgid "Question : "
 msgstr ""
 
-#: library/helpers/helper-fields.php:2903
-#: library/helpers/helper-fields.php:2932
+#: library/helpers/helper-fields.php:2934
+#: library/helpers/helper-fields.php:2963
 msgid "Answer : "
 msgstr ""
 
-#: library/helpers/helper-fields.php:2932
+#: library/helpers/helper-fields.php:2963
 msgid "Answers : "
 msgstr ""
 
-#: library/helpers/helper-fields.php:2971
+#: library/helpers/helper-fields.php:3002
 #. Translators: 1. Opening <b> tag, 2. closing <b> tag 3. Correct answer count
 msgid "%1$sCorrect Answers%2$s : %3$d"
 msgstr ""
 
-#: library/helpers/helper-fields.php:2981
+#: library/helpers/helper-fields.php:3012
 #. Translators: 1. Opening <b> tag, 2. closing <b> tag 3. Total answer
 msgid "%1$sTotal Question Answered%2$s : %3$d"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3869
+#: library/helpers/helper-fields.php:3900
 msgid "Alabama"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3870
+#: library/helpers/helper-fields.php:3901
 msgid "Alaska"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3871
+#: library/helpers/helper-fields.php:3902
 msgid "Arizona"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3872
+#: library/helpers/helper-fields.php:3903
 msgid "Arkansas"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3873
+#: library/helpers/helper-fields.php:3904
 msgid "California"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3874
+#: library/helpers/helper-fields.php:3905
 msgid "Colorado"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3875
+#: library/helpers/helper-fields.php:3906
 msgid "Connecticut"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3876
+#: library/helpers/helper-fields.php:3907
 msgid "Delaware"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3877
+#: library/helpers/helper-fields.php:3908
 msgid "District of Columbia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3878
+#: library/helpers/helper-fields.php:3909
 msgid "Florida"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3880
+#: library/helpers/helper-fields.php:3911
 msgid "Hawaii"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3881
+#: library/helpers/helper-fields.php:3912
 msgid "Idaho"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3882
+#: library/helpers/helper-fields.php:3913
 msgid "Illinois"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3883
+#: library/helpers/helper-fields.php:3914
 msgid "Indiana"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3884
+#: library/helpers/helper-fields.php:3915
 msgid "Iowa"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3885
+#: library/helpers/helper-fields.php:3916
 msgid "Kansas"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3886
+#: library/helpers/helper-fields.php:3917
 msgid "Kentucky"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3887
+#: library/helpers/helper-fields.php:3918
 msgid "Louisiana"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3888
+#: library/helpers/helper-fields.php:3919
 msgid "Maine"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3889
+#: library/helpers/helper-fields.php:3920
 msgid "Maryland"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3890
+#: library/helpers/helper-fields.php:3921
 msgid "Massachusetts"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3891
+#: library/helpers/helper-fields.php:3922
 msgid "Michigan"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3892
+#: library/helpers/helper-fields.php:3923
 msgid "Minnesota"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3893
+#: library/helpers/helper-fields.php:3924
 msgid "Mississippi"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3894
+#: library/helpers/helper-fields.php:3925
 msgid "Missouri"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3895
+#: library/helpers/helper-fields.php:3926
 msgid "Montana"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3896
+#: library/helpers/helper-fields.php:3927
 msgid "Nebraska"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3897
+#: library/helpers/helper-fields.php:3928
 msgid "Nevada"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3898
+#: library/helpers/helper-fields.php:3929
 msgid "New Hampshire"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3899
+#: library/helpers/helper-fields.php:3930
 msgid "New Jersey"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3900
+#: library/helpers/helper-fields.php:3931
 msgid "New Mexico"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3901
+#: library/helpers/helper-fields.php:3932
 msgid "New York"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3902
+#: library/helpers/helper-fields.php:3933
 msgid "North Carolina"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3903
+#: library/helpers/helper-fields.php:3934
 msgid "North Dakota"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3904
+#: library/helpers/helper-fields.php:3935
 msgid "Ohio"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3905
+#: library/helpers/helper-fields.php:3936
 msgid "Oklahoma"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3906
+#: library/helpers/helper-fields.php:3937
 msgid "Oregon"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3907
+#: library/helpers/helper-fields.php:3938
 msgid "Pennsylvania"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3909
+#: library/helpers/helper-fields.php:3940
 msgid "Rhode Island"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3910
+#: library/helpers/helper-fields.php:3941
 msgid "South Carolina"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3911
+#: library/helpers/helper-fields.php:3942
 msgid "South Dakota"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3912
+#: library/helpers/helper-fields.php:3943
 msgid "Tennessee"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3913
+#: library/helpers/helper-fields.php:3944
 msgid "Texas"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3914
+#: library/helpers/helper-fields.php:3945
 msgid "Utah"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3915
+#: library/helpers/helper-fields.php:3946
 msgid "Vermont"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3916
+#: library/helpers/helper-fields.php:3947
 msgid "Virginia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3917
+#: library/helpers/helper-fields.php:3948
 msgid "Washington"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3918
+#: library/helpers/helper-fields.php:3949
 msgid "West Virginia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3919
+#: library/helpers/helper-fields.php:3950
 msgid "Wisconsin"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3920
+#: library/helpers/helper-fields.php:3951
 msgid "Wyoming"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3923
+#: library/helpers/helper-fields.php:3954
 msgid "Armed Forces Americas"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3924
+#: library/helpers/helper-fields.php:3955
 msgid "Armed Forces Europe"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3925
+#: library/helpers/helper-fields.php:3956
 msgid "Armed Forces Pacific"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3929
+#: library/helpers/helper-fields.php:3960
 msgid "Federated States of Micronesia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3934
+#: library/helpers/helper-fields.php:3965
 msgid "Virgin Islands"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3937
+#: library/helpers/helper-fields.php:3968
 msgid "Alberta"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3938
+#: library/helpers/helper-fields.php:3969
 msgid "British Columbia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3939
+#: library/helpers/helper-fields.php:3970
 msgid "Manitoba"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3940
+#: library/helpers/helper-fields.php:3971
 msgid "New Brunswick"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3941
+#: library/helpers/helper-fields.php:3972
 msgid "Newfoundland and Labrador"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3942
+#: library/helpers/helper-fields.php:3973
 msgid "Northwest Territories"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3943
+#: library/helpers/helper-fields.php:3974
 msgid "Nova Scotia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3944
+#: library/helpers/helper-fields.php:3975
 msgid "Nunavut"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3945
+#: library/helpers/helper-fields.php:3976
 msgid "Ontario"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3946
+#: library/helpers/helper-fields.php:3977
 msgid "Prince Edward Island"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3947
+#: library/helpers/helper-fields.php:3978
 msgid "Quebec"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3948
+#: library/helpers/helper-fields.php:3979
 msgid "Saskatchewan"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3949
+#: library/helpers/helper-fields.php:3980
 msgid "Yukon"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3952
+#: library/helpers/helper-fields.php:3983
 msgid "Army Post Office"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3953
+#: library/helpers/helper-fields.php:3984
 msgid "Delhi"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3956
+#: library/helpers/helper-fields.php:3987
 msgid "Aguascalientes"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3957
+#: library/helpers/helper-fields.php:3988
 msgid "Baja California"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3958
+#: library/helpers/helper-fields.php:3989
 msgid "Baja California Sur"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3959
+#: library/helpers/helper-fields.php:3990
 msgid "Campeche"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3960
+#: library/helpers/helper-fields.php:3991
 msgid "Chiapas"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3961
+#: library/helpers/helper-fields.php:3992
 msgid "Chihuahua"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3962
+#: library/helpers/helper-fields.php:3993
 msgid "Ciudad de México"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3963
+#: library/helpers/helper-fields.php:3994
 msgid "Coahuila"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3964
+#: library/helpers/helper-fields.php:3995
 msgid "Colima"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3965
-#: library/helpers/helper-fields.php:4194
+#: library/helpers/helper-fields.php:3996
+#: library/helpers/helper-fields.php:4225
 msgid "Distrito Federal"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3966
+#: library/helpers/helper-fields.php:3997
 msgid "Durango"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3967
+#: library/helpers/helper-fields.php:3998
 msgid "Estado de México"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3968
+#: library/helpers/helper-fields.php:3999
 msgid "Guanajuato"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3969
+#: library/helpers/helper-fields.php:4000
 msgid "Guerrero"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3970
+#: library/helpers/helper-fields.php:4001
 msgid "Hidalgo"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3971
+#: library/helpers/helper-fields.php:4002
 msgid "Jalisco"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3972
+#: library/helpers/helper-fields.php:4003
 msgid "Michoacán"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3973
+#: library/helpers/helper-fields.php:4004
 msgid "Morelos"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3974
+#: library/helpers/helper-fields.php:4005
 msgid "Nayarit"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3975
+#: library/helpers/helper-fields.php:4006
 msgid "Nuevo León"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3976
+#: library/helpers/helper-fields.php:4007
 msgid "Oaxaca"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3977
+#: library/helpers/helper-fields.php:4008
 msgid "Puebla"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3978
+#: library/helpers/helper-fields.php:4009
 msgid "Querétaro"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3979
+#: library/helpers/helper-fields.php:4010
 msgid "Quintana Roo"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3980
+#: library/helpers/helper-fields.php:4011
 msgid "San Luis Potosí"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3981
+#: library/helpers/helper-fields.php:4012
 msgid "Sinaloa"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3982
+#: library/helpers/helper-fields.php:4013
 msgid "Sonora"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3983
+#: library/helpers/helper-fields.php:4014
 msgid "Tabasco"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3984
+#: library/helpers/helper-fields.php:4015
 msgid "Tamaulipas"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3985
+#: library/helpers/helper-fields.php:4016
 msgid "Tlaxcala"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3986
+#: library/helpers/helper-fields.php:4017
 msgid "Veracruz"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3987
+#: library/helpers/helper-fields.php:4018
 msgid "Yucatán"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3988
+#: library/helpers/helper-fields.php:4019
 msgid "Zacatecas"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3991
+#: library/helpers/helper-fields.php:4022
 msgid "Aichi"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3992
+#: library/helpers/helper-fields.php:4023
 msgid "Akita"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3993
+#: library/helpers/helper-fields.php:4024
 msgid "Aomori"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3994
+#: library/helpers/helper-fields.php:4025
 msgid "Chiba"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3995
+#: library/helpers/helper-fields.php:4026
 msgid "Ehime"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3996
+#: library/helpers/helper-fields.php:4027
 msgid "Fukui"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3997
+#: library/helpers/helper-fields.php:4028
 msgid "Fukuoka"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3998
+#: library/helpers/helper-fields.php:4029
 msgid "Fukushima"
 msgstr ""
 
-#: library/helpers/helper-fields.php:3999
+#: library/helpers/helper-fields.php:4030
 msgid "Gifu"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4000
+#: library/helpers/helper-fields.php:4031
 msgid "Gunma"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4001
+#: library/helpers/helper-fields.php:4032
 msgid "Hiroshima"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4002
+#: library/helpers/helper-fields.php:4033
 msgid "Hokkaido"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4003
+#: library/helpers/helper-fields.php:4034
 msgid "Hyogo"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4004
+#: library/helpers/helper-fields.php:4035
 msgid "Ibaraki"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4005
+#: library/helpers/helper-fields.php:4036
 msgid "Ishikawa"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4006
+#: library/helpers/helper-fields.php:4037
 msgid "Iwate"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4007
+#: library/helpers/helper-fields.php:4038
 msgid "Kagawa"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4008
+#: library/helpers/helper-fields.php:4039
 msgid "Kagoshima"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4009
+#: library/helpers/helper-fields.php:4040
 msgid "Kanagawa"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4010
+#: library/helpers/helper-fields.php:4041
 msgid "Kochi"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4011
+#: library/helpers/helper-fields.php:4042
 msgid "Kumamoto"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4012
+#: library/helpers/helper-fields.php:4043
 msgid "Kyoto"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4013
+#: library/helpers/helper-fields.php:4044
 msgid "Mie"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4014
+#: library/helpers/helper-fields.php:4045
 msgid "Miyagi"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4015
+#: library/helpers/helper-fields.php:4046
 msgid "Miyazaki"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4016
+#: library/helpers/helper-fields.php:4047
 msgid "Nagano"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4017
+#: library/helpers/helper-fields.php:4048
 msgid "Nagasaki"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4018
+#: library/helpers/helper-fields.php:4049
 msgid "Nara"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4019
+#: library/helpers/helper-fields.php:4050
 msgid "Niigata"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4020
+#: library/helpers/helper-fields.php:4051
 msgid "Oita"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4021
+#: library/helpers/helper-fields.php:4052
 msgid "Okayama"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4022
+#: library/helpers/helper-fields.php:4053
 msgid "Okinawa"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4023
+#: library/helpers/helper-fields.php:4054
 msgid "Osaka"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4024
+#: library/helpers/helper-fields.php:4055
 msgid "Saga"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4025
+#: library/helpers/helper-fields.php:4056
 msgid "Saitama"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4026
+#: library/helpers/helper-fields.php:4057
 msgid "Shiga"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4027
+#: library/helpers/helper-fields.php:4058
 msgid "Shimane"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4028
+#: library/helpers/helper-fields.php:4059
 msgid "Shizuoka"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4029
+#: library/helpers/helper-fields.php:4060
 msgid "Tochigi"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4030
+#: library/helpers/helper-fields.php:4061
 msgid "Tokushima"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4031
+#: library/helpers/helper-fields.php:4062
 msgid "Tokyo"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4032
+#: library/helpers/helper-fields.php:4063
 msgid "Tottori"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4033
+#: library/helpers/helper-fields.php:4064
 msgid "Toyama"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4034
+#: library/helpers/helper-fields.php:4065
 msgid "Wakayama"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4035
+#: library/helpers/helper-fields.php:4066
 msgid "Yamagata"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4036
+#: library/helpers/helper-fields.php:4067
 msgid "Yamaguchi"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4037
+#: library/helpers/helper-fields.php:4068
 msgid "Yamanashi"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4040
+#: library/helpers/helper-fields.php:4071
 msgid "Agrigento"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4041
+#: library/helpers/helper-fields.php:4072
 msgid "Alessandria"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4042
+#: library/helpers/helper-fields.php:4073
 msgid "Ancona"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4043
+#: library/helpers/helper-fields.php:4074
 msgid "Aosta"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4044
+#: library/helpers/helper-fields.php:4075
 msgid "Arezzo"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4045
+#: library/helpers/helper-fields.php:4076
 msgid "Ascoli Piceno"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4046
+#: library/helpers/helper-fields.php:4077
 msgid "Asti"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4047
+#: library/helpers/helper-fields.php:4078
 msgid "Avellino"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4048
+#: library/helpers/helper-fields.php:4079
 msgid "Bari"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4049
+#: library/helpers/helper-fields.php:4080
 msgid "Barletta-Andria-Trani"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4050
+#: library/helpers/helper-fields.php:4081
 msgid "Belluno"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4051
+#: library/helpers/helper-fields.php:4082
 msgid "Benevento"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4052
+#: library/helpers/helper-fields.php:4083
 msgid "Bergamo"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4053
+#: library/helpers/helper-fields.php:4084
 msgid "Biella"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4054
+#: library/helpers/helper-fields.php:4085
 msgid "Bologna"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4055
+#: library/helpers/helper-fields.php:4086
 msgid "Bolzano"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4056
+#: library/helpers/helper-fields.php:4087
 msgid "Brescia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4057
+#: library/helpers/helper-fields.php:4088
 msgid "Brindisi"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4058
+#: library/helpers/helper-fields.php:4089
 msgid "Cagliari"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4059
+#: library/helpers/helper-fields.php:4090
 msgid "Caltanissetta"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4060
+#: library/helpers/helper-fields.php:4091
 msgid "Campobasso"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4061
+#: library/helpers/helper-fields.php:4092
 msgid "Carbonia-Iglesias"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4062
+#: library/helpers/helper-fields.php:4093
 msgid "Caserta"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4063
+#: library/helpers/helper-fields.php:4094
 msgid "Catania"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4064
+#: library/helpers/helper-fields.php:4095
 msgid "Catanzaro"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4065
+#: library/helpers/helper-fields.php:4096
 msgid "Chieti"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4066
+#: library/helpers/helper-fields.php:4097
 msgid "Como"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4067
+#: library/helpers/helper-fields.php:4098
 msgid "Cosenza"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4068
+#: library/helpers/helper-fields.php:4099
 msgid "Cremona"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4069
+#: library/helpers/helper-fields.php:4100
 msgid "Crotone"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4070
+#: library/helpers/helper-fields.php:4101
 msgid "Cuneo"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4071
+#: library/helpers/helper-fields.php:4102
 msgid "Enna"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4072
+#: library/helpers/helper-fields.php:4103
 msgid "Fermo"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4073
+#: library/helpers/helper-fields.php:4104
 msgid "Ferrara"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4074
+#: library/helpers/helper-fields.php:4105
 msgid "Firenze"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4075
+#: library/helpers/helper-fields.php:4106
 msgid "Foggia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4076
+#: library/helpers/helper-fields.php:4107
 msgid "Forlì-Cesena"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4077
+#: library/helpers/helper-fields.php:4108
 msgid "Frosinone"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4078
+#: library/helpers/helper-fields.php:4109
 msgid "Genova"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4079
+#: library/helpers/helper-fields.php:4110
 msgid "Gorizia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4080
+#: library/helpers/helper-fields.php:4111
 msgid "Grosseto"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4081
+#: library/helpers/helper-fields.php:4112
 msgid "Imperia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4082
+#: library/helpers/helper-fields.php:4113
 msgid "Isernia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4083
+#: library/helpers/helper-fields.php:4114
 msgid "L'Aquila"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4084
+#: library/helpers/helper-fields.php:4115
 msgid "La Spezia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4085
+#: library/helpers/helper-fields.php:4116
 msgid "Latina"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4086
+#: library/helpers/helper-fields.php:4117
 msgid "Lecce"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4087
+#: library/helpers/helper-fields.php:4118
 msgid "Lecco"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4088
+#: library/helpers/helper-fields.php:4119
 msgid "Livorno"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4089
+#: library/helpers/helper-fields.php:4120
 msgid "Lodi"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4090
+#: library/helpers/helper-fields.php:4121
 msgid "Lucca"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4091
+#: library/helpers/helper-fields.php:4122
 msgid "Macerata"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4092
+#: library/helpers/helper-fields.php:4123
 msgid "Mantova"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4093
+#: library/helpers/helper-fields.php:4124
 msgid "Massa-Carrara"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4094
+#: library/helpers/helper-fields.php:4125
 msgid "Matera"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4095
+#: library/helpers/helper-fields.php:4126
 msgid "Medio Campidano"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4096
+#: library/helpers/helper-fields.php:4127
 msgid "Messina"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4097
+#: library/helpers/helper-fields.php:4128
 msgid "Milano"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4098
+#: library/helpers/helper-fields.php:4129
 msgid "Modena"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4099
+#: library/helpers/helper-fields.php:4130
 msgid "Monza e della Brianza"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4100
+#: library/helpers/helper-fields.php:4131
 msgid "Napoli"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4101
+#: library/helpers/helper-fields.php:4132
 msgid "Novara"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4102
+#: library/helpers/helper-fields.php:4133
 msgid "Nuoro"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4103
+#: library/helpers/helper-fields.php:4134
 msgid "Ogliastra"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4104
+#: library/helpers/helper-fields.php:4135
 msgid "Olbia-Tempio"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4105
+#: library/helpers/helper-fields.php:4136
 msgid "Oristano"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4106
+#: library/helpers/helper-fields.php:4137
 msgid "Padova"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4107
+#: library/helpers/helper-fields.php:4138
 msgid "Palermo"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4108
+#: library/helpers/helper-fields.php:4139
 msgid "Parma"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4109
+#: library/helpers/helper-fields.php:4140
 msgid "Pavia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4110
+#: library/helpers/helper-fields.php:4141
 msgid "Perugia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4111
+#: library/helpers/helper-fields.php:4142
 msgid "Pesaro e Urbino"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4112
+#: library/helpers/helper-fields.php:4143
 msgid "Pescara"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4113
+#: library/helpers/helper-fields.php:4144
 msgid "Piacenza"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4114
+#: library/helpers/helper-fields.php:4145
 msgid "Pisa"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4115
+#: library/helpers/helper-fields.php:4146
 msgid "Pistoia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4116
+#: library/helpers/helper-fields.php:4147
 msgid "Pordenone"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4117
+#: library/helpers/helper-fields.php:4148
 msgid "Potenza"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4118
+#: library/helpers/helper-fields.php:4149
 msgid "Prato"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4119
+#: library/helpers/helper-fields.php:4150
 msgid "Ragusa"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4120
+#: library/helpers/helper-fields.php:4151
 msgid "Ravenna"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4121
+#: library/helpers/helper-fields.php:4152
 msgid "Reggio Calabria"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4122
+#: library/helpers/helper-fields.php:4153
 msgid "Reggio Emilia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4123
+#: library/helpers/helper-fields.php:4154
 msgid "Rieti"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4124
+#: library/helpers/helper-fields.php:4155
 msgid "Rimini"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4125
+#: library/helpers/helper-fields.php:4156
 msgid "Roma"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4126
+#: library/helpers/helper-fields.php:4157
 msgid "Rovigo"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4127
+#: library/helpers/helper-fields.php:4158
 msgid "Salerno"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4128
+#: library/helpers/helper-fields.php:4159
 msgid "Sassari"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4129
+#: library/helpers/helper-fields.php:4160
 msgid "Savona"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4130
+#: library/helpers/helper-fields.php:4161
 msgid "Siena"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4131
+#: library/helpers/helper-fields.php:4162
 msgid "Siracusa"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4132
+#: library/helpers/helper-fields.php:4163
 msgid "Sondrio"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4133
+#: library/helpers/helper-fields.php:4164
 msgid "Taranto"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4134
+#: library/helpers/helper-fields.php:4165
 msgid "Teramo"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4135
+#: library/helpers/helper-fields.php:4166
 msgid "Terni"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4136
+#: library/helpers/helper-fields.php:4167
 msgid "Torino"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4137
+#: library/helpers/helper-fields.php:4168
 msgid "Trapani"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4138
+#: library/helpers/helper-fields.php:4169
 msgid "Trento"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4139
+#: library/helpers/helper-fields.php:4170
 msgid "Treviso"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4140
+#: library/helpers/helper-fields.php:4171
 msgid "Trieste"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4141
+#: library/helpers/helper-fields.php:4172
 msgid "Udine"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4142
+#: library/helpers/helper-fields.php:4173
 msgid "Varese"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4143
+#: library/helpers/helper-fields.php:4174
 msgid "Venezia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4144
+#: library/helpers/helper-fields.php:4175
 msgid "Verbano-Cusio-Ossola"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4145
+#: library/helpers/helper-fields.php:4176
 msgid "Vercelli"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4146
+#: library/helpers/helper-fields.php:4177
 msgid "Verona"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4147
+#: library/helpers/helper-fields.php:4178
 msgid "Vibo Valentia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4148
+#: library/helpers/helper-fields.php:4179
 msgid "Vicenza"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4149
+#: library/helpers/helper-fields.php:4180
 msgid "Viterbo"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4152
+#: library/helpers/helper-fields.php:4183
 msgid "Bali"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4153
+#: library/helpers/helper-fields.php:4184
 msgid "Bangka Belitung"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4154
+#: library/helpers/helper-fields.php:4185
 msgid "Banten"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4155
+#: library/helpers/helper-fields.php:4186
 msgid "Bengkulu"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4156
+#: library/helpers/helper-fields.php:4187
 msgid "DI Yogyakarta"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4157
+#: library/helpers/helper-fields.php:4188
 msgid "DKI Jakarta"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4158
+#: library/helpers/helper-fields.php:4189
 msgid "Gorontalo"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4159
+#: library/helpers/helper-fields.php:4190
 msgid "Jambi"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4160
+#: library/helpers/helper-fields.php:4191
 msgid "Jawa Barat"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4161
+#: library/helpers/helper-fields.php:4192
 msgid "Jawa Tengah"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4162
+#: library/helpers/helper-fields.php:4193
 msgid "Jawa Timur"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4163
+#: library/helpers/helper-fields.php:4194
 msgid "Kalimantan Barat"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4164
+#: library/helpers/helper-fields.php:4195
 msgid "Kalimantan Selatan"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4165
+#: library/helpers/helper-fields.php:4196
 msgid "Kalimantan Tengah"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4166
+#: library/helpers/helper-fields.php:4197
 msgid "Kalimantan Timur"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4167
+#: library/helpers/helper-fields.php:4198
 msgid "Kalimantan Utara"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4168
+#: library/helpers/helper-fields.php:4199
 msgid "Kepulauan Riau"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4169
+#: library/helpers/helper-fields.php:4200
 msgid "Lampung"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4170
+#: library/helpers/helper-fields.php:4201
 msgid "Maluku"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4171
+#: library/helpers/helper-fields.php:4202
 msgid "Maluku Utara"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4172
+#: library/helpers/helper-fields.php:4203
 msgid "Nanggroe Aceh Darussalam"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4173
+#: library/helpers/helper-fields.php:4204
 msgid "Nusa Tenggara Barat"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4174
+#: library/helpers/helper-fields.php:4205
 msgid "Nusa Tenggara Timur"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4175
+#: library/helpers/helper-fields.php:4206
 msgid "Papua"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4176
+#: library/helpers/helper-fields.php:4207
 msgid "Papua Barat"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4177
+#: library/helpers/helper-fields.php:4208
 msgid "Riau"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4178
+#: library/helpers/helper-fields.php:4209
 msgid "Sulawesi Barat"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4179
+#: library/helpers/helper-fields.php:4210
 msgid "Sulawesi Selatan"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4180
+#: library/helpers/helper-fields.php:4211
 msgid "Sulawesi Tengah"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4181
+#: library/helpers/helper-fields.php:4212
 msgid "Sulawesi Tenggara"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4182
+#: library/helpers/helper-fields.php:4213
 msgid "Sulawesi Utara"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4183
+#: library/helpers/helper-fields.php:4214
 msgid "Sumatera Barat"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4184
+#: library/helpers/helper-fields.php:4215
 msgid "Sumatera Selatan"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4185
+#: library/helpers/helper-fields.php:4216
 msgid "Sumatera Utara"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4188
+#: library/helpers/helper-fields.php:4219
 msgid "Acre"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4189
+#: library/helpers/helper-fields.php:4220
 msgid "Alagoas"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4190
+#: library/helpers/helper-fields.php:4221
 msgid "Amapá"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4191
+#: library/helpers/helper-fields.php:4222
 msgid "Amazonas"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4192
+#: library/helpers/helper-fields.php:4223
 msgid "Bahia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4193
+#: library/helpers/helper-fields.php:4224
 msgid "Ceará"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4195
+#: library/helpers/helper-fields.php:4226
 msgid "Espírito Santo"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4196
+#: library/helpers/helper-fields.php:4227
 msgid "Goiás"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4197
+#: library/helpers/helper-fields.php:4228
 msgid "Maranhão"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4198
+#: library/helpers/helper-fields.php:4229
 msgid "Mato Grosso"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4199
+#: library/helpers/helper-fields.php:4230
 msgid "Mato Grosso do Sul"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4200
+#: library/helpers/helper-fields.php:4231
 msgid "Minas Gerais"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4201
+#: library/helpers/helper-fields.php:4232
 msgid "Paraná"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4202
+#: library/helpers/helper-fields.php:4233
 msgid "Paraíba"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4203
+#: library/helpers/helper-fields.php:4234
 msgid "Pará"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4204
+#: library/helpers/helper-fields.php:4235
 msgid "Pernambuco"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4205
+#: library/helpers/helper-fields.php:4236
 msgid "Piauí"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4206
+#: library/helpers/helper-fields.php:4237
 msgid "Rio Grande do Norte"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4207
+#: library/helpers/helper-fields.php:4238
 msgid "Rio Grande do Sul"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4208
+#: library/helpers/helper-fields.php:4239
 msgid "Rio de Janeiro"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4209
+#: library/helpers/helper-fields.php:4240
 msgid "Rondônia"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4210
+#: library/helpers/helper-fields.php:4241
 msgid "Roraima"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4211
+#: library/helpers/helper-fields.php:4242
 msgid "Santa Catarina"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4212
+#: library/helpers/helper-fields.php:4243
 msgid "Sergipe"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4213
+#: library/helpers/helper-fields.php:4244
 msgid "São Paulo"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4214
+#: library/helpers/helper-fields.php:4245
 msgid "Tocantins"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4217
+#: library/helpers/helper-fields.php:4248
 msgid "Buenos Aires (Ciudad)"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4218
+#: library/helpers/helper-fields.php:4249
 msgid "Buenos Aires (Provincia)"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4219
+#: library/helpers/helper-fields.php:4250
 msgid "Catamarca"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4220
+#: library/helpers/helper-fields.php:4251
 msgid "Chaco"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4221
+#: library/helpers/helper-fields.php:4252
 msgid "Chubut"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4222
+#: library/helpers/helper-fields.php:4253
 msgid "Corrientes"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4223
+#: library/helpers/helper-fields.php:4254
 msgid "Córdoba"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4224
+#: library/helpers/helper-fields.php:4255
 msgid "Entre Ríos"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4225
+#: library/helpers/helper-fields.php:4256
 msgid "Formosa"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4226
+#: library/helpers/helper-fields.php:4257
 msgid "Jujuy"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4227
+#: library/helpers/helper-fields.php:4258
 msgid "La Pampa"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4228
+#: library/helpers/helper-fields.php:4259
 msgid "La Rioja"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4229
+#: library/helpers/helper-fields.php:4260
 msgid "Mendoza"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4230
+#: library/helpers/helper-fields.php:4261
 msgid "Misiones"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4231
+#: library/helpers/helper-fields.php:4262
 msgid "Neuquén"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4232
+#: library/helpers/helper-fields.php:4263
 msgid "Río Negro"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4233
+#: library/helpers/helper-fields.php:4264
 msgid "Salta"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4234
+#: library/helpers/helper-fields.php:4265
 msgid "San Juan"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4235
+#: library/helpers/helper-fields.php:4266
 msgid "San Luis"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4236
+#: library/helpers/helper-fields.php:4267
 msgid "Santa Cruz"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4237
+#: library/helpers/helper-fields.php:4268
 msgid "Santa Fe"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4238
+#: library/helpers/helper-fields.php:4269
 msgid "Santiago del Estero"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4239
+#: library/helpers/helper-fields.php:4270
 msgid "Tierra del Fuego"
 msgstr ""
 
-#: library/helpers/helper-fields.php:4240
+#: library/helpers/helper-fields.php:4271
 msgid "Tucumán"
 msgstr ""
 
@@ -24344,15 +24358,15 @@ msgstr ""
 msgid "View Website"
 msgstr ""
 
-#: library/model/class-poll-form-model.php:466
+#: library/model/class-poll-form-model.php:467
 msgid "Voting is closed"
 msgstr ""
 
-#: library/model/class-poll-form-model.php:471
+#: library/model/class-poll-form-model.php:472
 msgid "Voting is paused, check again later"
 msgstr ""
 
-#: library/model/class-poll-form-model.php:476
+#: library/model/class-poll-form-model.php:477
 msgid "Voting has not been started yet, check again later"
 msgstr ""
 
@@ -24665,8 +24679,8 @@ msgstr ""
 #: library/modules/custom-forms/form-templates/template-post.php:92
 #: library/modules/custom-forms/form-templates/template-quote.php:153
 #: library/modules/custom-forms/form-templates/template-registration.php:109
-#: library/modules/custom-forms/front/front-action.php:3184
-#: library/modules/custom-forms/front/front-action.php:3565
+#: library/modules/custom-forms/front/front-action.php:3361
+#: library/modules/custom-forms/front/front-action.php:3742
 msgid "Error: Your form is not valid, please fix the errors!"
 msgstr ""
 
@@ -24726,7 +24740,7 @@ msgid "Welcome back! You’re now logged in."
 msgstr ""
 
 #: library/modules/custom-forms/form-templates/template-login.php:184
-#: library/modules/custom-forms/front/front-user-login.php:307
+#: library/modules/custom-forms/front/front-user-login.php:358
 msgid "Remember Me"
 msgstr ""
 
@@ -24824,152 +24838,161 @@ msgstr ""
 msgid "Register"
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:200
+#: library/modules/custom-forms/front/front-action.php:198
 msgid "Error: PayPal field doesn't exist in your form!"
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:218
+#: library/modules/custom-forms/front/front-action.php:216
 msgid "The payment total must be greater than 0."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:271
+#: library/modules/custom-forms/front/front-action.php:274
 msgid ""
 "Cannot create a new order on PayPal. If the error persists, please contact "
 "us for further assistance."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:440
-#: library/modules/custom-forms/front/front-action.php:534
+#: library/modules/custom-forms/front/front-action.php:443
+#: library/modules/custom-forms/front/front-action.php:537
 msgid "Error: Stripe field doesn't exist in your form!"
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:545
+#: library/modules/custom-forms/front/front-action.php:548
 msgid "Stripe Checkout is not enabled for this form."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:902
+#: library/modules/custom-forms/front/front-action.php:946
 msgid "Whoops, the passcode you entered was incorrect or expired."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:1320
+#: library/modules/custom-forms/front/front-action.php:1387
 msgid ""
 "The form is empty and cannot be saved as a draft. Please fill out at least "
 "one form field and try again."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:1323
-#: library/modules/custom-forms/front/front-action.php:3151
+#: library/modules/custom-forms/front/front-action.php:1390
+#: library/modules/custom-forms/front/front-action.php:3328
 msgid "At least one field must be filled out to submit the form."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:1596
+#: library/modules/custom-forms/front/front-action.php:1668
 msgid ""
 "This payment requires additional authentication! Please follow the "
 "instructions."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:1612
+#: library/modules/custom-forms/front/front-action.php:1684
 msgid ""
 "This payment requires 3D Secure authentication! Please follow the "
 "instructions."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:1713
+#: library/modules/custom-forms/front/front-action.php:1712
+#: library/modules/custom-forms/front/front-action.php:1789
+msgid "Payment is currently unavailable. Please try again later."
+msgstr ""
+
+#: library/modules/custom-forms/front/front-action.php:1798
 #: library/modules/custom-forms/front/front-render.php:3105
 msgid "SSL required to submit this form, please check your URL."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:1784
+#: library/modules/custom-forms/front/front-action.php:1869
 msgid "Error: Invalid module"
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:1848
+#: library/modules/custom-forms/front/front-action.php:1933
 msgid "Failed to load Stripe session."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:1872
+#: library/modules/custom-forms/front/front-action.php:1957
 msgid "Failed to load Stripe payment intent."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:2105
-#: library/modules/custom-forms/front/front-action.php:2298
+#: library/modules/custom-forms/front/front-action.php:2192
+#: library/modules/custom-forms/front/front-action.php:2416
 msgid "Failed to decrypt user password."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:2570
+#: library/modules/custom-forms/front/front-action.php:2737
+msgid "Payment is not complete. Please finish payment and try again."
+msgstr ""
+
+#: library/modules/custom-forms/front/front-action.php:2748
 msgid ""
 "This payment was started in a different browser. If it was completed, it "
 "will be processed shortly."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:2875
-#: library/modules/custom-forms/front/front-user-login.php:220
+#: library/modules/custom-forms/front/front-action.php:3055
+#: library/modules/custom-forms/front/front-user-login.php:234
 msgid "Failed to encrypt the password."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:3440
+#: library/modules/custom-forms/front/front-action.php:3617
 msgid "Upload field ID is missing."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:3452
+#: library/modules/custom-forms/front/front-action.php:3629
 msgid "Upload field doesn't exist in your form!"
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:4681
+#: library/modules/custom-forms/front/front-action.php:4866
 msgid "There was an error saving the post data. Please try again"
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:4715
+#: library/modules/custom-forms/front/front-action.php:4900
 msgid "Please try again."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:4730
+#: library/modules/custom-forms/front/front-action.php:4915
 msgid "Your code has been sent to your email."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:4841
+#: library/modules/custom-forms/front/front-action.php:5026
 #: library/modules/custom-forms/user/class-forminator-cform-user-data.php:242
 msgid "Draft entry was not found."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:4856
+#: library/modules/custom-forms/front/front-action.php:5041
 msgid "Email is required."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:4867
+#: library/modules/custom-forms/front/front-action.php:5052
 msgid "Please enter a valid email."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:4908
+#: library/modules/custom-forms/front/front-action.php:5093
 #: library/modules/custom-forms/user/class-forminator-cform-user-data.php:257
 msgid ""
 "Could not determine the page for this draft. The draft link cannot be "
 "reconstructed."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:4924
+#: library/modules/custom-forms/front/front-action.php:5109
 #: library/modules/custom-forms/user/class-forminator-cform-user-data.php:275
 msgid "No draft email notification is configured for this form."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:4940
+#: library/modules/custom-forms/front/front-action.php:5125
 msgid ""
 "We've sent the resume form link to your email address. Please check your "
 "spam folder if you can't find the link in your inbox."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:4941
+#: library/modules/custom-forms/front/front-action.php:5126
 msgid "Change email"
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:4948
+#: library/modules/custom-forms/front/front-action.php:5133
 msgid ""
 "We couldn't send the form resume link to your email at this time. Click on "
 "the link below to resend it or manually copy and save the link in a safe "
 "place."
 msgstr ""
 
-#: library/modules/custom-forms/front/front-action.php:4949
+#: library/modules/custom-forms/front/front-action.php:5134
 msgid "Resend link"
 msgstr ""
 
@@ -25807,20 +25830,16 @@ msgid ""
 "%2$s"
 msgstr ""
 
-#: library/modules/custom-forms/user/class-forminator-cform-user-signups.php:517
+#: library/modules/custom-forms/user/class-forminator-cform-user-signups.php:529
 msgid "That username is already activated."
 msgstr ""
 
-#: library/modules/custom-forms/user/class-forminator-cform-user-signups.php:522
+#: library/modules/custom-forms/user/class-forminator-cform-user-signups.php:534
 msgid "Sorry, that email address is already used!"
 msgstr ""
 
-#: library/modules/custom-forms/user/class-forminator-cform-user-signups.php:544
+#: library/modules/custom-forms/user/class-forminator-cform-user-signups.php:557
 msgid "Could not create user"
-msgstr ""
-
-#: library/modules/custom-forms/user/class-forminator-cform-user-signups.php:560
-msgid "User account has been activated."
 msgstr ""
 
 #: library/modules/polls/admin/admin-loader.php:47
@@ -26759,41 +26778,41 @@ msgid ""
 "parties:"
 msgstr ""
 
-#: library/render/class-render-form.php:242
+#: library/render/class-render-form.php:251
 msgid "Forminator polls can't be previewed inside Divi's Visual Builder."
 msgstr ""
 
-#: library/render/class-render-form.php:245
+#: library/render/class-render-form.php:254
 msgid "Forminator quizzes can't be previewed inside Divi's Visual Builder."
 msgstr ""
 
-#: library/render/class-render-form.php:249
+#: library/render/class-render-form.php:258
 msgid "Forminator forms can't be previewed inside Divi's Visual Builder."
 msgstr ""
 
-#: library/render/class-render-form.php:805
+#: library/render/class-render-form.php:814
 msgid "Module ID attribute is required!"
 msgstr ""
 
-#: library/render/class-render-form.php:815
+#: library/render/class-render-form.php:824
 msgid "Module ID not found!"
 msgstr ""
 
-#: library/render/class-render-form.php:2142
+#: library/render/class-render-form.php:2151
 msgid ""
 "Can't find the draft associated with the draft ID in the URL. This draft "
 "was either submitted or has expired."
 msgstr ""
 
-#: library/render/class-render-form.php:2215
+#: library/render/class-render-form.php:2224
 msgid "Edit quiz"
 msgstr ""
 
-#: library/render/class-render-form.php:2219
+#: library/render/class-render-form.php:2228
 msgid "Edit poll"
 msgstr ""
 
-#: library/render/class-render-form.php:2223
+#: library/render/class-render-form.php:2232
 msgid "Edit form"
 msgstr ""
 

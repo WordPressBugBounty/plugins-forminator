@@ -761,6 +761,32 @@ function forminator_is_stripe_mode_ready( $mode ) {
 }
 
 /**
+ * Return if PayPal mode is configured
+ *
+ * @since 1.58.4
+ *
+ * @param string $mode Payment mode (sandbox|live).
+ * @return bool
+ */
+function forminator_is_paypal_mode_ready( $mode ) {
+	if ( class_exists( 'Forminator_PayPal_Express' ) ) {
+		try {
+			$paypal = new Forminator_PayPal_Express();
+
+			if ( 'sandbox' !== $mode ) {
+				$paypal->set_live( true );
+			}
+
+			return $paypal->is_ready();
+		} catch ( Forminator_Gateway_Exception $e ) {
+			return false;
+		}
+	}
+
+	return false;
+}
+
+/**
  * Check if the Stripe Subscription add-on is installed and meets Forminator's minimum version.
  *
  * @since 1.58.0
@@ -1092,7 +1118,7 @@ function forminator_is_page_builder_preview() {
 	global $wp;
 
 	// Check Pro theme by Themeco https://theme.co/.
-	if ( defined( 'X_TEMPLATE_PATH' ) && 'cornerstone-endpoint' === $wp->request ) {
+	if ( defined( 'X_TEMPLATE_PATH' ) && 'cornerstone-endpoint' === $wp->request && current_user_can( 'edit_posts' ) ) {
 		$decision = true;
 		return $decision;
 	}
@@ -1113,7 +1139,7 @@ function forminator_is_page_builder_preview() {
 	// Check Elementor plugin.
 	$action         = Forminator_Core::sanitize_text_field( 'action' );
 	$editor_post_id = (int) Forminator_Core::sanitize_text_field( 'editor_post_id' );
-	if ( defined( 'ELEMENTOR_VERSION' ) && 'elementor_ajax' === $action && $editor_post_id ) {
+	if ( defined( 'ELEMENTOR_VERSION' ) && 'elementor_ajax' === $action && $editor_post_id && current_user_can( 'edit_post', $editor_post_id ) ) {
 		$decision = true;
 		return $decision;
 	}

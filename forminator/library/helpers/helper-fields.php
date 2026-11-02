@@ -811,6 +811,10 @@ function forminator_replace_form_data( $content, ?Forminator_Form_Model $custom_
 				 */
 				$value = apply_filters( 'forminator_empty_field_placeholder', $value, $element_id );
 			}
+			// HTML fields are admin templates and may still need merge tags resolved later.
+			if ( is_string( $value ) && 0 !== strpos( $element_id, 'html' ) ) {
+				$value = forminator_neutralize_merge_tags( $value );
+			}
 			if ( ! $urlencode ) {
 				$content = forminator_replace_placeholder_in_urls( $content, $match, $value );
 			}
@@ -1108,15 +1112,18 @@ function forminator_replace_field_data( $custom_form, $element_id, $data, $is_pd
  * @return mixed
  */
 function forminator_replace_custom_form_data( $content, Forminator_Form_Model $custom_form, Forminator_Form_Entry_Model $entry, $excluded = array() ) {
+	// Expand scalar tags before {all_fields} / {all_non_empty_fields}. Otherwise a submitted
+	// value that contains e.g. {account_approval_link} or {submission_url} is copied into the
+	// body by {all_fields} and then resolved by a later pass (second-order merge tag injection).
 	$custom_form_datas = array(
-		'{all_fields}'            => 'forminator_get_formatted_form_entry',
-		'{all_non_empty_fields}'  => 'forminator_get_formatted_form_non_empty_entry',
+		'{account_approval_link}' => 'forminator_get_account_approval_link',
 		'{form_name}'             => 'forminator_get_formatted_form_name',
 		'{submission_id}'         => 'forminator_get_submission_id',
 		'{submission_url}'        => 'forminator_get_submission_url',
-		'{account_approval_link}' => 'forminator_get_account_approval_link',
 		'{username}'              => 'forminator_get_formatted_username',
 		'{line_break}'            => 'forminator_get_formatted_line_break',
+		'{all_fields}'            => 'forminator_get_formatted_form_entry',
+		'{all_non_empty_fields}'  => 'forminator_get_formatted_form_non_empty_entry',
 	);
 
 	foreach ( $custom_form_datas as $custom_form_data => $function ) {
@@ -1133,6 +1140,26 @@ function forminator_replace_custom_form_data( $content, Forminator_Form_Model $c
 	}
 
 	return apply_filters( 'forminator_replace_custom_form_data', $content, $custom_form, Forminator_CForm_Front_Action::$prepared_data, $entry, $excluded, $custom_form_datas );
+}
+
+/**
+ * Neutralize merge-tag braces in user-supplied values.
+ *
+ * Submitted field values must not be interpreted as Forminator merge tags when they
+ * are inserted into email bodies or other templates (second-order merge tag injection).
+ *
+ * @since 1.58.4
+ *
+ * @param string $text Text that may contain curly braces.
+ *
+ * @return string
+ */
+function forminator_neutralize_merge_tags( $text ) {
+	if ( ! is_string( $text ) || false === strpos( $text, '{' ) ) {
+		return $text;
+	}
+
+	return str_replace( array( '{', '}' ), array( '&#123;', '&#125;' ), $text );
 }
 
 /**
@@ -1360,6 +1387,10 @@ function forminator_prepare_formatted_form_entry(
 							// Escape first so line-break conversion cannot revive markup.
 							$value = forminator_replace_linebreaks( esc_html( $value ) );
 						}
+					}
+					// Submitted values must not reintroduce merge tags into the email body.
+					if ( is_string( $value ) ) {
+						$value = forminator_neutralize_merge_tags( $value );
 					}
 					$html .= $value . '<br/>';
 				}

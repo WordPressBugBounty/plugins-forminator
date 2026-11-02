@@ -752,11 +752,17 @@ abstract class Forminator_Front_Action {
 			return $current_entry_fields;
 		}
 
+		// If entry fields are empty, use the field data array from the info property.
+		// So that the connected addons can add their fields.
+		$entry_fields = $current_entry_fields;
+		if ( empty( $entry_fields ) && ! empty( self::$info['field_data_array'] ) ) {
+			$entry_fields = self::$info['field_data_array'];
+		}
+
 		$additional_fields_data = array();
-		$submitted_data         = static::get_prepared_submitted_data_for_addons( $current_entry_fields );
+		$submitted_data         = static::get_prepared_submitted_data_for_addons( $entry_fields );
 
 		$connected_addons = forminator_get_addons_instance_connected_with_module( static::$module_id, static::$module_slug );
-
 		foreach ( $connected_addons as $connected_addon ) {
 			if ( ! self::are_integration_conditions_matched( $connected_addon ) ) {
 				continue;
@@ -766,7 +772,7 @@ abstract class Forminator_Front_Action {
 					$hooks = $connected_addon->get_addon_hooks( static::$module_id, static::$module_slug );
 				}
 				if ( isset( $hooks ) && $hooks instanceof Forminator_Integration_Hooks ) {
-					$addon_fields = $hooks->add_entry_fields( $submitted_data, $current_entry_fields, $entry );
+					$addon_fields = $hooks->add_entry_fields( $submitted_data, $entry_fields, $entry );
 					// reformat additional fields.
 					$addon_fields           = self::format_addon_additional_fields( $connected_addon, $addon_fields );
 					$additional_fields_data = array_merge( $additional_fields_data, $addon_fields );

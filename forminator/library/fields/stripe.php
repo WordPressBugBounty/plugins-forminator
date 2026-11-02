@@ -3861,6 +3861,25 @@ class Forminator_Stripe extends Forminator_Field {
 	}
 
 	/**
+	 * Whether a Checkout Session has finished Checkout and may receive the after-payment response.
+	 *
+	 * The payment-owner cookie only proves which browser started the session. An open/unpaid
+	 * session must not disclose thank-you messages, redirect URLs, or other gated content.
+	 * Status complete covers paid, no_payment_required, and async unpaid (ACH/SEPA) after the
+	 * customer finishes Checkout.
+	 *
+	 * @since 1.58.4
+	 *
+	 * @param mixed $session Checkout Session object.
+	 * @return bool
+	 */
+	public static function is_checkout_session_completed( $session ): bool {
+		return is_object( $session )
+			&& ! empty( $session->status )
+			&& 'complete' === $session->status;
+	}
+
+	/**
 	 * Determine whether a Checkout Session can still be recovered for retry.
 	 *
 	 * @since 1.56

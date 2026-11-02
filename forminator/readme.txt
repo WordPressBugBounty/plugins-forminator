@@ -3,7 +3,7 @@ Contributors: WPMUDEV
 Tags: contact form, custom form, forms, payment form, WordPress form plugin
 Requires at least: 6.4
 Tested up to: 7.1
-Stable tag: 1.58.2
+Stable tag: 1.58.3
 Requires PHP: 7.4
 License: GPL v3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -230,6 +230,18 @@ We take plugin security incredibly seriously; if you have a bug or vulnerability
 6. Publish Polls with Real-time Stats
 
 == Changelog ==
+
+= 1.58.4 ( 2026-10-29 ) =
+
+- Fix: Post Data featured images are now rejected when the file contents do not match an allowed image type
+- Fix: Browser cookie for poll vote limits now lasts for the configured time when the site timezone is not UTC
+- Fix: HubSpot tickets now receive the quiz name when the Quiz Name variable is used
+- Fix: The {quiz_answer} tag now includes the quiz answers in notification emails for quizzes with a lead form
+- Fix: Mapping a date field to a Trello due date no longer causes a fatal error on submission
+- Fix: Subsite administrators no longer see a blank page when connecting the site from the Templates page
+- Fix: Disconnecting PayPal no longer logs a console error when a form has a PayPal field
+- Fix: Security hardening (props: Charles Vosburgh, Naoki Kawahigashi)
+
 
 = 1.58.3 ( 2026-10-21 ) =
 
